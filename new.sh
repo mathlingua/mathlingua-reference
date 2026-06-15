@@ -2,27 +2,36 @@
 
 set -euo pipefail
 
-if [[ $# -ne 2 ]]; then
-    echo "Usage: $0 title_snake_case" >&2
+if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 kind title1 [title2 ... titlen]" >&2
     exit 1
 fi
 
 kind="$1"
-title="$2"
+shift
 
-# Convert underscores to spaces
-title_with_spaces="${title//_/ }"
+mkdir -p "src/$kind"
 
-# Convert each word to Title Case
-title_case=$(echo "$title_with_spaces" | awk '
-{
-    for (i = 1; i <= NF; i++) {
-        $i = toupper(substr($i,1,1)) tolower(substr($i,2))
-    }
-    print
-}')
+for title in "$@"; do
+    file="src/$kind/$title.md"
 
-mkdir -p src/$kind
+    if [[ -e "$file" ]]; then
+        echo "Skipping '$title': $file already exists"
+        continue
+    fi
 
-echo "($title_case)[$kind/$input]" >> src/SUMMARY.md
-echo "# $title_case\n\n" >> src/$kind/$input.md
+    title_with_spaces="${title//_/ }"
+
+    title_case=$(echo "$title_with_spaces" | awk '
+    {
+        for (i = 1; i <= NF; i++) {
+            $i = toupper(substr($i,1,1)) tolower(substr($i,2))
+        }
+        print
+    }')
+
+    echo "Creating $file"
+
+    echo "- [$title_case]($kind/$title.md)" >> src/SUMMARY.md
+    printf "# %s\n\n" "$title_case" > "$file"
+done
