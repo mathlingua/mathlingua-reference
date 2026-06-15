@@ -1,0 +1,27 @@
+[book]
+title = "The Mathlingua Reference"
+description = "A user-focused guide to writing mathematical knowledge in Mathlingua."
+authors = []
+language = "en"
+src = "src"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/mathlingua/mathlingua"
+edit-url-template = "https://github.com/mathlingua/mathlingua/edit/main/book/{path}"
+no-section-label = false
+
+[output.html.fold]
+enable = true
+level = 1
+
+[output.html.search]
+enable = true
+limit-results = 30
+use-boolean-and = true
+boost-title = 2
+boost-hierarchy = 2
+boost-paragraph = 1
+expand = true
+heading-split-level = 2
