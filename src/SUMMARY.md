@@ -65,7 +65,6 @@
     - [Expression Alias](structural/provides/expression_alias.md)
     - [Spec Operator Alias](structural/provides/spec_operator_alias.md)
     - [Connection](structural/provides/connection.md)
-  - [Documented Item](structural/documented_item.md)
   - [Alias Item](structural/alias_item.md)
   - [Justified](structural/justified/README.md)
     - [Label](structural/justified/label.md)
