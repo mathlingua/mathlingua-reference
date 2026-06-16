@@ -1,2 +1,5 @@
 # Editor
 
+```mlg
+editor: <OpenText>
+```

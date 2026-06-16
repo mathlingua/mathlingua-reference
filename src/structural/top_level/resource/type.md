@@ -1,2 +1,5 @@
 # Type
 
+```mlg
+type: <OpenText>
+```

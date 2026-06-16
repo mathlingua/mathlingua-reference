@@ -1,1 +1,5 @@
 # Document
+
+```mlg
+Root ::= TopLevelItemUnion*
+```

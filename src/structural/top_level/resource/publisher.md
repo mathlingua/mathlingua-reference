@@ -1,2 +1,5 @@
 # Publisher
 
+```mlg
+publisher: <OpenText>
+```

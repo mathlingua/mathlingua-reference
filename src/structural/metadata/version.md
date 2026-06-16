@@ -1,1 +1,5 @@
 # Version
+
+```mlg
+version: <OpenText>
+```

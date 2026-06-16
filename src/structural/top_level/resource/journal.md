@@ -1,2 +1,5 @@
 # Journal
 
+```mlg
+journal: <OpenText>
+```

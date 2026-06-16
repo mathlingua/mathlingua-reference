@@ -1,8 +1,8 @@
-# For All
+# Given
 
 ```mlg
 [LabelHeader]?
-forAll: <BindingOrSpecUnion>
+given: <IsOrRefinedStatementSpec>
 where?: <ClauseUnion>+
 then: <ClauseUnion>+
 ```
