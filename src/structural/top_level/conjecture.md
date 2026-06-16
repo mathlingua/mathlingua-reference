@@ -1,8 +1,8 @@
-# Theorem
+# Conjecture
 
 ```mlg
 [CommandHeader]?
-Theorem: <OpenText>*
+Conjecture: <OpenText>*
 given?: <IsOrRefinedStatementSpec>+
 where?: <ClauseUnion>+
 then: <ClauseUnion>+
