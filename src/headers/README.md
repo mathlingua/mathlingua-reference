@@ -1,4 +1,4 @@
-# Labels
+# Headers
 
 ```mlg
 DottedParts ::= Name ("." Name)*

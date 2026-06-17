@@ -1,4 +1,4 @@
-# Clause
+# Clauses
 
 ```mlg
 ClauseUnion ::=
