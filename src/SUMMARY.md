@@ -1,8 +1,6 @@
 # Summary
 
 - [Formulation](formulation/README.md)
-  - [Labels](formulation/labels.md)
-  - [Precedence](formulation/precedence.md)
   - [Declarations](formulation/declarations/README.md)
     - [Form Or Declarations](formulation/declarations/form_or_declarations.md)
     - [Names](formulation/declarations/names.md)
@@ -19,6 +17,7 @@
     - [Spec Operators](formulation/operators/spec_operators.md)
     - [Special Operators](formulation/operators/special_operators.md)
     - [Named Operators](formulation/operators/named_operators.md)
+  - [Precedence](formulation/precedence.md)
   - [Keywords](formulation/keywords/README.md)
     - [Reserved Keywords](formulation/keywords/reserved_keywords.md)
     - [Is Keyword](formulation/keywords/is_keyword.md)
@@ -36,6 +35,7 @@
     - [Infix Command Expressiosn](formulation/expressions/infix_command_expressiosn.md)
     - [Refined Command Expressions](formulation/expressions/refined_command_expressions.md)
     - [Spec Or Predicate Expression](formulation/expressions/spec_or_predicate_expression.md)
+  - [Labels](formulation/labels.md)
 - [Structural](structural/README.md)
   - [Document](structural/document.md)
   - [Top Level](structural/top_level/README.md)
