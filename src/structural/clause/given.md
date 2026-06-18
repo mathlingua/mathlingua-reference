@@ -2,7 +2,7 @@
 
 ```mlg
 [LabelHeader]?
-given!: <IsOrRefinedStatementSpec>
+given: <IsOrRefinedStatementSpec>
 where?: <ClauseUnion>+
 then: <ClauseUnion>+
 ```

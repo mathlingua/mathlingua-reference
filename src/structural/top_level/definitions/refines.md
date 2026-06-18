@@ -2,7 +2,7 @@
 
 ```mlg
 [CommandHeader]
-Refines!: <IsOrRefinedStatementSpec>
+Refines: <IsOrRefinedStatementSpec>
 using?: <IsOrSpec>+
 when?: <ClauseUnion>+
 specifies?: <IsOrRefinedStatementSpec>

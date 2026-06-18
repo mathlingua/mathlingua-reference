@@ -3,7 +3,7 @@
 ```mlg
 [CommandHeader]?
 Theorem: <OpenText>*
-given?!: <IsOrRefinedStatementSpec>+
+given?: <IsOrRefinedStatementSpec>+
 where?: <ClauseUnion>+
 then: <ClauseUnion>+
 iff?: <ClauseUnion>+

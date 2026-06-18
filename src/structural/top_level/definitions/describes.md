@@ -2,7 +2,7 @@
 
 ```mlg
 [CommandHeader]
-Describes!: <FormOrDeclaration>
+Describes: <FormOrDeclaration>
 using?: <IsOrSpec>+
 when?: <ClauseUnion>+
 extends?: <IsOrViaItemUnion>

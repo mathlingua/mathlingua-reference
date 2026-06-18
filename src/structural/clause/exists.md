@@ -2,6 +2,6 @@
 
 ```mlg
 [LabelHeader]?
-exists!: <BindingOrSpecUnion>
+exists: <BindingOrSpecUnion>
 suchThat: <ClauseUnion>+
 ```
