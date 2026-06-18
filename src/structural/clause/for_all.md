@@ -2,7 +2,7 @@
 
 ```mlg
 [LabelHeader]?
-forAll: <BindingOrSpecUnion>
+forAll!: <BindingOrSpecUnion>
 where?: <ClauseUnion>+
 then: <ClauseUnion>+
 ```

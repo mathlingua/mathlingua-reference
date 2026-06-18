@@ -3,7 +3,7 @@
 ```mlg
 [CommandHeader]?
 Conjecture: <OpenText>*
-given?: <IsOrRefinedStatementSpec>+
+given?!: <IsOrRefinedStatementSpec>+
 where?: <ClauseUnion>+
 then: <ClauseUnion>+
 iff?: <ClauseUnion>+

@@ -2,7 +2,7 @@
 
 ```mlg
 [CommandHeader]
-Defines: <IsOrSpec>
+Defines!: <IsOrSpec>
 using?: <IsOrSpec>+
 when?: <ClauseUnion>+
 expresses?: <ClauseUnion>

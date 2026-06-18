@@ -4,7 +4,7 @@
 [CommandHeader]?
 Corollary: <OpenText>*
 of: <OpenText>*
-given?: <IsOrRefinedStatementSpec>+
+given?!: <IsOrRefinedStatementSpec>+
 where?: <ClauseUnion>+
 then: <ClauseUnion>+
 iff?: <ClauseUnion>+
