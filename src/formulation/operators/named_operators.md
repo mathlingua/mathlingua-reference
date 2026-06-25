@@ -1,11 +1,8 @@
 # Named Operator
 
 ```mlg
-NamedOperator ::= "|" IdentifierName "|"
-                | ":|" IdentifierName "|"
-                | "|" IdentifierName "|:"
-                | ":|" IdentifierName "|:"
-
-PrefixFormNamedOperator ::= IdentifierName "|"
-PostfixFormNamedOperator ::= "|" IdentifierName
+x_ |op| y_
+x_ :|op| y_
+x_ |op|: y_
+x_ :|op|: y_
 ```

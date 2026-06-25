@@ -1,7 +1,12 @@
 # Names
 
 ```mlg
-IdentifierName ::= [A-Za-z0-9]+(?:[A-Za-z0-9_]*[A-Za-z0-9]+)?
-BacktickName ::= "`" OperatorText "`"
-Name ::= IdentifierName | BacktickName
+ab
+a_b
+a_1
+```
+
+```mlg
+x is \foo
+x := a + b is \foo
 ```

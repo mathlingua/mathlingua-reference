@@ -1,16 +1,37 @@
 # Command Expressions
 
 ```mlg
-Chain ::= ChainPart ("." ChainPart)*
-ChainPart ::= Name | "$" Name | SpecialOperator
-RawChain ::= RawChainPart ("." RawChainPart)*
-RawChainPart ::= Name | "$" Name | OperatorText
+\a.b.foo
+\a.b.foo(x)
+\a.b.foo{a, b}(x)
+\a.b.foo:bar{a, b}
+\a.b.foo:bar{a, b}(x)
+\a.b.foo{a, b}:bar{a}
+\a.b.foo{a, b}:bar{a}(x)
+\a.b.foo{a}:bar{b}:baz{c}
+\a.b.foo{a}:bar{b}:baz{c}(x)
+```
 
-CurlyExpressionArgs ::= "{" ExpressionList "}"
-ParenExpressionArgs ::= "(" ExpressionList ")"
+```mlg
+\foo{x_ -> x_ + 1}
+```
+is equivalent to
+```mlg
+\foo[x_]{x_ + 1}
+```
 
-CommandExpressionTailPart ::= ":" Chain CurlyExpressionArgs+
-CommandExpressionTail ::= CommandExpressionTailPart*
+```mlg
+\foo{{x_ : x_ is \real}}
+```
+is equivalent to
+```mlg
+\foo{x_ : x_ is \real}
+```
 
-CommandExpression ::= "\" Chain CurlyExpressionArgs* CommandExpressionTail ParenExpressionArgs*
+```mlg
+\foo{{x_ : x_ is \real | f(x_) > 0}}
+```
+is equivalent to
+```mlg
+\foo{x_ : x_ is \real | f(x_) > 0}
 ```

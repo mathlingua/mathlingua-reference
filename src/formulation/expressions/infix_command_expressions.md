@@ -1,5 +1,5 @@
 # Infix Command Expressiosn
 
 ```mlg
-InfixCommand ::= "\:" Chain CurlyExpressionArgs* CommandExpressionTail ":/"
+(x+1) \.some.opeartor./ (.y+1.)
 ```

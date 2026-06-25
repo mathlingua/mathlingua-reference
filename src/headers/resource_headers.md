@@ -1,5 +1,5 @@
 # Resource Headers
 
 ```mlg
-ResourceHeader ::= "$" DottedParts
+$some.resource
 ```

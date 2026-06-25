@@ -1,14 +1,15 @@
 # Command Headers
 
 ```mlg
-CommandHeader ::= SimpleCommandHeader | InfixCommandHeader | RefinedCommandHeader
+\some.command
+\foo{f(x_)}
+\foo{X ::= {x_ : ...}}
+\foo{G ::= (X, *, e)}
+\foo{G ::= (X ::= (a, b), f(x_))}
+\foo{a, b}(x_)
+```
 
-CurlyHeadingArgs ::= "{" FormList "}"
-ParenHeadingArgs ::= "(" FormList ")"
-
-CommandHeaderTailPart ::= ":" RawChain CurlyHeadingArgs+
-CommandHeaderTail ::= CommandHeaderTailPart*
-
-SimpleCommandHeader ::= "\" RawChain CurlyHeadingArgs* CommandHeaderTail ParenHeadingArgs*
-InfixCommandHeader ::= "\:" RawChain CurlyHeadingArgs* CommandHeaderTail ":/"
+Note the `:?` marks the parameter as optional.
+```mlg
+\function:?on{A}:?to{B}
 ```

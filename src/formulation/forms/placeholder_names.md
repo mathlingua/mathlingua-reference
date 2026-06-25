@@ -1,6 +1,11 @@
 # Placeholder Names
 
 ```mlg
-Placeholder ::= IdentifierName "_"
-MagneticPlaceholder ::= IdentifierName "__"
+ab_
+ab_1_
+```
+
+```mlg
+ab__
+ab_1__
 ```

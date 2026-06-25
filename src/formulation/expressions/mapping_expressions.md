@@ -1,9 +1,14 @@
 # Function Expressions
 
 ```mlg
-FunctionExpression ::= Name "(" ExpressionList ")"
-                     | Name "[|" FunctionNamedExpressionElement ("," FunctionNamedExpressionElement)* "|]"
+f(x)
+f(x, y)
+```
 
-FunctionNamedExpressionElement ::= FunctionNamedExpressionElementLhs ":=" Expression
-FunctionNamedExpressionElementLhs ::= Name | SubsetNameCall
+```mlg
+f(x + 1, y + \sin(x))
+```
+
+```mlg
+f[|_ := 0; x_[j#] := j# + 1|]
 ```
