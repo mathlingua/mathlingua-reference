@@ -1,29 +1,14 @@
 # Phrases
 
-Formulations in Mathlingua come in multiple forms, called **phrases** and each section in a structural accepts a particular form.
+A phrase is a meaningful piece of formulation syntax used by a structural section. MathLingua does not use one universal phrase parser. Instead, each section chooses the parser it needs.
 
-## Declaration Phrase
+Common phrase kinds are:
 
-This type of formulation is used to introduce new symbols into scope.  For example,
+- expressions, such as `x + y` or `\empty.set`
+- declaration statements, such as `X is \set` or `f(x__) := x__ is \function`
+- forms and declarations, such as `f(x_)` or `G ::= (X, *, e)`
+- command headers, such as `\function:?on{A}:?to{B}`
+- aliases, such as `x_ - y_ :=> x_ \.set.minus./ y_`
+- resource, author, and label headers
 
-```mlg
-G ::= (X, *, e) is \group
-```
-
-Introduces the symbols, `G`, `X`, `*`, and `e`, and
-
-```
-x := \sin(3*\pi/2)
-```
-
-introduces the symbol `x` with value `\sin(3*\pi/2)`.
-
-## Statement Phrase
-
-## Expression Phrase
-
-## Written Text Phrase
-
-## Called Text Phrase
-
-## Open Text Phrase
+A clause argument is tried as a declaration statement first and then as an expression. This is why `x is \set` inside a clause records a declaration/fact rather than an ordinary expression.

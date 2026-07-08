@@ -1,6 +1,11 @@
 # One Of
 
+`oneOf:` contains mutually exclusive alternatives.
+
 ```mlg
-[LabelHeader]?
-oneOf: <ClauseUnion>+
+oneOf:
+. P
+. Q
 ```
+
+The group may have an optional label heading. Nested clauses use the same clause syntax recursively.

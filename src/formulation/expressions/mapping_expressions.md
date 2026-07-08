@@ -1,14 +1,10 @@
-# Function Expressions
+# Mapping Expressions
+
+Mapping expressions use `[| ... |]`.
 
 ```mlg
-f(x)
-f(x, y)
+[| value := x, index := n |]
+f[| value := x |]
 ```
 
-```mlg
-f(x + 1, y + \sin(x))
-```
-
-```mlg
-f[|_ := 0; x_[j#] := j# + 1|]
-```
+Each mapping entry binds a name to an expression. Mapping expressions are parsed as formulation expressions and can appear anywhere an expression is accepted.

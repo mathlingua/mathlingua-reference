@@ -1,5 +1,11 @@
 # Tuple Expressions
 
+Tuple expressions use parentheses and contain two or more elements.
+
 ```mlg
-TupleExpression ::= "(" TupleExpressionElement "," TupleExpressionElement ("," TupleExpressionElement)* ")"
+(x, y)
+(a, b, c)
+(x, +, y)
 ```
+
+One-element tuples are not supported. Parentheses around a single expression are grouping syntax.

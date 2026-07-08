@@ -3,9 +3,10 @@
 ```mlg
 TopLevelItemUnion ::=
     | TitleGroup
-    | SectionGroup
-    | SubsectionGroup
-    | SubsubsectionGroup
+    | SectionTitleGroup
+    | SubsectionTitleGroup
+    | TextGroup
+    | TopLevelWritingGroup
     | DescribesGroup
     | DefinesGroup
     | RefinesGroup
@@ -19,3 +20,6 @@ TopLevelItemUnion ::=
     | ResourceGroup
     | SpecifyGroup
 ```
+
+The group kind is determined by the first section label. Definition-like cards
+also require or receive an `Id:` during `mlg check`; duplicate ids are errors.

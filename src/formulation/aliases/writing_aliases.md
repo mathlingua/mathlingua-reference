@@ -1,9 +1,10 @@
 # Writing Aliases
 
 ```mlg
-f(x_) :~> f? \left ( x_? \right )
+alpha :~> \alpha
+beta :~> \beta
+f(x_) :~> f? \left( x_? \right)
 ```
 
-```mlg
-"f? \: : \: A? \rightarrow B?"
-```
+Writing aliases are raw rendering aliases. Top-level `Writing:` items restrict
+the left side to names and use the aliases collection-wide.

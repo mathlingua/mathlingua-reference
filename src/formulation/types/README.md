@@ -1,12 +1,18 @@
-# Is
+# Types
+
+Type statements use `is`.
 
 ```mlg
-IsOrSpec ::= IsStatement | SubjectSpecStatement
-IsStatement ::= IsSubject " is " TypeExpression
-SubjectSpecStatement ::= SpecSubject TopLevelQuotedOperator Name
-IsSubject ::= IsSubjectFormList | OperatorText
-SpecSubject ::= FormOrDeclaration | OperatorText
-IsSubjectForm ::= FormOrDeclaration | PlaceholderForm
-IsSubjectFormList ::= IsSubjectForm ("," IsSubjectForm)*
-TypeExpression ::= CommandExpression
+X is \set
+f is \function:on{A}:to{B}
+A, B is \set
 ```
+
+Predicate-like type checks use `is?` and `is_not?`.
+
+```mlg
+x is? \set
+x is_not? \empty.set
+```
+
+Builtin types start with two backslashes, such as `\\type`, `\\statement`, `\\expression`, `\\specification`, and `\\opaque`.

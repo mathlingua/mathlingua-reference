@@ -1,47 +1,17 @@
-# Expression
+# Expressions
+
+Expressions are concrete mathematical terms or predicates used inside clauses, definitions, aliases, and rendering helpers.
+
+Common expression forms include:
 
 ```mlg
-Expression ::= SpecOrPredicateExpression
-
-SpecOrPredicateExpression ::=
-    EqualityExpression QuotedName Name
-  | EqualityExpression "is" CommandExpression
-  | EqualityExpression "is?" CommandExpression
-  | EqualityExpression "is_not?" CommandExpression
-  | EqualityExpression
-
-EqualityExpression ::=
-    EqualityExpression ("=" | SpecialOperator) AdditiveExpression
-  | AdditiveExpression
-
-AdditiveExpression ::=
-    AdditiveExpression ("+" | "-") MultiplicativeExpression
-  | MultiplicativeExpression
-
-MultiplicativeExpression ::=
-    MultiplicativeExpression ("*" | "/") PowerExpression
-  | PowerExpression
-
-PowerExpression ::=
-    HighPrecedenceExpression "^" PowerExpression
-  | HighPrecedenceExpression
-
-HighPrecedenceExpression ::=
-    HighPrecedenceExpression NamedOperator UnaryExpression
-  | HighPrecedenceExpression InfixCommand UnaryExpression
-  | UnaryExpression
-
-UnaryExpression ::=
-    ("+" | "-") UnaryExpression
-  | AtomExpression
-
-AtomExpression ::=
-    GroupedExpression Label
-  | GroupedExpression
-  | FunctionExpression
-  | TupleExpression
-  | SetExpression
-  | SubsetExpression
-  | CommandExpression
-  | Name
+x
+x + y
+f(x)
+A \.set.union./ B
+x is? \set
+{x_ : x_ is \set | x_ != \empty.set}
+\\exists{x is \set}:suchThat{x = x}
 ```
+
+Expression parsing has precedence. Equality and inequality bind tighter than infix command expressions, so `x = a \.or./ x = b` is parsed as `(x = a) \.or./ (x = b)`.

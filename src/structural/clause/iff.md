@@ -1,7 +1,12 @@
-# Iff
+# Have / Iff
+
+The implemented biconditional group is `have:` followed by `iff:`.
 
 ```mlg
-[LabelHeader]?
-iff: <ClauseUnion>+
-then: <ClauseUnion>+
+have:
+. P
+iff:
+. Q
 ```
+
+The older `iff: ... then: ...` form is not supported. Use `have: ... iff: ...` instead.

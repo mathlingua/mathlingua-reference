@@ -1,3 +1,4 @@
+
 # Resource
 
 ```mlg
@@ -23,3 +24,5 @@ ResourceItemUnion ::=
     | ResourceYearGroup
     | ResourceDescriptionGroup
 ```
+
+In `mlg view`, a resource card uses `title:` as the card title. If `url:` is present, the title links to that URL. The URL itself is shown in the hidden details accordion.

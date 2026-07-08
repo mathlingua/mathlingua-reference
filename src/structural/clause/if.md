@@ -1,7 +1,10 @@
 # If
 
+`if:` assumes its condition and checks the `then:` clauses in that context.
+
 ```mlg
-[LabelHeader]?
-if: <ClauseUnion>+
-then: <ClauseUnion>+
+if: P
+then: Q
 ```
+
+The group may have an optional label heading. Nested clauses use the same clause syntax recursively.

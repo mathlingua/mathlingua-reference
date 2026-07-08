@@ -1,11 +1,10 @@
 # Variadic
 
-```mlg
-\foo{X...}
-\foo{X[i# := 1...n]}
-\foo{X[(i#, j#) := (1,1)...(m,n)]}
-```
+Variadic forms are written with magnetic placeholders such as `x__`.
 
 ```mlg
-\integral[f(x_[i# := 1...n])]:d{x_[j#]}
+f(x__)
+Defines: h(x__) := f(g(x__)) is \function:on{A}:to{C}
 ```
+
+A magnetic placeholder allows a function-like form to accept multiple supplied arguments while treating them as one tuple-like input. This is different from `f(x_, y_, z_)`, which accepts exactly three separate arguments.
