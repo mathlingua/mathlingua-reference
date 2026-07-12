@@ -11,6 +11,8 @@
   - [Installation](cli/installation.md)
   - [Init](cli/init.md)
   - [Check](cli/check.md)
+  - [Export](cli/export.md)
+  - [Language Server](cli/lsp.md)
   - [View](cli/view.md)
   - [Version](cli/version.md)
 - [Formulation](formulation/README.md)

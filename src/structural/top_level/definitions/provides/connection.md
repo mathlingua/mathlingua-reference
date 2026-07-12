@@ -14,4 +14,4 @@ viewable?: <OpenText>*
 through?: <OpenText>*
 ```
 
-The current checker parses and walks declarations in `using:`, but connection groups do not define operator capabilities or type facts. Use `capability:`, `from:`, and `viewable:` for semantic behavior.
+The current checker parses and walks declarations in `using:`, but connection groups do not define operator capabilities or type facts. Use `capability:`, `from:`, and `relation:` for semantic behavior.

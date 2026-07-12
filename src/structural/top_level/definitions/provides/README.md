@@ -12,7 +12,7 @@ EnablesItemUnion ::=
     | CapabilityGroup
     | FromCapabilityGroup
     | FromAsGroup
-    | ViewableGroup
+    | RelationGroup
     | ConnectionGroup
 ```
 
@@ -32,9 +32,13 @@ Enables:
   capability: x_ "in" X :-> x_ member_of Y
 . from: P ::= {(p_, q_) : ...}
   as: f(p_) := q_
-. viewable:
-  as: r := \as.rational{n} is \rational
-  states: n \.embedded.to./ r
+. relation:
+  to: r := \as.rational{n} is \rational
+  when: n is \integer
+  means: n \.embedded.to./ r
+  as: \\view
 ```
 
 `from:` groups must contain exactly one of `capability:` or `as:`.
+Relations marked `\\view` support ordinary `as` casts; relations marked
+`\\abstraction` additionally support hard `as!` casts.

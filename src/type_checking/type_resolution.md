@@ -13,6 +13,13 @@ x :*: y     -- use the least common ancestor type
 
 The same idea applies to named operators such as `x :|op| y`.
 
-Operator resolution uses `extends:` relationships. `viewable:` casts are applied only after the command or operator definition has already been resolved, when checking whether the actual arguments satisfy the resolved command's requirements.
+Operator resolution uses `extends:` relationships. `relation:` entries marked
+`as: \\view` are applied only after the command or operator definition has
+already been resolved, when checking whether actual arguments satisfy the
+resolved command's requirements. They do not participate in notation lookup.
 
-Capabilities from `Requires:` and `Enables:` are considered together for notation lookup. Cast-backed `from:` capabilities apply only when the value was introduced with a compatible cast literal, such as `A := \set@{x_ : x_ is \real}`.
+Capabilities from `Requires:` and `Enables:` are considered together for notation lookup. Cast-backed `from:` capabilities apply only when the value was introduced with a compatible cast literal, such as `A := {x_ : x_ is \real} as \set`.
+
+An ordinary `value as \type` cast can use a `\\view` relation. A hard
+`value as! \type` cast can additionally use a relation marked
+`as: \\abstraction`.

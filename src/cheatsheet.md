@@ -65,7 +65,7 @@ Any sequence of special-operator characters can be an operator, including names 
 X is \set
 X, Y is \set
 G is \set via X
-X := \set@{x_ : x_ is \real}
+X := {x_ : x_ is \real} as \set
 f(x__) := x__ is \function:on{A}:to{A}
 x is? \set
 x is_not? \set
@@ -116,9 +116,11 @@ Enables:
   capability: x_ "in" X :-> x_ member_of Y
 . from: P ::= {(p_, q_) : ...}
   as: f(p_) := q_
-. viewable:
-  as: r := \as.rational{n} is \rational
-  states: n \.embedded.to./ r
+. relation:
+  to: r := \as.rational{n} is \rational
+  when: n is \integer
+  means: n \.embedded.to./ r
+  as: \\view
 ```
 
 The checker unions capabilities from `Requires:` and `Enables:` when resolving notation.

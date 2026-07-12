@@ -6,6 +6,11 @@ read together with the detailed syntax pages in this reference.
 
 ## Structural Language
 
+### Markdown MathLingua Fences
+
+`Text:` Markdown may contain fenced blocks tagged `mlg`. These blocks render as
+MathLingua source; other fenced blocks retain ordinary Markdown code rendering.
+
 ### Page Content Blocks
 
 Top-level page content blocks are supported and render directly on the page
@@ -266,10 +271,10 @@ Collection targets:
   value, where that value may itself have any expression shape.
 - `member_of` is a keyword used by enabled membership capabilities.
 - `x member_of X` is valid only when `X` is a collection literal or has a
-  collection literal attached by coercion.
-- `\set@{x_ : x_ is \real}` coerces a collection literal to the described type.
+  collection literal attached by an explicit cast.
+- `{x_ : x_ is \real} as \set` casts a collection literal to the described type.
 - `A := {x_ : x_ is \real | x_ > 2} is \set` binds the literal to `A` as a set.
-- If `A is \set@{x_ : x_ is \real}` and `x "in" A`, the checker can establish
+- If `A := {x_ : x_ is \real} as \set` and `x "in" A`, the checker can establish
   `x is \real`.
 - If `A is \set` without a collection literal, membership establishes
   `x is \\opaque`.
@@ -285,6 +290,12 @@ Set builder definitions allow general element forms before the colon.
   `Defines: C := {(a_, b_) : ...} is \set`.
 
 ## Semantic Checks
+
+### Editor Language Server
+
+`mlg lsp` provides diagnostics on open and save; context-aware completion for
+group heads, section items, and commands; jump to definition; and workspace
+rename for top-level command signatures and uses.
 
 ### `when:` Requirements
 
@@ -360,7 +371,7 @@ The checker distinguishes values, definitions, and described types.
 
 - `X is \foo` is used when `\foo` is a `Describes:` entry.
 - `X := \foo` is used when `\foo` is a `Defines:` entry.
-- `X := \set@{...}` is valid where a definition-style binding is expected.
+- `X := {...} as \set` is valid where a definition-style binding is expected.
 - A `Defines:` entry may include an expression and result type, such as
   `Defines: C := A is \set`.
 
@@ -460,12 +471,15 @@ Types can now separate definitional requirements from additional capabilities.
 - A `from: ... as:` binding can reduce facts about a casted function call by
   matching the binding's left side against the call and substituting the right
   side into facts from the cast literal.
-- `Enables:` accepts `viewable:` groups with required `as:` declarations and
-  optional `states:` clauses.
-- The `:= ...` construction in a `viewable:` `as:` declaration is optional.
-- Viewable casts may satisfy requirements after a command or operator has
-  already resolved.
-- Viewable casts are not used to resolve operators or capabilities.
+- `Enables:` accepts `relation:` groups with required `to:` declarations and
+  optional `when:`, `means:`, `as:`, and `by:` sections.
+- The `:= ...` construction in a `relation:` `to:` declaration is optional.
+- `relation:` entries marked with `as: \\view` provide ordinary cast
+  relationships.
+- `relation:` entries marked with `as: \\abstraction` provide hard-cast
+  abstraction relationships for `as!`.
+- View relationships may satisfy requirements after a command or operator has
+  already resolved, but are not used to resolve operators or capabilities.
 
 ### Capability Rules
 
@@ -516,6 +530,13 @@ The checker supports the built-in type predicate `\\type`.
   `\\statement`, `\\expression`, and `\\specification`.
 
 ## Rendering And View
+
+### Recent Viewer Behavior
+
+- The viewer listens on `0.0.0.0` while reporting a localhost URL.
+- Routes are warmed in the background and display loading skeletons.
+- Directory display names come from the directory name unless a `toc` override
+  supplies another title.
 
 ### Math Rendering
 
@@ -596,6 +617,12 @@ The viewer has responsive navigation behavior.
 
 ## CLI
 
+### `mlg export`
+
+`mlg export` builds a static viewer after checking the collection. It supports
+`-o/--output`, `--force`, `--base-path`, and `--cname`, and writes the route
+data, `.nojekyll`, and optional `CNAME` needed for static hosting.
+
 ### `mlg debug`
 
 A hidden `mlg debug` command was added for parser exploration.
@@ -634,22 +661,3 @@ Error messages were made more user-facing.
 - Line and column information is reported where the checker can locate the
   relevant source span.
 - Parser errors surfaced through `mlg debug` are formatted for readability.
-
-## Testbed Content
-
-The testbed content was expanded to exercise the implemented behavior.
-
-- Existing set content was updated with real `Title:`, `SectionTitle:`,
-  `SubsectionTitle:`, and `Text:` blocks.
-- The set page now includes starter definitions such as singleton and unordered
-  pair examples.
-- New starter pages were added for natural numbers, integers, rationals, reals,
-  algebra, and analysis.
-- The number-system pages include simple carrier sets, element types, initial
-  constructors, and a small tower of extensions:
-  `natural number -> integer -> rational -> real`.
-- Algebra includes starter structures such as semigroup, monoid, ring, and
-  field.
-- Analysis includes starter entries for real sequences, convergent sequences,
-  limits, and continuous functions.
-- The testbed `toc` was updated to include the new pages in a stable order.
