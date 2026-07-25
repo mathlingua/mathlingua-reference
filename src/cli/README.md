@@ -2,13 +2,19 @@
 
 `mlg` is the MathLingua command line tool.
 
-The primary commands are:
+The commands are:
 
-- `mlg init` to create a starter collection
 - `mlg check` to parse and semantically check a collection
-- `mlg export` to build a static copy of the rendered viewer
-- `mlg lsp` to run the editor language server over standard input/output
-- `mlg view` to serve the rendered interactive viewer
+- `mlg clean` to remove the generated `docs/` directory
+- `mlg export` to build a static copy of the rendered viewer into `docs/`
+- `mlg format` to normalize `.mlg` source formatting
+- `mlg init` to create a starter collection
+- `mlg release` to record a version snapshot of the collection
 - `mlg version` to print the installed version
+- `mlg view` to serve the rendered interactive viewer
 
-There are also hidden developer/debug commands used by the implementation, such as `mlg debug` and the easter-egg command `mlg whte_rbt.obj`.
+There are also hidden commands that do not appear in `--help`: `mlg debug`,
+`mlg extract`, `mlg lsp`, `mlg report`, and the easter-egg `mlg whte_rbt.obj`.
+
+Every command accepts the global event filters `--event-audience` (also spelled
+`--event-scope`), `--event-level`, and `--event-markers`.

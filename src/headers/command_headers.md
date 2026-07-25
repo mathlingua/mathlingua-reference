@@ -13,7 +13,7 @@ Command headers define the shape of a command.
 \function:?on{A}:?to{B}
 ```
 
-The `:?` marker makes a tail part optional at use sites. A use may also write `:?name{value}` to include an optional tail only when the value is defined.
+The `:?` marker makes a tail part optional. In a header it declares the tail part `on`/`to` as optional; a use site may omit it or supply it, and a supplied optional tail is written the same way (`:?on{...}`). Every tail part, optional or not, still requires at least one `{...}` argument group.
 
 A command expression may end with context suffixes after all ordinary curly and parenthesized arguments:
 

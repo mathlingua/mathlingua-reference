@@ -20,6 +20,6 @@ Names ending in digits render with numeric subscripts: `x1` renders as `x_1`. Th
 
 Builtin types such as `\\statement`, `\\expression`, `\\specification`, and `\\opaque` render as plain text names.
 
-Cards use the resolved called content as their title when available. Theorem-like and axiom-like entries fall back to their label, with dots converted to spaces and words capitalized.
+Card titles come from the item's documented forms. When an item has both a `called:` and a `written:` form, the title shows both — the called form followed by the written form, with the written form muted as a secondary display. When only one is present, the title is just that form. Theorem-like and axiom-like entries with no such documentation fall back to their label, with dots converted to spaces and words capitalized.
 
 `Documented.description:` renders as prose above the card, like a `Text:` block. The card's `Documented:` details show `description: <see above>`.

@@ -3,8 +3,12 @@
 An infix expression command header defines command notation used between two expressions.
 
 ```mlg
-[A \.set.union./ B]
-Defines: C is \set
+[P \.and./ Q]
+States:
+when: P, Q is \\statement
+that: \\and{P, Q}
 ```
 
-The command inside `\.` and `./` is the signature. The operands in the header become command parameters and must be specified through `when:` unless the command form itself establishes the subject, as with certain specification forms.
+The command between `\.` and `./` is the signature (here `\and`). The operands in the header become command parameters and must be specified through `when:` unless the command form itself establishes the subject, as with certain specification forms.
+
+At use sites the operator is written between its operands, for example `P \.and./ Q` or, with dot grouping, `(.P.) \.and./ (.Q.)`.

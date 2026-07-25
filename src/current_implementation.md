@@ -289,6 +289,59 @@ Set builder definitions allow general element forms before the colon.
 - This applies in declarations and definitions such as:
   `Defines: C := {(a_, b_) : ...} is \set`.
 
+### Mapping Literals
+
+A mapping literal is an anonymous function value written with `|->`.
+
+- `(x_ is \real) |-> x_ + 1` binds the parameter through the parenthesized spec
+  so the body checks.
+- `(x_ "in" A) |-> x_ + a` is also valid; the parenthesized left side types the
+  parameter.
+- A bare `x_ |-> ...` (no spec) is only valid where the parameter's type can be
+  inferred from a declared function type, as in `f := x_ |-> x_ + 1 is
+  \real.function`.
+- The command sugar `\foo[x_ is \real]{x_ + 1}` expands to
+  `\foo{(x_ is \real) |-> x_ + 1}`.
+
+### Spec Literals And `satisfies`
+
+A spec literal is a reusable value of the builtin type `\\specification` with an
+implicit `?` placeholder subject.
+
+- `? is \real` and `? "in" \reals` are spec literals. The `"op"` target may be a
+  name or a command such as `\reals`.
+- The infix operator `satisfies` applies a spec to a subject: `x satisfies (? is
+  \real)` substitutes `?` with `x`, yielding `x is \real`.
+- This enables general set builders, for example
+  `\set:where{? is \real}` whose membership reduces to `x is \real`.
+
+### Inferred Parameters
+
+In a declaring position a command argument may be written `X?` to declare `X`
+inline with the exact type that argument position requires.
+
+- `f is \function:from{A?}:to{B?}` introduces `A` and `B` as `\set` (from the
+  command's `when:`), so a separate `A, B is \set` is unnecessary.
+- The first occurrence carries the `?`; later uses are the plain name.
+- Reusing `X?` when `X` is already in scope is an error.
+- The `?` is authoring-only and renders as `X`.
+
+### Specifications Versus Predicates (`is` versus `is?`)
+
+A bare specification introduces symbols, so it is accepted only in binding
+positions, not where a statement is expected.
+
+- A specification is `x is \type`, an infix spec command `A \:subset:/ B`, or a
+  named spec `x "op" y`.
+- Specifications are allowed in binding positions: `exists:`, `given:`,
+  `forAll:` arguments, and `where:` / `such_that:` / `when:`.
+- In statement positions — `if:`, `then:`, `iff:`, `that:`, `else:`, and inside
+  `not:` / `allOf:` / `anyOf:` / `oneOf:` / `equivalently:` — use the predicate
+  forms instead: `is?`, `is_not?`, and the `?`-suffixed infix spec `A \:subset?:/
+  B`.
+- A named spec statement such as `x "in" y` is a statement (not a symbol
+  introducer) and is accepted in statement positions as written.
+
 ## Semantic Checks
 
 ### Editor Language Server
@@ -472,14 +525,17 @@ Types can now separate definitional requirements from additional capabilities.
   matching the binding's left side against the call and substituting the right
   side into facts from the cast literal.
 - `Enables:` accepts `relation:` groups with required `to:` declarations and
-  optional `when:`, `means:`, `as:`, and `by:` sections.
+  optional `when:`, `means:`, `represents:`, and `by:` sections.
 - The `:= ...` construction in a `relation:` `to:` declaration is optional.
-- `relation:` entries marked with `as: \\view` provide ordinary cast
-  relationships.
-- `relation:` entries marked with `as: \\abstraction` provide hard-cast
-  abstraction relationships for `as!`.
-- View relationships may satisfy requirements after a command or operator has
-  already resolved, but are not used to resolve operators or capabilities.
+- A `relation:`'s cast kind is set with `represents:`, whose value is
+  `\\coercion` or `\\encoding` (this replaced the older `as: \\view` /
+  `as: \\abstraction`).
+- `relation:` entries marked `represents: \\coercion` provide ordinary cast
+  relationships reachable with a soft `as` cast.
+- `relation:` entries marked `represents: \\encoding` provide an abstraction
+  boundary crossed only by a hard `as!` cast.
+- Coercion relationships may satisfy requirements after a command or operator
+  has already resolved, but are not used to resolve operators or capabilities.
 
 ### Capability Rules
 
@@ -617,11 +673,53 @@ The viewer has responsive navigation behavior.
 
 ## CLI
 
+### `mlg.json` Configuration
+
+Every collection carries an `mlg.json` at its root that spells out its whole
+configuration; `mlg init` writes it with all fields at their defaults, and
+`mlg check` reports any that are missing.
+
+- `name` — the collection name (string), used as the `mlg view` title.
+- `version` — the collection version (string, default `"0"`).
+- `margin` — the target line width for `mlg format` (positive integer, default
+  `80`). This field was renamed from `print_margin`; a config still carrying the
+  old key is reported as an error.
+- `formatOnCheck` — whether `mlg check` formats the collection before checking
+  it (boolean, default `true`).
+
+### `mlg format`
+
+`mlg format` normalizes the source of the whole collection to the configured
+`margin` width without changing its meaning: it fixes the blank-line gap between
+top-level items to two lines and reflows quoted `"..."` text to the margin. A
+LaTeX blob (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`) is kept atomic, and a text
+value containing a multi-line or over-wide blob is left unchanged. Editing is
+line-based, so nothing but the reflowed text moves, and the result still passes
+`mlg check`.
+
+### `mlg check` Formatting
+
+When `formatOnCheck` is `true` (the default), `mlg check` runs `mlg format`
+before checking so that reported source positions match the formatted files. It
+also inserts a missing top-level `Id:` (a UUID v4) before checking.
+
+### `mlg clean`
+
+`mlg clean` removes the generated `docs/` output directory; it is the inverse of
+`mlg export` and is a no-op when there is nothing to remove.
+
+### `mlg release`
+
+`mlg release` records a version snapshot of the collection after checking it. It
+requires `--summary <text>` and supports `--dry-run` (show what would be
+recorded without writing files) and `--diff` (also show a diff of each changed
+item).
+
 ### `mlg export`
 
-`mlg export` builds a static viewer after checking the collection. It supports
-`-o/--output`, `--force`, `--base-path`, and `--cname`, and writes the route
-data, `.nojekyll`, and optional `CNAME` needed for static hosting.
+`mlg export` builds a static viewer into the `docs/` directory after checking
+the collection. It supports `--force`, `--base-path`, and `--cname`, and writes
+the route data, `.nojekyll`, and optional `CNAME` needed for static hosting.
 
 ### `mlg debug`
 

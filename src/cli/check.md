@@ -13,7 +13,12 @@ collection so cross-file references remain available. `--json` writes a
 machine-readable diagnostic report, while `--diagnostic-schema` prints the JSON
 schema for that report.
 
-It also edits source files to add missing top-level `Id:` sections before semantic checking. Generated IDs are UUID v4 values. Duplicate IDs are reported as errors.
+Before checking, `mlg check` formats the whole collection (unless the config
+sets `"formatOnCheck": false`); it reports `Formatted N files` only when it
+actually rewrote something. Formatting runs before parsing so reported positions
+match the source on disk. See [`mlg format`](format.md).
+
+It also edits source files to add missing top-level `Id:` sections before semantic checking. Generated IDs are UUID v4 values. Duplicate and malformed IDs are reported as errors.
 
 Diagnostics use paths relative to the collection content root where possible. Parser diagnostics are rewritten into user-facing messages rather than internal Rust AST/debug output when the error can be localized.
 

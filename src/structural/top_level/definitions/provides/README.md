@@ -12,11 +12,10 @@ EnablesItemUnion ::=
     | CapabilityGroup
     | FromCapabilityGroup
     | FromAsGroup
-    | RelationGroup
-    | ConnectionGroup
+    | EnablesRelationGroup
 ```
 
-`Requires:` describes capabilities and definitions that are part of a construct. `Enables:` describes additional notation, casts, views, and prose connections made available by the construct.
+`Requires:` describes capabilities and definitions that are part of a construct. `Enables:` describes additional notation, casts, and relationships made available by the construct.
 
 For type checking, ordinary capabilities from both sections are combined. The split is primarily communicative: authors can show what is definitional and what is merely enabled.
 
@@ -36,9 +35,23 @@ Enables:
   to: r := \as.rational{n} is \rational
   when: n is \integer
   means: n \.embedded.to./ r
-  as: \\view
+  represents:
+  . \\coercion
 ```
 
-`from:` groups must contain exactly one of `capability:` or `as:`.
-Relations marked `\\view` support ordinary `as` casts; relations marked
-`\\abstraction` additionally support hard `as!` casts.
+A nested `Enables: relation:` group has the shape:
+
+```mlg
+[LabelHeader]?
+relation: <OpenText>*
+to: <RelationshipDeclaration>
+when?: <RelationWhenItemUnion>+
+means?: <ClauseUnion>
+represents?: <RelationKind>+
+by?: <OpenText>+
+```
+
+`from:` groups must contain exactly one of `capability:` or `as:`; a `from:`
+with `as:` may not carry `written:`. Each `represents:` entry is `\\coercion` or
+`\\encoding`. A relation that `represents: \\coercion` supports ordinary `as`
+casts; one that `represents: \\encoding` supports hard `as!` casts.

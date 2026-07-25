@@ -1,7 +1,8 @@
 # `mlg lsp`
 
 `mlg lsp` runs the MathLingua language server over standard input/output for an
-editor or other LSP client.
+editor or other LSP client. It is a hidden, advanced command and does not appear
+in `mlg --help`.
 
 The current server provides:
 

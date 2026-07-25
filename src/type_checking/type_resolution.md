@@ -13,13 +13,16 @@ x :*: y     -- use the least common ancestor type
 
 The same idea applies to named operators such as `x :|op| y`.
 
-Operator resolution uses `extends:` relationships. `relation:` entries marked
-`as: \\view` are applied only after the command or operator definition has
-already been resolved, when checking whether actual arguments satisfy the
-resolved command's requirements. They do not participate in notation lookup.
+Operator resolution uses `extends:` relationships. A nested `Enables: relation:`
+group whose `represents:` is `\\coercion` registers an automatic coercion: a
+value of the described type may be used wherever the related type is expected.
+Coercions are applied when checking whether actual arguments satisfy a resolved
+command's requirements; they do not participate in notation lookup.
 
 Capabilities from `Requires:` and `Enables:` are considered together for notation lookup. Cast-backed `from:` capabilities apply only when the value was introduced with a compatible cast literal, such as `A := {x_ : x_ is \real} as \set`.
 
-An ordinary `value as \type` cast can use a `\\view` relation. A hard
-`value as! \type` cast can additionally use a relation marked
-`as: \\abstraction`.
+Casts are written `value as \type` (soft) and `value as! \type` (hard). A soft
+`as` cast succeeds when the target fact can be established, including through
+`\\coercion` relations. A hard `as!` cast additionally drops through an
+`\\encoding` relation — an abstraction boundary that no automatic coercion or
+soft cast crosses.

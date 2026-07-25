@@ -13,4 +13,6 @@ where: x1 != x2
 then: f(x1) != f(x2)
 ```
 
-Symbols introduced by `forAll:` are available in both `where:` and `then:`.
+Symbols introduced by `forAll:` are available in both `where:` and `then:`. `where:` is optional; `then:` is required.
+
+`forAll:` and `where:` are binding positions, so bare `is` specifications may introduce symbols there. `then:` is a statement position, so use the predicate forms (`is?`, `is_not?`, `\:...?:/`) rather than a bare `is` or `\:...:/` specification.

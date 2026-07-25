@@ -10,9 +10,11 @@ Examples:
 
 ```mlg
 G ::= (X, *, e)
-f(x__) := x__ is \function:on{A}:to{A}
+S := \set.theoretic.pair:of{A}:and{A}
 x = y
 ```
+
+The right-hand side of `:=` is an expression. A `Defines:` target often combines a value definition with a type: `S := \set.theoretic.pair:of{A}:and{A} is \set`.
 
 A declaration may combine structural shape and value definition. In set expressions, `:=` value bindings belong in the predicate branch after `|`:
 

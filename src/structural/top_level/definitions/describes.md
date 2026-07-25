@@ -20,4 +20,4 @@ Id?: <OpenText>
 
 `Describes:` introduces a command as a type-like or construct-like form. Header parameters must be specified in `when:`. Symbols that appear in the target must be specified directly or through `extends:`.
 
-`using:` introduces auxiliary symbols. `when:` states requirements for command-header parameters. `Requires:` and `Enables:` describe capabilities that the checker can use when resolving notation. `Id:` is required for every top-level item; `mlg check` adds it when missing.
+`using:` introduces auxiliary symbols. `when:` states requirements for command-header parameters. `Requires:` and `Enables:` describe capabilities that the checker can use when resolving notation. `Documented:` must include at least one of `called:` or `written:`. `Id:` is required for every top-level item; `mlg check` adds it when missing.

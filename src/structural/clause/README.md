@@ -2,10 +2,27 @@
 
 Clauses appear in sections such as `satisfies:`, `then:`, `that:`, `where:`, and `suchThat:`.
 
-A clause can be:
+A clause is one of:
 
-- a declaration statement such as `x is \set`
-- an expression such as `P \.and./ Q`
-- a nested clause group such as `exists:`, `forAll:`, `if:`, or `have:`
+- a **declaration statement** such as `x is \set`
+- an **expression** such as `P \.and./ Q`
+- a nested **clause group**
+
+The clause groups are:
+
+- `not:`
+- `allOf:`
+- `anyOf:`
+- `oneOf:`
+- `equivalently:`
+- `exists:`
+- `existsUnique:`
+- `forAll:`
+- `if:` (with `then:`)
+- `have:` (with `iff:`)
+- `piecewise:`
+- `given:`
 
 Formulation clause entries are tried as declarations first and expressions second. This lets `x is \set` introduce a type fact in contexts where facts are assumed.
+
+Bare specifications (`is` and non-predicate infix spec operators `\:...:/`) introduce symbols, so they are only allowed in binding positions (`exists:`, `existsUnique:`, `forAll:`, `given:` arguments, and `where:`/`suchThat:`/`when:`). In statement positions (`then:`, `if:`, `iff:`, `that:`, `else:`, and the boolean combinators) use the predicate forms `is?` / `is_not?` and `\:...?:/`. See [Statements](statements.md) and [Specifications](specifications.md).

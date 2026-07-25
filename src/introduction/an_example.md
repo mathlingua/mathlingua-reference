@@ -5,16 +5,16 @@ A small definition can combine prose, a command header, type requirements, rende
 ```mlg
 Text: "A subset is a set whose elements all belong to another set."
 
-[A \\:subset:/ B]
+[A \:subset:/ B]
 Describes: A
 when: B is \set
 extends: A is \set
 satisfies:
-. forAll: x "in" A
-  then: x "in" B
+. forAll: X "in" A
+  then: X "in"? B
 Documented:
-. called: "subset"
 . written: "A? \subseteq B?"
+. called: "$A?$ is a subset of $B?$"
 Id: "4196f823-e51d-4568-89aa-83a2d4627bd9"
 ```
 

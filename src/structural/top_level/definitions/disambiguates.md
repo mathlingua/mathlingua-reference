@@ -4,18 +4,21 @@
 `Disambiguates:` defines how an otherwise ambiguous operator or function-like form should resolve globally.
 
 ```mlg
-[CommandHeader]
+[FormOrDeclaration]
 Disambiguates:
 (when: <ClauseUnion>+
-to: <Expression>
-else: <Expression>
+ to: <Expression>)+
+else?: <Expression>
+Justified?: <JustifiedItemUnion>+
 Documented?: <DocumentedItemUnion>+
 Aliases?: <AliasItemUnion>+
 References?: <ResourceHeader>+
 Metadata?: <MetadataItemUnion>+
+Id?: <OpenText>
 ```
 
-A `Disambiguates:` item may contain one or more `when:` / `to:` branches, or it may contain only `else:`.
+A `Disambiguates:` item must contain at least one `when:` / `to:` branch or an
+`else:` section (or both). Each `when:` is immediately followed by its `to:`.
 
 ```mlg
 [x_ - y_]

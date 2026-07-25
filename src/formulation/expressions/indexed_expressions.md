@@ -1,11 +1,18 @@
 # Indexed Expressions
 
-Indexed expressions use square brackets after an expression.
+An indexed expression is a subset call: a name followed by bracketed name
+indices.
 
 ```mlg
 x[i]
 x[i, j]
-f(x)[n]
+x[y[j]]
 ```
 
-The owner expression is parsed first, followed by one or more index expressions. Indexing is an expression form; whether a particular indexed expression has a meaningful type depends on definitions and capabilities in the collection.
+The forms are restricted. Both the target and the indices must be plain names,
+there are at most two indices, and a single index may itself be one nested subset
+call (`x[y[j]]`). Arbitrary expressions are not allowed as target or index, so
+`f(x)[n]` is not a subset call.
+
+Whether a particular subset call has a meaningful type depends on the definitions
+and capabilities in the collection.

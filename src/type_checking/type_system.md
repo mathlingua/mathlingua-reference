@@ -10,6 +10,6 @@ Facts are introduced by command headers, `using:`, `when:`, theorem `given:`, lo
 
 `extends:` records implications between types or specifications. If `\group` extends `\set`, then a known fact `G is \group` can establish `G is \set`.
 
-Builtin types use two leading backslashes. `\\type` is true for commands introduced by `Describes:`. `\\opaque` is satisfied by any declared value, but it contributes no concrete type information and does not enable type-specific capabilities.
+Builtin types use two leading backslashes. There are five: `\\type`, `\\statement`, `\\expression`, `\\specification`, and `\\opaque`. `\\type` is true for commands introduced by `Describes:`. `\\opaque` is satisfied by any declared value, but it contributes no concrete type information and does not enable type-specific capabilities.
 
 Equality and inequality, `=` and `!=`, are always accepted for declared symbols, even when a type-specific equality capability has not been defined.

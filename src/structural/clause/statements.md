@@ -8,4 +8,13 @@ x "in" X
 G is \set via X
 ```
 
-Statements can introduce symbols and facts when they appear in assumption positions such as `given:`, `when:`, `using:`, `where:`, `exists:`, or `forAll:`. In conclusion positions, the checker validates that symbols are declared and requirements can be established.
+Statements introduce symbols and facts when they appear in **binding positions** such as `given:`, `when:`, `using:`, `where:`, `suchThat:`, `exists:`, `existsUnique:`, or `forAll:` arguments. In these positions a bare `is` specification (`x is \set`) or infix spec operator (`A \:subset:/ B`) is allowed, because introducing the symbol is the point.
+
+In **statement positions** — `then:`, `if:`, `iff:`, `that:`, `else:`, and the boolean combinators `not:` / `allOf:` / `anyOf:` / `oneOf:` / `equivalently:` — a bare `is` specification or non-predicate infix spec operator is **rejected**, because it would silently introduce a symbol. Use the predicate forms instead: `is?`, `is_not?`, and `\:...?:/`.
+
+```mlg
+if: x is? \set
+then: f(x) is? \real
+```
+
+Quoted operator statements such as `x "in" X` are not affected by this rule and may appear in either position.

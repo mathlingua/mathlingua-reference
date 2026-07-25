@@ -55,9 +55,16 @@ f| x                 -- named prefix operator, same arity as f(x)
 x |f                 -- named postfix operator, same arity as f(x)
 
 (.x + y.)            -- source grouping that renders as x + y
+
+(x_ is \real) |-> x_ + 1     -- mapping literal (anonymous function value)
+? is \real                   -- spec literal (a value of \\specification)
+x satisfies (? is \real)     -- apply a spec: means x is \real
+\function:from{A?}:to{B?}    -- X? declares X inline with the required type
 ```
 
 Any sequence of special-operator characters can be an operator, including names with suffixes such as `*_1` and `*_free`. Equality and inequality, `=` and `!=`, are accepted for any types even when a type-specific capability is not defined.
+
+A mapping literal `(x_ is \real) |-> x_ + 1` is an anonymous function value; the command sugar `\foo[x_ is \real]{x_ + 1}` expands to `\foo{(x_ is \real) |-> x_ + 1}`. A spec literal (`? is \real`, `? "in" \reals`) is a reusable `\\specification` with an implicit `?` subject, applied with `satisfies`.
 
 ## Declarations And Statements
 
@@ -100,9 +107,11 @@ Id: "059126b9-dc83-41a2-aa1c-84f8e942f8d6"
 
 `Describes:` and `Defines:` require at least one of `called:` or `written:` in `Documented:`. Missing `called:` or `written:` rendering is generated from the one that is present. `Refines:` requires `adjective:` and may have `written:`, but may not have `called:`.
 
+The full set of top-level items is `Describes:`, `Defines:`, `Refines:`, `States:`, `Disambiguates:`, `Axiom:`, `Theorem:`, `Corollary:`, `Relation:` (a bidirectional relationship between two concepts), `Equivalent:` (an equivalence class of interchangeable notations), `Topic:` (a documentation topic, `[#some.name]`), `Specify:`, `Person:`, `Resource:`, `Writing:`, and the page-content items `Title:`, `SectionTitle:`, `SubsectionTitle:`, and `Text:`.
+
 ## Requires And Enables
 
-`Requires:` describes capabilities or definitions that are part of the construct. `Enables:` describes additional capabilities, casts, and views.
+`Requires:` describes capabilities or definitions that are part of the construct. `Enables:` describes additional capabilities, casts, and relations.
 
 ```text
 Requires:
@@ -120,10 +129,12 @@ Enables:
   to: r := \as.rational{n} is \rational
   when: n is \integer
   means: n \.embedded.to./ r
-  as: \\view
+  represents: \\coercion
 ```
 
-The checker unions capabilities from `Requires:` and `Enables:` when resolving notation.
+The checker unions capabilities from `Requires:` and `Enables:` when resolving
+notation. A nested `Enables: relation:` records a cast: `represents: \\coercion`
+allows an ordinary `as` cast; `represents: \\encoding` allows a hard `as!` cast.
 
 ## Clauses
 

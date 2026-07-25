@@ -7,6 +7,7 @@ TopLevelItemUnion ::=
     | SubsectionTitleGroup
     | TextGroup
     | TopLevelWritingGroup
+    | DisambiguatesGroup
     | DescribesGroup
     | DefinesGroup
     | RefinesGroup
@@ -14,12 +15,16 @@ TopLevelItemUnion ::=
     | AxiomGroup
     | TheoremGroup
     | CorollaryGroup
-    | LemmaGroup
-    | ConjectureGroup
     | PersonGroup
     | ResourceGroup
     | SpecifyGroup
+    | RelationGroup
+    | EquivalentGroup
+    | TopicGroup
 ```
 
 The group kind is determined by the first section label. Definition-like cards
 also require or receive an `Id:` during `mlg check`; duplicate ids are errors.
+
+`Lemma:`, `Conjecture:`, `Represents:`, and `Subsubsection:` are no longer part
+of the structural language.
