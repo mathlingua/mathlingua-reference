@@ -1,0 +1,15 @@
+Title: "Tuples"
+Id: "4b7b092b-b8d4-4bc3-95b0-f3dedaadad85"
+
+Text: "Tuple forms use parentheses and contain two or more elements.
+
+```mlg-fragment
+(x_, y_)
+(a_, b_, c_)
+G ::= (X, *, e)
+```
+
+One-element tuples are not supported. Parentheses around a single expression are grouping syntax, not tuple syntax.
+
+Tuple declarations introduce nested symbols when they occur in declaration positions. Those symbols must be specified directly or through an `extends:` view when used in `Describes:`, `Defines:`, or `Refines:` targets."
+Id: "6ff385e2-afe6-4d77-b0d3-2a8ba0eceea7"

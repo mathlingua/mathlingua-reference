@@ -1,0 +1,15 @@
+Title: "Labels"
+Id: "62a24a65-05c9-4e09-9722-1eb355fe2ce5"
+
+Text: "Labels identify items inside brackets or nested groups.
+
+```mlg-fragment
+[\\theorem.ordinal.trichotomy]
+Theorem:
+then: ...
+```
+
+Label headers are parsed from dotted parts. Dots are commonly rendered as spaces in fallback display names, with words capitalized for theorem-like and axiom-like cards.
+
+Label headers differ from expression labels. Expression labels use the `[:label:]` syntax inside expressions, while structural label headers appear in square brackets before a group."
+Id: "d36979a8-c1ec-4f3b-8e8c-3dafd5ee366b"

@@ -1,0 +1,13 @@
+Title: "All Of"
+Id: "62449fbe-e0cc-4c98-bd6e-784940c8602c"
+
+Text: "`allOf:` contains clauses that are all required.
+
+```mlg-fragment
+allOf:
+. P
+. Q
+```
+
+The group may have an optional label heading. Nested clauses use the same clause syntax recursively."
+Id: "d49c2b09-3642-4358-af63-781ed5bf1bf9"

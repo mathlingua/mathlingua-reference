@@ -1,0 +1,12 @@
+Title: "Variadic"
+Id: "0017c7f2-0505-4e23-8c7b-3909a59d36cd"
+
+Text: "Variadic forms are written with magnetic placeholders such as `x__`.
+
+```mlg-fragment
+f(x__)
+Defines: h(x__) := f(g(x__)) is \\function:on{A}:to{C}
+```
+
+A magnetic placeholder allows a function-like form to accept multiple supplied arguments while treating them as one tuple-like input. This is different from `f(x_, y_, z_)`, which accepts exactly three separate arguments."
+Id: "2b7430b9-2dba-4332-99d3-93c71aedf31c"

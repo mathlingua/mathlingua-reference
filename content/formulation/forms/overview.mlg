@@ -1,0 +1,20 @@
+Title: "Overview"
+Id: "8be9eb88-9a8e-48d3-99d3-7f80bf78cf15"
+
+Text: "Forms describe the shape of notation rather than a concrete value.
+
+Forms are used in command headers, described targets, alias left-hand sides, and declarations. Common form shapes are:
+
+```mlg-fragment
+x
+x_
+x__
+f(x_)
+f(x__)
+(x_, y_)
+{x_ : ...}
+G ::= (X, *, e)
+```
+
+A form can introduce symbols when it appears in a declaration position. For example, `G ::= (X, *, e)` introduces `G`, `X`, and `e` as symbols whose roles must be specified by the surrounding definition."
+Id: "796fefea-e968-4ebc-8538-be43b9f88b2b"

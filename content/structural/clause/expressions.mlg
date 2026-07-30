@@ -1,0 +1,13 @@
+Title: "Expressions"
+Id: "eb797a2c-75d2-4c55-b3b9-575e43e222f0"
+
+Text: "A clause argument can be an expression.
+
+```mlg-fragment
+P \\.and./ Q
+x = y
+x is? \\set
+```
+
+Before trying expression parsing, the clause parser tries to parse a declaration statement. This means `x is \\set` becomes a declaration/fact, while `x is? \\set` remains a predicate expression."
+Id: "1fb8d4df-e54e-4205-b649-2c573ad0900f"

@@ -1,0 +1,14 @@
+Title: "Spec Operator Aliases"
+Id: "f3ca61f3-5eee-45b5-b7cc-5056fd325837"
+
+Text: "Specification aliases use `:->`.
+
+```mlg-fragment
+capability: x_ \"in\" X :-> x_ member_of X
+capability: x_ \"in\" X :-> \\\\abstract
+```
+
+The left-hand side is a specification-like form. The right-hand side is the fact, builtin target, or specification established when the capability matches.
+
+Spec aliases are most often placed in `Requires:` or `Enables:` as capabilities. A `:->` capability is how notation such as membership can reduce to a type fact or another specification during checking."
+Id: "c3b92574-c140-4579-829c-c26f3644276d"

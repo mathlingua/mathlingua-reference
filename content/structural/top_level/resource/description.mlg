@@ -1,0 +1,12 @@
+Title: "Description"
+Id: "bb9187d7-6611-4bd1-a96b-bb9c42640d37"
+
+Text: "`description:` records a prose description of the resource.
+
+```mlg-fragment
+Resource:
+. description: \"A short description of the resource.\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "d933be4c-6fa6-4265-9926-f97e730c36dc"

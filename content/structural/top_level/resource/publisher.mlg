@@ -1,0 +1,12 @@
+Title: "Publisher"
+Id: "ff14863e-2dee-4fb9-8072-4ba023bf5d3d"
+
+Text: "`publisher:` records publisher information.
+
+```mlg-fragment
+Resource:
+. publisher: \"Example Press\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "64de4c42-afa3-424a-9b9f-f93ddc2fc22d"

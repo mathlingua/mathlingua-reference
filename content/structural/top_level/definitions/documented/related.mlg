@@ -1,0 +1,12 @@
+Title: "Related"
+Id: "a8c1f73c-ef4a-4bae-b512-23e8ec97df0c"
+
+Text: "`related:` records one or more open-text related-item notes.
+
+```mlg-fragment
+Documented:
+. related: \"See also the axiom of pairing.\"
+```
+
+The content is prose metadata, not a checked command reference. Use `References:` when linking bibliographic resources."
+Id: "7707b0fe-8eb0-4c5c-9eca-89c1549669c2"

@@ -1,0 +1,12 @@
+Title: "Url"
+Id: "7e2bdff5-cfd9-4e61-a78a-f310a10fd70e"
+
+Text: "`url:` records the URL for the resource.
+
+```mlg-fragment
+Resource:
+. url: \"https://example.com/resource\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "845f1c23-08f7-49f9-9306-4f517e1ed89c"

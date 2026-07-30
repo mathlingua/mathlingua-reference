@@ -1,0 +1,13 @@
+Title: "Tuple Expressions"
+Id: "98559f5a-7f2e-4496-9e5d-06a553e75990"
+
+Text: "Tuple expressions use parentheses and contain two or more elements.
+
+```mlg-fragment
+(x, y)
+(a, b, c)
+(x, +, y)
+```
+
+One-element tuples are not supported. Parentheses around a single expression are grouping syntax."
+Id: "68b4d6db-7521-4f23-8239-c8d167cbfdd9"

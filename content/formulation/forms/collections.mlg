@@ -1,0 +1,15 @@
+Title: "Collections"
+Id: "0cd61d8d-7435-4496-8859-e8e65fe1511d"
+
+Text: "Collection forms describe set-like or collection-like structure.
+
+```mlg-fragment
+{x_ : ...}
+{x__ : ...}
+X ::= {x__ : ...}
+```
+
+`x_` means the collection accepts one value, whose value may itself have structure. `x__` means the collection can accept any number of values treated as a tuple-like input.
+
+Collection forms matter for `member_of` reduction. A type can describe a collection target directly, or an `Enables.from:` capability can expose a cast literal such as `{x_ : x_ is \\real} as \\set`."
+Id: "8ff2b8cc-f13f-40b6-972c-eceb2dc8dc82"

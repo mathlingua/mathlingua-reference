@@ -1,0 +1,14 @@
+Title: "Resource Headers"
+Id: "0eabf9e6-6eaa-4ca5-ae55-da8d56eda95c"
+
+Text: "Resource headers begin with `$` and are used by `Resource:` groups and `References:` sections.
+
+```mlg-fragment
+[$zfc.foundations]
+Resource:
+. title: \"ZFC Foundations\"
+. url: \"https://example.com\"
+```
+
+A `References:` section contains resource headers, not quoted text."
+Id: "4a1ddf88-4cdb-4ef9-a0e8-c71830b26f68"

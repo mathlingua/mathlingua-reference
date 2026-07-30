@@ -1,0 +1,12 @@
+Title: "Discoverer"
+Id: "b03d2893-d425-4f6a-878b-9841b297ef7f"
+
+Text: "`discoverer:` records optional open-text discoverer information.
+
+```mlg-fragment
+Documented:
+. discoverer: \"Cantor\"
+```
+
+It is parsed as prose metadata. Person records can be represented separately with top-level `Person:` groups."
+Id: "b7c7bcf3-e79d-43e8-98da-60c9f938cdc9"

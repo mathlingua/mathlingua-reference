@@ -1,0 +1,209 @@
+Title: "Cheatsheet"
+Id: "ac7712fc-0a1b-4e7a-8be7-66ed68156f54"
+
+Text: "This page summarizes the syntax implemented by the current Rust code. For the full rule list, see Current Implementation Notes."
+Id: "bb702f3d-ec0b-4fac-96a3-08620bf4b2ec"
+
+SectionTitle: "Page Content"
+Id: "9ee50d16-4081-4565-a589-e17d0883a854"
+
+Text: "Top-level prose blocks render directly on the page, not inside cards.
+
+```text
+Title: \"A Page Title\"
+SectionTitle: \"A Section\"
+SubsectionTitle: \"A Subsection\"
+Text: \"Markdown prose with $x \\in X$ and display math.\"
+```
+
+`Text:` supports Markdown and LaTeX. Quoted text fields may span multiple source lines."
+Id: "e04dde63-6571-46ad-a6a9-e59f61bec5bd"
+
+SectionTitle: "Commands And Builtins"
+Id: "91d6d84b-e6af-46c4-bf1b-78862847d790"
+
+Text: "Commands start with one backslash. Builtin commands and builtin types start with two backslashes.
+
+```text
+\\set
+\\function:on{A}:to{B}
+\\function:?on{A}:?to{B}      -- optional tail parts at use sites
+x \\.set.union./ y            -- infix command
+\\(injective)::function        -- refined command type
+```
+
+Common builtin types include `\\\\type`, `\\\\statement`, `\\\\expression`, `\\\\specification`, and `\\\\opaque`. `\\\\opaque` is satisfied by any declared value, but it does not establish any more specific type information.
+
+Builtin clause commands are expression forms, with semicolon-separated arguments:
+
+```text
+\\\\not{P}
+\\\\and{P; Q}
+\\\\or{P; Q}
+\\\\exists{x, y is \\real; n is \\natural}:suchThat{x * n > y}
+\\\\existsUnique{x is \\real}
+\\\\forAll{x is \\set}:then{x is? \\set}
+\\\\have{P}:iff{Q}
+```"
+Id: "9d080835-77dd-4347-9bb0-23f3ae05266c"
+
+SectionTitle: "Expressions"
+Id: "519c8cf9-e23b-462c-b070-7bd85dc09bbc"
+
+Text: "```text
+x * y                -- plain operator, resolved locally or globally
+x :* y               -- resolve operator from the left operand type
+x *: y               -- resolve operator from the right operand type
+x :*: y              -- resolve operator from the common ancestor type
+
+x |op| y             -- named infix operator
+f| x                 -- named prefix operator, same arity as f(x)
+x |f                 -- named postfix operator, same arity as f(x)
+
+(.x + y.)            -- source grouping that renders as x + y
+
+(x_ is \\real) |-> x_ + 1     -- mapping literal (anonymous function value)
+? is \\real                   -- spec literal (a value of \\\\specification)
+x satisfies (? is \\real)     -- apply a spec: means x is \\real
+\\function:from{A?}:to{B?}    -- X? declares X inline with the required type
+```
+
+Any sequence of special-operator characters can be an operator, including names with suffixes such as `*_1` and `*_free`. Equality and inequality, `=` and `!=`, are accepted for any types even when a type-specific capability is not defined.
+
+A mapping literal `(x_ is \\real) |-> x_ + 1` is an anonymous function value; the command sugar `\\foo[x_ is \\real]{x_ + 1}` expands to `\\foo{(x_ is \\real) |-> x_ + 1}`. A spec literal (`? is \\real`, `? \"in\" \\reals`) is a reusable `\\\\specification` with an implicit `?` subject, applied with `satisfies`."
+Id: "7b1d159f-93e3-4658-8ddd-8963da177135"
+
+SectionTitle: "Declarations And Statements"
+Id: "58e2e50d-b352-4f64-8704-645607155f4f"
+
+Text: "```text
+X is \\set
+X, Y is \\set
+G is \\set via X
+X := {x_ : x_ is \\real} as \\set
+f(x__) := x__ is \\function:on{A}:to{A}
+x is? \\set
+x is_not? \\set
+```
+
+Use `X := ...` when the right-hand side is a definition value. Use `X is ...` when assigning or requiring a described type."
+Id: "0871023c-b4d5-42dd-b39d-576780a6d935"
+
+SectionTitle: "Set Expressions"
+Id: "4570669c-633d-45d1-8bc1-5ebe274916ce"
+
+Text: "```text
+{x_ : x_ is \\set}
+{x_ : x_ is \\set | x_ != \\empty.set}
+{z_ ::= (a_, b_) : a_ \"in\" A; b_ \"in\" B | z_ := \\ordered.pair:of{a_}:and{b_}}
+```
+
+The `: ...` part contains specifications. The optional `| ...` part contains a predicate expression or a value binding such as `z_ := ...`."
+Id: "cbca77f6-b13e-467a-8d43-139bb851ad54"
+
+SectionTitle: "Top-Level Items"
+Id: "be3049e5-0942-4b6b-af8e-1b587c988ab6"
+
+Text: "Every top-level item must have an `Id:`. `mlg check` generates missing UUID v4 IDs before checking and reports duplicate IDs.
+
+```text
+[\\set]
+Describes: X
+Requires:
+. capability: x_ \"in\" X :-> \\\\abstract
+  written: \"x_? \\in X?\"
+Documented:
+. called: \"set\"
+Id: \"059126b9-dc83-41a2-aa1c-84f8e942f8d6\"
+```
+
+`Describes:` and `Defines:` require at least one of `called:` or `written:` in `Documented:`. Missing `called:` or `written:` rendering is generated from the one that is present. `Refines:` requires `adjective:` and may have `written:`, but may not have `called:`.
+
+The full set of top-level items is `Describes:`, `Defines:`, `Refines:`, `States:`, `Disambiguates:`, `Axiom:`, `Theorem:`, `Corollary:`, `Relation:` (a bidirectional relationship between two concepts), `Equivalent:` (an equivalence class of interchangeable notations), `Topic:` (a documentation topic, `[#some.name]`), `Specify:`, `Person:`, `Resource:`, `Writing:`, and the page-content items `Title:`, `SectionTitle:`, `SubsectionTitle:`, and `Text:`."
+Id: "37001eb1-5f07-44ba-a2eb-7fd297edacea"
+
+SectionTitle: "Requires And Enables"
+Id: "9ba6a690-a9bd-4d6b-8bef-b8662a760142"
+
+Text: "`Requires:` describes capabilities or definitions that are part of the construct. `Enables:` describes additional capabilities, casts, and relations.
+
+```text
+Requires:
+. capability: x_ \"in\" X :-> x_ member_of X
+  written: \"x_? \\in X?\"
+. definition: \\natural.0 is \\natural
+
+Enables:
+. capability: x_ - y_ :=> x_ \\.set.minus./ y_
+. from: Y ::= {y__ : ...}
+  capability: x_ \"in\" X :-> x_ member_of Y
+. from: P ::= {(p_, q_) : ...}
+  as: f(p_) := q_
+. relation:
+  to: r := \\as.rational{n} is \\rational
+  when: n is \\integer
+  means: n \\.embedded.to./ r
+  represents: \\\\coercion
+```
+
+The checker unions capabilities from `Requires:` and `Enables:` when resolving
+notation. A nested `Enables: relation:` records a cast: `represents: \\\\coercion`
+allows an ordinary `as` cast; `represents: \\\\encoding` allows a hard `as!` cast."
+Id: "685a6713-cb6d-4c0a-887a-aa484a20223b"
+
+SectionTitle: "Clauses"
+Id: "a777d902-4589-4031-b919-fe4964632e64"
+
+Text: "```text
+allOf:
+. P
+. Q
+
+anyOf:
+. P
+. Q
+
+exists: x is \\real
+
+existsUnique: x is \\real
+suchThat: x > 0
+
+forAll: x \"in\" X
+then: x is? \\set
+
+if: P
+then: Q
+
+have:
+. P
+iff: Q
+```
+
+`exists:` and `existsUnique:` do not require `suchThat:`. The old `iff: ... then: ...` group is not supported; use `have: ... iff: ...`."
+Id: "d21dd513-1286-4a0a-878a-128234ac5cbe"
+
+SectionTitle: "Writing"
+Id: "0f6dbb65-26a0-42e0-b3df-99da0f727069"
+
+Text: "A collection may contain one top-level `Writing:` block.
+
+```text
+Writing:
+. alpha :~> \\alpha
+. beta :~> \\beta
+```
+
+The left side must be a plain name. The renderer applies writing aliases to names in expressions, statements, and specifications, including underscore parts and numeric suffixes: `alpha_1` renders as `\\alpha_1`, and `alpha123` renders as `\\alpha_{123}`."
+Id: "29643f55-8a3c-4e5a-9e95-6ae64799787a"
+
+SectionTitle: "People And Resources"
+Id: "7b2968f1-4319-4bde-9569-1f46caf6233a"
+
+Text: "```text
+[@ada.lovelace]
+Person: \"Ada Lovelace\"
+biography: \"Markdown biography text.\"
+```
+
+`biography:` is optional. Resource cards use their `title:` as the card title and hyperlink it when `url:` is present; the URL itself is shown in the hidden details accordion."
+Id: "41e2fbba-15f0-447a-bb4d-36b8a2a8467f"

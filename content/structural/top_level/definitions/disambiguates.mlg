@@ -1,0 +1,34 @@
+Title: "Disambiguates"
+Id: "128951b9-c211-48a2-9a15-d54096d7ae2d"
+
+Text: "`Disambiguates:` defines how an otherwise ambiguous operator or function-like form should resolve globally.
+
+```mlg-fragment
+[FormOrDeclaration]
+Disambiguates:
+(when: <ClauseUnion>+
+ to: <Expression>)+
+else?: <Expression>
+Justified?: <JustifiedItemUnion>+
+Documented?: <DocumentedItemUnion>+
+Aliases?: <AliasItemUnion>+
+References?: <ResourceHeader>+
+Metadata?: <MetadataItemUnion>+
+Id?: <OpenText>
+```
+
+A `Disambiguates:` item must contain at least one `when:` / `to:` branch or an
+`else:` section (or both). Each `when:` is immediately followed by its `to:`.
+
+```mlg-fragment
+[x_ - y_]
+Disambiguates:
+else: x_ :-: y_
+Documented:
+. written: \"x_? - y_?\"
+```
+
+For a plain operator such as `x - y`, the checker first looks in local scope and then in global definitions. If no definition is found and a matching `Disambiguates:` entry exists, branches are tried in order. The first branch whose `when:` requirements match supplies the `to:` expression. If no branch matches, `else:` supplies the fallback expression.
+
+The same rule applies to special operators, named infix operators, and function-like notation."
+Id: "3af69e35-73e0-4b8e-bedc-477b299d8cb8"

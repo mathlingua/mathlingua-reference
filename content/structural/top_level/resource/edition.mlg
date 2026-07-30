@@ -1,0 +1,12 @@
+Title: "Edition"
+Id: "2ee5d313-0409-4549-b1c1-ab7c06b109e8"
+
+Text: "`edition:` records edition information.
+
+```mlg-fragment
+Resource:
+. edition: \"Second edition\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "3e55e490-08ce-48cf-bd58-144faadffcbc"

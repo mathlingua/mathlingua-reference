@@ -1,0 +1,14 @@
+Title: "Negative Int"
+Id: "527184e8-9722-4df8-b5b2-a3b12ec6ab22"
+
+Text: "A `negative:` group with a `int:` section records the `negative integer` classification.
+
+```mlg-fragment
+[negative.integer]
+negative:
+int:
+is: \"negative integer\"
+```
+
+These groups are open-text metadata. The heading is optional and, when present, is a label header."
+Id: "8ce421d5-5668-466b-a6af-8a5019d98df8"

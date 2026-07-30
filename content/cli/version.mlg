@@ -1,0 +1,13 @@
+Title: "`mlg version`"
+Id: "0f00c4c8-9ba9-447a-aaa5-34d415f5d14a"
+
+Text: "`mlg version` prints the version of the installed MathLingua command line tool.
+
+```text
+mlg version
+```
+
+Use it when checking which executable is on your `PATH`, when comparing local builds, or when reporting behavior that may depend on the implementation version.
+
+The command does not inspect a collection and does not modify files."
+Id: "3ee7dffe-7aaf-4af5-8d47-cfbc9179e7a5"

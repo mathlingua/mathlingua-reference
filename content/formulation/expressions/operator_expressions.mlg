@@ -1,0 +1,34 @@
+Title: "Operator Expressions"
+Id: "74b37f13-dca9-4634-90dc-6df6e0b63240"
+
+Text: "```mlg-fragment
+x * y
+x :* y
+x *: y
+x :*: y
+```
+
+```mlg-fragment
+x |op| y
+x :|op| y
+x |op|: y
+x :|op|: y
+```
+
+`x :* y` resolves `*` from the type of `x`. `x *: y` resolves from the type of `y`. `x :*: y` resolves from the least common ancestor type of both operands.
+
+Plain `x * y` resolves from local definitions first, then global definitions, then a matching `Disambiguates:` item.
+
+Named prefix and postfix operators behave like unary function calls:
+
+```mlg-fragment
+f| x      -- same arity as f(x)
+x |f      -- same arity as f(x)
+```
+
+Named infix operators behave like binary function calls:
+
+```mlg-fragment
+x |op| y  -- same arity as op(x, y)
+```"
+Id: "3b8fd8f3-9171-44e0-bff4-93872a5afb23"

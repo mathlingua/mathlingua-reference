@@ -1,0 +1,17 @@
+Title: "Overview"
+Id: "953b9b74-8be7-4637-9c62-e20447652630"
+
+Text: "`Specify:` is a top-level group for numeric-domain metadata.
+
+```mlg-fragment
+Specify:
+. positive:
+  int:
+  is: \"positive integer\"
+. zero:
+  is: \"zero\"
+Id: \"23e4567e-e89b-42d3-a456-426614174000\"
+```
+
+Nested specify items may describe positive integers, negative integers, zero, positive decimals, and negative decimals."
+Id: "61225453-d003-4cf2-a4b5-0af648b50a9a"

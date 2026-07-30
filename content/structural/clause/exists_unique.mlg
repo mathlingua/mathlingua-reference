@@ -1,0 +1,16 @@
+Title: "Exists Unique"
+Id: "a78b325f-4ce5-474c-bfe5-602d963ff4f5"
+
+Text: "`existsUnique:` has the same surface shape as `exists:` but records unique-existence intent.
+
+```mlg-fragment
+existsUnique: x is \\real
+```
+
+```mlg-fragment
+existsUnique: y \"in\" B
+suchThat: f(x) = y
+```
+
+`suchThat:` is optional. Introduced symbols are available in the `suchThat:` section when it is present."
+Id: "5fbf742c-d943-4b90-8fb3-7f9fa775275c"

@@ -1,0 +1,12 @@
+Title: "Title"
+Id: "8ef4e125-686a-4584-80c3-92ff37aa0788"
+
+Text: "`title:` records the display title of the resource.
+
+```mlg-fragment
+Resource:
+. title: \"A Brief Introduction to ZFC\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "0aed300d-9fae-4bb9-a474-e7d3dae35503"

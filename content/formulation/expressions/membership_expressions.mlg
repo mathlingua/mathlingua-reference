@@ -1,0 +1,23 @@
+Title: "Membership Expressions"
+Id: "4c8892a7-544e-4cfb-ac9f-79de4d983feb"
+
+Text: "`member_of` is a builtin membership expression relating a subject to a
+collection.
+
+```mlg-fragment
+x member_of X
+```
+
+It is distinct from a spec operator such as `\"in\"`. A type usually exposes
+membership notation by reducing its spec operator to `member_of` through a
+capability:
+
+```mlg-fragment
+Requires:
+. capability: x_ \"in\" X :-> x_ member_of X
+```
+
+`member_of` reduces against a collection form (for example a set declared with
+`X ::= {x__ : ...}`), so it is the low-level relation that surface notation like
+`\"in\"` resolves to."
+Id: "251da0c7-30c1-4a64-b04e-35d359a711f1"

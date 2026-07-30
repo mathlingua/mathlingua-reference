@@ -1,0 +1,18 @@
+Title: "Collections"
+Id: "e7014b9d-b084-4951-a227-fbd35c1e8676"
+
+Text: "A MathLingua collection is a directory tree containing `.mlg` files. `mlg check` and `mlg view` operate on the collection rooted at the current directory.
+
+Directories may contain a `toc` file. Without a `toc`, files and directories are shown alphabetically in the viewer. With a `toc`, every `.mlg` file and subdirectory in that directory must be listed exactly once.
+
+A `toc` entry can rename or hide an item:
+
+```text
+introduction.mlg
+scratch.mlg -> HIDDEN
+set_theory.mlg -> Set Theory
+algebra -> Algebra
+```
+
+If a listed file or directory does not exist, or if a `.mlg` file or subdirectory is missing from the `toc`, `mlg check` reports an error."
+Id: "5dc71550-5015-4df4-90a5-b4750df88be6"

@@ -1,0 +1,11 @@
+Title: "Variadic Equality Expressions"
+Id: "2e12b00b-2bb1-4b07-9e5d-b0361bb9e707"
+
+Text: "Variadic equality chains compare more than two expressions.
+
+```mlg-fragment
+x = y = z
+```
+
+The expression is parsed as a chain of equalities. Equality and inequality are accepted for any declared symbols, though a collection can still define type-specific equality behavior with capabilities."
+Id: "6d948156-7908-496a-830f-5f1ed9cdd5a1"

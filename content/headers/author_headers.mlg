@@ -1,0 +1,12 @@
+Title: "Author Headers"
+Id: "aed49374-2774-44ae-b74a-70d23da00b98"
+
+Text: "Author headers begin with `@` and are used by `Person:` groups.
+
+```mlg-fragment
+[@ada.lovelace]
+Person: \"Ada Lovelace\"
+```
+
+The header is a stable identifier. The displayed name comes from the `Person:` section."
+Id: "0674568c-2398-4e27-837c-7edba04a580a"

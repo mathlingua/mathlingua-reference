@@ -1,0 +1,12 @@
+Title: "Type"
+Id: "ff16f60c-8a74-4e1d-b174-27c46e106759"
+
+Text: "`type:` records the resource type, such as book, article, note, or webpage.
+
+```mlg-fragment
+Resource:
+. type: \"article\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "c36b9ee2-5580-4e9e-97af-8dd94057614d"

@@ -1,0 +1,30 @@
+Title: "Overview"
+Id: "c9e36648-d577-413a-b582-f92557074b1f"
+
+Text: "MathLingua supports three families of operators: special operators, named operators, and specification operators.
+
+Special operators are made from operator characters:
+
+```mlg-fragment
+x + y
+x ** y
+x *_free y
+```
+
+Named operators use bars around a name:
+
+```mlg-fragment
+x |op| y
+f| x
+x |f
+```
+
+Specification operators express statement-like facts:
+
+```mlg-fragment
+x \"in\" X
+A \\:subset:/ B
+```
+
+Operator resolution is type-aware. Directed forms such as `x :* y`, `x *: y`, and `x :*: y` tell the checker which operand type to use when resolving notation. Plain operator forms first look in local scope, then global definitions, then matching `Disambiguates:` entries."
+Id: "3ded9292-764e-466a-a03a-5001befff8a7"

@@ -1,0 +1,12 @@
+Title: "Homepage"
+Id: "9be31cbc-a986-48c6-9e99-d4b275b32f70"
+
+Text: "`homepage:` records a homepage URL or prose homepage field.
+
+```mlg-fragment
+Resource:
+. homepage: \"https://example.com\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "e3a658e4-ad2e-4a3a-a653-b1cb9bad5603"

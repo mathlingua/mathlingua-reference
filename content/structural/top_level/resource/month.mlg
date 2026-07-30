@@ -1,0 +1,12 @@
+Title: "Month"
+Id: "845eb212-7429-450e-97b0-5887a34de047"
+
+Text: "`month:` records month information.
+
+```mlg-fragment
+Resource:
+. month: \"July\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "0d1c3190-4a98-451f-a9ba-b8bc6f95eb5b"

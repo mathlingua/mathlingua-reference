@@ -1,0 +1,12 @@
+Title: "Offset"
+Id: "4a28e62b-3a9f-456c-9503-0d913329272c"
+
+Text: "`offset:` records an open-text page or numbering offset.
+
+```mlg-fragment
+Resource:
+. offset: \"0\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "0ab1005e-6de3-4ec2-aa6e-fe18ede06ef6"

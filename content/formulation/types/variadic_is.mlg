@@ -1,0 +1,12 @@
+Title: "Variadic Is"
+Id: "55c65838-cc6e-45c8-80a0-52b1b8d8e41f"
+
+Text: "A single `is` statement can apply to multiple subjects.
+
+```mlg-fragment
+A, B is \\set
+x1, x2 \"in\" A
+```
+
+The statement is treated as one fact for each subject. For example, `A, B is \\set` establishes both `A is \\set` and `B is \\set`."
+Id: "fbf6c057-68fb-438c-8ee9-f6401f4352f8"

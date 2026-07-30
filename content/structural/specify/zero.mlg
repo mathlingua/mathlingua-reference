@@ -1,0 +1,13 @@
+Title: "Zero"
+Id: "00811179-8dae-4173-8e66-6fe219645894"
+
+Text: "`zero:` records the zero classification in a `Specify:` group.
+
+```mlg-fragment
+[zero]
+zero:
+is: \"zero\"
+```
+
+The nested `is:` section is open text, not a formulation type statement."
+Id: "24b1170f-1f43-4591-82ee-c57867e59139"

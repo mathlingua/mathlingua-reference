@@ -1,0 +1,15 @@
+Title: "Equality Expressions"
+Id: "7590cec7-867a-4b04-92c5-a1468c40dca7"
+
+Text: "Equality uses `=` and inequality uses `!=`.
+
+```mlg-fragment
+x = y
+x != y
+x = y = z
+```
+
+The checker accepts `=` and `!=` for declared symbols of any type, even when a type-specific equality capability has not been defined. A type may still define its own equality or inequality capability when it wants special semantics or rendering.
+
+Equality binds tighter than infix command expressions."
+Id: "2e93253c-d251-464c-ba17-d404fea9ea65"

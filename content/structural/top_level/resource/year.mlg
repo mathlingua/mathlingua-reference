@@ -1,0 +1,12 @@
+Title: "Year"
+Id: "5389fe86-7aad-4b80-85f8-07ff6f8e11b6"
+
+Text: "`year:` records year information.
+
+```mlg-fragment
+Resource:
+. year: \"2026\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "e291fd34-749b-476d-b6fa-0e22a731936c"

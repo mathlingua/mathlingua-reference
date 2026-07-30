@@ -1,0 +1,12 @@
+Title: "Version"
+Id: "58df3f5d-ad48-492d-a2b5-31ff3b5a6e24"
+
+Text: "`version:` is a nested metadata item for version text.
+
+```mlg-fragment
+Metadata:
+. version: \"1\"
+```
+
+It is parsed as open text. It does not replace the required top-level `Id:` identity section."
+Id: "703b62fb-e19e-4c98-bbc1-d5e00b81fcd4"

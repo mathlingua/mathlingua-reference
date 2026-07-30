@@ -1,0 +1,12 @@
+Title: "Writing"
+Id: "801f1204-3579-4100-9373-e22f3912657e"
+
+Text: "```mlg-fragment
+Writing:
+. <name> :~> <latex>
+```
+
+A collection may contain at most one top-level `Writing:` item. The left-hand
+side of each alias must be a name. The renderer uses these aliases when rendering
+names throughout expressions, statements, and specifications."
+Id: "6d284986-b912-4519-b5d4-316e2783e35d"

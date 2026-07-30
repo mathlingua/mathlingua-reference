@@ -1,0 +1,12 @@
+Title: "Author"
+Id: "a51a70f4-55cb-483b-ac25-8cad5640ecf8"
+
+Text: "`author:` records one or more author names.
+
+```mlg-fragment
+Resource:
+. author: \"Christopher Wilson\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "dc563018-e40e-496e-90cd-baf9860acad0"

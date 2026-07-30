@@ -1,0 +1,14 @@
+Title: "Positive Decimal"
+Id: "52a1c6a5-e8fe-46a8-a84d-cbcce6ee969b"
+
+Text: "A `positive:` group with a `decimal:` section records the `positive decimal` classification.
+
+```mlg-fragment
+[positive.decimal]
+positive:
+decimal:
+is: \"positive decimal\"
+```
+
+These groups are open-text metadata. The heading is optional and, when present, is a label header."
+Id: "c21edf00-0077-4544-8de5-c30f3e513b74"

@@ -1,0 +1,12 @@
+Title: "Variadic Command Parameters"
+Id: "98c3c1af-3c5a-409f-ab52-f34c557aaca7"
+
+Text: "Variadic command parameters are written with magnetic placeholders ending in `__`.
+
+```mlg-fragment
+f(x__)
+h(x__) := f(g(x__))
+```
+
+They allow function-like notation to accept any number of supplied arguments while the checker treats the collected arguments as one input. Use ordinary placeholders such as `x_`, `y_`, and `z_` when a form must accept exactly that many arguments."
+Id: "6d103d90-d4f1-4e39-8695-347b15ef7a4a"

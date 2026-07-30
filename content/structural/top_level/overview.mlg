@@ -1,0 +1,32 @@
+Title: "Overview"
+Id: "4f8cf47d-3b81-45db-8104-f888b3cc3ada"
+
+Text: "```mlg-fragment
+TopLevelItemUnion ::=
+    | TitleGroup
+    | SectionTitleGroup
+    | SubsectionTitleGroup
+    | TextGroup
+    | TopLevelWritingGroup
+    | DisambiguatesGroup
+    | DescribesGroup
+    | DefinesGroup
+    | RefinesGroup
+    | StatesGroup
+    | AxiomGroup
+    | TheoremGroup
+    | CorollaryGroup
+    | PersonGroup
+    | ResourceGroup
+    | SpecifyGroup
+    | RelationGroup
+    | EquivalentGroup
+    | TopicGroup
+```
+
+The group kind is determined by the first section label. Definition-like cards
+also require or receive an `Id:` during `mlg check`; duplicate ids are errors.
+
+`Lemma:`, `Conjecture:`, `Represents:`, and `Subsubsection:` are no longer part
+of the structural language."
+Id: "0458cfe8-4b85-4c0f-8fbb-7d78e5cb80f5"

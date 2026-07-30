@@ -1,0 +1,18 @@
+Title: "Special Operators"
+Id: "e383d897-c838-49e6-bda0-87a290967d8f"
+
+Text: "Special operators are not limited to single characters such as `+`, `-`, `*`, `/`, `=`, or `^`.
+
+Any sequence of special-operator characters may be used as an operator, and operators may also use suffixes of the form `<op>_<name>`.
+
+```mlg-fragment
+*
+**
++_-*
+^^
+*_1
+*_free
+```
+
+The directed forms `:*`, `*:`, and `:*:` apply to these operators as well."
+Id: "07de0340-f3e8-4391-aa1b-4ed46cc466c2"

@@ -1,0 +1,19 @@
+Title: "Exists"
+Id: "c7b6b9e3-5c6c-4607-957f-b73399641e6f"
+
+Text: "`exists:` introduces one or more symbols and optionally constrains them with `suchThat:`.
+
+```mlg-fragment
+exists: x is \\real
+```
+
+```mlg-fragment
+exists:
+. x is \\real
+. y is \\real
+suchThat:
+. x != y
+```
+
+`suchThat:` is optional. Symbols introduced by `exists:` are available in the optional `suchThat:` clauses."
+Id: "b7cc8416-6413-4236-8f7a-0decdb1f60ab"

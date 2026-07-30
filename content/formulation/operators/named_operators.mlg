@@ -1,0 +1,27 @@
+Title: "Named Operators"
+Id: "7857f35a-dfb7-4a59-903f-1f17d71e49d4"
+
+Text: "Named operators use a name surrounded by bars.
+
+```mlg-fragment
+x |op| y
+x :|op| y
+x |op|: y
+x :|op|: y
+f| x
+x |f
+```
+
+The colon-directed forms choose which operand type is used to resolve the operator. Prefix and postfix forms have the same arity as a one-argument function call.
+
+A plain named operator is syntactic sugar for application: `x |op| y` means
+`op(x, y)`, and `f| x` and `x |f` mean `f(x)`. The content between the bars may
+be a dotted **member path** whose segments are names or operator symbols, such
+as `|M.*|` or `|x.y.z|`; it tracks down through a value's fields, so `x |M.*| y`
+is the member call `M.*(x, y)`.
+
+```mlg-fragment
+x |M.*| y
+x |a.b.c| y
+```"
+Id: "0c505d0d-f3b3-4d15-b36c-740a147f4302"

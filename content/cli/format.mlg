@@ -1,0 +1,29 @@
+Title: "`mlg format`"
+Id: "11f4cf9f-7f33-4d0f-8f9d-993a978a06bf"
+
+Text: "`mlg format` normalizes the formatting of every `.mlg` file in the current
+collection. Run it from anywhere inside a collection (a directory at or above the
+current one must contain an `mlg.json`).
+
+```text
+mlg format
+```
+
+Formatting is normalization, not a judgement call. It:
+
+- ensures exactly two blank lines between top-level items, and
+- reflows inline `\"...\"` text values to the `margin` width from
+  `mlg.json` (default `80`).
+
+LaTeX blobs (`$...$`, `$$...$$`, `\\(...\\)`, `\\[...\\]`) are treated as atomic and
+are never split; a text value whose author laid out multi-line or over-wide math
+by hand is left untouched. Paragraph breaks inside text are preserved.
+
+It reports `Formatted N files`, or `Nothing to format` when everything was
+already canonical. If `mlg.json` still uses the old `print_margin` key, the
+command aborts rather than reformatting to the default width, since that would
+rewrap exactly the files whose author had chosen a narrower margin.
+
+`mlg check` runs this same formatting first unless the config sets
+`\"formatOnCheck\": false`."
+Id: "3e713a2d-b8f5-4220-bfa3-00263f1abdbd"

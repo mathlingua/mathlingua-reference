@@ -1,0 +1,20 @@
+Title: "Overview"
+Id: "7ad33634-c9f0-482e-80da-39d9d7d70c23"
+
+Text: "Type statements use `is`.
+
+```mlg-fragment
+X is \\set
+f is \\function:on{A}:to{B}
+A, B is \\set
+```
+
+Predicate-like type checks use `is?` and `is_not?`.
+
+```mlg-fragment
+x is? \\set
+x is_not? \\empty.set
+```
+
+Builtin types start with two backslashes, such as `\\\\type`, `\\\\statement`, `\\\\expression`, `\\\\specification`, and `\\\\opaque`."
+Id: "2f73683b-6420-4fe6-8196-3ce83be64464"

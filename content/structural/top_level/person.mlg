@@ -1,0 +1,12 @@
+Title: "Person"
+Id: "ff0ed419-5f38-430d-84af-73cf67f47063"
+
+Text: "```mlg-fragment
+[AuthorHeader]
+Person: <OpenText>+
+biography?: <OpenText>
+```
+
+The person's display name is written directly in the `Person:` section.
+`biography:` is optional and renders as Markdown card text in `mlg view`."
+Id: "cad7d466-4575-45a2-b1f5-d78d3aae6b14"

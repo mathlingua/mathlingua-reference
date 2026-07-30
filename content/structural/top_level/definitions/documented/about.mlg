@@ -1,0 +1,25 @@
+Title: "About"
+Id: "1c9e3d54-00be-475e-8f1d-0e7c0e66d6cc"
+
+Text: "```mlg-fragment
+DocumentedItemUnion ::=
+    | WrittenGroup
+    | CalledGroup
+    | AdjectiveGroup
+    | WritingGroup
+    | OverviewGroup
+    | DescriptionGroup
+    | RelatedGroup
+    | DiscovererGroup
+```
+
+`called:` is non-math text. `written:` is math-mode text. Definition cards use
+these in context, deriving one from the other when only one is present.
+
+`Describes:` and `Defines:` entries must include at least one of `called:` or
+`written:`. `Refines:` entries must include `adjective:` (and may add `written:`)
+but not `called:`.
+
+`description:` prose is rendered above the card in `mlg view`; the card details
+show it as `<see above>`."
+Id: "16bff109-476a-4c9e-b913-8417ed0aa173"

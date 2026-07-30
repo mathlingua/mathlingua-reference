@@ -1,0 +1,12 @@
+overview.mlg -> Overview
+introduction.mlg -> Introduction
+installation.mlg -> Installation
+init.mlg -> Init
+check.mlg -> Check
+format.mlg -> Format
+export.mlg -> Export
+clean.mlg -> Clean
+release.mlg -> Release
+lsp.mlg -> Language Server
+view.mlg -> View
+version.mlg -> Version

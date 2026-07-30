@@ -1,0 +1,15 @@
+Title: "Infix Command Expressions"
+Id: "2a79f80e-9692-4c4e-a4d1-5feb20b52b81"
+
+Text: "Infix command expressions place a command between two expressions using `\\.` and `./`.
+
+```mlg-fragment
+A \\.set.union./ B
+P \\.and./ Q
+x \\.less.than./ y
+```
+
+The command between `\\.` and `./` is resolved like a command expression. Its documented `written:` template is used for rendering when available.
+
+Infix command expressions have lower precedence than equality. This lets `x = a \\.or./ x = b` parse as `(x = a) \\.or./ (x = b)`."
+Id: "c21424d8-d5cd-452c-83d2-c7d741101478"

@@ -1,0 +1,12 @@
+Title: "SectionTitle"
+Id: "ce2dd9ac-cec0-4c0f-b3d2-c985b6cf5604"
+
+Text: "`SectionTitle:` is a top-level section heading.
+
+```mlg-fragment
+SectionTitle: \"Ordered Pairs\"
+Id: \"23e4567e-e89b-42d3-a456-426614174000\"
+```
+
+It replaces the older `Section:` spelling. It renders directly on the page and uses the same visual color family as card section labels."
+Id: "30d88afc-5be0-40cf-9121-069e3914fd9f"

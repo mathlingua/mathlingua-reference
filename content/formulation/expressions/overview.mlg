@@ -1,0 +1,19 @@
+Title: "Overview"
+Id: "6c2023a6-ae8f-498a-9280-78a590cb2625"
+
+Text: "Expressions are concrete mathematical terms or predicates used inside clauses, definitions, aliases, and rendering helpers.
+
+Common expression forms include:
+
+```mlg-fragment
+x
+x + y
+f(x)
+A \\.set.union./ B
+x is? \\set
+{x_ : x_ is \\set | x_ != \\empty.set}
+\\\\exists{x is \\set}:suchThat{x = x}
+```
+
+Expression parsing has precedence. Equality and inequality bind tighter than infix command expressions, so `x = a \\.or./ x = b` is parsed as `(x = a) \\.or./ (x = b)`."
+Id: "38969ec7-0fd3-424c-878a-c09543bd0c48"

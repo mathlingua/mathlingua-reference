@@ -1,0 +1,12 @@
+Title: "Grouped Expressions"
+Id: "75474760-13f9-4634-93b8-f1981bb75a25"
+
+Text: "```mlg-fragment
+GroupedExpression ::= \"(\" Expression \")\"
+                    | \"(.\" Expression \".)\"
+```
+
+Parenthesized groups render with parentheses when needed. Dot groups `(. ... .)`
+are source-only grouping: they disambiguate the source but do not render visible
+parentheses."
+Id: "368193b0-c319-4e49-97fc-2531eb214cbd"

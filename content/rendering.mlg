@@ -1,0 +1,26 @@
+Title: "Rendering"
+Id: "469b1199-a186-4ed8-b341-99a0f5d9aadc"
+
+Text: "Rendering is driven by documented names and writing aliases.
+
+`written:` templates render in math mode and are used when a command appears as an expression. `called:` templates render as prose and are used for card titles, labels, and many type names. If one is missing, the renderer generates it from the one that exists.
+
+In rendered `is` statements, the right-hand side uses the command's `written:` content when available and falls back to `called:`.
+
+Templates remove placeholder markers such as `?` after substitution and support conditional fragments:
+
+```text
+@[U]{_{U?}}
+@[U]{_{U?}}:{_X}
+```
+
+Dot-grouped expressions of the form `(. ... .)` are grouping syntax only and render without visible parentheses.
+
+Names ending in digits render with numeric subscripts: `x1` renders as `x_1`. The top-level `Writing:` block can map names to LaTeX, and that mapping is applied throughout expressions, statements, and specifications. For example, `alpha123` renders as `\\alpha_{123}` when `alpha :~> \\alpha` is defined.
+
+Builtin types such as `\\\\statement`, `\\\\expression`, `\\\\specification`, and `\\\\opaque` render as plain text names.
+
+Card titles come from the item's documented forms. When an item has both a `called:` and a `written:` form, the title shows both — the called form followed by the written form, with the written form muted as a secondary display. When only one is present, the title is just that form. Theorem-like and axiom-like entries with no such documentation fall back to their label, with dots converted to spaces and words capitalized.
+
+`Documented.description:` renders as prose above the card, like a `Text:` block. The card's `Documented:` details show `description: <see above>`."
+Id: "7b7cfa09-526e-493d-acbe-356bad1f8a48"

@@ -1,0 +1,12 @@
+Title: "Overview"
+Id: "cbb1f47b-5d4c-4c8b-9866-0bc94717415b"
+
+Text: "`overview:` is an open-text documented item.
+
+```mlg-fragment
+Documented:
+. overview: \"A short overview of this item.\"
+```
+
+It is parsed as prose metadata. For longer rendered prose above a card, prefer `description:`."
+Id: "b4d50233-ea97-4d75-ad63-0d4f3627c6d0"

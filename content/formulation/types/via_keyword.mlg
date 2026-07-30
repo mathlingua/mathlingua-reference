@@ -1,0 +1,13 @@
+Title: "Via Keyword"
+Id: "0ec4066a-bb89-469f-bdf3-7958dd871eda"
+
+Text: "`via` records the view used by an extension.
+
+```mlg-fragment
+G is \\set via X
+```
+
+The left side is an `is` statement. The right side is a form or declaration that describes how the subtype is viewed as the supertype.
+
+In a definition, `extends: G is \\set via X` lets the checker use `G is \\set` when it knows `G` has the described type. The `via` form also **sets the types of the symbols it names**, so they need not be repeated in `specifies:`: `extends: M is \\set via X` records `X is \\set`, and a `via` tuple maps positionally onto the extended type's own components, so `extends: S is \\magma via (X, *)` gives `X is \\set` and `* is \\binary.operation:on{S}`."
+Id: "84a2b89a-dc30-43e5-8648-2bf8f5b368f5"

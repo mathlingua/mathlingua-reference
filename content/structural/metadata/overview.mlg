@@ -1,0 +1,13 @@
+Title: "Overview"
+Id: "23624cc8-e4b1-4905-ae97-68a368b694b7"
+
+Text: "Older structural groups may contain a `Metadata:` section with nested metadata items.
+
+```mlg-fragment
+Metadata:
+. id: \"stable-id\"
+. version: \"1\"
+```
+
+The current authoring workflow uses direct top-level `Id:` sections instead. `mlg check` generates missing direct `Id:` sections for top-level items and reports duplicates."
+Id: "11dc8592-ade6-45fc-ad2e-8bf84c7bd49a"

@@ -1,0 +1,13 @@
+Title: "One Of"
+Id: "fa7cdc38-2dfb-4681-a5d7-3797905764f3"
+
+Text: "`oneOf:` contains mutually exclusive alternatives.
+
+```mlg-fragment
+oneOf:
+. P
+. Q
+```
+
+The group may have an optional label heading. Nested clauses use the same clause syntax recursively."
+Id: "a8d0c892-bd58-4c43-8bf9-b49b2c163137"

@@ -1,0 +1,24 @@
+Title: "Names"
+Id: "207670b3-6b94-49e7-a5e8-2252477f4401"
+
+Text: "A normal formulation name is either an identifier-like name or a stropped symbolic name.
+
+Identifier-like examples:
+
+```text
+x
+x1
+x_1
+abc123
+123
+```
+
+Stropped symbolic examples:
+
+```text
+`*`
+`+_-*`
+```
+
+Names may contain underscores internally, but a name ending in `_` or `__` is a placeholder, not a normal name. In rendering, names of the form letters followed by digits are shown with a numeric subscript, so `x1` renders like `x_1`."
+Id: "b1c37930-d8e1-4a73-8c04-21114dc5f2f1"

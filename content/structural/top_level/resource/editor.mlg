@@ -1,0 +1,12 @@
+Title: "Editor"
+Id: "7a960391-ba6e-4422-aba6-2bee0cd32723"
+
+Text: "`editor:` records editor information.
+
+```mlg-fragment
+Resource:
+. editor: \"Jane Editor\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "3e6271a2-c979-4c5b-a4d4-9a1a59c2dd71"

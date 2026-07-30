@@ -1,0 +1,12 @@
+Title: "Journal"
+Id: "c25a2e6f-aa4c-4e06-bd35-2d0dc4a88163"
+
+Text: "`journal:` records journal information.
+
+```mlg-fragment
+Resource:
+. journal: \"Journal of Examples\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "b8e9a58d-5b0a-412b-b3a9-451dfbd71e27"

@@ -1,0 +1,865 @@
+Title: "Current Implementation Notes"
+Id: "d29002a5-f9a7-4223-8033-32a2a718ce45"
+
+Text: "This page summarizes the behavior implemented by the current Rust code in the
+main `mathlingua` repository. It is intentionally rule-focused and should be
+read together with the detailed syntax pages in this reference."
+Id: "ce52d87b-92fd-4974-856d-57ff257440bd"
+
+SectionTitle: "Structural Language"
+Id: "74303346-1df0-4524-9ae3-2c2e5e55f73c"
+
+SubsectionTitle: "Markdown MathLingua Fences"
+Id: "f93b33c9-60f4-45c4-9947-d966841c25c6"
+
+Text: "`Text:` Markdown may contain fenced blocks tagged `mlg`. These blocks render as
+MathLingua source; other fenced blocks retain ordinary Markdown code rendering."
+Id: "fbcd6e1b-51a9-4fb9-91de-0535332e8e92"
+
+SubsectionTitle: "Page Content Blocks"
+Id: "91d0a80f-d191-4d4b-a19b-14f1b94ca619"
+
+Text: "Top-level page content blocks are supported and render directly on the page
+rather than inside cards.
+
+- `Title: \"...\"` renders as the page title.
+- `SectionTitle: \"...\"` renders as a section heading.
+- `SubsectionTitle: \"...\"` renders as a subsection heading.
+- `Text: \"...\"` renders prose directly on the page.
+- `Section:` was replaced by `SectionTitle:`.
+- `Subsection:` was replaced by `SubsectionTitle:`.
+- `Subsubsection:` was removed.
+- Text literals may span multiple source lines.
+- `Text:` content supports Markdown and LaTeX.
+- Page headings use the same blue color family as card section labels."
+Id: "d96262f7-185a-4677-b505-5cfc33c7ae64"
+
+SubsectionTitle: "Top-Level IDs"
+Id: "453aea13-6a51-4c22-9239-72f8f1340684"
+
+Text: "Every top-level item must contain an `Id:` section.
+
+- `mlg check` generates a missing `Id:` before checking the item.
+- Generated IDs use a real UUID v4 implementation.
+- The generated form is a normal random UUID, not a fixed or mostly-zero value.
+- It is an error for two top-level items to have the same ID.
+- `mlg check` adds only the missing `Id:` section. It does not add a separator
+  line before the ID.
+- The view shows the item ID in the hidden card details area.
+- Internal item identity should use the `Id:` value rather than deriving identity
+  from source position or rendered text."
+Id: "59f9fedf-5489-43ec-b0ad-7c279a7beaf9"
+
+SubsectionTitle: "Table Of Contents Files"
+Id: "90bee976-e616-4921-9872-286b996857cf"
+
+Text: "Directories may contain a `toc` file that controls the order and visibility of
+entries in the left outline.
+
+- If a directory has no `toc`, files are listed alphabetically.
+- Fallback display names preserve capitalization semantics already used by the
+  view and replace underscores with spaces.
+- If a directory has a `toc`, every `.mlg` file in that directory must be listed.
+- If a directory has a `toc`, every subdirectory in that directory must be listed.
+- A listed file or directory that does not exist is an error.
+- A `.mlg` file or directory omitted from the `toc` is an error.
+- Each listed entry may be written as just the path, for example:
+  `some_file.mlg`.
+- Each listed entry may also use `-> HIDDEN` to hide it from the rendered view.
+- Each listed entry may use `-> Some Title` to provide a custom display title.
+- The same `toc` rules apply independently in each subdirectory."
+Id: "9273b584-6595-4fc1-9c19-60d87b3a09bc"
+
+SectionTitle: "Documentation Text And Rendering Names"
+Id: "b647d90a-cfe3-48e4-a3c4-b35721fcfe30"
+
+SubsectionTitle: "`called:` And `written:`"
+Id: "3780e073-5fd0-4df5-9561-28ff6d53373c"
+
+Text: "`called:` and `written:` have distinct meanings.
+
+- `called:` is non-math text.
+- `written:` is math-mode text.
+- For `Describes:` and `Defines:`, at least one of `called:` or `written:` is
+  required.
+- If both are provided, the renderer uses the appropriate one for the context.
+- If only `called:` is provided, the missing `written:` text is generated from it.
+- If only `written:` is provided, the missing `called:` text is generated from it
+  by using the written text in math mode.
+- The `called:` text is used for prose labels and card titles.
+- The `written:` text is used when the item appears as an expression.
+- In rendered `is` statements, the right-hand side uses `written:` when it is
+  available and falls back to `called:`.
+- Card titles remove placeholder markers such as `?` from rendered title text.
+- Generated titles preserve normal lowercase words such as `is`; for example,
+  `A? is a subset of B?` renders as `A is a subset of B`, not
+  `A Is a subset of B`."
+Id: "049b5a49-f1c9-40d8-bb19-02c2b5ad816a"
+
+SubsectionTitle: "`Refines:` Documentation"
+Id: "85682aaa-fed1-4409-945f-257d95565b16"
+
+Text: "`Refines:` uses adjective-based documentation.
+
+- `Refines:` entries require an `adjective:` item in `Documented:`.
+- `Refines:` entries may contain `written:`.
+- `Refines:` entries may not use `called:`.
+- When a refined type is rendered, adjectives are printed before the base
+  described type.
+- Multiple refinements render as comma-separated adjectives, for example
+  `injective, surjective function`."
+Id: "de287a7e-30fa-483b-b25e-318b0eccb46a"
+
+SubsectionTitle: "Top-Level `Writing:` Blocks"
+Id: "8bbedfb4-d1d9-4dc3-a3f4-f821e0abfe76"
+
+Text: "A collection may contain at most one top-level `Writing:` item.
+
+```text
+Writing:
+. alpha :~> \\alpha
+. beta :~> \\beta
+```
+
+Rules:
+
+- Each argument has the form `<name> :~> <latex>`.
+- The left-hand side must be a plain name.
+- The renderer uses these aliases when rendering names in expressions,
+  statements, and specifications.
+- Names are split on underscores before applying aliases.
+- Numeric suffix rendering also honors writing aliases, so `alpha123` renders as
+  `\\alpha_{123}` when `alpha :~> \\alpha` is defined."
+Id: "7de0ced3-d722-4660-8eea-2690392cb112"
+
+SubsectionTitle: "Documented Descriptions"
+Id: "0e977c40-5523-4973-8e86-73ef46c3c2dc"
+
+Text: "`Documented:` may contain `description:`.
+
+- The text is quoted and may span multiple source lines.
+- Common indentation is removed for rendering.
+- `mlg view` renders the description as prose above the card.
+- Inside the card details, the description item is shown as
+  `description: <see above>`."
+Id: "a827ee0d-0eb0-4b1b-b859-3dd24baf3e35"
+
+SubsectionTitle: "Command Context Suffixes"
+Id: "37744803-7e1d-4507-ba78-8e6bd13ed419"
+
+Text: "Command references may end with a context suffix.
+
+```text
+\\ordered.pair#using{A := X; B := Y}
+\\some.theorem#given{X := A; Y := B}
+```
+
+Rules:
+
+- `#using{...}` binds values for symbols declared in the referenced command's
+  `using:` section.
+- `#given{...}` binds values for symbols declared in a referenced theorem-like
+  item's `given:` section.
+- The suffix appears after all ordinary command curly and parenthesized
+  arguments.
+- Arguments are separated by semicolons so that individual arguments may contain
+  commas.
+- `name := value` binds a specific context symbol.
+- If there is exactly one context symbol, `#using{value}` or `#given{value}` may
+  be used as shorthand.
+- The name on the left of `:=` must be a context symbol from the referenced item;
+  the value on the right is resolved in the current scope."
+Id: "6a3ab485-8190-4ce8-8e20-0af98c6e121d"
+
+SubsectionTitle: "Conditional Documentation Fragments"
+Id: "f40e3c8c-d9c4-40a6-b525-51765c1275e6"
+
+Text: "`called:` and `written:` text support conditional fragments.
+
+```text
+@[<vars>]{<text-if-present>}:{<text-if-missing>}
+```
+
+Rules:
+
+- The `:{<text-if-missing>}` part is optional.
+- `<vars>` is a comma-separated list of variable names.
+- `@[U]{_{U?}}` outputs its body only if `U` is specified.
+- `@[U]{_{U?}}:{_X}` outputs `_X` if `U` is not specified.
+- `@[x, y]{...}` requires both `x` and `y` to be specified.
+- Conditional fragments may nest.
+- Nested fragments are evaluated in the same variable environment as the outer
+  text.
+
+Example:
+
+```text
+@[x]{x + @[y]{y}:{*}}
+```
+
+If `x` and `y` are specified, this renders `x + y`. If `x` is specified and `y`
+is not, it renders `x + *`."
+Id: "46187699-ff22-4283-a211-e213ab1cbf46"
+
+SectionTitle: "Formulation Syntax"
+Id: "c85b9451-55a4-4750-8a3e-340f9950e757"
+
+SubsectionTitle: "Transparent Grouping"
+Id: "8437c9cd-fe0f-435f-a44d-7d238d775c27"
+
+Text: "Grouped expressions of the form:
+
+```text
+(. x + y .)
+```
+
+are supported as source-only grouping.
+
+- The grouping disambiguates the source.
+- The grouping parentheses are not rendered.
+- `(. x + y .)` renders as `x + y`."
+Id: "3e3a4593-1920-4299-9cf8-021cd65d8ca5"
+
+SubsectionTitle: "Optional Command Tails"
+Id: "52fdfed8-138e-47ca-a1f5-22dedcbed3a4"
+
+Text: "Optional command tails of the form `:?name{value}` are supported in command
+headers and expressions.
+
+- `:?within{U}` declares an optional tail.
+- Optional tail variables are allowed in `when:` requirements.
+- Optional tail variables are not required in `when:` requirements.
+- In expressions, an optional tail is applied only when its value is defined.
+- Rendering may use conditional documentation fragments to include or omit text
+  based on optional tails."
+Id: "fae35f2f-c6f0-4125-8190-10bb18d39388"
+
+SubsectionTitle: "Names With Numeric Suffixes"
+Id: "b3bd44c9-e456-4d76-ab90-d234a965aa3b"
+
+Text: "Identifier-like names ending with digits render the digits as subscripts.
+
+- `x1` renders as `x_1`.
+- `abc123` renders as `abc_123`.
+- This is a rendering rule for names, not a source-level rewrite."
+Id: "3002863e-d8f3-4c05-bab3-b39cbb686b3f"
+
+SubsectionTitle: "Builtin Kinds"
+Id: "4cc8daa6-8570-4ee6-b995-532c0a8ce88e"
+
+Text: "Builtin kinds render as plain text.
+
+- `\\\\statement` renders as `statement`.
+- `\\\\expression` renders as `expression`.
+- `\\\\specification` renders as `specification`.
+- `\\\\opaque` is satisfied by any value but does not establish any more specific
+  type information.
+- The renderer no longer treats these as a newline plus italic text."
+Id: "ac8c3af4-54d4-4c0f-836e-c87caef3f9a1"
+
+SubsectionTitle: "Refined Command Syntax"
+Id: "022d692f-3957-4e3b-bedd-a58a0115fd28"
+
+Text: "Refined command headers use the form:
+
+```text
+[\\(adjective)::base.command:?tail{X}]
+```
+
+Rules:
+
+- Only `Refines:` entries may use a refined command header.
+- The `Refines:` section contains only the refined subject form.
+- The `Refines:` section no longer repeats `is <base>`.
+- The base command after `::` comes from the header.
+- A refined expression may include multiple refinements, such as
+  `\\(injective, surjective)::function`.
+- A refinement may extend other refinements with:
+  `extends: f is \\(injective, surjective)::[[f]]`.
+- `[[f]]` is valid only in a refined expression of the form
+  `\\(... )::[[f]]`.
+- `[[f]]` means \"the current type of `f`\", allowing the extension to apply to
+  a more specific base type such as `bounded.function`."
+Id: "fdbf2219-49b5-4c38-8e20-0352a8d3af73"
+
+SubsectionTitle: "Function And Collection Shapes"
+Id: "547e3023-7283-45b7-b2ad-60a50217dc5e"
+
+Text: "`Describes:` and `Defines:` support richer target shapes.
+
+Function targets:
+
+- `Describes: f(x_) ::= y_` describes a function-like target with one input.
+- `Describes: f(x__) ::= y_` describes a function-like target that accepts any
+  number of inputs, treated as a single tuple.
+- `Describes: f(x_, y_, z_) ::= w_` describes a function-like target that
+  accepts exactly three separate arguments.
+- `specifies:` on such a `Describes:` target states the input and output
+  requirements.
+- `Defines: h(x__) := f(g(x__)) is \\function:on{A}:to{C}` is accepted.
+
+Collection targets:
+
+- `Describes: X ::= {x__ : ...}` describes a collection shape whose elements
+  may have any arity and are treated as a tuple.
+- `Describes: X ::= {x_ : ...}` describes a collection shape accepting a single
+  value, where that value may itself have any expression shape.
+- `member_of` is a keyword used by enabled membership capabilities.
+- `x member_of X` is valid only when `X` is a collection literal or has a
+  collection literal attached by an explicit cast.
+- `{x_ : x_ is \\real} as \\set` casts a collection literal to the described type.
+- `A := {x_ : x_ is \\real | x_ > 2} is \\set` binds the literal to `A` as a set.
+- If `A := {x_ : x_ is \\real} as \\set` and `x \"in\" A`, the checker can establish
+  `x is \\real`.
+- If `A is \\set` without a collection literal, membership establishes
+  `x is \\\\opaque`."
+Id: "8fad122e-d0e5-4970-8cbb-88aa13765516"
+
+SubsectionTitle: "Set Builder Definitions"
+Id: "657dfbab-536e-482f-a0ba-81cc6cc5b735"
+
+Text: "Set builder definitions allow general element forms before the colon.
+
+- A set builder may use a name, tuple, function form, or other valid form in
+  the binder position.
+- For example, `{(a_, b_) : a_ \"in\" A, b_ \"in\" B}` is accepted.
+- This applies in declarations and definitions such as:
+  `Defines: C := {(a_, b_) : ...} is \\set`."
+Id: "ee6486f7-157f-4564-9caa-5dbf4897847e"
+
+SubsectionTitle: "Mapping Literals"
+Id: "9e14de40-5796-427c-a992-53247e6d242e"
+
+Text: "A mapping literal is an anonymous function value written with `|->`.
+
+- `(x_ is \\real) |-> x_ + 1` binds the parameter through the parenthesized spec
+  so the body checks.
+- `(x_ \"in\" A) |-> x_ + a` is also valid; the parenthesized left side types the
+  parameter.
+- A bare `x_ |-> ...` (no spec) is only valid where the parameter's type can be
+  inferred from a declared function type, as in `f := x_ |-> x_ + 1 is
+  \\real.function`.
+- The command sugar `\\foo[x_ is \\real]{x_ + 1}` expands to
+  `\\foo{(x_ is \\real) |-> x_ + 1}`."
+Id: "c4744318-52a4-49d5-b41d-c0d9e08cf12d"
+
+SubsectionTitle: "Spec Literals And `satisfies`"
+Id: "6da24db4-1501-4c7f-bfc8-29ff63db6592"
+
+Text: "A spec literal is a reusable value of the builtin type `\\\\specification` with an
+implicit `?` placeholder subject.
+
+- `? is \\real` and `? \"in\" \\reals` are spec literals. The `\"op\"` target may be a
+  name or a command such as `\\reals`.
+- The infix operator `satisfies` applies a spec to a subject: `x satisfies (? is
+  \\real)` substitutes `?` with `x`, yielding `x is \\real`.
+- This enables general set builders, for example
+  `\\set:where{? is \\real}` whose membership reduces to `x is \\real`."
+Id: "b511e0f8-b2a0-4628-98ae-7b05fd04ae09"
+
+SubsectionTitle: "Inferred Parameters"
+Id: "b0e40152-a152-45bd-8eaf-9160c8e767f7"
+
+Text: "In a declaring position a command argument may be written `X?` to declare `X`
+inline with the exact type that argument position requires.
+
+- `f is \\function:from{A?}:to{B?}` introduces `A` and `B` as `\\set` (from the
+  command's `when:`), so a separate `A, B is \\set` is unnecessary.
+- The first occurrence carries the `?`; later uses are the plain name.
+- Reusing `X?` when `X` is already in scope is an error.
+- The `?` is authoring-only and renders as `X`."
+Id: "d37421ed-107b-4537-b053-1fa50f1583a8"
+
+SubsectionTitle: "Specifications Versus Predicates (`is` versus `is?`)"
+Id: "38817908-3c89-4477-85ca-39a49894ac0c"
+
+Text: "A bare specification introduces symbols, so it is accepted only in binding
+positions, not where a statement is expected.
+
+- A specification is `x is \\type`, an infix spec command `A \\:subset:/ B`, or a
+  named spec `x \"op\" y`.
+- Specifications are allowed in binding positions: `exists:`, `given:`,
+  `forAll:` arguments, and `where:` / `such_that:` / `when:`.
+- In statement positions — `if:`, `then:`, `iff:`, `that:`, `else:`, and inside
+  `not:` / `allOf:` / `anyOf:` / `oneOf:` / `equivalently:` — use the predicate
+  forms instead: `is?`, `is_not?`, and the `?`-suffixed infix spec `A \\:subset?:/
+  B`.
+- A named spec statement such as `x \"in\" y` is a statement (not a symbol
+  introducer) and is accepted in statement positions as written."
+Id: "e527cba5-a73e-41ee-a84a-432ef654060e"
+
+SectionTitle: "Semantic Checks"
+Id: "849f1ed5-23d0-4ec8-9b17-95c08205d22a"
+
+SubsectionTitle: "Editor Language Server"
+Id: "83a216ba-176c-41aa-9c27-0fbd4f22932a"
+
+Text: "`mlg lsp` provides diagnostics on open and save; context-aware completion for
+group heads, section items, and commands; jump to definition; and workspace
+rename for top-level command signatures and uses."
+Id: "916bf3ea-6510-4762-b896-8833e97bf227"
+
+SubsectionTitle: "`when:` Requirements"
+Id: "c5fffa4d-ed78-4b3e-b1b4-77bb2bf87cc7"
+
+Text: "Definition-like entries validate `when:` against the parameters introduced by
+their headers.
+
+Rules:
+
+- Required non-optional header parameters must have a corresponding `when:`
+  requirement.
+- Optional tail parameters are allowed in `when:` but are not required unless a
+  `Describes:` entry references them in semantic constraints such as
+  `specifies:`, `extends:`, or `satisfies:`.
+- Target symbols introduced by a declaration target such as `G ::= (X, *, e)`
+  are not `when:` parameters unless they also occur in the command header.
+- Target symbols introduced by `Describes:`, `Defines:`, and `Refines:` targets
+  must have specifications directly, such as through `specifies:`, `using:`, or
+  an `is` relation, or transitively through `extends: ... via ...`.
+- `A, B is \\set` counts as both `A is \\set` and `B is \\set`.
+- `P, Q is \\\\statement` counts as both `P is \\\\statement` and
+  `Q is \\\\statement`.
+- `when:` clauses only support:
+  - `<subject> is <type>`
+  - `<subject> \"op\" <target>`
+- Assignments, definitions, and arbitrary expressions are not valid `when:`
+  clauses."
+Id: "638d76f1-1792-4e44-ab03-1722e1ae91c6"
+
+SubsectionTitle: "Symbol Scoping"
+Id: "12f24699-3d43-418f-a227-7a5c7b599662"
+
+Text: "The checker reports any ordinary symbol use that has not been introduced.
+
+- Binding and assumption sections such as `given:`, `exists:`, `existsUnique:`,
+  and `forAll:` introduce their declared subjects.
+- Clause-group `given:`, `exists:`, `existsUnique:`, and `forAll:` sections may
+  contain multiple block arguments; each argument is introduced in order before
+  the guard, predicate, or body is checked.
+- Declaration definitions make declaration-side symbols available to the right
+  hand side, so `f(x_) := x_` is valid.
+- Declaration relations are checked too, so `Defines: f(x_) := x_ is
+  \\function:on{A}:to{B}` requires `B` to have been introduced.
+- Membership assumptions bind the member side, but the collection side must
+  already be declared.
+- Explicit optional command tail arguments are checked for undeclared symbols
+  even when the tail is inactive for requirement matching."
+Id: "eaf616f8-53c0-4457-8819-19026f293f6b"
+
+SubsectionTitle: "Existential Clauses"
+Id: "72810ff0-9484-4519-91af-aa0a99bd43c4"
+
+Text: "Existential clause groups support optional predicates.
+
+- `exists: x is \\real` is valid without a `suchThat:` section.
+- `existsUnique: x is \\real` is valid without a `suchThat:` section.
+- If `suchThat:` is present, it must contain one or more clauses.
+- A present `suchThat:` section is checked the same way as before.
+- If `suchThat:` is omitted, the clause still introduces the existential
+  binding inside the existential's child context, but has no predicate clauses
+  to assume."
+Id: "32a8c3c7-4d3b-4c6c-9e82-079813fd2b9d"
+
+SubsectionTitle: "Type Facts And Extensions"
+Id: "af07b009-13f2-41a8-a358-01ae6fa9c8e8"
+
+Text: "The checker uses simple type facts and extension facts.
+
+- `extends: X is \\set` lets an item described by the refined type be used where
+  a set is required.
+- `extends: G is \\set via X` records the extension through the given structural
+  component.
+- Facts introduced by `given:`, `when:`, `extends:`, `specifies:`, and enabled
+  membership capabilities are available while checking dependent statements.
+- This is type establishment, not theorem proving."
+Id: "b785d9b8-e3b1-412c-a60a-c84f12bbf853"
+
+SubsectionTitle: "`Defines:` And `Describes:` Usage"
+Id: "2a45224c-2be3-47e3-8311-6b6d1aef88ac"
+
+Text: "The checker distinguishes values, definitions, and described types.
+
+- `X is \\foo` is used when `\\foo` is a `Describes:` entry.
+- `X := \\foo` is used when `\\foo` is a `Defines:` entry.
+- `X := {...} as \\set` is valid where a definition-style binding is expected.
+- A `Defines:` entry may include an expression and result type, such as
+  `Defines: C := A is \\set`."
+Id: "2437c74f-d2f9-461c-8504-5e9db80bdccf"
+
+SectionTitle: "Operators, Symbols, And Disambiguation"
+Id: "55f87800-682a-428b-a258-8eac57a62134"
+
+SubsectionTitle: "Command Headers For Operators And Functions"
+Id: "a8d45e32-3a99-44ae-9f68-1c01773e86fe"
+
+Text: "Command headers may define special operators, named operators, and functions.
+
+Examples:
+
+```text
+[x_ + y_]
+[x_ |op| y_]
+[f(x_)]
+[f| x_]
+[x_ |f]
+```
+
+Rules:
+
+- These headers do not use colon-directed forms such as `:|op|`.
+- Special operators are not limited to `+`, `-`, `*`, `/`, `=`, or `^`.
+- Any sequence of special operator characters may be an operator.
+- Operators may include named suffixes such as `*_1` or `*_free`.
+- Prefix and postfix named operators are treated as one-argument functions.
+- Infix named operators are treated as two-argument functions.
+- `f| x` is equivalent to `f(x)`.
+- `x |f` is equivalent to `f(x)`.
+- `x |op| y` is equivalent to `op(x, y)`.
+- `x * y` is equivalent to `` `*`(x, y) ``."
+Id: "9dac0024-8168-45c3-9472-5dc107c3e678"
+
+SubsectionTitle: "Type-Directed Operator Resolution"
+Id: "3490fe5f-8046-4553-a9a1-9cf44089806e"
+
+Text: "Type-directed operator forms are supported.
+
+- `x :- y` resolves `-` from the type of `x`.
+- `x -: y` resolves `-` from the type of `y`.
+- `x :-: y` resolves `-` from the least common ancestor type of `x` and `y`.
+- If both operands have the same type, `x :-: y` resolves from that type.
+- The same rule applies to named operators, for example `x :|op| y`,
+  `x |op|: y`, and `x :|op|: y`.
+- Resolution searches the `Requires:` and `Enables:` capabilities on the
+  selected type and its parent types.
+- It is an error if the operator is not enabled by the selected type hierarchy.
+- It is an error if the resolved operator's requirements do not match the
+  operands."
+Id: "c8291ec8-5c0e-4a47-bf6a-a6c137552c0e"
+
+SubsectionTitle: "Plain Operator Resolution"
+Id: "8430f827-6042-43bc-87c0-9fa294aec321"
+
+Text: "Plain operators such as `x - y` use scope and disambiguation.
+
+- The checker first searches local scope, moving outward.
+- If no local definition is found, it searches global command definitions.
+- If a matching `Disambiguates:` entry exists, branches are considered in order.
+- The first `when:` branch whose requirements match the operands is used.
+- If no branch matches and an `else:` branch exists, the `else:` branch is used.
+- A `Disambiguates:` entry may contain only an `else:` branch.
+- If no definition or applicable disambiguation is found, the operator is an
+  error.
+- Plain `=` and `!=` are exceptions: they may be written for any operand types
+  without a definition. If the common operand type enables `=` or `!=`, that
+  capability is still used.
+- Fallback `=` and `!=` expressions are treated as statements, so they can be
+  passed to commands that require `\\\\statement`."
+Id: "857a84d1-0c41-4ae1-957d-fe6347285328"
+
+SubsectionTitle: "`Requires:` And `Enables:`"
+Id: "7cea31c3-656d-411c-87ad-0bee07c183cd"
+
+Text: "Types can now separate definitional requirements from additional capabilities.
+
+- `Requires:` is accepted on command-backed top-level entries that support
+  `Enables:`.
+- `Requires:` must appear before `Enables:` when both are present.
+- `Requires:` accepts `capability:` groups.
+- `Requires:` accepts `definition:` groups of the form `\\command is <spec>`.
+- Capabilities from `Requires:` and `Enables:` are unioned for type checking.
+- `Requires:` is intended for operations that are part of the definition of a
+  construct.
+- `Enables:` is intended for additional supported operations that come from
+  other definitions.
+- A `Requires.definition:` item succeeds only when the referenced command is a
+  top-level `Defines:` item and that definition's output facts establish the
+  requested `is <spec>` fact.
+- A `Requires.definition:` item fails if the referenced command is undefined,
+  is not a `Defines:` entry, or does not establish the requested fact.
+- `Enables:` accepts cast-backed `from:` groups.
+- A `from:` group must contain exactly one of `capability:` or `as:`.
+- `from: ... capability:` capabilities are used only when the actual target has
+  a recorded cast or set literal.
+- When reducing a `from: ... capability:` rule, the source subject from the
+  `from:` declaration is substituted with the actual target value.
+- Ordinary non-`from:` capabilities on opaque targets no longer read cast
+  literals through `member_of`; literal-backed membership requires a structural
+  target or an explicit `from:` capability.
+- `from: ... as:` records and validates an expression binding that describes
+  how to view the cast source as the described form.
+- A `from: ... as:` binding can reduce facts about a casted function call by
+  matching the binding's left side against the call and substituting the right
+  side into facts from the cast literal.
+- `Enables:` accepts `relation:` groups with required `to:` declarations and
+  optional `when:`, `means:`, `represents:`, and `by:` sections.
+- The `:= ...` construction in a `relation:` `to:` declaration is optional.
+- A `relation:`'s cast kind is set with `represents:`, whose value is
+  `\\\\coercion` or `\\\\encoding` (this replaced the older `as: \\\\view` /
+  `as: \\\\abstraction`).
+- `relation:` entries marked `represents: \\\\coercion` provide ordinary cast
+  relationships reachable with a soft `as` cast.
+- `relation:` entries marked `represents: \\\\encoding` provide an abstraction
+  boundary crossed only by a hard `as!` cast.
+- Coercion relationships may satisfy requirements after a command or operator
+  has already resolved, but are not used to resolve operators or capabilities."
+Id: "6db6781e-cfb3-4c18-b31d-36686c7f831f"
+
+SubsectionTitle: "Capability Rules"
+Id: "ada03fc6-67c0-48d3-8adf-29e6c2fb08b0"
+
+Text: "`Requires:` and `Enables:` capabilities define type-specific notation.
+
+Rules for `:=>`:
+
+- In an infix capability such as `x_ - y_ :=> ...`, both operands are treated as
+  values of the type currently being described.
+- In prefix or postfix capabilities, the single operand is treated as a value
+  of the type currently being described.
+- The right-hand side may use the described subject and the capability operands.
+
+Rules for `:->`:
+
+- The right-hand side must be the item being defined by the capability.
+- The left-hand side does not receive an implicit type from the described item.
+- This is used for specification operators such as membership.
+
+Function and value capabilities:
+
+- A function capability such as `f(x_) :=> \\foo{X, x_}` is used as `X.f(a)`.
+- Arguments of such function capabilities do not receive an implicit type.
+- A bare capability such as `a :=> \\some.value{X}` is used as `X.a`.
+- A callable-owner capability may use the described subject as the function
+  name, for example `R(a_, b_) :-> (a_, b_) \"in\" R`.
+- If `R is \\relation:from{A}:to{B}`, then `R(a, b)` resolves through that
+  capability, reducing to the capability target with `R`, `a_`, and `b_`
+  substituted.
+- A callable-owner capability's `written:` text is used by `mlg view` to render
+  matching calls, for example `written: \"a_? \\: R \\: b_?\"` renders `R(a, b)` as
+  `a \\: R \\: b`.
+- All capabilities have access to the subject of the item being
+  described.
+
+Set expression literals now also accept the unconstrained ellipsis form, such as
+`{(p_, q_) : ...}`. This is useful in `from:` declarations that describe the
+shape of an accepted cast source without adding element constraints."
+Id: "1fc4e3d3-6624-4d61-99f9-43ca75520433"
+
+SubsectionTitle: "Built-In `\\\\type`"
+Id: "9cab9fc7-6963-45e3-9792-9371a625d91d"
+
+Text: "The checker supports the built-in type predicate `\\\\type`.
+
+- `\\foo is? \\\\type` succeeds when `\\foo` is a top-level `Describes:` entry.
+- `\\foo is? \\\\type` fails when `\\foo` is a `Defines:` entry.
+- `\\foo is_not? \\\\type` succeeds when `\\foo` is not a described type.
+- Ordinary built-in type facts share the same fact-checking path as
+  `\\\\statement`, `\\\\expression`, and `\\\\specification`."
+Id: "711bef31-9baf-4274-9c30-c342f2b73326"
+
+SectionTitle: "Rendering And View"
+Id: "9f5e8442-997a-48b3-8be5-75fe866886b5"
+
+SubsectionTitle: "Recent Viewer Behavior"
+Id: "697b0133-6559-4130-a410-58b01ff76d4c"
+
+Text: "- The viewer listens on `0.0.0.0` while reporting a localhost URL.
+- Routes are warmed in the background and display loading skeletons.
+- Directory display names come from the directory name unless a `toc` override
+  supplies another title."
+Id: "02164525-c686-45fc-84de-17c406dc01d3"
+
+SubsectionTitle: "Math Rendering"
+Id: "0a2a4cc9-c9bb-48e8-b64c-9e5b2f7141af"
+
+Text: "Rendering behavior was tightened in several places.
+
+- `(. ... .)` source groups do not render visible parentheses.
+- Defined command references render according to their documented `written:`
+  or derived written form.
+- `called:` content is rendered in text mode.
+- `written:` content is rendered in math mode.
+- If an axiom, theorem, or similar entry has no explicit name, its label is
+  converted to a display name by replacing dots with spaces and capitalizing
+  words.
+- For example, `\\axiom.of.unordered.pair` renders as
+  `Axiom Of Unordered Pair`.
+- LaTeX package support includes the packages needed for common math such as
+  `\\emptyset`.
+- There is no arbitrary fallback that special-cases commands such as
+  `\\empty.set`."
+Id: "7205d75e-bc65-44a8-bc07-91fbd517f3b4"
+
+SubsectionTitle: "Card View"
+Id: "ac43cc0b-4e6e-4461-b1c8-7ca709a48705"
+
+Text: "The card view includes source and detail controls.
+
+- Each top-level card has a subtle source icon in the top-right corner.
+- Clicking the icon flips the card to show syntax-colored MathLingua source.
+- The source back side has a white background and no gray border, so the source
+  appears directly on the card.
+- Source view margins and padding are compact.
+- `Documented:` is hidden behind the card expander.
+- `Enables:` is also hidden behind the card expander.
+- The item `Id:` appears in the hidden details area."
+Id: "507d6424-bc4f-469f-b4eb-2b59069b0203"
+
+SubsectionTitle: "Definition Drilldown"
+Id: "db72dee6-db72-4217-b604-a254bf35115c"
+
+Text: "Clickable definitions in cards open related definition cards below the current
+card.
+
+- The definition area is rendered as an inset, etched region.
+- The inset region has its own close button that closes all cards in that
+  region.
+- Individual close buttons remove only the selected definition card.
+- Clicking another definition appends that card to the top of the definition
+  list.
+- Opening a new definition does not replace or remove previously opened
+  definition cards.
+- Definition cards can themselves contain clickable definitions, allowing a
+  vertical chain of exploration."
+Id: "c177d7aa-1e8c-408e-ab64-97b9d969708c"
+
+SubsectionTitle: "Navigation And Outline"
+Id: "ae6caeec-21cd-4bac-91f2-b0fe0dccee36"
+
+Text: "The viewer has responsive navigation behavior.
+
+- Pages have subtle previous and next navigation buttons.
+- The buttons show only the destination section names.
+- The first page does not show a previous button.
+- The last page does not show a next button.
+- On desktop-width clients, the left outline is open by default.
+- On narrow screens and mobile, the left outline is closed by default.
+- On narrow screens and mobile, selecting an entry closes the outline.
+- On desktop, selecting an entry keeps the outline open.
+- Initial render state is aligned between server and client to avoid hydration
+  mismatches.
+- Loading a specific route no longer flashes the first table-of-contents page
+  before switching to the requested page.
+- Directory names in the outline use the same font sizing as other outline
+  entries."
+Id: "910e5e50-1de2-44b4-9f95-fe63275c0727"
+
+SubsectionTitle: "Refresh Behavior"
+Id: "b524e28b-687c-47bc-a1a7-60dc849df7e7"
+
+Text: "`mlg view` refresh behavior was changed.
+
+- Refreshing the browser reparses the MathLingua source.
+- The user does not need to stop and restart `mlg view` to see source changes.
+- If the updated source has errors, the view keeps the last valid rendered data.
+- In that error case, standard output shows the errors that prevented the view
+  from updating."
+Id: "48a169d3-b3ba-4402-bbc3-a55433b2de74"
+
+SectionTitle: "CLI"
+Id: "ae58ad36-ee2b-49f9-b864-09d32422ca55"
+
+SubsectionTitle: "`mlg.json` Configuration"
+Id: "de8b85c1-f205-4793-be0b-ec8f841ec851"
+
+Text: "Every collection carries an `mlg.json` at its root that spells out its whole
+configuration; `mlg init` writes it with all fields at their defaults, and
+`mlg check` reports any that are missing.
+
+- `name` — the collection name (string), used as the `mlg view` title.
+- `version` — the collection version (string, default `\"0\"`).
+- `margin` — the target line width for `mlg format` (positive integer, default
+  `80`). This field was renamed from `print_margin`; a config still carrying the
+  old key is reported as an error.
+- `formatOnCheck` — whether `mlg check` formats the collection before checking
+  it (boolean, default `true`)."
+Id: "b1e6b2b8-5753-466d-b99d-3b8d1e2eb7df"
+
+SubsectionTitle: "`mlg format`"
+Id: "e4052fa1-1a83-47be-b4c1-000ad6ee0a35"
+
+Text: "`mlg format` normalizes the source of the whole collection to the configured
+`margin` width without changing its meaning: it fixes the blank-line gap between
+top-level items to two lines and reflows quoted `\"...\"` text to the margin. A
+LaTeX blob (`$...$`, `$$...$$`, `\\(...\\)`, `\\[...\\]`) is kept atomic, and a text
+value containing a multi-line or over-wide blob is left unchanged. Editing is
+line-based, so nothing but the reflowed text moves, and the result still passes
+`mlg check`."
+Id: "7a374de1-a055-4724-8bb9-a1b97d8e78aa"
+
+SubsectionTitle: "`mlg check` Formatting"
+Id: "9eef8771-0458-44e3-a93b-505883ba93f2"
+
+Text: "When `formatOnCheck` is `true` (the default), `mlg check` runs `mlg format`
+before checking so that reported source positions match the formatted files. It
+also inserts a missing top-level `Id:` (a UUID v4) before checking."
+Id: "71c9f8c6-2eac-47bd-adfd-32f40d6047b0"
+
+SubsectionTitle: "`mlg clean`"
+Id: "8bb86754-90d0-41a9-86c4-74c910120300"
+
+Text: "`mlg clean` removes the generated `docs/` output directory; it is the inverse of
+`mlg export` and is a no-op when there is nothing to remove."
+Id: "b7cd04b6-db58-40f7-87fb-60e298848f07"
+
+SubsectionTitle: "`mlg release`"
+Id: "629008e8-724e-4867-9bc5-de74889873d0"
+
+Text: "`mlg release` records a version snapshot of the collection after checking it. It
+requires `--summary <text>` and supports `--dry-run` (show what would be
+recorded without writing files) and `--diff` (also show a diff of each changed
+item)."
+Id: "b03dd668-0174-4153-86e1-9c20f8b29e60"
+
+SubsectionTitle: "`mlg export`"
+Id: "9a5db441-4491-4ba1-850d-c73d77defe56"
+
+Text: "`mlg export` builds a static viewer into the `docs/` directory after checking
+the collection. It supports `--force`, `--base-path`, and `--cname`, and writes
+the route data, `.nojekyll`, and optional `CNAME` needed for static hosting."
+Id: "ddf81812-806b-494f-9a86-e26b62f18a9f"
+
+SubsectionTitle: "`mlg debug`"
+Id: "5318d64e-82ef-4f00-9d62-9e6783f714da"
+
+Text: "A hidden `mlg debug` command was added for parser exploration.
+
+- It opens a textual user interface.
+- The user can select formulation, structural, or command-header mode.
+- The left panel is text input.
+- The right panel shows parse errors and the parse tree.
+- Parse trees are pretty-printed with real newlines and nested structure rather
+  than a single escaped string.
+- The command is hidden from normal help output where supported by the CLI
+  framework."
+Id: "355e0b78-e800-4497-8d20-4af8e36e85e0"
+
+SubsectionTitle: "`mlg whte_rbt.obj`"
+Id: "d3215fcd-a8a9-47d4-94f9-d9df98514eaf"
+
+Text: "A hidden easter-egg command was added.
+
+- The command is `mlg whte_rbt.obj`.
+- It prints the Jurassic Park style security-interface transcript.
+- It types commands with small delays.
+- It ends by repeatedly printing `YOU DIDN'T SAY THE MAGIC WORD!`.
+- The command is hidden from normal help output where supported by the CLI
+  framework."
+Id: "e50bef52-6be8-4a2f-9ff9-270560d95107"
+
+SectionTitle: "Error Reporting"
+Id: "2f14e27c-6397-4a0f-aad6-d6c2b01f7fb6"
+
+Text: "Error messages were made more user-facing.
+
+- Requirement failures now say `Could not establish requirement` rather than
+  `Could not prove requirement`.
+- The wording avoids implying theorem proving.
+- AST debug representations are avoided in user-facing messages.
+- Expressions in diagnostics are rendered in source-like form, such as `A - B`.
+- Paths under the configured content directory are shortened. For example,
+  `content/sets/set.mlg` is reported as `sets/set.mlg`.
+- Line and column information is reported where the checker can locate the
+  relevant source span.
+- Parser errors surfaced through `mlg debug` are formatted for readability."
+Id: "97e93247-bae4-420a-9a78-7ea3518214d8"

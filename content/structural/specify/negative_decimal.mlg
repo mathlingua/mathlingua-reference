@@ -1,0 +1,14 @@
+Title: "Negative Decimal"
+Id: "428397da-29a4-4014-822b-db49e6a11476"
+
+Text: "A `negative:` group with a `decimal:` section records the `negative decimal` classification.
+
+```mlg-fragment
+[negative.decimal]
+negative:
+decimal:
+is: \"negative decimal\"
+```
+
+These groups are open-text metadata. The heading is optional and, when present, is a label header."
+Id: "694d59f9-60bb-4104-a8fb-8d9ffe50a402"

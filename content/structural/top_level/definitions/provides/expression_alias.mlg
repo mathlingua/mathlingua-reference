@@ -1,0 +1,15 @@
+Title: "Expression Alias"
+Id: "c45c4158-5b55-45a7-aa3a-c0d1d2f7588e"
+
+Text: "Expression aliases use `:=>` and may appear as ordinary `alias:` groups or inside `capability:` items.
+
+```mlg-fragment
+Aliases:
+. alias: f(x_) :=> x_ + x_
+
+Enables:
+. capability: x_ - y_ :=> x_ \\.set.minus./ y_
+```
+
+The left side describes the notation being introduced. The right side is the expression it expands to for checking and rendering support."
+Id: "bd479067-4a3f-4ec5-aebd-3d5c1e8ad2f5"

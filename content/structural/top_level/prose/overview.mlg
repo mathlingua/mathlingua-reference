@@ -1,0 +1,19 @@
+Title: "Overview"
+Id: "526788c7-b0f0-4098-b7e0-3eef62c681ff"
+
+Text: "Top-level prose groups render directly on the page rather than inside cards.
+
+```mlg-fragment
+Title: <OpenText>
+SectionTitle: <OpenText>
+SubsectionTitle: <OpenText>
+Text: <OpenText>
+```
+
+`Section:` and `Subsection:` were replaced by `SectionTitle:` and
+`SubsectionTitle:`. `Subsubsection:` is no longer part of the implemented
+structural language.
+
+`Text:` supports Markdown and LaTeX in `mlg view`, and quoted text may span
+multiple source lines."
+Id: "0b484421-a152-41b9-b9fc-434f6111b49a"

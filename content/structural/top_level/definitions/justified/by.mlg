@@ -1,0 +1,13 @@
+Title: "By"
+Id: "970de05f-fd54-493b-9761-bf4f05f9e01d"
+
+Text: "A `by:` justification item records a source or method with a required `comment:`.
+
+```mlg-fragment
+Justified:
+. by: \"induction\"
+  comment: \"The result follows from the recursive definition.\"
+```
+
+The content is open text and is not semantically checked as a proof."
+Id: "6b21d2a3-e054-4f5d-ba9b-9911a87c41da"

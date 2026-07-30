@@ -1,0 +1,15 @@
+Title: "Spec Operator Alias"
+Id: "bac6c9f6-1470-405d-af15-4488b254febd"
+
+Text: "Specification aliases use `:->`.
+
+```mlg-fragment
+Requires:
+. capability: x_ \"in\" X :-> x_ member_of X
+
+Requires:
+. capability: x_ \"in\" X :-> \\\\abstract
+```
+
+The left side is a specification-like form. The right side is the specification or builtin target established when the capability matches."
+Id: "2e4d2b38-dfa0-42a4-8a58-bfb3d8859df2"

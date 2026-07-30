@@ -1,0 +1,18 @@
+Title: "Not"
+Id: "b84edc02-b316-4abe-8f12-f99ceff97368"
+
+Text: "`not:` negates one clause.
+
+```mlg-fragment
+not: P
+```
+
+It can also contain a nested group:
+
+```mlg-fragment
+not:
+. exists: x \"in\" X
+```
+
+The checker validates the nested clause in the current context. `not:` does not introduce new symbols by itself; symbols must come from the surrounding context or from a nested clause that introduces them."
+Id: "88865860-df8d-49a1-af2a-83f8e77131de"

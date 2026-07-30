@@ -1,0 +1,14 @@
+Title: "Overview"
+Id: "78c82c43-191f-4890-8c62-3a8101f2a004"
+
+Text: "`Justified:` contains nested justification items.
+
+```mlg-fragment
+Justified:
+. label: \"Axiom of Pairing\"
+  by: \"ZFC\"
+  comment: \"Used to construct unordered pairs.\"
+```
+
+Justification groups carry prose metadata about why a result or definition is accepted."
+Id: "32b52f93-cbca-4e6f-b1eb-16cd31a5cbb5"

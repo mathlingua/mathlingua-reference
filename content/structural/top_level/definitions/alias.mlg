@@ -1,0 +1,13 @@
+Title: "Alias"
+Id: "d6a6a8fc-4c50-485d-9106-5d6d310b6d76"
+
+Text: "`Aliases:` contains nested `alias:` groups.
+
+```mlg-fragment
+Aliases:
+. alias: f(x_) :=> x_ + x_
+  written: \"2x_?\"
+```
+
+An alias may use an expression alias (`:=>`) or spec-operator alias (`:->`). `written:` is optional and controls rendering of the alias form."
+Id: "d22b7a30-78e1-4257-87a8-445335d0c308"

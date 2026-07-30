@@ -1,0 +1,19 @@
+Title: "If"
+Id: "7d6d964a-7f0d-443a-92e4-4b1cd4cf4d56"
+
+Text: "`if:` assumes its condition and checks the `then:` clauses in that context.
+
+```mlg-fragment
+if: P
+then: Q
+```
+
+The group may have an optional label heading. Nested clauses use the same clause syntax recursively.
+
+Both `if:` and `then:` are statement positions: a bare `is` or `\\:...:/` specification is rejected. Use the predicate forms `is?` / `is_not?` and `\\:...?:/`.
+
+```mlg-fragment
+if: x is? \\set
+then: f(x) is? \\real
+```"
+Id: "f3e1b6b4-ed15-4f98-84fe-3ef5fb883fc8"

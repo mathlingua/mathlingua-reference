@@ -1,0 +1,19 @@
+Title: "Written Text"
+Id: "951df15c-427d-4272-a6d0-dc04f82c210e"
+
+Text: "`WrittenText` is a rendering template interpreted in math mode.
+
+```mlg-fragment
+written: \"A? \\cap@[U]{_{U?}} B?\"
+```
+
+Placeholder markers such as `?` are removed in rendered output after substitution. Conditional fragments use this form:
+
+```text
+@[U]{_{U?}}
+@[U]{_{U?}}:{_X}
+@[x, y]{x? + @[z]{z?}:{*}}
+```
+
+The first body is rendered only when every listed variable has a value. The optional `:{...}` body is rendered otherwise. Conditional fragments may be nested."
+Id: "585e6b6a-fdce-4b92-84c6-a3060e6f5b8c"

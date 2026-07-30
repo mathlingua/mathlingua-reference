@@ -1,0 +1,12 @@
+Title: "Title"
+Id: "d91e97b6-8d9b-4932-9e77-f62c3ff9e6d0"
+
+Text: "`Title:` is a top-level page title block.
+
+```mlg-fragment
+Title: \"Foundations of Set Theory\"
+Id: \"23e4567e-e89b-42d3-a456-426614174000\"
+```
+
+It renders directly on the page, not inside a card. It does not take a bracket heading."
+Id: "4783c081-2028-43c5-93c2-c38b09945066"

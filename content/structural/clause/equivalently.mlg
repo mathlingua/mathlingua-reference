@@ -1,0 +1,15 @@
+Title: "Equivalently"
+Id: "f9001911-0a3b-4c2e-bd46-4d39fca09884"
+
+Text: "`equivalently:` asserts that all of its sub-clauses are equivalent. It is sugar for a chain of `iff`s.
+
+```mlg-fragment
+equivalently:
+. a = b
+. b = a
+```
+
+The group may have an optional label heading and lists one or more clauses (two or more to be meaningful). Each clause is validated like an `allOf:` entry, and the whole group is checked as though every clause implies every other.
+
+Being a statement position, bare `is` and `\\:...:/` specifications are rejected here; use the predicate forms `is?` / `is_not?` and `\\:...?:/`."
+Id: "621106f1-bd82-462f-bd84-c4c4ce734c86"

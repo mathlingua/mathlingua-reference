@@ -1,0 +1,14 @@
+Title: "Piecewise"
+Id: "2a27570f-bf32-4e95-b1ff-e1fd950fb5cc"
+
+Text: "`piecewise:` records a piecewise clause with required `if:` and `then:` sections and an optional `else:` section.
+
+```mlg-fragment
+piecewise:
+if: x = 0
+then: y = 0
+else: y = 1
+```
+
+The `piecewise:` section itself may contain optional open text used as a label or description. The checker validates each clause in its appropriate context."
+Id: "424c501c-f2b6-45b2-a491-f598bd0dc21e"

@@ -1,0 +1,14 @@
+Title: "Positive Int"
+Id: "0f143f4c-b9cc-46c2-805c-be6f01e2633e"
+
+Text: "A `positive:` group with a `int:` section records the `positive integer` classification.
+
+```mlg-fragment
+[positive.integer]
+positive:
+int:
+is: \"positive integer\"
+```
+
+These groups are open-text metadata. The heading is optional and, when present, is a label header."
+Id: "5bc91064-bc2b-4660-9f2d-a949490258e4"

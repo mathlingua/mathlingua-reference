@@ -1,0 +1,21 @@
+Title: "Named Function Calls"
+Id: "f787a585-0a72-496d-9060-b82bbfd57e42"
+
+Text: "A named function call supplies a function's arguments by name using `[| ... |]`.
+
+```mlg-fragment
+f[|value := x, index := n|]
+f[|value := x|]
+```
+
+Each entry has a left-hand side, then `:=`, then the argument expression. The
+left-hand side is a name or a subset call:
+
+```mlg-fragment
+f[|value := x, Pair[left, right] := y, nested[outer[inner]] := z|]
+```
+
+The names identify which parameter each value fills; the call renders like an
+ordinary positional call (`f[|value := x, index := n|]` renders as `f(x, n)`).
+This is distinct from a mapping literal, which uses `|->`."
+Id: "c3a40261-4ef1-4014-8016-1c201655dcef"

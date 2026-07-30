@@ -1,0 +1,12 @@
+Title: "Institution"
+Id: "c1fd65cd-765e-4b1b-87de-e7aec1be6f61"
+
+Text: "`institution:` records institution information.
+
+```mlg-fragment
+Resource:
+. institution: \"Example University\"
+```
+
+The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+Id: "d319b13d-1b1d-416b-8e7f-2a3ea1c427ef"

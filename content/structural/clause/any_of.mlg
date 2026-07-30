@@ -1,0 +1,13 @@
+Title: "Any Of"
+Id: "edfdd78d-0394-48c3-aa1b-f77d8ac9ab03"
+
+Text: "`anyOf:` contains alternative clauses where at least one should hold.
+
+```mlg-fragment
+anyOf:
+. P
+. Q
+```
+
+The group may have an optional label heading. Nested clauses use the same clause syntax recursively."
+Id: "fa1cb893-5d84-479f-b287-ee3a9a6fef32"

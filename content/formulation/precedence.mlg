@@ -1,0 +1,31 @@
+Title: "Precedence"
+Id: "affb5e64-17a9-4b53-8119-1b6feae01023"
+
+Text: "Expression forms bind from loosest to tightest as follows:
+
+- mapping literals `|->` (right-associative, loosest)
+- specification and predicate forms: infix spec `\\:...:/`, `\"op\"`, `\"op\"?`,
+  `is`, `is?`, `is_not?`, `as`, `as!`, `member_of`, `satisfies`
+- infix command expressions `\\.cmd./`
+- equality and special operators `=`, `!=`, and other special operators
+- additive `+`, `-`
+- multiplicative `*`, `/`
+- power `^` (right-associative)
+- named operators `|op|`
+- prefix and postfix operators, then primaries (tightest)
+
+So equality binds tighter than infix command expressions:
+
+```mlg-fragment
+x = a \\.or./ x = b
+```
+
+is parsed like:
+
+```mlg-fragment
+(x = a) \\.or./ (x = b)
+```
+
+Use dot-grouped source parentheses `(. ... .)` to make grouping explicit without
+forcing visible rendered parentheses."
+Id: "4ebc95ac-e6aa-4fbb-93b1-6226cf039467"

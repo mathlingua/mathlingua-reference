@@ -1,0 +1,28 @@
+Title: "Builds"
+Id: "b8cfcb46-7573-4508-9e30-92f8a7c60664"
+
+Text: "A build views an expression at a stated type. `\\ty@value` is a soft build
+and `\\ty@!value` is a hard build. Builds replace the removed `as` and `as!`
+cast expressions.
+
+```mlg-fragment
+\\set@{x_ : x_ is \\real}
+\\set@!n
+```
+
+A soft build (`@`) is checked: the checker must justify that the value has the
+target type, either directly, through a supertype `extends:` chain, or through
+an `Enables: relation:` marked `represents: \\\\coercion`. A hard build (`@!`)
+additionally accepts relations marked `represents: \\\\encoding`, viewing the
+value at a lower abstraction level.
+
+`@` and `@!` bind the command type on the left to the value on the right. A set
+builder after `@` may use `;`-separated specifications, as in
+`\\set@{(a_, b_) : a_ \"in\" A; b_ \"in\" B}`. A build that cannot be justified
+reports `Could not build ...`.
+
+The related statement forms are `x is T` and the hard variant `x is! T` (or
+`x := value is! T`), which introduce a symbol with the same soft/hard view
+semantics. A build is also how a `Defines:` value may state its type without
+`is`: `X := \\set@{...}` is sugar for `... is \\set`."
+Id: "b76683ca-a9fb-48e3-9e79-5156e30e0a96"

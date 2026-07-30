@@ -1,0 +1,18 @@
+Title: "Specify"
+Id: "cd988809-1ad1-40c0-979a-4dee01ecfb6c"
+
+Text: "Top-level `Specify:` groups collect numeric-domain metadata items.
+
+```mlg-fragment
+Specify:
+. positive:
+  int:
+  is: \"positive integer\"
+. negative:
+  decimal:
+  is: \"negative decimal\"
+Id: \"23e4567e-e89b-42d3-a456-426614174000\"
+```
+
+`Specify:` does not take a bracket heading and must contain at least one nested specify item."
+Id: "248de633-e39c-4d35-8847-8d700256f881"

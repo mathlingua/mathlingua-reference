@@ -1,0 +1,12 @@
+Title: "SubsectionTitle"
+Id: "85944f91-3a20-4926-ab71-f0177351aa7c"
+
+Text: "`SubsectionTitle:` is a top-level subsection heading.
+
+```mlg-fragment
+SubsectionTitle: \"Kuratowski Pairs\"
+Id: \"23e4567e-e89b-42d3-a456-426614174000\"
+```
+
+It replaces the older `Subsection:` spelling and renders directly on the page."
+Id: "60b6c8b1-6d2a-4ec7-97e5-28b22ff478aa"

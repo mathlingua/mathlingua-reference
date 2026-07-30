@@ -1,0 +1,7 @@
+{
+  "name": "The Mathlingua Reference",
+  "version": "1",
+  "margin": 80,
+  "formatOnCheck": false,
+  "outputDir": "docs"
+}

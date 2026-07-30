@@ -1,0 +1,36 @@
+Title: "Spec Operators"
+Id: "2181b082-9685-4e1c-a0a3-de63c91034cd"
+
+Text: "Specification operators express facts such as membership.
+
+```mlg-fragment
+x \"in\" X
+x \"maps_to\" Y
+```
+
+A quoted operator in a declaration or clause is parsed as a specification statement. Types make spec operators available through `Requires:` or `Enables:` capabilities.
+
+```mlg-fragment
+Requires:
+. capability: x_ \"in\" X :-> x_ member_of X
+```
+
+A spec fact is valid only when the target type enables or requires the corresponding operator, except for builtin fallback behavior such as equality.
+
+Each quoted spec operator has a predicate form with a trailing `?`, used in
+statement positions:
+
+```mlg-fragment
+x \"in\" X    -- binding form, introduces a symbol
+x \"in\"? X   -- predicate form, used in then:/that:/iff:
+```
+
+The right-hand side may be a name or a command expression, so `x \"in\" \\reals` is
+also a spec statement. Infix spec commands behave the same way, with `\\:...:/`
+for the binding form and `\\:...?:/` for the predicate form:
+
+```mlg-fragment
+A \\:subset:/ B
+A \\:subset?:/ B
+```"
+Id: "760e325a-67d4-4381-8583-ff818ae13313"

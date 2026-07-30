@@ -1,0 +1,21 @@
+Title: "Is Keyword"
+Id: "8fd62ebc-5fe8-4ef5-8366-9a95691019a9"
+
+Text: "`is` records or requires a type fact.
+
+```mlg-fragment
+X is \\set
+A, B is \\set
+f(x__) := x__ is \\function:on{A}:to{A}
+```
+
+The left side may introduce one or more subjects depending on context. The right
+side is a type expression, usually a command expression or builtin type.
+
+`A, B is \\set` means both `A is \\set` and `B is \\set`.
+
+A bare `is` specification introduces a symbol, so it is allowed only in binding
+positions: `given:`, `when:`, `where:`, `forAll:`, `exists:`, and set-builder
+targets. In statement positions (`then:`, `that:`, `if:`, `iff:`, `suchThat:`)
+use the predicate form `is?` instead."
+Id: "96379374-1d5a-441d-92c7-f3d0085f2fb5"

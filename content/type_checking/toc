@@ -1,0 +1,5 @@
+overview.mlg -> Overview
+type_system.mlg -> Type System
+type_resolution.mlg -> Type Resolution
+what_is_checked.mlg -> What is Checked
+what_is_not_checked.mlg -> What is Not Checked
