@@ -1,10 +1,10 @@
 overview.mlg -> Overview
-describes.mlg -> Describes
+defines.mlg -> Defines
+declares.mlg -> Declares
+refines.mlg -> Refines
+states.mlg -> States
+disambiguates.mlg -> Disambiguates
 provides -> Requires and Enables
 documented -> Documented
-justified -> Justified
+justification.mlg -> Justification
 alias.mlg -> Alias
-defines.mlg -> Defines
-refines.mlg -> Refines
-disambiguates.mlg -> Disambiguates
-states.mlg -> States

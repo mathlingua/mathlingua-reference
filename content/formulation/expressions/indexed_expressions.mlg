@@ -11,10 +11,15 @@ x[y[j]]
 ```
 
 The forms are restricted. Both the target and the indices must be plain names,
-there are at most two indices, and a single index may itself be one nested subset
-call (`x[y[j]]`). Arbitrary expressions are not allowed as target or index, so
-`f(x)[n]` is not a subset call.
+there are at most two indices, and a single index may itself be one nested
+subset call (`x[y[j]]`). A one-index call also accepts a placeholder index such
+as `x[i_]`. Arbitrary expressions are not allowed as target or index, so `f(x)[n]`
+is not a subset call.
 
-Whether a particular subset call has a meaningful type depends on the definitions
-and capabilities in the collection."
+A two-index call such as `x[i, j]` denotes one element. If either axis contains
+`...`, the expression is instead a two-dimensional variadic **slice** — see
+Variadic Slices.
+
+Whether a particular subset call has a meaningful type depends on the
+definitions and capabilities in the collection."
 Id: "75d9e863-ac1e-47f4-8168-6cee431bf869"

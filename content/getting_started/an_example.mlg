@@ -7,7 +7,7 @@ Text: "A small definition can combine prose, a command header, type requirements
 Text: \"A subset is a set whose elements all belong to another set.\"
 
 [A \\:subset:/ B]
-Describes: A
+Defines: A
 when: B is \\set
 extends: A is \\set
 satisfies:

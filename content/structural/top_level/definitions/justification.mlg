@@ -1,0 +1,59 @@
+Title: "Justification"
+Id: "38b2e0eb-017c-41eb-9c53-f74bb169fdcf"
+
+Text: "`Justification:` appears immediately after `Documented:` and holds one or more
+`have:`/`asserting:` groups, each with a **required** `[label]` heading.
+
+```mlg-fragment
+Justification?: <HaveGroup>+
+```
+
+```mlg-fragment
+[LabelHeader]
+have: <ClauseUnion>+
+asserting: <ClauseUnion>+
+because?: <ClauseUnion>+
+by?: <Expression>+
+```
+
+Any grouped expression, statement, or specification elsewhere in the same
+top-level group may carry a matching `[:label:]`, including inside a nested
+clause or expression. A labeled formulation is then established using that
+entry's `asserting:` items, exactly as an inline `have:`/`asserting:` group
+would.
+
+```mlg-fragment
+[\\(commutative)::group]
+Refines: G ::= (X, `*`, e)
+explicitly:
+extends: G is \\(commutative)::magma
+satisfies:
+. (.forAll: a, b \"in\" X
+   then: a * b = b * a.)[:comm:]
+Documented:
+. adjective: \"commutative\"
+Justification:
+. [comm]
+  have:
+  . forAll: a, b \"in\" X
+    then: a * b = b * a
+  asserting:
+  . G is? \\(commutative)::magma
+  because:
+  . G is? \\(commutative)::magma
+  by:
+  . \\commutativity.of.magma
+```
+
+Rules:
+
+- an entry's `have:` must restate the labeled formulation
+- every entry must be referenced by some labeled formulation
+- a label with no matching entry is checked inline as usual
+- `because:` and `by:` are justification the checker only reference-validates;
+  it never proves them
+
+The same `have:`/`asserting:` group is also a clause (see Have / Asserting) and
+a valid `declares:` item, where its label heading is optional. `Justification:`
+replaces the older `Justified:` section and its `label:`/`by:` prose items."
+Id: "4b6528c8-b596-45ae-87b5-74ce3419a2f6"

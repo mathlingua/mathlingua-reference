@@ -10,7 +10,9 @@ f| x_
 x_ |f
 ```
 
-Special operators may be made from sequences of operator characters, such as `**`, `+_-*`, `^^`, `*_1`, and `*_free`.
+Special operators may be made from sequences of operator characters, such as `**`, `+_-*`, and `^^`, and may carry trailing primes and a subscript, such as `*_1`, `*_free`, `*'`, and `*'_a`.
+
+An operator form declares its operator symbol as well as its placeholders — `x_ * y_` declares `*`, `x_`, and `y_` — so a later use like `a * b` resolves as the application `*(a, b)`.
 
 Named operators use bars around a name. A named infix operator such as `x |op| y` has the same arity as the function call `op(x, y)`. Prefix and postfix named operators have the same arity as a one-argument function call."
 Id: "b2d28cdf-8a4b-43ef-b202-137f6bae18e2"

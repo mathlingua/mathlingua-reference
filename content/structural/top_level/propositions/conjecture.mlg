@@ -1,0 +1,45 @@
+Title: "Conjecture"
+Id: "c0f555e8-83e9-4b2f-832b-671458ed5623"
+
+Text: "`Conjecture:` records a theorem-shaped statement that is **not** claimed to have
+a proof.
+
+```mlg-fragment
+[\\command]?
+Conjecture:
+given?: <RefinedDeclarationStatement>+
+where?: <ClauseUnion>+
+then: <ClauseUnion>+
+iff?: <ClauseUnion>+
+Documented?: <DocumentedItemUnion>+
+Justification?: <HaveGroup>+
+Aliases?: <AliasItemUnion>+
+Writing?: \"<WritingAlias>\"+
+References?: <ResourceHeader>+
+Metadata?: <MetadataItemUnion>+
+Id?: <OpenText>
+```
+
+The optional heading is a `[\\command]` command header. The `Conjecture:`
+section takes **no** argument; the result's name goes in `Documented:`
+`called:`.
+
+```mlg-fragment
+[\\goldbach]
+Conjecture:
+given: n is \\natural
+where: n > 2
+then: n is? \\even
+Documented:
+. called: \"Goldbach's Conjecture\"
+Id: \"23e4567e-e89b-42d3-a456-426614174000\"
+```
+
+The `then:` section is required. `given:` accepts refined-capable declaration
+statements.
+
+`Conjecture:` is checked exactly like `Theorem:` and `Axiom:` — syntax,
+references, symbols, and requirements — and, as with those, the checker never
+proves the conclusion. Its optional `Justification:` can capture supporting
+rationale or evidence, but does not claim a proof."
+Id: "669acd94-349e-47d6-8a56-7fe5626e35fe"

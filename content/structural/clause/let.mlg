@@ -1,0 +1,30 @@
+Title: "Let"
+Id: "1a34321a-e685-48f6-92fa-db20cdf46b16"
+
+Text: "`let:` introduces one or more local bindings in a child context, assumes an
+optional `where:` guard, and checks `then:` with those bindings and assumptions
+available.
+
+```mlg-fragment
+[LabelHeader]?
+let: <BindingOrSpecUnion>
+where?: <ClauseUnion>+
+then: <ClauseUnion>+
+```
+
+```mlg-fragment
+let: n \"in\" X
+where: n != x
+then: n = n
+```
+
+It has the same shape as `forAll:`, but records a local naming rather than
+universal quantification. `where:` is optional; `then:` is required.
+
+`let:` and `where:` are binding positions, so bare `is` and `\\:...:/`
+specifications may introduce symbols there. `then:` is a statement position, so
+use the predicate forms `is?`, `is_not?`, and `\\:...?:/`.
+
+Bindings introduced by `let:` are local to the clause group that introduces
+them."
+Id: "1b3520b6-ca0b-48a1-a21c-c147f6361512"

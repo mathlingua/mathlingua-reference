@@ -15,7 +15,17 @@ S := \\set.theoretic.pair:of{A}:and{A}
 x = y
 ```
 
-The right-hand side of `:=` is an expression. A `Defines:` target often combines a value definition with a type: `S := \\set.theoretic.pair:of{A}:and{A} is \\set`.
+Only `::=` introduces symbols; the right-hand side of `:=` must already be in scope. A `Declares:` target often combines a value definition with a type: `S := \\set.theoretic.pair:of{A}:and{A} is \\set`.
+
+A chained function declaration keeps the function form and names its output:
+
+```mlg-fragment
+X ::= x(i_) ::= y_
+```
+
+This introduces the alias `X`, the mapping name `x`, the input `i_`, and the output `y_`; `X` and `x` denote the same mapping. When the subject is a function declaration such as `f(x_, y_)`, the `::=` expansion must be a single placeholder output such as `z_`.
+
+Combining `::=` with `:=` also creates a local syntactic substitution: if `A ::= B := B` is in scope, facts about `A` can satisfy requirements about `B` and vice versa, because the two keys normalize together.
 
 A declaration may combine structural shape and value definition. In set expressions, `:=` value bindings belong in the predicate branch after `|`:
 

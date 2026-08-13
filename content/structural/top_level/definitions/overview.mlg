@@ -1,20 +1,42 @@
 Title: "Overview"
 Id: "4d980f35-73f3-4400-a0d0-ae79e2a7db57"
 
-Text: "Definition-like top-level groups are command-backed and may contain the support
-sections shown below.
+Text: "The definition-like top-level groups are `Defines:`, `Declares:`, `Refines:`,
+and `States:`. Each is backed by a command heading, introduces that command's
+signature, and may carry the support sections shown below.
 
 ```mlg-fragment
 Requires?: <RequiresItemUnion>+
 Enables?: <EnablesItemUnion>+
-Justified?: <JustifiedItemUnion>+
 Documented?: <DocumentedItemUnion>+
+Justification?: <HaveGroup>+
 Aliases?: <AliasItemUnion>+
+Writing?: \"<WritingAlias>\"+
 References?: <ResourceHeader>+
 Metadata?: <MetadataItemUnion>+
 ```
 
-`Provides:` and nested `symbol:` were renamed to `Enables:` and `capability:`.
-`Requires:` is used for definitional capabilities or required definitions, while
-`Enables:` is used for additional supported notation."
+Which one to use:
+
+- `Defines:` introduces a mathematical form or a typed, value-bearing
+  declaration. It is the only kind with a `declares:` section and the only kind
+  that may use an infix-specification heading (`[A \\:subset:/ B]`).
+- `Declares:` introduces a command by an `is` or specification statement. It has
+  an `expresses:` section, and it is the kind a `Requires:` `definition:` item
+  may refer to.
+- `Refines:` defines a refined command in terms of another command. It is the
+  only kind that may use a refined command header (`::`).
+- `States:` defines a named statement with a required `that:` body.
+
+`Defines:`, `Declares:`, and `States:` must include at least one of `called:` or
+`written:` in `Documented:`. `Refines:` must instead include `adjective:`, and
+its `Documented:` rejects `called:`.
+
+`Provides:` and its nested `symbol:` were renamed to `Enables:` and
+`capability:`. `Requires:` is used for definitional capabilities or required
+definitions, while `Enables:` is used for additional supported notation; for
+type checking the ordinary capabilities of both are combined.
+
+`Justification:` replaces the older `Justified:` section, and every non-prose
+top-level item may carry its own `Writing:` section after `Aliases:`."
 Id: "1764c7bb-3657-4005-9490-4847e48be174"

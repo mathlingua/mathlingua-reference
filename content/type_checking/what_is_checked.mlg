@@ -2,9 +2,10 @@ Title: "What Is Checked"
 Id: "8b5700cc-4d7d-480e-a424-eece3673778e"
 
 Text: "`mlg check` runs a fixed pipeline and reports every problem it finds as an
-error (the checker emits no warnings). Before checking, unless `mlg.json` sets
-`formatOnCheck` to `false`, the collection is formatted, and any top-level item
-missing an `Id:` has one generated. The stages, in order, validate:
+error (the checker emits no warnings). It finishes with either
+`Checked N file(s)` or `Found N issue(s).`. Before checking, unless `mlg.json`
+sets `formatOnCheck` to `false`, the collection is formatted, and any top-level
+item missing an `Id:` has one generated. The stages, in order, validate:
 
 **Configuration (`mlg.json`).** The file must be readable, valid JSON, and a
 JSON object; every field is required (`name`, `version`, `margin`,
@@ -23,7 +24,9 @@ proto layer (including rejecting single-quoted formulations), the structural
 group/section layer (missing, out-of-order, or unexpected sections; unknown
 top-level groups; heading, clause, formulation, and text-body shape), and the
 formulation expression layer (token errors and construct-specific errors such
-as `expected top-level ' is '`).
+as `expected top-level ' is '`). `Refines:` documentation rejects `called:`,
+`Topic:` documentation accepts only `called:`, and `represents:` entries must be
+`\\\\coercion` or `\\\\encoding`.
 
 **Prose code fences.** A ```` ```mlg ```` block inside a `Text:` value or
 documentation is parsed as real source and reports a syntax error if it fails;
@@ -31,55 +34,93 @@ documentation is parsed as real source and reports a syntax error if it fails;
 
 **Identity and uniqueness.** Every top-level item needs an `Id:` holding a
 quoted UUID; Ids must be unique. At most one top-level `Writing:` item is
-allowed. Command signatures must be unique across definition kinds, and each
-operator/function key may have at most one `Disambiguates`. Spec-infix headings
-(`\\:...:/`) are allowed only on `Describes`, refined headings (`::`) only on
-`Refines`.
+allowed. Command signatures must be unique across definition kinds — a
+mapping-parameter header uses its specialized signature for this check, so
+distinct specialized signatures may share one general signature. Each
+operator/function key may have at most one `Disambiguates:`. Spec-infix headings
+(`\\:...:/`) are allowed only on `Defines:`, refined headings (`::`) only on
+`Refines:`.
 
-**Documentation.** `Describes`, `Defines`, and `States` must include a `called:`
+**Documentation.** `Defines`, `Declares`, and `States` must include a `called:`
 or `written:` item in `Documented:`; `Refines` must include an `adjective:`
-item.
+item instead. Theorem-like groups require no such item.
 
 **Command references.** Every command reference must resolve to a defined
 signature with a matching argument shape (refined references may fall back to
 their base command and refinement pieces), and command `when:`/context
-requirements are checked at each use site.
+requirements are checked at each use site — including the reduction target of an
+`Enables:` `capability:`. Mapping-parameter references resolve among the
+specialized definitions for their general signature and report an ambiguity when
+no unique most-specific candidate exists.
 
 **Target symbols.** Every parameter and target symbol a definition introduces
-must be typed: a header parameter needs a `when:` fact; a `Describes` target
-symbol must be specified directly or through `extends:`/`extends: ... via ...`;
-a `Defines` target symbol must be assigned exactly once and must state its type,
-either `... is <type>` or a top-level build `\\<type>@<value>` (a bare
-`X := {...}` is rejected). Destructured components (`M ::= (X, *)`) are typed
-from `extends:`/`via`, `specifies:`, the parameter's `when:` type, or the
-right-hand type of a `::=` binding, and need no separate `when:` entry.
+must be typed: a header parameter needs a `when:` fact; a `Defines` target
+symbol must be specified directly or through `extends:`/`declares:`. A `Refines`
+target symbol may also be inherited, so a symbol the refined base type already
+declares counts as specified. A `Declares` target symbol must be assigned
+exactly once and must state its type, either `... is <type>` or a top-level
+build `\\<type>@<value>` — a bare `X := {...}` is rejected. Destructured
+components (`M ::= (X, *)`) are typed from `extends:`/`via`, `declares:`, the
+parameter's `when:` type, or the right-hand type of a `::=` binding, and need no
+separate `when:` entry.
 
 **`when:` clauses.** `when:` may only constrain the definition's own parameters,
 and only with `<subject> is <type>` or `<subject> \"op\" <target>`.
 
 **Specifications vs. statements.** An `is` specification or infix specification
 introduces a symbol, so it is allowed only in binding positions (`exists:`,
-`given:`, `forAll:`, `where:`, `when:`, `suchThat:`); in a statement position it
-must use the predicate form `is?` or `\\:...?:/`.
+`given:`, `forAll:`, `let:`, `where:`, `when:`, `suchThat:`); in a statement
+position it must use the predicate form `is?` or `\\:...?:/`.
 
 **Symbol scope.** Every referenced symbol must be introduced before use.
 `::=` introduces symbols (including destructured components); `:=` does not — its
 right-hand side must already be in scope.
 
 **Spec facts and operators.** A spec fact `x \"op\" T` is valid only when `T`'s
-type provides that operator. Operators resolve as an in-scope value applied as a
-call, then a `Disambiguates` entry, then a provided-symbol capability owned by
-the operands' type; otherwise the operator is reported unresolved. Member access
-`M.*` must resolve to a member of the owner.
+type provides that operator, and infix spec signatures must be defined by
+`Defines:`. Operators resolve in the order described under Type Resolution;
+otherwise the operator is reported unresolved. Member access `M.*` must resolve
+to a member of the owner.
 
 **Capabilities, requirements, and builds.** `Requires:`/`Enables:` capabilities
 are validated, including `from:` build-backed capabilities and `from: ... as:`
 bindings; a provided spec operator's target must be the described item; a
-required definition must reference a `Defines:` entry and establish its stated
-fact. Build expressions `\\<type>@<value>` (coercion) and `\\<type>@!<value>`
-(coercion + encoding) are checked, and `Enables: relation:` declarations select
-that behavior through `represents: \\\\coercion` or `represents: \\\\encoding`.
-
-Type predicates, function-type specifications, and the arguments of `is` type
-statements are also checked."
+`Requires:` `definition:` must reference a `Declares:` entry and establish its
+stated fact. Build expressions `\\<type>@<value>` (coercion) and
+`\\<type>@!<value>` (coercion + encoding) are checked, and `Enables:` `relation:`
+declarations select that behavior through `represents: \\\\coercion` or
+`represents: \\\\encoding`. Type predicates, function-type specifications, and the
+arguments of `is` type statements are also checked."
 Id: "0f8136db-1ce1-426d-b690-9ca405705e49"
+
+SectionTitle: "Group-Specific Validations"
+Id: "b47b0b1a-d99f-4bb5-9207-599e1d7ed483"
+
+Text: "- **`Equivalent:`** — every `to:` item must be a command that uses the header's
+  parameters directly, not expressions; all items must be the same definition
+  kind; and their target shape, defined type, `when:` requirements, `extends:`
+  type, and capabilities must agree across members.
+- **`Refines:` `extends:`** — the `extends:` subject must match the `Refines:`
+  subject, a `[[...]]` in it must name that subject, and a `Refines:` must have
+  the form `Refines: <form>`.
+- **`Refines:` refinement markers** — `implicitly:`/`explicitly:` take no
+  arguments and are mutually exclusive; either requires the refined base type to
+  be a subtype of another type; `implicitly:` additionally requires the body to
+  contain only the inherited `extends:` clause and that clause to literally name
+  the parent type's refinement, while `explicitly:` requires at least one
+  property beyond it.
+- **`Justification:`** — each entry's `have:` must restate the formulation
+  carrying its `[:label:]`, and every entry must be referenced by some labeled
+  formulation.
+- **Function literals** — a parameter must be a name with a spec (`(x_ is ...)`)
+  or a bare name whose type is already known from an `is`.
+- **Function types** — function-type spec parameters must be written `_`, and a
+  call must match the function's arity.
+- **`satisfies`** — its right-hand side must be a specification.
+- **Spec-operator targets** — the target of a `:->` spec operator must be a
+  value, not a type.
+- **Inferred parameters** — an `X?` argument may introduce `X` only once.
+- **Variadic arguments** — a 2D parameter rejects ragged matrices, empty
+  dimensions, flat comma-separated arguments, and 2D syntax in a non-curly
+  argument group."
+Id: "9b7883ee-4c65-4c28-995a-c8d6fe0af139"

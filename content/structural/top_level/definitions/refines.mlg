@@ -4,15 +4,18 @@ Id: "c195a927-5e66-43b0-9beb-3baa0acb6735"
 Text: "```mlg-fragment
 [RefinedCommandHeader]
 Refines: <RefinedDeclarationStatement>
+implicitly?:
+explicitly?:
 using?: <DeclarationStatement>+
 when?: <ClauseUnion>+
 extends?: <RefinedDeclarationStatement>
 satisfies?: <ClauseUnion>+
 Requires?: <RequiresItemUnion>+
 Enables?: <EnablesItemUnion>+
-Justified?: <JustifiedItemUnion>+
 Documented?: <DocumentedItemUnion>+
+Justification?: <HaveGroup>+
 Aliases?: <AliasItemUnion>+
+Writing?: \"<WritingAlias>\"+
 References?: <ResourceHeader>+
 Metadata?: <MetadataItemUnion>+
 Id?: <OpenText>
@@ -29,9 +32,56 @@ Documented:
 Id: \"23e4567e-e89b-42d3-a456-426614174000\"
 ```
 
-The `Refines:` section contains only the refined subject form; it does not repeat `is <base>`. The base construct is already present after `::` in the header.
+The heading may also be a refined **specification-infix** header, for example
+`[A \\:(nonempty)::subset:/ B]`.
 
-`extends:` may state that one refinement implies other refinements, including dynamic target syntax such as `\\(injective, surjective)::[[f]]`.
+The `Refines:` section contains only the refined subject form; it does not
+repeat `is <base>`. The base construct is already present after `::` in the
+header, and the renderer makes it explicit — `[\\(finite)::group]` with
+`Refines: G ::= (X, *, e)` displays as `G ::= (X, *, e) is \\group`.
 
-`Documented:` for a `Refines:` item requires `adjective:` and may also include `written:`, but it may not use `called:`."
+A target symbol the refined base type already declares counts as specified, so
+`\\(associative)::binary.operation:on{X}` need not respecify the `*` that
+`\\binary.operation:on{X}` already types.
+
+`extends:` may state that one refinement implies other refinements, including
+dynamic target syntax such as `\\(injective, surjective)::[[f]]`.
+
+`Documented:` for a `Refines:` item requires `adjective:` and may also include
+`written:`, but it may not use `called:`."
 Id: "6a2cef98-ca86-4edd-a8b6-133474ecb68b"
+
+SectionTitle: "Refinement Markers"
+Id: "f63d0a40-0ce3-4cf8-9c0c-a55707580518"
+
+Text: "A refinement of a base type is automatically available on that type's subtypes:
+if `\\(finite)::magma` refines `\\magma` and `\\group` extends `\\magma`, then
+`\\(finite)::group` is already implied. Authors may still write that refinement
+out — for documentation, or to give it extra properties. Two optional, mutually
+exclusive, zero-argument marker sections placed immediately after `Refines:`
+state the intent, and the checker verifies the body matches the marker.
+
+```mlg-fragment
+[\\(finite)::group]
+Refines: G(x__)
+implicitly:
+extends: G is \\(finite)::magma
+Documented:
+. adjective: \"finite\"
+```
+
+- `implicitly:` — the group merely restates the inherited definition. The body
+  must contain **nothing beyond** the inherited `extends:` clause (the
+  scaffolding `using:`/`when:` sections are still allowed); adding
+  `satisfies:`, `Requires:`, `Enables:`, or `Justification:` is an error.
+  The `extends:` clause must also literally name the parent type's refinement —
+  the same adjective(s) applied to a supertype of the refined base type.
+- `explicitly:` — the group overrides the inherited definition with stronger
+  meaning, so it must add **at least one** property beyond the inherited
+  `extends:` clause. A body that is only the inherited `extends:` is the trivial
+  case and must be marked `implicitly:` instead.
+
+Both markers are only meaningful when the refined base type is itself a subtype
+of another type. Using either on a base that is not a subtype of anything is an
+error, and when the base is not a subtype no marker is written at all."
+Id: "1eaeb457-2c21-4546-a529-e8e669b1de92"

@@ -21,7 +21,7 @@ SectionTitle: "`mlg.json`"
 Id: "41bb11c5-067b-4042-b427-dfb956ca640b"
 
 Text: "The config lists every setting explicitly rather than relying on implicit
-defaults. All four fields are required, and `mlg check` reports any that are
+defaults. All five fields are required, and `mlg check` reports any that are
 missing. `mlg init` writes them in this order:
 
 ```text
@@ -29,7 +29,8 @@ missing. `mlg init` writes them in this order:
   \"name\": \"\",
   \"version\": \"0\",
   \"margin\": 80,
-  \"formatOnCheck\": true
+  \"formatOnCheck\": true,
+  \"outputDir\": \"docs\"
 }
 ```
 
@@ -42,6 +43,8 @@ missing. `mlg init` writes them in this order:
   you to rename it.
 - `formatOnCheck` — whether `mlg check` formats the collection
   before checking it (a boolean; default `true`).
+- `outputDir` — where `mlg export` writes the static site (a non-empty relative
+  path inside the collection; default `\"docs\"`).
 
 `mlg init` does not create any `.mlg` files; add them under `content/` yourself."
 Id: "ccbf2c58-8bee-4c05-8d94-8216484cae5d"

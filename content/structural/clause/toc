@@ -1,5 +1,6 @@
 overview.mlg -> Overview
 given.mlg -> Given
+let.mlg -> Let
 not.mlg -> Not
 all_of.mlg -> All Of
 any_of.mlg -> Any Of
@@ -10,7 +11,9 @@ exists_unique.mlg -> Exists Unique
 for_all.mlg -> For All
 if.mlg -> If
 iff.mlg -> Have / Iff
+have_asserting.mlg -> Have / Asserting
 piecewise.mlg -> Piecewise
+builtin_clause_commands.mlg -> Builtin Clause Commands
 specifications.mlg -> Specification
 expressions.mlg -> Expression
 statements.mlg -> Statements

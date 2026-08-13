@@ -1,13 +1,38 @@
 Title: "Writing"
 Id: "2e7be2f7-f0d2-4b68-a8dd-cc8333291495"
 
-Text: "A nested `writing:` item in `Documented:` defines a rendering alias for the documented item.
-
-```mlg-fragment
+Text: "```mlg-fragment
 [LabelHeader]?
-writing: <WritingAlias>
+writing: <MappingWritingTarget>
 as: <WritingText>+
 ```
 
-This is distinct from the top-level `Writing:` block, which maps plain names across the whole collection."
+A nested `writing:`/`as:` item controls how a mapping introduced by `Defines:`
+is rendered. It is valid **only** when the `Defines:` target is a mapping, and
+the `writing:` value must be either that exact mapping form or the same form
+with each placeholder replaced by its ordinary name.
+
+```mlg-fragment
+[\\real.sequence]
+Defines: X ::= x(i_)
+Documented:
+. writing: x(i)
+  as: \"x?_{i?}\"
+. writing: x(i_)
+  as: \"\\left\\{x?\\right\\}_{i_?=1}^{\\infty}\"
+```
+
+The ordinary form (`x(i)`) renders invocations such as `x(j)`, substituting `x?`
+and `i?` with the invoked mapping and argument. The placeholder form (`x(i_)`)
+renders the mapping itself, as in `x(i_) is \\real.sequence`; its template may
+use the placeholder key `i_?`. The `as:` value is raw LaTeX rendering text.
+
+When the target has a declaration alias, as in `X ::= x(i_)`, both `writing:`
+forms still use the mapping name `x`, not the alias `X`. The same rule applies
+when an output placeholder is present: `X ::= x(i_) ::= y_` still uses `x(i)`
+and `x(i_)`.
+
+This is distinct from the top-level `Writing:` block, which maps plain names
+across the whole collection, and from a per-item `Writing:` section, which
+overrides name rendering for one item."
 Id: "19885340-1b72-4cf2-ad7c-69ffb5ff39c1"

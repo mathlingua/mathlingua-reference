@@ -9,7 +9,26 @@ Text: "Tuple forms use parentheses and contain two or more elements.
 G ::= (X, *, e)
 ```
 
-One-element tuples are not supported. Parentheses around a single expression are grouping syntax, not tuple syntax.
+One-element tuples are not supported. Parentheses around a single expression are
+grouping syntax, not tuple syntax. An operator may appear as a tuple element, as
+`*` does above.
 
-Tuple declarations introduce nested symbols when they occur in declaration positions. Those symbols must be specified directly or through an `extends:` view when used in `Describes:`, `Defines:`, or `Refines:` targets."
+Tuple declarations **destructure**: `G ::= (X, *, e)` introduces `G`, `X`, `*`,
+and `e`. Only `::=` introduces these symbols — `:=` requires its right-hand side
+to already be in scope.
+
+Destructuring is allowed in a `Defines:`/`Declares:` target, a command
+parameter, and a `given:`/`using:` binding:
+
+```mlg-fragment
+Defines: M ::= (X, *)
+[\\magma.element:of{M ::= (X, *)}]
+given: M ::= (X, *) is \\magma
+```
+
+The component types are inferred: from `extends:`/`via` and then `declares:` for
+a `Defines:` target; from the parameter's `when:` type for a command parameter;
+and from the right-hand type for a `given:`/`Declares:` binding. Components typed
+this way need no separate `when:` entry, and member access reaches them (`M.X`,
+`M.*`)."
 Id: "6ff385e2-afe6-4d77-b0d3-2a8ba0eceea7"

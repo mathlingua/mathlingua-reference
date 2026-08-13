@@ -7,7 +7,26 @@ Text: "`via` records the view used by an extension.
 G is \\set via X
 ```
 
-The left side is an `is` statement. The right side is a form or declaration that describes how the subtype is viewed as the supertype.
+The left side is an `is` statement. The right side is a form or declaration —
+such as `X` or `(X, Y)` — describing how the subtype is viewed as the supertype.
 
-In a definition, `extends: G is \\set via X` lets the checker use `G is \\set` when it knows `G` has the described type. The `via` form also **sets the types of the symbols it names**, so they need not be repeated in `specifies:`: `extends: M is \\set via X` records `X is \\set`, and a `via` tuple maps positionally onto the extended type's own components, so `extends: S is \\magma via (X, *)` gives `X is \\set` and `* is \\binary.operation:on{S}`."
+In a definition, `extends: G is \\set via X` lets the checker use `G is \\set`
+whenever it knows `G` has the described type. The implication is recursive, so
+subtype chains are followed.
+
+The `via` form also **sets the types of the symbols it names**, so they need not
+be repeated in `declares:`:
+
+- `extends: M is \\set via X` — a single `via` symbol becomes an instance of the
+  extended type, recording `X is \\set`.
+- `extends: S is \\magma via (X, *)` — a `via` tuple maps positionally onto the
+  extended type's own components, so `X` and `*` inherit the types `\\magma`
+  gives its components (`X is \\set`, `* is \\binary.operation:on{S}`).
+
+Because `via` supplies those types, `declares:` only needs to type the
+components `via` does not cover.
+
+An `extends:` section may also use a spec statement, such as
+`extends: x \"in\" X`, which records the corresponding spec fact as an
+implication for values of the owning type."
 Id: "84a2b89a-dc30-43e5-8648-2bf8f5b368f5"

@@ -1,11 +1,13 @@
 Title: "Offset"
 Id: "4a28e62b-3a9f-456c-9503-0d913329272c"
 
-Text: "`offset:` records an open-text page or numbering offset.
+Text: "`offset:` records the physical PDF page on which the document's numbered page 1
+appears. It defaults to `1`, so a `References:` entry written `:page{n}` links to
+physical page `n + offset - 1`.
 
 ```mlg-fragment
 Resource:
-. offset: \"0\"
+. offset: \"12\"
 ```
 
 The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."

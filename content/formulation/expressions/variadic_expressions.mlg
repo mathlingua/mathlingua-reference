@@ -1,11 +1,65 @@
-Title: "Variadic Equality Expressions"
+Title: "Variadic Slices"
 Id: "2e12b00b-2bb1-4b07-9e5d-b0361bb9e707"
 
-Text: "Variadic equality chains compare more than two expressions.
+Text: "A slice selects the elements of a variadic command parameter. The supported
+one-dimensional forms are:
 
 ```mlg-fragment
-x = y = z
+x...
+x[0...n]
+x[1...n]
+x[0...i_...n]
+x[1...i_...n]
 ```
 
-The expression is parsed as a chain of equalities. Equality and inequality are accepted for any declared symbols, though a collection can still define type-specific equality behavior with capabilities."
+Individual elements are referenced with ordinary subset syntax such as `x[0]`,
+`x[1]`, or `x[i_]`.
+
+A slice **broadcasts** when it is the left operand of `:=`, `=`, `!=`, `is`,
+`is?`, or a quoted specification operator, including that operator's predicate
+form. A slice may also appear on the right of `:=`, `=`, or `!=`; paired slices
+must spell exactly the same start, binder, and end.
+
+In a clause list, the broadcast produces one clause per element, so
+`. x[1...n] = 0` inside `anyOf:` means one alternative for every indexed `x`.
+
+A two-dimensional slice gives each axis independently as a single index, a
+range, or `...` for the whole axis:
+
+```mlg-fragment
+x[a...i_...b, c...j_...d]
+x[a...b, c...d]
+x[a...b, ...]
+x[..., c...d]
+x[..., ...]
+x[a, ...]
+x[..., c]
+```
+
+At least one axis must be a range or `...`; `x[a, c]` is the ordinary single
+element. A 2D slice broadcasts under the same relations as a 1D slice, so
+`x[a...b, c...d] is \\real` applies to every selected `x[i,j]`. Paired 2D slices
+must use exactly the same two axis selections.
+
+Slices are accepted only by these broadcast operations and by the variadic
+builtins; a slice is rejected as an ordinary operand.
+
+```mlg-fragment
+\\\\map{x[1...i_...n]}:to{x[i_] + 1}
+\\\\map{x[1...i_...n], y[1...i_...n]}:to{x[i_] + y[i_] + 1}
+\\\\leftReduce{`+`}:on{x[1...n]}
+\\\\rightReduce{`+`}:on{x[1...i_...n]}
+```
+
+`\\\\map` maps aligned slices pointwise: all input slices must have exactly the
+same range spelling, and multiple slices are zipped rather than combined as a
+Cartesian product. The result expression may use the bound index.
+
+The reduction builtins take a binary operator and one slice, select left and
+right association respectively, and render with an ellipsis such as
+`x_1 + ... + x_n`. A bound slice also displays its middle term, as in
+`x_1 + ... + x_i + ... + x_n`.
+
+Equality chains such as `x = y = z` are ordinary left-associated equality
+expressions and are unrelated to slices."
 Id: "6d948156-7908-496a-830f-5f1ed9cdd5a1"

@@ -9,24 +9,37 @@ TopLevelItemUnion ::=
     | TextGroup
     | TopLevelWritingGroup
     | DisambiguatesGroup
-    | DescribesGroup
     | DefinesGroup
+    | DeclaresGroup
     | RefinesGroup
     | StatesGroup
     | AxiomGroup
     | TheoremGroup
-    | CorollaryGroup
+    | ConjectureGroup
     | PersonGroup
     | ResourceGroup
     | SpecifyGroup
     | RelationGroup
     | EquivalentGroup
     | TopicGroup
+    | TextItemGroup
 ```
 
-The group kind is determined by the first section label. Definition-like cards
-also require or receive an `Id:` during `mlg check`; duplicate ids are errors.
+The group kind is determined by the first section label, never by the heading.
+Every top-level item additionally accepts a final optional `Id:` section holding
+a quoted UUID; `mlg check` adds a missing one, and duplicate ids are errors.
 
-`Lemma:`, `Conjecture:`, `Represents:`, and `Subsubsection:` are no longer part
-of the structural language."
+Groups with command headings introduce command signatures: `Defines:`,
+`Declares:`, `Refines:`, `States:`, `Equivalent:`, and the theorem-like groups
+that carry an optional heading. Duplicate signatures are rejected across all of
+these kinds.
+
+Every non-prose top-level item (`Defines:`, `Declares:`, `Refines:`, `States:`,
+`Axiom:`, `Theorem:`, `Conjecture:`, `Relation:`, and `Disambiguates:`) may
+carry its own optional `Writing:` section immediately after `Aliases:`.
+
+`Describes:` was renamed to `Defines:`, and the older `Defines:` was renamed to
+`Declares:`. `Corollary:`, `Lemma:`, `Represents:`, and `Subsubsection:` are no
+longer part of the structural language; `Conjecture:` and the opaque `Text…:`
+placeholders were added."
 Id: "0458cfe8-4b85-4c0f-8fbb-7d78e5cb80f5"

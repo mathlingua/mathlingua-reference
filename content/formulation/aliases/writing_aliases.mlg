@@ -1,12 +1,29 @@
 Title: "Writing Aliases"
 Id: "f2e9ef30-5ad5-42c8-b50a-72f9a31f33a9"
 
-Text: "```mlg-fragment
+Text: "A writing alias is `<form-or-declaration> :~> <raw latex>`. The body is not
+parsed as formulation syntax; it is whatever trimmed, non-empty text follows the
+first top-level `:~>`.
+
+```mlg-fragment
 alpha :~> \\alpha
 beta :~> \\beta
 f(x_) :~> f? \\left( x_? \\right)
 ```
 
-Writing aliases are raw rendering aliases. Top-level `Writing:` items restrict
-the left side to names and use the aliases collection-wide."
+In a `Writing:` section — the collection-wide block, or a per-item override —
+each alias must be written as a **double-quoted** string and its left side must
+be a plain `Name`:
+
+```mlg-fragment
+Writing:
+. \"alpha :~> \\alpha\"
+. \"beta :~> \\beta\"
+```
+
+The quotes are required precisely because the raw LaTeX body could otherwise be
+misread as a formulation.
+
+Writing aliases are distinct from the nested `Documented:` `writing:`/`as:`
+item, which renders a mapping introduced by `Defines:` rather than a name."
 Id: "f719bf43-607d-4118-bf1a-b9396bb862c7"

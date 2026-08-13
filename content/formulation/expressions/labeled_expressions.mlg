@@ -8,5 +8,14 @@ Text: "A labeled expression attaches a label to an expression.
 (.x + y.)[:normalized:]
 ```
 
-Labels are metadata on expressions. They use the `[:...:]` token form and are distinct from structural label headers such as `[theorem.name]`."
+Only a grouped formulation may be labeled directly, and the wrapper may hold a declaration or specification as well as an expression:
+
+```mlg-fragment
+(.x is \\real.)[:typed:]
+(.*' := `*`.)[:operation:]
+```
+
+A label is discharged by a matching `[label]` entry in the enclosing item's `Justification:` section; an unmatched label is checked inline as usual.
+
+Labels use the `[:...:]` token form and are distinct from structural label headers such as `[theorem.name]`. As lexer tokens they do not support stropped symbolic parts."
 Id: "efe841b5-44ed-45f8-8d20-1aacb7fc9bdb"

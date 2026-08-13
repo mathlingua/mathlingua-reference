@@ -20,8 +20,20 @@ shorthands also apply directly after a command chain:
 
 - Collection-literal argument: `\\foo{x_ : x_ is \\real | x_ > 0}` is shorthand for
   the single set argument `\\foo{{x_ : x_ is \\real | x_ > 0}}`.
-- Mapping argument: `\\foo[x_ is \\real]{x_ + 1}` is shorthand for
-  `\\foo{(x_ is \\real) |-> x_ + 1}` (see Mapping Expressions).
+- Function-literal argument: `\\foo[x_ is \\real]{x_ + 1}` is shorthand for
+  `\\foo{(x_ is \\real) => x_ + 1}` (see Function Literals).
+
+A curly argument group may also hold a rectangular two-dimensional argument,
+whose columns are separated by commas and whose rows are separated by
+semicolons:
+
+```mlg-fragment
+\\foo{a, b, c;
+      x, y, z}
+```
+
+Semicolons are row separators only in curly command arguments, and every row
+must be nonempty.
 
 Command expressions may also carry context suffixes:
 

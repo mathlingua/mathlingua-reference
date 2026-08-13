@@ -2,11 +2,48 @@ Title: "Writing"
 Id: "801f1204-3579-4100-9373-e22f3912657e"
 
 Text: "```mlg-fragment
-Writing:
-. <name> :~> <latex>
+Writing: \"<WritingAlias>\"+
 ```
 
-A collection may contain at most one top-level `Writing:` item. The left-hand
-side of each alias must be a name. The renderer uses these aliases when rendering
-names throughout expressions, statements, and specifications."
+```mlg-fragment
+Writing:
+. \"alpha :~> \\alpha\"
+. \"beta :~> \\beta\"
+Id: \"23e4567e-e89b-42d3-a456-426614174000\"
+```
+
+A collection may contain at most one top-level `Writing:` item. Each argument is
+a **double-quoted** string of the form `\"name :~> body\"`: the left-hand side
+must be a `Name`, and the body after `:~>` is raw, non-empty LaTeX rather than
+parsed formulation syntax. The quotes are required precisely because that raw
+body could otherwise be misread as a formulation.
+
+The renderer uses these aliases when rendering names throughout expressions,
+statements, and specifications. Names are split on underscores before aliases
+are applied, and numeric suffix rendering honors them too, so `alpha_1` renders
+as `\\alpha_1` and `alpha123` renders as `\\alpha_{123}`."
 Id: "6d284986-b912-4519-b5d4-316e2783e35d"
+
+SectionTitle: "Per-Item `Writing:` Sections"
+Id: "bf555a15-8793-4d34-ba97-bab7031ce023"
+
+Text: "Every top-level non-prose item — `Defines:`, `Declares:`, `Refines:`, `States:`,
+`Axiom:`, `Theorem:`, `Conjecture:`, `Relation:`, and `Disambiguates:` — may
+carry its own optional `Writing:` section immediately after `Aliases:`. It uses
+the same double-quoted `\"name :~> body\"` form and overrides, for that item only,
+how the named identifiers render. It is layered on top of the collection-wide
+`Writing:` group.
+
+```mlg-fragment
+[\\natural]
+Defines: n
+Documented:
+. called: \"natural\"
+Writing:
+. \"pi :~> \\varpi\"
+Id: \"23e4567e-e89b-42d3-a456-426614174000\"
+```
+
+This is distinct from the nested `Documented:` `writing:`/`as:` item, which
+controls how a mapping introduced by `Defines:` is rendered."
+Id: "306c32a0-a5b6-4a0d-9406-e536d4e25673"

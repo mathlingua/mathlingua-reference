@@ -80,8 +80,8 @@ Text: "`called:` and `written:` have distinct meanings.
 
 - `called:` is non-math text.
 - `written:` is math-mode text.
-- For `Describes:` and `Defines:`, at least one of `called:` or `written:` is
-  required.
+- For `Defines:`, `Declares:`, and `States:`, at least one of `called:` or
+  `written:` is required.
 - If both are provided, the renderer uses the appropriate one for the context.
 - If only `called:` is provided, the missing `written:` text is generated from it.
 - If only `written:` is provided, the missing `called:` text is generated from it
@@ -93,7 +93,15 @@ Text: "`called:` and `written:` have distinct meanings.
 - Card titles remove placeholder markers such as `?` from rendered title text.
 - Generated titles preserve normal lowercase words such as `is`; for example,
   `A? is a subset of B?` renders as `A is a subset of B`, not
-  `A Is a subset of B`."
+  `A Is a subset of B`.
+- When an item supplies both, its card title shows the called form, a wide
+  space, then the written notation rendered muted. The name always comes first
+  and the notation second, whichever order the two are listed in.
+- Listing order still decides which single form names the item *inline*, so
+  `called:` first makes `X is \\empty.set` read \"X is empty set\" while
+  `written:` first makes it read \"X is $\\emptyset$\".
+- A `written:` nested inside a `called:` group documents that called form, so it
+  pairs with it in the title just as a top-level `written:` would."
 Id: "049b5a49-f1c9-40d8-bb19-02c2b5ad816a"
 
 SubsectionTitle: "`Refines:` Documentation"
@@ -117,14 +125,18 @@ Text: "A collection may contain at most one top-level `Writing:` item.
 
 ```text
 Writing:
-. alpha :~> \\alpha
-. beta :~> \\beta
+. \"alpha :~> \\alpha\"
+. \"beta :~> \\beta\"
 ```
 
 Rules:
 
-- Each argument has the form `<name> :~> <latex>`.
+- Each argument is a double-quoted string of the form `\"<name> :~> <latex>\"`.
+- The quotes are required because the body after `:~>` is raw non-empty LaTeX
+  rather than parsed formulation syntax.
 - The left-hand side must be a plain name.
+- Every top-level non-prose item may carry its own optional `Writing:` section
+  immediately after `Aliases:`, overriding name rendering for that item only.
 - The renderer uses these aliases when rendering names in expressions,
   statements, and specifications.
 - Names are split on underscores before applying aliases.
@@ -254,6 +266,9 @@ Text: "Builtin kinds render as plain text.
 - `\\\\specification` renders as `specification`.
 - `\\\\opaque` is satisfied by any value but does not establish any more specific
   type information.
+- `\\\\abstract` is the abstract target of a `:->` capability.
+- `\\\\type` holds for command references whose top-level entry is a `Defines:`
+  item.
 - The renderer no longer treats these as a newline plus italic text."
 Id: "ac8c3af4-54d4-4c0f-836e-c87caef3f9a1"
 
@@ -285,34 +300,47 @@ Id: "fdbf2219-49b5-4c38-8e20-0352a8d3af73"
 SubsectionTitle: "Function And Collection Shapes"
 Id: "547e3023-7283-45b7-b2ad-60a50217dc5e"
 
-Text: "`Describes:` and `Defines:` support richer target shapes.
+Text: "`Defines:` and `Declares:` support richer target shapes.
 
 Function targets:
 
-- `Describes: f(x_) ::= y_` describes a function-like target with one input.
-- `Describes: f(x__) ::= y_` describes a function-like target that accepts any
+- `Defines: f(x_) ::= y_` describes a function-like target with one input.
+- `Defines: f(x__) ::= y_` describes a function-like target that accepts any
   number of inputs, treated as a single tuple.
-- `Describes: f(x_, y_, z_) ::= w_` describes a function-like target that
+- `Defines: f(x_, y_, z_) ::= w_` describes a function-like target that
   accepts exactly three separate arguments.
-- `specifies:` on such a `Describes:` target states the input and output
-  requirements.
-- `Defines: h(x__) := f(g(x__)) is \\function:on{A}:to{C}` is accepted.
+- `Defines: f(x_[i_ := 1...n])` declares a ranged variadic mapping input; `x__`
+  in that position treats the inputs as a tuple. It must be the only parameter
+  and must start at 0 or 1.
+- `X ::= x(i_) ::= y_` names the mapping `x`, its alias `X`, its input `i_`, and
+  its output `y_`.
+- `declares:` on such a `Defines:` target states the input and output
+  requirements; component and whole-function declarations are equivalent, so
+  `declares: f is (? is \\real) -> (? is \\real)` is the same as typing `x_` and
+  `y_` separately.
+- `Declares: h(x__) := f(g(x__)) is \\function:on{A}:to{C}` is accepted.
 
 Collection targets:
 
-- `Describes: X ::= {x__ : ...}` describes a collection shape whose elements
+- `Defines: X ::= {x__ : ...}` describes a collection shape whose elements
   may have any arity and are treated as a tuple.
-- `Describes: X ::= {x_ : ...}` describes a collection shape accepting a single
+- `Defines: X ::= {x_ : ...}` describes a collection shape accepting a single
   value, where that value may itself have any expression shape.
 - `member_of` is a keyword used by enabled membership capabilities.
 - `x member_of X` is valid only when `X` is a collection literal or has a
-  collection literal attached by an explicit cast.
-- `{x_ : x_ is \\real} as \\set` casts a collection literal to the described type.
+  collection literal attached by a build.
+- `A := \\set@{x_ : x_ is \\real}` builds a collection literal at the described
+  type and records the literal for `A`.
 - `A := {x_ : x_ is \\real | x_ > 2} is \\set` binds the literal to `A` as a set.
-- If `A := {x_ : x_ is \\real} as \\set` and `x \"in\" A`, the checker can establish
-  `x is \\real`.
+- If `A := \\set@{x_ : x_ is \\real}` and `x \"in\" A`, the checker can establish
+  `x is \\real` through a `from:` capability.
 - If `A is \\set` without a collection literal, membership establishes
-  `x is \\\\opaque`."
+  `x is \\\\opaque`.
+
+Literal arguments also satisfy a required nominal type structurally: a function
+literal by its input arity and input/output specs, a tuple literal by component
+count and positional specs, and a collection literal against the described
+element pattern and element specs."
 Id: "8fad122e-d0e5-4970-8cbb-88aa13765516"
 
 SubsectionTitle: "Set Builder Definitions"
@@ -327,20 +355,33 @@ Text: "Set builder definitions allow general element forms before the colon.
   `Defines: C := {(a_, b_) : ...} is \\set`."
 Id: "ee6486f7-157f-4564-9caa-5dbf4897847e"
 
-SubsectionTitle: "Mapping Literals"
+SubsectionTitle: "Function Literals And Function Types"
 Id: "9e14de40-5796-427c-a992-53247e6d242e"
 
-Text: "A mapping literal is an anonymous function value written with `|->`.
+Text: "A function literal is an anonymous function value written with `=>`, while a
+function *type* uses `->`. Keeping the two arrows distinct mirrors the `:=>` and
+`:->` operator forms.
 
-- `(x_ is \\real) |-> x_ + 1` binds the parameter through the parenthesized spec
+- `(x_ is \\real) => x_ + 1` binds the parameter through the parenthesized spec
   so the body checks.
-- `(x_ \"in\" A) |-> x_ + a` is also valid; the parenthesized left side types the
+- `(x_ \"in\" A) => x_ + a` is also valid; the parenthesized left side types the
   parameter.
-- A bare `x_ |-> ...` (no spec) is only valid where the parameter's type can be
-  inferred from a declared function type, as in `f := x_ |-> x_ + 1 is
+- A bare `x_ => ...` (no spec) is only valid where the parameter's type can be
+  inferred from a declared function type, as in `f := x_ => x_ + 1 is
   \\real.function`.
 - The command sugar `\\foo[x_ is \\real]{x_ + 1}` expands to
-  `\\foo{(x_ is \\real) |-> x_ + 1}`."
+  `\\foo{(x_ is \\real) => x_ + 1}`.
+- `->` accepts one or more input specs and exactly one output spec, so unary,
+  binary, and n-ary function types are written directly:
+  `f is (_ \"in\" A, _ \"in\" B) -> (_ \"in\" C)`. The declared input arity is
+  retained rather than curried into nested unary types.
+- Function-type spec parameters must be written `_`, or `?` in a structural
+  type literal such as `(? is \\natural) -> (? is \\real)`.
+- A mapping body is checked after resolving type-directed operators, so an
+  overloaded expression such as `x + y` contributes the output type of the
+  selected addition operator. When that operator is declared through a callable
+  type, the checker follows the type's `extends:` chain to its function codomain
+  and uses the codomain as the application's output spec."
 Id: "c4744318-52a4-49d5-b41d-c0d9e08cf12d"
 
 SubsectionTitle: "Spec Literals And `satisfies`"
@@ -388,6 +429,136 @@ positions, not where a statement is expected.
   introducer) and is accepted in statement positions as written."
 Id: "e527cba5-a73e-41ee-a84a-432ef654060e"
 
+SubsectionTitle: "Variadic Command Arguments"
+Id: "2a8821a7-2b32-4790-8285-68b1ceea11f1"
+
+Text: "Only curly argument groups can be variadic; a variadic parameter occupies the
+whole `{...}` group.
+
+- The forms are `x...`, `x...n`, and `x[i_ := 0...]` / `x[i_ := 1...]` /
+  `x[i_ := 0...n]` / `x[i_ := 1...n]`. No other starting index is accepted.
+- Reusing a length name constrains groups to the same number of arguments, so
+  `[\\foo{x...n}:bar{y...n}]` requires equal lengths while
+  `[\\foo{x...n}:bar{y...m}]` leaves them independent.
+- Slices `x...`, `x[0...n]`, `x[1...n]`, `x[0...i_...n]`, and `x[1...i_...n]`
+  broadcast over `:=`, `=`, `!=`, `is`, `is?`, and quoted specification
+  operators. Paired slices must spell exactly the same start, binder, and end.
+- In a clause list a broadcast produces one clause per element.
+- `\\\\map{...}:to{...}` zips aligned slices pointwise; `\\\\leftReduce{op}:on{...}`
+  and `\\\\rightReduce{op}:on{...}` reduce one slice and render with an ellipsis.
+- `x...` renders as `x_1, ..., x_.`, and `x[1...i_...n]` as
+  `x_1, ..., x_i, ..., x_n`.
+
+A curly group may instead declare a rectangular two-dimensional parameter such
+as `x[(i_, j_) := (1,1)...(m,n)]`.
+
+- Invocations separate columns with commas and rows with semicolons.
+- Row and column counts bind independently, and elements are referenced as
+  `x[i,j]`.
+- Ragged matrices, empty dimensions, flat arguments, and 2D syntax in a
+  non-curly group are rejected.
+- Two-axis selections give each axis as an index, a range, or `...`, and
+  broadcast under the same relations as 1D slices.
+- Written templates nest element notation inside row notation, so
+  `\\left[ x?{{...,...}\\\\} \\right]` renders the argument as a matrix. Symbolic
+  definition-card titles keep the same 2D row shape."
+Id: "e23ab977-d2f3-4201-91d5-1569ac13e3d1"
+
+SubsectionTitle: "Mapping Parameter Selectors"
+Id: "d6a975a3-dbfb-46ed-8d48-e15fb290d8ab"
+
+Text: "An ordinary command heading may select parameters from a mapping declared in
+another curly group.
+
+- An exact selector uses the mapping's declared name (`f.x_`); an arbitrary
+  selector introduces a fresh name (`f.u?_`); a variadic selector names a subset
+  of a ranged variadic mapping (`f.x_[i_[j_:=1...m]]`).
+- Selectors must occupy exactly one curly group, share one owner, and that owner
+  must be declared with explicit parameters in exactly one other curly group.
+- An arbitrary selector name must not duplicate a declared parameter name.
+- Selectors are supported only by ordinary headings, not by infix, infix-spec,
+  or refined headings.
+- At a use site the mapping parameters are supplied by command mapping-literal
+  sugar such as `\\integral[x_, y_ is \\real]{x_^2 + y_^2}:d{x_}`, and every
+  selected value must be one of those bound parameters.
+- Such a heading gets a specialized signature (`\\integral{_(2)}:d{#1}`) in
+  addition to its general signature (`\\integral:d`). Specialized signatures must
+  be unique; several definitions may share a general signature.
+- Resolution prefers a fixed mapping arity over `_(*)`, then exact positions in
+  written order over `#?`, and finally `#*`. Equally specific candidates are an
+  ambiguity error."
+Id: "e6d1b49d-4aa4-4dbd-b504-874ef59c8943"
+
+SubsectionTitle: "Labeled Formulations And `Justification:`"
+Id: "d99f3aed-bf7f-44a0-a633-c1fc3d0cc5ca"
+
+Text: "A grouped expression, statement, or specification may carry a `[:label:]`, and a
+top-level `Justification:` section discharges those labels.
+
+- `Justification:` appears immediately after `Documented:` and holds
+  `have:`/`asserting:` groups, each with a required `[label]` heading.
+- A matching entry establishes the labeled formulation using its `asserting:`
+  items, exactly as an inline `have:`/`asserting:` group would.
+- An entry's `have:` must restate the labeled formulation.
+- Every entry must be referenced by some labeled formulation; an unmatched label
+  is checked inline as usual.
+- Labels are allowed on nested formulations, including inside a `declares:` item
+  or a `satisfies:` clause.
+- The optional `because:` and `by:` sections are justification the checker only
+  reference-validates; it never proves them.
+- `Justification:` replaces the older `Justified:` section and its `label:` /
+  `by:` prose items."
+Id: "b38e23ec-3695-437a-9158-1af03b52da7b"
+
+SubsectionTitle: "New And Renamed Top-Level Items"
+Id: "d432d4fe-d9f5-4829-a269-adc506f3222d"
+
+Text: "The top-level inventory changed in several places.
+
+- `Describes:` was renamed to `Defines:`, and the older `Defines:` was renamed
+  to `Declares:`. The `specifies:` section of the old `Describes:` is now
+  `declares:`.
+- `Corollary:` was removed; a result that follows from another is written as an
+  ordinary `Theorem:`.
+- `Conjecture:` was added. It shares the `Axiom:`/`Theorem:` shape and records a
+  statement that is not claimed to have a proof.
+- `TextTheorem:`, `TextAxiom:`, `TextConjecture:`, and `TextDefinition:` were
+  added as opaque prose placeholders. Their bodies are never parsed as
+  MathLingua, their `Documented:` accepts only `called:`, `written:`,
+  `description:`, and `notes:`, and `Id:` is required.
+- `Refines:` gained the optional, mutually exclusive `implicitly:` and
+  `explicitly:` marker sections immediately after `Refines:`. Both require the
+  refined base type to be a subtype of another type; `implicitly:` requires the
+  body to contain only the inherited `extends:` clause naming the parent type's
+  refinement, and `explicitly:` requires at least one property beyond it.
+- The `let:` clause group was added: it introduces local bindings, assumes an
+  optional `where:` guard, and checks `then:` with those available."
+Id: "78caeb72-ce47-4cd8-a051-4a97f35928c6"
+
+SubsectionTitle: "Placeholder Parentheses"
+Id: "d8fd757f-129c-4b76-91ed-1178af1d515d"
+
+Text: "A placeholder in a `called:` or `written:` template may carry a `+` or `-` before
+its `?` to control the parentheses around the substituted value. The modifier is
+not part of the name, so `A?`, `A+?`, and `A-?` all substitute the same value.
+
+- `A?` substitutes the value exactly as rendered.
+- `A+?` wraps the value in exactly one pair of parentheses, unless it is a
+  single atom. It never doubles parentheses: the value is first reduced to its
+  bare form and then wrapped once.
+- `A-?` removes every pair of parentheses wrapping the value. Only parentheses
+  enclosing the *whole* value are removed, so `(1+2)+(3+4)` is left intact.
+
+A value counts as a single atom when it contains no space or comma outside a
+bracket — names, single commands, and function calls do, while compound
+expressions and comma-separated tuples do not.
+
+A modifier only applies when the `+` or `-` sits between the name and the `?`,
+so `A?-B?` is still a placeholder, a literal `-`, and another placeholder. Where
+a template is rendered without values, a modifier has nothing to act on and
+shows the same bare name that `A?` does."
+Id: "e2db2f93-7aeb-4f97-871b-5b40ccf21a4a"
+
 SectionTitle: "Semantic Checks"
 Id: "849f1ed5-23d0-4ec8-9b17-95c08205d22a"
 
@@ -410,13 +581,19 @@ Rules:
 - Required non-optional header parameters must have a corresponding `when:`
   requirement.
 - Optional tail parameters are allowed in `when:` but are not required unless a
-  `Describes:` entry references them in semantic constraints such as
-  `specifies:`, `extends:`, or `satisfies:`.
+  `Defines:` entry references them in semantic constraints such as
+  `declares:`, `extends:`, or `satisfies:`.
 - Target symbols introduced by a declaration target such as `G ::= (X, *, e)`
   are not `when:` parameters unless they also occur in the command header.
-- Target symbols introduced by `Describes:`, `Defines:`, and `Refines:` targets
-  must have specifications directly, such as through `specifies:`, `using:`, or
+- Target symbols introduced by `Defines:`, `Declares:`, and `Refines:` targets
+  must have specifications directly, such as through `declares:`, `using:`, or
   an `is` relation, or transitively through `extends: ... via ...`.
+- A `Refines:` target symbol may also be inherited: a symbol the refined base
+  type already declares counts as specified.
+- A mapping-parameter selector is bound by its associated mapping form, so it is
+  allowed but not required as a separate `when:` subject.
+- For a two-dimensional variadic parameter, `x is T` constrains the value as a
+  whole while `x[..., ...] is T` is instantiated once per supplied cell.
 - `A, B is \\set` counts as both `A is \\set` and `B is \\set`.
 - `P, Q is \\\\statement` counts as both `P is \\\\statement` and
   `Q is \\\\statement`.
@@ -450,7 +627,8 @@ Id: "eaf616f8-53c0-4457-8819-19026f293f6b"
 SubsectionTitle: "Existential Clauses"
 Id: "72810ff0-9484-4519-91af-aa0a99bd43c4"
 
-Text: "Existential clause groups support optional predicates.
+Text: "Existential clause groups support optional predicates. Bindings introduced by a
+quantifier or by `let:` are local to the clause group that introduces them.
 
 - `exists: x is \\real` is valid without a `suchThat:` section.
 - `existsUnique: x is \\real` is valid without a `suchThat:` section.
@@ -470,21 +648,28 @@ Text: "The checker uses simple type facts and extension facts.
   a set is required.
 - `extends: G is \\set via X` records the extension through the given structural
   component.
-- Facts introduced by `given:`, `when:`, `extends:`, `specifies:`, and enabled
+- Facts introduced by `given:`, `when:`, `extends:`, `declares:`, and enabled
   membership capabilities are available while checking dependent statements.
+- The `via` form sets the types of the symbols it names, so `extends: M is \\set
+  via X` records `X is \\set` and a `via` tuple maps positionally onto the
+  extended type's own components.
+- Refined command type expressions are reference-checked, but a fact such as
+  `f is \\(continuous)::function:on{A}:to{B}` does not currently become a usable
+  type fact for proving later requirements.
 - This is type establishment, not theorem proving."
 Id: "b785d9b8-e3b1-412c-a60a-c84f12bbf853"
 
-SubsectionTitle: "`Defines:` And `Describes:` Usage"
+SubsectionTitle: "`Defines:` And `Declares:` Usage"
 Id: "2a45224c-2be3-47e3-8311-6b6d1aef88ac"
 
 Text: "The checker distinguishes values, definitions, and described types.
 
-- `X is \\foo` is used when `\\foo` is a `Describes:` entry.
-- `X := \\foo` is used when `\\foo` is a `Defines:` entry.
-- `X := {...} as \\set` is valid where a definition-style binding is expected.
-- A `Defines:` entry may include an expression and result type, such as
-  `Defines: C := A is \\set`."
+- `X is \\foo` is used when `\\foo` is a `Defines:` entry.
+- `X := \\foo` is used when `\\foo` is a `Declares:` entry.
+- `X := \\set@{...}` is valid where a definition-style binding is expected, and
+  is the way a `Declares:` value states its type without `is`.
+- A `Declares:` entry may include an expression and result type, such as
+  `Declares: C := A is \\set`."
 Id: "2437c74f-d2f9-461c-8504-5e9db80bdccf"
 
 SectionTitle: "Operators, Symbols, And Disambiguation"
@@ -510,7 +695,11 @@ Rules:
 - These headers do not use colon-directed forms such as `:|op|`.
 - Special operators are not limited to `+`, `-`, `*`, `/`, `=`, or `^`.
 - Any sequence of special operator characters may be an operator.
-- Operators may include named suffixes such as `*_1` or `*_free`.
+- Operators may include named suffixes such as `*_1` or `*_free`, and may carry
+  trailing primes, as in `*'`, `*''`, and `*'_a`.
+- A capability may declare a bracketed placeholder operator `x_ [*] y_`, whose
+  symbol is drawn from the definition's inputs or `Defines:` target rather than
+  being a fixed character.
 - Prefix and postfix named operators are treated as one-argument functions.
 - Infix named operators are treated as two-argument functions.
 - `f| x` is equivalent to `f(x)`.
@@ -573,10 +762,10 @@ Text: "Types can now separate definitional requirements from additional capabili
 - `Enables:` is intended for additional supported operations that come from
   other definitions.
 - A `Requires.definition:` item succeeds only when the referenced command is a
-  top-level `Defines:` item and that definition's output facts establish the
+  top-level `Declares:` item and that definition's output facts establish the
   requested `is <spec>` fact.
 - A `Requires.definition:` item fails if the referenced command is undefined,
-  is not a `Defines:` entry, or does not establish the requested fact.
+  is not a `Declares:` entry, or does not establish the requested fact.
 - `Enables:` accepts cast-backed `from:` groups.
 - A `from:` group must contain exactly one of `capability:` or `as:`.
 - `from: ... capability:` capabilities are used only when the actual target has
@@ -597,10 +786,14 @@ Text: "Types can now separate definitional requirements from additional capabili
 - A `relation:`'s cast kind is set with `represents:`, whose value is
   `\\\\coercion` or `\\\\encoding` (this replaced the older `as: \\\\view` /
   `as: \\\\abstraction`).
-- `relation:` entries marked `represents: \\\\coercion` provide ordinary cast
-  relationships reachable with a soft `as` cast.
+- `relation:` entries marked `represents: \\\\coercion` provide relationships
+  reachable with a soft build `\\type@value` (or `x is \\type`).
 - `relation:` entries marked `represents: \\\\encoding` provide an abstraction
-  boundary crossed only by a hard `as!` cast.
+  boundary crossed only by a hard build `\\type@!value` (or `x is! \\type`).
+- The removed `value as \\type` / `value as! \\type` cast syntax was replaced by
+  these builds.
+- An unmarked `relation:` is still valid; it records the relationship for
+  readers without affecting builds.
 - Coercion relationships may satisfy requirements after a command or operator
   has already resolved, but are not used to resolve operators or capabilities."
 Id: "6db6781e-cfb3-4c18-b31d-36686c7f831f"
@@ -650,8 +843,8 @@ Id: "9cab9fc7-6963-45e3-9792-9371a625d91d"
 
 Text: "The checker supports the built-in type predicate `\\\\type`.
 
-- `\\foo is? \\\\type` succeeds when `\\foo` is a top-level `Describes:` entry.
-- `\\foo is? \\\\type` fails when `\\foo` is a `Defines:` entry.
+- `\\foo is? \\\\type` succeeds when `\\foo` is a top-level `Defines:` entry.
+- `\\foo is? \\\\type` fails when `\\foo` is a `Declares:` entry.
 - `\\foo is_not? \\\\type` succeeds when `\\foo` is not a described type.
 - Ordinary built-in type facts share the same fact-checking path as
   `\\\\statement`, `\\\\expression`, and `\\\\specification`."
@@ -772,7 +965,9 @@ configuration; `mlg init` writes it with all fields at their defaults, and
   `80`). This field was renamed from `print_margin`; a config still carrying the
   old key is reported as an error.
 - `formatOnCheck` — whether `mlg check` formats the collection before checking
-  it (boolean, default `true`)."
+  it (boolean, default `true`).
+- `outputDir` — where `mlg export` writes the static site (a non-empty relative
+  path inside the collection, default `\"docs\"`)."
 Id: "b1e6b2b8-5753-466d-b99d-3b8d1e2eb7df"
 
 SubsectionTitle: "`mlg format`"

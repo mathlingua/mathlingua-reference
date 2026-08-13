@@ -9,13 +9,15 @@ Node.js and npm because it runs the embedded Next.js build.
 mlg export [--base-path PATH] [--cname DOMAIN] [--force]
 ```
 
-- Output always goes to `docs/` at the collection root (the conventional GitHub
-  Pages source folder), alongside `content/` and `metadata/`.
+- Output goes to the collection's `outputDir` — `docs/` by default, the
+  conventional GitHub Pages source folder — alongside `content/` and
+  `metadata/`.
 - Export refuses to replace a nonempty `docs/` unless `--force` is present, and
   errors if `docs/` exists as a file.
 - `--base-path` configures deployment below a domain subpath, such as
   `/repo-name`. It must be a path, not a URL, and may not contain a query string
-  or fragment.
+  or fragment. When omitted, it is inferred from the git remote for GitHub Pages
+  project sites; pass `/` to deploy at a domain root.
 - `--cname DOMAIN` writes a GitHub Pages `CNAME` file. It must be a domain name,
   not a URL, and may not be empty.
 - Every export includes `.nojekyll` and the per-route JSON data used by the

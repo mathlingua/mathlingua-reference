@@ -1,9 +1,9 @@
 Title: "Relation"
 Id: "4ed9df33-7da1-4263-b1ef-d7a6ad578912"
 
-Text: "`Relation:` states a bidirectional relationship between the two concepts named in
-`between:` and `and:`. Unlike a nested `Enables: relation:` group, it is a
-heading-less, standalone item and registers no cast/view rule.
+Text: "`Relation:` states a bidirectional relationship between the two subjects named
+in `between:` and `and:`. Unlike a nested `Enables: relation:` group, it is a
+heading-less, standalone item and registers no build/cast rule.
 
 ```mlg-fragment
 Relation: <OpenText>*
@@ -12,17 +12,21 @@ between: <RelationSubject>
 and: <RelationSubject>
 when?: <ClauseUnion>+
 means?: <RelationMeans>
-Justified?: <JustifiedItemUnion>+
 Documented?: <DocumentedItemUnion>+
+Justification?: <HaveGroup>+
 Aliases?: <AliasItemUnion>+
+Writing?: \"<WritingAlias>\"+
 References?: <ResourceHeader>+
 Metadata?: <MetadataItemUnion>+
 Id?: <OpenText>
 ```
 
 `Relation:` takes no bracket heading. `between:` and `and:` are required. Each
-subject is either a declaration such as `a is \\real` or a quoted reference —
-`\"#some.topic\"` or `\"\\signature\"`. `means:` is either a clause or quoted prose.
+subject is either an unquoted declaration such as `a is \\real` for a concept, or
+a quoted reference — a `\"#topic\"` or a `\"\\signature\"` (a `\\command` with its
+arguments removed, such as `\\function:on:to`) — so a `Relation:` may relate
+concepts, topics, and definitions in any combination. `means:` is likewise
+either an unquoted clause or quoted prose.
 
 ```mlg-fragment
 Relation:
@@ -42,5 +46,9 @@ when:
 means: a = b
 Documented:
 . description: \"a and b name the same value.\"
-```"
+```
+
+The item is checked like a theorem: declaration subjects and a statement
+`means:` are validated for declared symbols and valid command references, while
+quoted-text references and a prose `means:` are recorded rather than proven."
 Id: "f061cb10-9022-43ed-8162-7286b9958c3d"

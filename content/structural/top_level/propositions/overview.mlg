@@ -1,13 +1,14 @@
 Title: "Overview"
 Id: "6867c1e2-40e0-47dd-8532-5ff5dab99055"
 
-Text: "Proposition-like top-level items are `Axiom:`, `Theorem:`, and `Corollary:`.
+Text: "Proposition-like top-level items are `Axiom:`, `Theorem:`, and `Conjecture:`.
+All three share the same assertion shape.
 
 They may have an optional `[\\command]` heading, but the head section itself
 takes no argument: a result's name lives in `Documented:` `called:` (as for
-definitions). Their `then:` section is required. `given:` sections accept
-refined-capable declarations, so forms such as `f is \\(injective)::function` are
-valid where refined statements are allowed.
+definitions) and renders as the card's title. Their `then:` section is required.
+`given:` sections accept refined-capable declarations, so forms such as
+`f is \\(injective)::function` are valid where refined statements are allowed.
 
 ```mlg-fragment
 Axiom:
@@ -18,9 +19,17 @@ Documented:
 Id: \"23e4567e-e89b-42d3-a456-426614174000\"
 ```
 
-The checker validates syntax, references, declared symbols, and command requirements. It does not prove that the conclusion follows from the assumptions.
+Items in `given:` introduce available type and specification facts along with
+declared symbols. Items in `where:` are local assumptions available while
+checking `then:` and `iff:`.
 
-Top-level proposition cards use the resolved documented title when available. Otherwise they fall back to the command header.
+If a theorem-like group has a command heading, that heading introduces a command
+signature and participates in duplicate-signature and reference checks.
 
-`Lemma:` and `Conjecture:` are no longer part of the structural language."
+The checker validates syntax, references, declared symbols, and command
+requirements. It does not prove that the conclusion follows from the
+assumptions.
+
+`Corollary:` and `Lemma:` are not part of the structural language; a result that
+follows from another is written as an ordinary `Theorem:`."
 Id: "588dbd4b-f741-44cf-bcec-c8476066590a"

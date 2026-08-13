@@ -11,5 +11,6 @@ expression. If no `called:` is provided for an item that needs one, the called
 form is derived by using the written text in math mode.
 
 `called:` and `written:` support conditional fragments such as
-`@[U]{_{U?}}:{}`."
+`@[U]{_{U?}}:{}`, placeholder parenthesis modifiers (`A+?`, `A-?`), and the
+variadic suffix forms `x?{...A}`, `x?{B...}`, and `x?{...C...}`. See Rendering."
 Id: "cc171658-652e-4035-8946-5f1c3e83d098"

@@ -1,21 +1,31 @@
-Title: "Mapping Expressions"
+Title: "Function Literals"
 Id: "0c860eed-57d3-455d-a8d8-c4db67134a95"
 
-Text: "A mapping expression is an anonymous function value written with `|->`.
+Text: "A function literal is an anonymous function value written with `=>`.
 
 ```mlg-fragment
-(x_ is \\real) |-> x_ + 1
-(x_ \"in\" A) |-> x_ + a
-x_ |-> x_ + 1
+(x_ is \\real) => x_ + 1
+(x_ \"in\" A) => x_ + a
+x_ => x_ + 1
 ```
 
 The left side binds a parameter and the right side is the body. The binder is
 either a parenthesized specification (`(x_ is \\real)`, `(x_ \"in\" A)`) or a bare
-name whose specification is inferred from context. `|->` is right-associative
-and binds looser than every other expression form, so the entire remaining
-expression becomes the body.
+name whose specification is already known from an `is` fact. A bare binder with
+no inferable type is rejected.
 
-Command-argument shorthand: `\\foo[lhs]{rhs}` desugars to `\\foo{(lhs) |-> rhs}`.
+`=>` is right-associative and sits at the loosest precedence level, so the
+entire remaining expression becomes the body.
+
+Function **types** use `->` instead, keeping type and value syntax distinct and
+mirroring the `:->` and `:=>` operator forms:
+
+```mlg-fragment
+f is (_ \"in\" A) -> (_ \"in\" B)
+f is (? is \\natural, ? \"in\" \\reals) -> (? is \\real)
+```
+
+Command-argument shorthand: `\\foo[lhs]{rhs}` desugars to `\\foo{(lhs) => rhs}`.
 
 ```mlg-fragment
 \\foo[x_ is \\real]{x_ + 1}
@@ -24,9 +34,14 @@ Command-argument shorthand: `\\foo[lhs]{rhs}` desugars to `\\foo{(lhs) |-> rhs}`
 is exactly
 
 ```mlg-fragment
-\\foo{(x_ is \\real) |-> x_ + 1}
+\\foo{(x_ is \\real) => x_ + 1}
 ```
 
 The `[...]{...}` sugar applies only directly after a command chain. Elsewhere,
-`X[i]` is a subset call, not mapping sugar."
+`X[i]` is a subset call, not function-literal sugar.
+
+A function literal may satisfy a command's nominal type requirement structurally:
+the checker compares the number and types of its inputs and the type of its
+output against the mapping shape the required type describes, so no separate
+nominal fact about the literal is needed."
 Id: "b1a81256-b773-4703-9394-03be4c61d3b4"

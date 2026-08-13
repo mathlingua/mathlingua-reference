@@ -12,5 +12,7 @@ iff:
 
 The older `iff: ... then: ...` form is not supported. Use `have: ... iff: ...` instead.
 
-The group may have an optional label heading. Both `have:` and `iff:` are statement positions, so bare `is` and `\\:...:/` specifications are rejected there; use the predicate forms `is?` / `is_not?` and `\\:...?:/`."
+The group may have an optional label heading. Both `have:` and `iff:` are statement positions, so bare `is` and `\\:...:/` specifications are rejected there; use the predicate forms `is?` / `is_not?` and `\\:...?:/`.
+
+A `have:` group whose second section is `asserting:` rather than `iff:` is a different group entirely — see Have / Asserting."
 Id: "bc4586f4-5b51-4f44-b164-7221246e91a4"

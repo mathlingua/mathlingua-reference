@@ -10,5 +10,22 @@ Resource:
 . url: \"https://example.com\"
 ```
 
-A `References:` section contains resource headers, not quoted text."
+A `References:` section names resources with these headers. Both the bare
+`$book.chapter` form and the quoted `\"$book.chapter\"` form are accepted.
+
+A PDF resource reference may append `:page{n}`:
+
+```mlg-fragment
+References:
+. $zfc.foundations:page{42}
+```
+
+The resource's `offset:` is the physical PDF page on which its logical page 1
+appears, so the linked physical page is `n + offset - 1` (`offset` defaults to
+`1`).
+
+The viewer displays a resolved reference as the resource's title followed by its
+author entries in parentheses, linking to the resource's `url:` when it has one.
+`References:` is supporting content and is collapsed by default alongside
+`Documented:` and `Id:`."
 Id: "4a1ddf88-4cdb-4ef9-a0e8-c71830b26f68"

@@ -11,14 +11,17 @@ DocumentedItemUnion ::=
     | DescriptionGroup
     | RelatedGroup
     | DiscovererGroup
+    | NotesGroup
 ```
 
 `called:` is non-math text. `written:` is math-mode text. Definition cards use
 these in context, deriving one from the other when only one is present.
 
-`Describes:` and `Defines:` entries must include at least one of `called:` or
-`written:`. `Refines:` entries must include `adjective:` (and may add `written:`)
-but not `called:`.
+`Defines:`, `Declares:`, and `States:` entries must include at least one of
+`called:` or `written:`. `Refines:` entries must include `adjective:` (and may
+add `written:`) but not `called:`. `Topic:` entries accept only `called:`, and
+the opaque `Text…:` placeholders accept only `called:`, `written:`,
+`description:`, and `notes:`.
 
 `description:` prose is rendered above the card in `mlg view`; the card details
 show it as `<see above>`."

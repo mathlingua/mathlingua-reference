@@ -1,0 +1,41 @@
+Title: "Have / Asserting"
+Id: "37d38575-04ff-4929-ab90-c20d2812aba2"
+
+Text: "A `have:` group whose second section is `asserting:` (rather than `iff:`) is an
+escape hatch: it asserts that the `have:` items hold **given** the `asserting:`
+items.
+
+```mlg-fragment
+[LabelHeader]?
+have: <ClauseUnion>+
+asserting: <ClauseUnion>+
+because?: <ClauseUnion>+
+by?: <Expression>+
+```
+
+```mlg-fragment
+have:
+. f is? \\(injective)::function
+asserting:
+. f is? \\function
+because:
+. f is? \\function
+by:
+. \\injectivity.implies.function
+```
+
+`because:` and `by:` are justification the checker only reference-validates; it
+never proves them.
+
+The group is accepted in three places:
+
+- as an ordinary clause, where its `[label]` heading is optional
+- as a `declares:` item, where the heading is likewise optional
+- as an item of a top-level `Justification:` section, where the `[label]`
+  heading is **required** and pairs with a `[:label:]` on some formulation
+  elsewhere in the same group
+
+Note the contrast with the biconditional group `have:`/`iff:`, which asserts
+that its two sides are equivalent. The second section label is what
+distinguishes them."
+Id: "6cb4d0d8-a313-46c1-ba0a-766e7f502d3f"

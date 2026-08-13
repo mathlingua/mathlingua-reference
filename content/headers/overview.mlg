@@ -5,7 +5,7 @@ Text: "A structural group may have a bracketed heading.
 
 ```mlg-fragment
 [\\set]
-Describes: X
+Defines: X
 
 [theorem.ordinal.trichotomy]
 Theorem:
@@ -14,10 +14,22 @@ then: ...
 
 The group kind determines which heading parser is used:
 
-- command headings for definitions and optional theorem-like commands
-- label headings for many nested groups
-- author headings for `Person:`
-- resource headings for `Resource:`
+- **command** headings, required on `Defines:`, `Declares:`, `Refines:`,
+  `States:`, and `Equivalent:`, and optional on `Axiom:`, `Theorem:`, and
+  `Conjecture:`
+- **label** headings, optional on alias items, `Requires:`/`Enables:` items,
+  documented items, specify items, and clause groups — and required on the
+  `have:`/`asserting:` items of a `Justification:` section
+- **author** headings for `Person:`
+- **resource** headings for `Resource:`
+- **topic** headings for `Topic:`
 
-A heading is never what determines the structural group kind. The first section label does that."
+`Disambiguates:` takes an operator or function form as its heading, and
+`Relation:`, `Specify:`, and the prose and `Text…:` groups take no heading.
+
+Infix-specification headings (`\\:...:/`) are allowed only on `Defines:`, and
+refined headings (`::`) only on `Refines:`.
+
+A heading is never what determines the structural group kind. The first section
+label does that."
 Id: "77b36fee-6c6d-47c9-a0da-f0e040408850"

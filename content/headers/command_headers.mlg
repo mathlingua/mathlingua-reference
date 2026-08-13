@@ -13,7 +13,30 @@ Text: "Command headers define the shape of a command.
 \\function:?on{A}:?to{B}
 ```
 
-The `:?` marker makes a tail part optional. In a header it declares the tail part `on`/`to` as optional; a use site may omit it or supply it, and a supplied optional tail is written the same way (`:?on{...}`). Every tail part, optional or not, still requires at least one `{...}` argument group.
+The `:?` marker makes a tail part optional. It is accepted only in command
+**headers**, never in command expressions: `[\\function:on{A}:?to{B}]` declares
+both `\\function:on` and `\\function:on:to`, and a use site writes whichever
+optional parts it includes with a plain `:to`. Multiple optional tails may be
+independently omitted as long as the remaining tails keep the order from the
+heading, so `[\\foo:?baz{A}:?bar{B}]` accepts `\\foo`, `\\foo:baz`, `\\foo:bar`, and
+`\\foo:baz:bar`, but not `\\foo:bar:baz`. Every tail part, optional or not, still
+requires at least one `{...}` argument group.
+
+Curly argument groups are required where the definition expects them. Trailing
+parenthesized groups are invocation groups: if a definition includes only
+trailing parenthesized groups beyond the actual use, the use may omit them, so
+`[\\some.function{A}(x, y)]` may be referenced as either `\\some.function{A}` or
+`\\some.function{A}(x, y)`.
+
+Callable headings may use placeholder spelling for their trailing parameters,
+matching function declarations, so `[\\natural.succ(n_)]` declares the same
+one-argument shape as a trailing `(n)` group while making the parameter role
+explicit. Infix command headings accept the same spelling for their operands.
+
+Argument-group counts are tracked as the command's required shape but do not
+disambiguate definitions: two definitions with the same signature and different
+argument counts are still duplicate command signatures. The one exception is a
+mapping-parameter header — see Mapping Parameter Headers.
 
 A command expression may end with context suffixes after all ordinary curly and parenthesized arguments:
 

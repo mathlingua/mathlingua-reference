@@ -12,15 +12,89 @@ Templates remove placeholder markers such as `?` after substitution and support 
 ```text
 @[U]{_{U?}}
 @[U]{_{U?}}:{_X}
+@[x, y]{x? + @[z]{z?}:{*}}
 ```
+
+The first body is rendered only when every listed variable has a value; the optional `:{...}` body is rendered otherwise. Conditional fragments may be nested.
 
 Dot-grouped expressions of the form `(. ... .)` are grouping syntax only and render without visible parentheses.
 
-Names ending in digits render with numeric subscripts: `x1` renders as `x_1`. The top-level `Writing:` block can map names to LaTeX, and that mapping is applied throughout expressions, statements, and specifications. For example, `alpha123` renders as `\\alpha_{123}` when `alpha :~> \\alpha` is defined.
+Names ending in digits render with numeric subscripts: `x1` renders as `x_1`. Prime marks render as LaTeX primes, so `X'` renders as $X'$ and `x'_a'` as $x'_{a'}$. A stropped symbolic name renders as the operator itself, without its backticks.
 
-Builtin types such as `\\\\statement`, `\\\\expression`, `\\\\specification`, and `\\\\opaque` render as plain text names.
+The top-level `Writing:` block can map names to LaTeX, and that mapping is applied throughout expressions, statements, and specifications. For example, `alpha123` renders as `\\alpha_{123}` when `alpha :~> \\alpha` is defined. Any non-prose top-level item may override that mapping for itself with its own `Writing:` section.
 
-Card titles come from the item's documented forms. When an item has both a `called:` and a `written:` form, the title shows both — the called form followed by the written form, with the written form muted as a secondary display. When only one is present, the title is just that form. Theorem-like and axiom-like entries with no such documentation fall back to their label, with dots converted to spaces and words capitalized.
-
-`Documented.description:` renders as prose above the card, like a `Text:` block. The card's `Documented:` details show `description: <see above>`."
+Builtin types such as `\\\\statement`, `\\\\expression`, `\\\\specification`, and `\\\\opaque` render as plain text names."
 Id: "7b7cfa09-526e-493d-acbe-356bad1f8a48"
+
+SectionTitle: "Placeholder Parentheses"
+Id: "7a668a33-0032-4c8f-9a3d-2c0b12b7f6a1"
+
+Text: "A placeholder may carry a `+` or `-` before its `?` to control the parentheses around the value substituted into it. The modifier is not part of the name, so `A?`, `A+?`, and `A-?` all substitute the same value `A`.
+
+- `A?` — substitutes the value exactly as rendered.
+- `A+?` — wraps the value in exactly one pair of parentheses, unless it is a single atom.
+- `A-?` — removes every pair of parentheses wrapping the value.
+
+With `A` bound to each of the following, the three forms render as (shown `A?` / `A+?` / `A-?`):
+
+- `A = 1+2` gives `1 + 2` / `(1 + 2)` / `1 + 2`
+- `A = (1+2)` gives `(1 + 2)` / `(1 + 2)` / `1 + 2`
+- `A = (((1+2)))` gives `(((1 + 2)))` / `(1 + 2)` / `1 + 2`
+- `A = a` gives `a` / `a` / `a`
+
+`A+?` never doubles parentheses: the value is first reduced to its bare form and then wrapped once. Only parentheses that enclose the *whole* value are removed, so `(1+2)+(3+4)` is left intact by `A-?`.
+
+A value counts as a single atom, and so is left unwrapped by `A+?`, when it contains no space or comma outside of a bracket. That covers names (`a`, `x_1`), single commands (`\\emptyset`), and function calls (`f(x)`), but not compound expressions (`1 + 2`) or comma-separated tuples (`X, Y`).
+
+A modifier only applies when the `+` or `-` sits between the name and the `?`, so `A?-B?` is still a placeholder, a literal `-`, and another placeholder."
+Id: "2b3f9a41-6d17-4e2c-8f5d-7d16a4a9f0c3"
+
+SectionTitle: "Variadic Placeholders"
+Id: "5c4e1b28-9f37-4a6d-8b21-0e4c2d7a1b95"
+
+Text: "A variadic header parameter is used in `called:` and `written:` just like an ordinary placeholder: `x?`, `x+?`, and `x-?` insert the whole variadic value and apply the usual parenthesis rule. At an invocation the concrete arguments are used; in a definition title without concrete values, the symbolic rendering is used.
+
+Three suffix forms control how the individual values are combined:
+
+- `x?{...A}` appends `A` to every value.
+- `x?{B...}` prepends `B` to every value.
+- `x?{...C...}` inserts `C` between adjacent values.
+
+The `A`, `B`, or `C` body may be arbitrary template text, including LaTeX. For example, `x?{...\\text{ and }...}` renders three arguments as `x_1 \\text{ and } x_2 \\text{ and } x_3`.
+
+A two-dimensional variadic placeholder nests the element notation inside a row notation:
+
+```text
+x?{R...{...C}}
+x?{{...C}...R}
+x?{L...{...C}...R}
+```
+
+The inner braces use the same prefix, postfix, or infix rules across the elements of each row. Text before the inner braces is applied at the start of every row and text after it at the end. For example, `\\left[ x?{{...,...}\\\\} \\right]` joins columns with commas and appends a LaTeX row break to every row, rendering the argument as a matrix in square brackets.
+
+The same expansion produces a definition card's symbolic title, so a header bounded by `(m,n)` renders symbolic first, indexed, and last rows and columns rather than displaying the raw `{...}` notation."
+Id: "8e2d5c73-1a49-4f80-b6e3-3a5f0c9d24e7"
+
+SectionTitle: "Card Titles"
+Id: "9a1c7f36-2e58-4b90-a3d7-6f81e5b0c2d4"
+
+Text: "When a `Documented:` section supplies both a `called:` and a `written:` form, the item's card is titled with both: the human name, a wide space, then the written notation, which the viewer renders muted so it reads as \"and here is its symbol\" rather than as a second, competing title.
+
+```mlg-fragment
+[\\empty.set]
+Defines: X
+Documented:
+. called: \"empty set\"
+. written: \"\\emptyset\"
+```
+
+That card is titled \"Empty set  $\\emptyset$\" with `$\\emptyset$` muted. An item documented with only one of the two forms is titled with that form alone.
+
+The title always shows the name first and the notation second, whichever order the two are listed in. Listing order still decides which single form names the item *inline* — `called:` first makes `X is \\empty.set` read \"X is empty set\", `written:` first makes it read \"X is $\\emptyset$\" — but it does not reorder the card title.
+
+A `written:` nested inside a `called:` group documents that called form, so it pairs with it in the title just as a top-level `written:` would.
+
+`Refines:` items are named by an `adjective:` rather than a `called:`, so their titles are unaffected. Theorem-like and axiom-like entries with no documentation fall back to their label, with dots converted to spaces and words capitalized.
+
+`Documented:` `description:` renders as prose above the card, like a `Text:` block; the card's `Documented:` details show `description: <see above>`."
+Id: "4d7b0e91-8c25-4a63-9f14-5b2e7a3c86f0"

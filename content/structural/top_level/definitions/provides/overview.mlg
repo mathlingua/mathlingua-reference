@@ -53,6 +53,12 @@ by?: <OpenText>+
 
 `from:` groups must contain exactly one of `capability:` or `as:`; a `from:`
 with `as:` may not carry `written:`. Each `represents:` entry is `\\\\coercion` or
-`\\\\encoding`. A relation that `represents: \\\\coercion` supports ordinary `as`
-casts; one that `represents: \\\\encoding` supports hard `as!` casts."
+`\\\\encoding`. A relation that `represents: \\\\coercion` supports soft builds
+(`\\type@value`); one that `represents: \\\\encoding` additionally supports hard
+builds (`\\type@!value`). An unmarked `relation:` is still valid — it records the
+relationship for readers without affecting builds.
+
+A `Requires:` `definition:` item has the shape `\\command is <type-or-spec>`. It
+succeeds only when the referenced command is a top-level `Declares:` entry whose
+definition establishes the requested fact."
 Id: "db689e71-bbe1-43bf-bda4-6614f9cbe81f"

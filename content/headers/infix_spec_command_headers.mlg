@@ -5,13 +5,42 @@ Text: "An infix specification command header uses the `\\:...:/` form.
 
 ```mlg-fragment
 [A \\:subset:/ B]
-Describes: A
+Defines: A
 when: B is \\set
+extends: A is \\set
+Documented:
+. written: \"A? \\subseteq B?\"
+Id: \"23e4567e-e89b-42d3-a456-426614174000\"
 ```
 
-The header uses a single backslash: `\\:` opens the form and `:/` closes it.
+The header uses a single backslash: `\\:` opens the form and `:/` closes it. Both
+operands are required.
 
-These forms are special for `Describes:`. The left-hand side is the item being described, so it does not require a `when:` entry for itself. Other header parameters still need `when:` specifications.
+These forms are special for `Defines:`, and only `Defines:` may use them. The
+left-hand side is the item being defined, so it does not require a `when:`
+entry for itself. Other header parameters still need `when:` specifications.
 
-At use sites the specification form `A \\:subset:/ B` introduces symbols and is only allowed in binding positions (`exists:`, `given:`, `forAll:`). In statement positions the predicate form `A \\:subset?:/ B` (note `?:/`) must be used instead."
+At use sites the specification form `A \\:subset:/ B` introduces symbols and is
+only allowed in binding positions (`exists:`, `given:`, `forAll:`, `let:`,
+`where:`, `when:`, `suchThat:`). In statement positions the predicate form
+`A \\:subset?:/ B` (note `?:/`) must be used instead.
+
+A specification operator can be **refined** with the same parenthesized
+refinement syntax as an ordinary command, on a `Refines:` group. The base
+operator is inferred from the heading:
+
+```mlg-fragment
+[A \\:(nonempty)::subset:/ B]
+Refines: A
+when: B is \\set
+Documented:
+. adjective: \"nonempty\"
+. written: \"A? \\subset_{+} B?\"
+```
+
+An explicit refined spec-infix definition is not required when the refinement is
+inherited through the base operator's `extends:` type. If `\\:subset:/` extends
+its left operand to `\\set` and `\\(nonempty)::set` is defined, then
+`X' \\:(nonempty)::subset:/ X` resolves implicitly, establishing both
+`X' \\:subset:/ X` and `X' is \\(nonempty)::set`."
 Id: "a28bef7f-e165-42b7-b187-0c9f446e3a93"

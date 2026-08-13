@@ -1,7 +1,20 @@
 Title: "Type Resolution"
 Id: "2b59cf98-6cf3-4b4b-835d-baabd8ee216b"
 
-Text: "Plain operators and function-like notation are resolved by looking in the nearest local scope and then in global definitions. If an ambiguous global `Disambiguates:` item exists, its `when:` branches are tried in order and its `else:` branch is used as a fallback.
+Text: "A binary operator resolves in this order:
+
+1. **application desugar** — when the symbol names a bound value in scope,
+   `x * y` is `*(x, y)` and `x |op| y` is `op(x, y)`;
+2. a **colon-qualified capability** — `:op`, `op:`, or `:op:` picks the operand
+   type that owns the operator;
+3. a matching **`Disambiguates:`** entry;
+4. a **capability owned by the operands' common type**, where a value known only
+   through a spec (`y \"in\" M`) is first reduced to its `is` facts to make the
+   match.
+
+If none apply, the operator is reported unresolved. Prefix and postfix
+operators, and member access, follow the analogous capability and disambiguation
+paths.
 
 Directed operator forms select the type used for resolution:
 
@@ -13,17 +26,34 @@ x :*: y     -- use the least common ancestor type
 
 The same idea applies to named operators such as `x :|op| y`.
 
-Operator resolution uses `extends:` relationships. A nested `Enables: relation:`
-group whose `represents:` is `\\\\coercion` registers an automatic coercion: a
-value of the described type may be used wherever the related type is expected.
-Coercions are applied when checking whether actual arguments satisfy a resolved
-command's requirements; they do not participate in notation lookup.
+Capabilities from `Requires:` and `Enables:` are considered together for
+notation lookup, and resolution searches the selected type and its parent types
+through `extends:`.
 
-Capabilities from `Requires:` and `Enables:` are considered together for notation lookup. Cast-backed `from:` capabilities apply only when the value was introduced with a compatible cast literal, such as `A := {x_ : x_ is \\real} as \\set`.
-
-Casts are written `value as \\type` (soft) and `value as! \\type` (hard). A soft
-`as` cast succeeds when the target fact can be established, including through
-`\\\\coercion` relations. A hard `as!` cast additionally drops through an
-`\\\\encoding` relation — an abstraction boundary that no automatic coercion or
-soft cast crosses."
+Build-backed `from:` capabilities apply only when the value was introduced with
+a compatible built literal, such as `A := \\set@{x_ : x_ is \\real}`."
 Id: "b4f93e01-3b86-4228-b3ed-512add4b38bf"
+
+SectionTitle: "Builds And Coercion"
+Id: "88aed822-a5b4-4f56-8966-ee206c1c5290"
+
+Text: "A build views a value at a stated type: `\\type@value` is a **soft** build and
+`\\type@!value` is a **hard** build. They replace the removed `value as \\type`
+and `value as! \\type` cast expressions.
+
+A soft build succeeds when the value already has that type, has a parent type
+that extends to it, or its type (or a parent) has an `Enables:` `relation:` to
+the target marked `represents: \\\\coercion`. A hard build performs the same checks
+and additionally allows relations marked `represents: \\\\encoding` — an
+abstraction boundary that no automatic coercion or soft build crosses.
+
+The named counterparts are `x is \\type` (soft view) and `x is! \\type` (hard
+view).
+
+Coercion relationships are applied when checking whether an already-resolved
+command's arguments satisfy its requirements — a command requiring
+`x is \\rational` may accept an integer argument when `\\integer` has a coercion
+relation to `\\rational`. They are **not** used for operator resolution: `+` on
+integers will not resolve to `+` on rationals merely because integers can be
+viewed as rationals."
+Id: "40a048de-3573-4d73-ad8c-ca8c1772687d"

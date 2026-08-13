@@ -1,0 +1,91 @@
+Title: "Mapping Parameter Headers"
+Id: "fbb011c5-2061-441f-a805-6feacc42ad88"
+
+Text: "An ordinary command heading can select parameters from a mapping declared in
+another curly argument group. An **exact** selector uses the mapping's declared
+parameter name:
+
+```mlg-fragment
+[\\integral{f(x_, y_)}:d{f.x_}]
+[\\integral{f(x_, y_)}:d{f.y_}]
+```
+
+These headings distinguish integration over the first and second parameters. An
+**arbitrary** selector has `?` before its trailing `_` and introduces a fresh
+local selector name:
+
+```mlg-fragment
+[\\integral{f(x_, y_)}:d{f.u?_}]
+[\\integral{f(x_, y_)}:d{f.u?_, f.v?_}]
+```
+
+Here `u` and `v` can match any parameters of `f`. An arbitrary selector name
+must not duplicate a declared parameter name: `f.x?_` is invalid when the
+mapping is `f(x_, y_)`.
+
+A ranged variadic mapping supports either a fixed number of arbitrary selected
+parameters or a **variadic subset**:
+
+```mlg-fragment
+[\\integral{f(x_[i_:=1...n])}:d{f.x1?_, f.x2?_}]
+[\\integral{f(x_[i_:=1...n])}:d{f.x_[i_[j_:=1...m]]}]
+```
+
+The second selector denotes `x_[i_[1]], x_[i_[2]], ..., x_[i_[m]]`; its outer
+name and index must match the associated ranged mapping parameter.
+
+A header using mapping-parameter selectors must obey all of these rules:
+
+- selectors occur in exactly one curly argument group;
+- every value in that group is a mapping-parameter selector and uses an owner
+  such as `f.`;
+- all selectors in the group have the same owner;
+- exactly one other curly group declares that owner with explicit parameters;
+- selectors are supported only by ordinary command headings, not by infix,
+  infix-spec, or refined headings.
+
+A selector is already bound through its associated mapping form, so it does not
+require a separate `when:` entry. The mapping owner may still need one (for
+example `when: f is \\function`), and a selector may appear in `when:` when an
+extra refinement is useful."
+Id: "829a1be1-9568-4bfa-a101-1cff3df75b81"
+
+SectionTitle: "Use Sites And Specialized Signatures"
+Id: "647958a7-39ff-40d1-9f7e-8932f6d95eeb"
+
+Text: "At a use site the mapping parameters must be written explicitly. Command
+mapping-literal sugar binds them for the selector group:
+
+```mlg-fragment
+\\integral[x_, y_ is \\real]{x_^2 + y_^2}:d{x_}
+\\integral[x_, y_, z_ is \\real]{x_^2 + y_^2 + z_^2}:d{x_, y_}
+```
+
+Every selected value must be one of those bound parameters, so replacing `x_`
+with an unrelated `c` is an error.
+
+Such a heading has both a **specialized** and a **general** signature. Exact
+positions are encoded as `#1`, `#2`, and so on, arbitrary positions as `#?`, and
+a variadic subset as `#*`:
+
+```text
+\\integral{f(x_, y_)}:d{f.x_}                    ->  \\integral{_(2)}:d{#1}
+\\integral{f(x_, y_)}:d{f.y_}                    ->  \\integral{_(2)}:d{#2}
+\\integral{f(x_, y_)}:d{f.u?_, f.v?_}            ->  \\integral{_(2)}:d{#?, #?}
+\\integral{f(x_[i_:=1...n])}:d{f.x1?_, f.x2?_}   ->  \\integral{_(*)}:d{#?, #?}
+\\integral{f(x_[i_:=1...n])}:d{f.x_[i_[j_:=1...m]]}
+                                                 ->  \\integral{_(*)}:d{#*}
+```
+
+All five have the general signature `\\integral:d`. Specialized signatures must
+be unique, while several definitions may share a general signature. Resolution
+first prefers a matching fixed mapping arity over `_(*)`, then exact selected
+positions in their written order over `#?`, and finally `#*`. If two candidates
+are equally specific, the invocation is ambiguous and is rejected.
+
+In a `Documented:` `written:` template for one of these headings, the mapping
+owner placeholder denotes the mapping **body** rather than the whole anonymous
+mapping, and selector placeholders denote the parameters chosen at the use site.
+For example, `written: \"\\frac{d}{d x_?} f?\"` renders
+`\\d[x_, y_ is \\natural]{x_ + y_}:d{x_}` as `\\frac{d}{d x} x + y`."
+Id: "b0697b30-9d86-4d5a-81da-2f29a4033b35"

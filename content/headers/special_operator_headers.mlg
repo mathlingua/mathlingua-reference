@@ -15,5 +15,16 @@ Documented:
 
 Each `when:`/`to:` branch is tried in order, and `else:` is the fallback.
 
-Special operator headers can use any sequence of special operator characters and may include underscore suffixes such as `*_1` or `*_free`."
+Special operator headers can use any sequence of special operator characters and may include underscore suffixes and trailing primes, such as `*_1`, `*_free`, `*'`, and `*'_a`.
+
+An operator form heading may also back a `Defines:` or `Declares:` item directly, for example:
+
+```mlg-fragment
+[x_ \\.natural.+./ y_]
+[f(x_)]
+[f| x_]
+[x_ |f]
+```
+
+Standalone placeholder operands are normalized to named callable parameters, so `n_ \\.natural.+./ m_` binds `n` and `m` without separate `when:` declarations. Operator headers do not use the colon-directed forms such as `:|op|`."
 Id: "4b616a6a-2192-4345-8f55-eafa451cc2e5"

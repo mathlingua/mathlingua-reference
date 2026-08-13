@@ -61,14 +61,15 @@ to write mathematical knowledge.*
 
 - **Phrases** — defines "phrase" as a unit of formulation syntax.
 - **Structural Declarations, Value Declarations, and Equality** — distinguishes
-  the related operators `:=`, `::=`, `:=:`, and `=`.
+  the related operators `::=`, `:=`, and `=`.
 - **Forms** — the *shape* of notation rather than a concrete value.
   - **Names** — identifier-like names and stropped symbolic names.
   - **Operators** — infix, prefix, and postfix operator forms.
   - **Placeholder Names** — placeholders ending in one underscore (`x_`).
   - **Tuples** — parenthesized forms of two or more elements.
   - **Collections** — set-like / collection-like form shapes.
-  - **Variadic Forms** — magnetic placeholders such as `x__`.
+  - **Variadic Forms** — magnetic placeholders (`x__`) and ranged variadic
+    mapping parameters (`f(x_[i_ := 1...n])`).
 - **Types** — `is` type statements.
   - **Is Keyword** — `is` records or requires a type fact.
   - **Variadic Is** — one `is` statement applied to several subjects.
@@ -84,7 +85,8 @@ to write mathematical knowledge.*
   - **Operator Expressions** — operator application (`x * y`, `x :* y`, …) and
     how it resolves.
   - **Grouped Expressions** — parenthesized grouping, `(…)` and `(. … .)`.
-  - **Mapping Expressions** — anonymous function values written with `|->`.
+  - **Function Literals** — anonymous function values written with `=>`, and the
+    function *type* arrow `->`.
   - **Tuple Expressions** — parenthesized tuples of two or more elements.
   - **Collection Expressions** — set/collection builder `{ x : … | … }`.
   - **Indexed Expressions** — subscript/index (subset) calls.
@@ -97,11 +99,11 @@ to write mathematical knowledge.*
   - **Inferred Parameters** — command arguments written `X?`.
   - **Membership Expressions** — `member_of` relating a subject to a collection.
   - **Spec Literals** — values of `\specification` with an implicit `?` subject.
-  - **Casts** — viewing an expression as another type.
+  - **Builds** — `\type@value` / `\type@!value`, viewing a value at a type.
   - **Equality Expressions** — `=` and `!=`.
-  - **Variadic Equality Expressions** — chains comparing three or more
-    expressions.
-  - **Labeled Expressions** — attaching a label to an expression.
+  - **Variadic Slices** — `x...` / `x[1...i_...n]` and their broadcasts, plus the
+    `\\map` and reduce builtins.
+  - **Labeled Expressions** — attaching a `[:label:]` to a grouped formulation.
 - **Aliases** — introduce alternate notation or rendering behavior.
   - **Expression Aliases** — `:=>`.
   - **Writing Aliases** — `:~>`, mapping names to render templates.
@@ -116,7 +118,14 @@ to write mathematical knowledge.*
 - **Top Level** — the full set of top-level item groups.
   - **Definitions** — command-backed definition groups and their support
     sections.
-    - **Describes** — `Describes:` defines a concept characterized by a subject.
+    - **Defines** — `Defines:` introduces a mathematical form or typed
+      declaration (formerly `Describes:`).
+    - **Declares** — `Declares:` introduces a command by an `is` or spec
+      statement (formerly `Defines:`).
+    - **Refines** — `Refines:` refines an existing type with an adjective,
+      including the `implicitly:` / `explicitly:` markers.
+    - **States** — `States:` states notation without introducing a value.
+    - **Disambiguates** — `Disambiguates:` globally resolves an ambiguous form.
     - **Requires and Enables** — `Requires:` / `Enables:` (formerly `Provides:`).
       - **Capability** — `capability:` items granting notation or definitions.
       - **Expression Alias** — `:=>` aliases inside capabilities.
@@ -135,26 +144,25 @@ to write mathematical knowledge.*
       - **Overview** — the `overview:` open-text documented item.
       - **Related** — `related:` related-item notes.
       - **Discoverer** — `discoverer:` discoverer information.
-    - **Justified** — nested justification items.
-      - **Label** — a `label:` justification item.
-      - **By** — a `by:` justification item.
+      - **Notes** — `notes:` prose reminders.
+    - **Justification** — `Justification:` `have:` / `asserting:` entries that
+      discharge `[:label:]` formulations (formerly `Justified:`).
     - **Alias** — `Aliases:` with nested `alias:` groups.
-    - **Defines** — `Defines:` defines a new value or object.
-    - **Refines** — `Refines:` refines an existing type with an adjective.
-    - **Disambiguates** — `Disambiguates:` globally resolves an ambiguous form.
-    - **States** — `States:` states notation without introducing a value.
   - **Propositions** — the proposition-like items `Axiom:`, `Theorem:`,
-    `Corollary:`.
+    `Conjecture:`.
     - **Theorem** — `Theorem:` item.
-    - **Corollary** — `Corollary:` item (adds a required `of:`).
     - **Axiom** — `Axiom:` item.
+    - **Conjecture** — `Conjecture:` item, a statement with no claimed proof.
   - **Relation** — `Relation:` states a bidirectional relationship
     (`between:` / `and:`).
   - **Equivalent** — `Equivalent:` names a class of interchangeable items.
   - **Topic** — `Topic:` names a documentation topic.
   - **Specify** — top-level `Specify:` numeric-domain metadata (page).
   - **Person** — `Person:` an author / person record.
-  - **Writing** — `Writing:` a top-level rendering alias.
+  - **Writing** — `Writing:` collection-wide rendering aliases, plus the
+    per-item `Writing:` override.
+  - **Text Placeholders** — the opaque `TextTheorem:` / `TextAxiom:` /
+    `TextConjecture:` / `TextDefinition:` prose stand-ins.
   - **Resource** — `Resource:` a bibliographic reference.
     - **Title** — `title:` display title.
     - **Author** — `author:` one or more authors.
@@ -179,6 +187,7 @@ to write mathematical knowledge.*
 - **Clause** — clauses used in `satisfies:`, `then:`, `that:`, `where:`,
   `suchThat:`.
   - **Given** — nested `given:` assumptions for a local `then:` block.
+  - **Let** — `let:` introduces local bindings for a `then:` block.
   - **Not** — `not:` negates one clause.
   - **All Of** — `allOf:` all sub-clauses required.
   - **Any Of** — `anyOf:` at least one alternative holds.
@@ -189,7 +198,10 @@ to write mathematical knowledge.*
   - **For All** — `forAll:` universal quantification with `where:` / `then:`.
   - **If** — `if:` assumes a condition and checks `then:` in that context.
   - **Have / Iff** — the biconditional `have:` … `iff:`.
+  - **Have / Asserting** — `have:` … `asserting:` with optional `because:` /
+    `by:`.
   - **Piecewise** — `piecewise:` with `if:` / `then:` and optional `else:`.
+  - **Builtin Clause Commands** — the inline `\\forAll{…}:then{…}` command forms.
   - **Specification** — a fact via `is` or an infix spec command (`\:…:/`).
   - **Expression** — a clause argument that is an expression.
   - **Statements** — declaration and specification statements in clauses.
@@ -211,8 +223,12 @@ to write mathematical knowledge.*
 - **Author Headers** — headers beginning with `@`, used by `Person:`.
 - **Resource Headers** — headers beginning with `$`, used by `Resource:` and
   `References:`.
+- **Topic Headers** — headers beginning with `#`, used by `Topic:`.
 - **Command Headers** — define the shape of a command.
-- **Variadic Command Parameters** — magnetic placeholders ending in `__`.
+- **Variadic Command Parameters** — variadic curly arguments (`x...`,
+  `x[i_ := 1...n]`) and the 2D form.
+- **Mapping Parameter Headers** — selecting a mapping's parameters (`f.x_`) and
+  the specialized signatures they produce.
 - **Infix Specification Command Headers** — the `\:…:/` form.
 - **Infix Expression Command Headers** — command notation between two
   expressions.
@@ -223,9 +239,10 @@ to write mathematical knowledge.*
 
 *— What `mlg check` validates after parsing.*
 
-- **Type System** — the kinds of facts the checker tracks.
-- **Type Resolution** — how plain operators and function-like notation resolve
-  (local scope, then global definitions).
+- **Type System** — the kinds of facts the checker tracks and the six builtin
+  types.
+- **Type Resolution** — how operators resolve, and how builds and coercion
+  relations are used.
 - **What is Checked** — the consistency the checker enforces.
 - **What is Not Checked** — the limits: it does not prove theorems or verify that
   axioms/definitions are mathematically true.

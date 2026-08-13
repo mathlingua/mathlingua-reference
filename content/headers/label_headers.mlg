@@ -14,5 +14,7 @@ allOf:
 . Q
 ```
 
-Dotted labels are useful because renderers can turn dots into spaces for fallback titles, while source stays precise."
+Dotted labels are useful because renderers can turn dots into spaces for fallback titles, while source stays precise. Unlike expression labels (`[:a.b:]`), a label header may contain stropped symbolic name parts.
+
+A label heading is optional on alias items, `Requires:`/`Enables:` items, documented items, specify items, and clause groups. It is **required** on the `have:`/`asserting:` items of a `Justification:` section, where it pairs with a `[:label:]` on a formulation elsewhere in the same group."
 Id: "88b282a9-4078-4473-acb4-ebbe5ed34d0f"

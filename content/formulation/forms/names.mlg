@@ -1,9 +1,12 @@
 Title: "Names"
 Id: "207670b3-6b94-49e7-a5e8-2252477f4401"
 
-Text: "A normal formulation name is either an identifier-like name or a stropped symbolic name.
+Text: "A normal formulation name is either an identifier-like name or a stropped
+symbolic name.
 
-Identifier-like examples:
+Identifier-like names match `[A-Za-z0-9](?:[A-Za-z0-9_']*[A-Za-z0-9'])?`, so they
+may start with a digit, may contain `_` internally, and must otherwise end in an
+ASCII letter, digit, or prime.
 
 ```text
 x
@@ -11,14 +14,36 @@ x1
 x_1
 abc123
 123
+X'
+x'_a'
 ```
 
-Stropped symbolic examples:
+A name may carry one or more trailing **prime marks** (`'`) after an
+alphanumeric, including on a subscript. Primes render as LaTeX primes: `X'`
+renders as $X'$ and `x'_a'` as $x'_{a'}$.
+
+Stropped symbolic names wrap an operator name in backticks. The inside text is
+non-empty and uses only the operator characters `-~!#%^&*\\+=|<>/`, optionally
+with trailing primes:
 
 ```text
 `*`
-`+_-*`
+`*+`
+`*'`
 ```
 
-Names may contain underscores internally, but a name ending in `_` or `__` is a placeholder, not a normal name. In rendering, names of the form letters followed by digits are shown with a numeric subscript, so `x1` renders like `x_1`."
+`` `*` `` is the operator `*` referred to **by name**, so where `*` is bound —
+a magma's operation, for instance — `` `*` `` resolves to that operator's value.
+It may be passed as an argument and invoked in function form as `` `*`(a, b) ``.
+It renders as the operator itself, without the backticks: `` `*` `` as $*$ and
+`` `*'` `` as $*'$.
+
+Names may contain underscores internally, but a name ending in `_` or `__` is a
+placeholder, not a normal name; `_x` and `'x` are not names at all.
+
+In rendering, names of the form letters followed by digits are shown with a
+numeric subscript, so `x1` renders like `x_1`.
+
+The exact spellings `is`, `is?`, `is_not?`, `via`, `member_of`, and `satisfies`
+are reserved by the lexer-driven formulation parser."
 Id: "b1c37930-d8e1-4a73-8c04-21114dc5f2f1"

@@ -1,10 +1,11 @@
 overview.mlg -> Overview
 operator_expressions.mlg -> Operator Expressions
 grouped_expressions.mlg -> Grouped Expressions
-mapping_expressions.mlg -> Mapping Expressions
+mapping_expressions.mlg -> Function Literals
 tuple_expressions.mlg -> Tuple Expressions
 collection_expressions.mlg -> Collection Expressions
 indexed_expressions.mlg -> Indexed Expressions
+variadic_expressions.mlg -> Variadic Slices
 command_expressions.mlg -> Command Expressions
 infix_command_expressions.mlg -> Infix Command Expressions
 refined_command_expressions.mlg -> Refined Command Expressions
@@ -14,5 +15,4 @@ membership_expressions.mlg -> Membership Expressions
 spec_literals.mlg -> Spec Literals
 casts.mlg -> Builds
 equality_expressions.mlg -> Equality Expressions
-variadic_expressions.mlg -> Variadic Equality Expressions
 labeled_expressions.mlg -> Labeled Expressions

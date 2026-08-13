@@ -9,5 +9,7 @@ Text: "Tuple expressions use parentheses and contain two or more elements.
 (x, +, y)
 ```
 
-One-element tuples are not supported. Parentheses around a single expression are grouping syntax."
+One-element tuples are not supported. Parentheses around a single expression are grouping syntax. Operators may appear as tuple elements, as in `(+, x)`.
+
+A tuple literal satisfies a command's nominal type requirement structurally: the checker compares its component count and positional component specs against the required type."
 Id: "68b4d6db-7521-4f23-8239-c8d167cbfdd9"

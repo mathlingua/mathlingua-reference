@@ -5,17 +5,26 @@ Text: "A named function call supplies a function's arguments by name using `[| .
 
 ```mlg-fragment
 f[|value := x, index := n|]
-f[|value := x|]
+f[|value = x, index = n|]
 ```
 
-Each entry has a left-hand side, then `:=`, then the argument expression. The
-left-hand side is a name or a subset call:
+Each entry has a left-hand side, then `:=` or `=`, then the argument expression.
+Both spellings are accepted; `=` is the current form and `:=` the legacy one.
+
+The left-hand side is a name, an inferred parameter name, a subset call, a
+ranged mapping selector, or the catch-all `...`:
 
 ```mlg-fragment
 f[|value := x, Pair[left, right] := y, nested[outer[inner]] := z|]
+f[|x1?_ = 1, x2?_ = 2, ... = 0|]
+f[|x_[i_[1...m]] = 1, ... = 0|]
 ```
 
+The catch-all slot `... = value` supplies the value for every parameter no
+earlier element names. Omitting it represents a **partial application**, such as
+`f[|x1?_ = 1|]`.
+
 The names identify which parameter each value fills; the call renders like an
-ordinary positional call (`f[|value := x, index := n|]` renders as `f(x, n)`).
-This is distinct from a mapping literal, which uses `|->`."
+ordinary positional call, so `f[|value := x, index := n|]` renders as `f(x, n)`.
+This is distinct from a function literal, which uses `=>`."
 Id: "c3a40261-4ef1-4014-8016-1c201655dcef"

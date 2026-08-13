@@ -1,0 +1,39 @@
+Title: "Text Placeholders"
+Id: "fa224f45-371e-4bc5-9e0e-93a27ae988db"
+
+Text: "`TextTheorem:`, `TextAxiom:`, `TextConjecture:`, and `TextDefinition:` each hold
+a Markdown-with-LaTeX body standing in for a structured item that will be
+written later. They are **opaque to the type-checker** — the body is never
+parsed as MathLingua, so it may freely mention commands that do not exist yet.
+
+```mlg-fragment
+TextTheorem | TextAxiom | TextConjecture | TextDefinition: <OpenText>
+Documented?: <TextDocumentedItem>+
+References?: <ResourceHeader>+
+Id: <OpenText>
+```
+
+```mlg-fragment
+TextTheorem: \"For every group $G$, the identity element is **unique**.\"
+Documented:
+. called: \"Uniqueness of identity\"
+. written: \"\\text{Uniqueness of the identity}\"
+. description: \"A placeholder for the uniqueness theorem.\"
+. notes: \"Turn this into a structured Theorem once \\group exists.\"
+References:
+. $book.algebra
+Id: \"23e4567e-e89b-42d3-a456-426614174000\"
+```
+
+These groups take no bracket heading. The optional `Documented:` accepts only
+`called:`, `written:`, `description:`, and `notes:`; `References:` records the
+citations to carry into the structured form; `Id:` is required.
+
+`notes:` are prose reminders for the later conversion. Writing the prose,
+references, and layout first — then filling in structured forms — is easier than
+going from nothing straight to structured groups.
+
+A placeholder renders as a card titled by its `called:`/`written:` (or the kind
+word when untitled), with the body as rendered Markdown. Its `Documented:`,
+`References:`, and `Id:` sections sit behind the supporting-sections toggle."
+Id: "c86a9ddd-ba72-4ce1-b83e-4d43d468710b"

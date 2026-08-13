@@ -1,0 +1,20 @@
+Title: "Topic Headers"
+Id: "ac992e5d-567c-43ed-95c4-58ae9cb6b25e"
+
+Text: "Topic headers begin with `#` followed by a dotted name path, and are used by
+`Topic:` groups.
+
+```mlg-fragment
+[#real.analysis]
+Topic: \"Analysis over the real numbers.\"
+```
+
+The heading renders as a human title by title-casing the path — `#real.analysis`
+becomes \"Real Analysis\" — unless the item's `Documented:` `called:` text
+overrides it.
+
+Elsewhere a topic is *referred to* as quoted text (`\"#real.analysis\"`) so a
+reference is never mistaken for a usage. Those quoted references appear in a
+`Topic:` item's `within:` and `Related:` `to:` sections and in a `Relation:`
+item's `between:`/`and:` sections."
+Id: "e1160b78-1efd-479c-a19d-a8f341d2cc30"

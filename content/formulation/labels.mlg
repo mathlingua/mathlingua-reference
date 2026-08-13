@@ -11,5 +11,12 @@ then: ...
 
 Label headers are parsed from dotted parts. Dots are commonly rendered as spaces in fallback display names, with words capitalized for theorem-like and axiom-like cards.
 
-Label headers differ from expression labels. Expression labels use the `[:label:]` syntax inside expressions, while structural label headers appear in square brackets before a group."
+Label headers differ from expression labels. Expression labels use the `[:label:]` syntax and follow a grouped expression, statement, or specification, while structural label headers appear in square brackets before a group.
+
+```mlg-fragment
+(x + y)[:sum:]
+(.x is \\real.)[:typed:]
+```
+
+A `[:label:]` may sit on any nested formulation, and a top-level `Justification:` section discharges it: an entry whose `[label]` heading matches establishes the labeled formulation from its `asserting:` items. Unlike label headers, expression labels are lexer tokens and do not support stropped symbolic parts."
 Id: "d36979a8-c1ec-4f3b-8e8c-3dafd5ee366b"

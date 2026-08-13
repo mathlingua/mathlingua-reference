@@ -1,12 +1,89 @@
 Title: "Variadic Command Parameters"
 Id: "98c3c1af-3c5a-409f-ab52-f34c557aaca7"
 
-Text: "Variadic command parameters are written with magnetic placeholders ending in `__`.
+Text: "Only **curly** argument groups can be variadic. A variadic parameter occupies
+the whole `{...}` group and accepts one or more expressions.
 
 ```mlg-fragment
-f(x__)
-h(x__) := f(g(x__))
+x...
+x...n
+x[i_ := 0...]
+x[i_ := 1...]
+x[i_ := 0...n]
+x[i_ := 1...n]
 ```
 
-They allow function-like notation to accept any number of supplied arguments while the checker treats the collected arguments as one input. Use ordinary placeholders such as `x_`, `y_`, and `z_` when a form must accept exactly that many arguments."
+The plain `x...` form does not name the length. `x...n` names the length without
+binding an index. The bracketed forms bind an index and explicitly choose zero-
+or one-based indexing; no other starting index is accepted.
+
+This is separate from a magnetic `x__` parameter in parentheses: magnetic
+parameters collect arguments into one tuple, while curly variadic parameters
+spread one or more arguments through the command.
+
+Reusing a length name constrains groups to the same number of arguments:
+
+```text
+[\\foo{x...n}:bar{y...n}]   -- equal lengths
+[\\foo{x...n}:bar{y...m}]   -- independent lengths
+```
+
+Elements are referenced with subset syntax such as `x[0]`, `x[1]`, or `x[i_]`,
+and ranges with slice syntax — see Variadic Slices.
+
+In `called:` and `written:` templates a variadic parameter is used like an
+ordinary placeholder (`x?`, `x+?`, `x-?`), with suffix forms `x?{...A}`,
+`x?{B...}`, and `x?{...C...}` controlling how the individual values are
+combined."
 Id: "6d103d90-d4f1-4e39-8695-347b15ef7a4a"
+
+SectionTitle: "Two-Dimensional Variadic Parameters"
+Id: "1c818ddd-5b95-4775-a0c9-5601e3a2a1d4"
+
+Text: "A curly argument group may instead declare a rectangular two-dimensional
+variadic parameter. No other argument delimiter supports the 2D form, and it
+must be the sole contents of its group. Both indices use the same zero- or
+one-based origin, and the row and column bounds may be named or omitted:
+
+```mlg-fragment
+x[(i_, j_) := (1,1)...(m,n)]
+x[(i_, j_) := (0,0)...(m,n)]
+x[(i_, j_) := (1,1)...]
+x[(i_, j_) := (0,0)...]
+```
+
+For example, `\\foo{x[(i_, j_) := (1,1)...(m,n)]}` accepts a semicolon-separated
+rectangular argument:
+
+```mlg-fragment
+\\foo{a, b, c;
+      x, y, z;
+      q, r, s}
+```
+
+Commas separate columns and semicolons separate rows. Every row must have the
+same nonzero number of entries, and a flat comma-separated argument does not
+match a 2D parameter. When present, `m` and `n` receive the row and column
+counts. An element is referenced as `x[i,j]`.
+
+In a command's `when:` section, `x is T` constrains the variadic value as a
+whole. To constrain its cells directly, write `x[..., ...] is T`; the checker
+instantiates that requirement once for every supplied matrix element. The
+indexed form `x[i,j] is T` gives the same per-cell constraint while making the
+bound row and column indices available to the definition.
+
+A 2D variadic placeholder nests the ordinary element notation inside a row
+notation in `called:` and `written:` templates:
+
+```text
+x?{R...{...C}}
+x?{{...C}...R}
+x?{L...{...C}...R}
+```
+
+The inner braces use the same prefix, postfix, or infix rules across the
+elements of each row; text before the inner braces is applied at the start of
+every row and text after it at the end. For example,
+`\\left[ x?{{...,...}\\\\} \\right]` joins columns with commas and appends a LaTeX
+row break to every row, rendering the argument as a matrix in square brackets."
+Id: "368b1e93-309e-4122-9fa3-a274419f3535"

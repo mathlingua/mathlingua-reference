@@ -11,15 +11,33 @@ Equivalent: <OpenText>*
 using?: <DeclarationStatement>+
 when?: <ClauseUnion>+
 to: <Expression>+
-Justified?: <JustifiedItemUnion>+
 Documented?: <DocumentedItemUnion>+
+Justification?: <HaveGroup>+
 References?: <ResourceHeader>+
 Id?: <OpenText>
 ```
 
 The `[CommandHeader]` heading is required and the `to:` section is required.
 Unlike the definition-like groups, `Equivalent:` has no `Requires:`, `Enables:`,
-`Aliases:`, or `Metadata:` sections.
+`Aliases:`, `Writing:`, or `Metadata:` sections.
+
+Each `to:` command must use the header parameters directly, as bare names — no
+compound expressions and no `using:` symbols. The item is validated locally:
+
+- every `to:` member must be defined and be a `Defines`, `Declares`, `States`,
+  or `Refines` — and all members must be the same one of those kinds;
+- the members must declare the same target shape, and (by kind) the same `is`
+  type (`Declares`), the same `extends:` target (`Defines`), or the same base
+  type (`Refines`);
+- the members must provide the same set of capabilities, by name and arity; and
+- this item's own `when:` must guarantee each member's requirements.
+
+The members are then mutually substitutable to the type checker: a value known
+to be one member (or the class-naming header) satisfies a requirement that it be
+any other member, as long as the target member's header parameters are all
+pinned to matching actuals by the known member. A capability or spec operator
+the class provides likewise resolves on a value typed as any member or the
+header.
 
 ```mlg-fragment
 [\\foo:of{a}:with{b}]

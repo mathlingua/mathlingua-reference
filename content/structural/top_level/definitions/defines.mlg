@@ -1,23 +1,56 @@
 Title: "Defines"
-Id: "94516121-2dd0-4ec4-9a4e-b50a4ae45753"
+Id: "13d7dffc-b893-4883-8713-94f043308359"
 
 Text: "```mlg-fragment
 [CommandHeader]
-Defines: <DeclarationStatement>
+Defines: <DefinesTargetUnion>
 using?: <DeclarationStatement>+
 when?: <ClauseUnion>+
-expresses?: <ClauseUnion>
+extends?: <IsOrViaItemUnion>
+declares?: <IsOrViaItemUnion>+
+satisfies?: <ClauseUnion>+
 Requires?: <RequiresItemUnion>+
 Enables?: <EnablesItemUnion>+
-Justified?: <JustifiedItemUnion>+
 Documented?: <DocumentedItemUnion>+
+Justification?: <HaveGroup>+
 Aliases?: <AliasItemUnion>+
+Writing?: \"<WritingAlias>\"+
 References?: <ResourceHeader>+
 Metadata?: <MetadataItemUnion>+
 Id?: <OpenText>
 ```
 
-`Defines:` introduces a command by defining a value, statement, or typed object. The `expresses:` section records the defining expression or clauses.
+`Defines:` introduces a command as a mathematical form or a typed,
+value-bearing declaration. Its target is tried first as a form/declaration and
+then as an ordinary declaration statement, so both `Defines: G ::= (X, *, e)`
+and `Defines: X := value is \\set` are accepted.
 
-`using:` introduces auxiliary symbols. `when:` states requirements for command-header parameters. `Requires:` and `Enables:` describe capabilities that the checker can use when resolving notation. `Documented:` must include at least one of `called:` or `written:`. `Id:` is required for every top-level item; `mlg check` adds it when missing."
-Id: "bf47cb67-b5e3-44de-add0-6b767a92aec8"
+```mlg-fragment
+[\\group]
+Defines: G ::= (X, *, e)
+extends: G is \\set via X
+declares:
+. * is \\function:on{X}:to{X}
+. e \"in\" G
+Documented:
+. called: \"group\"
+Id: \"23e4567e-e89b-42d3-a456-426614174000\"
+```
+
+Header parameters must be specified in `when:`. Symbols the target introduces
+must be typed directly, through `extends:`, or through `declares:`.
+
+`using:` introduces auxiliary symbols. `extends:` records the subtype or
+extension view (see Via Keyword). `declares:` types the parts of the described
+form, including the components of a destructuring target; those facts are
+assumed while checking the body and are carried by values of the type.
+`satisfies:` records the defining conditions.
+
+`Requires:` and `Enables:` describe capabilities the checker can use when
+resolving notation. `Documented:` must include at least one of `called:` or
+`written:`. `Id:` is required for every top-level item; `mlg check` adds it when
+missing.
+
+Only `Defines:` has a `declares:` section, and only `Defines:` may use an
+infix-specification heading such as `[A \\:subset:/ B]`."
+Id: "b2614ebb-ec03-4101-b137-fed2ef759073"

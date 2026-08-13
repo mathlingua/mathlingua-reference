@@ -8,7 +8,9 @@ Documented:
 . adjective: \"injective\"
 ```
 
-When a refined type is rendered, the adjective is placed before the base type's rendered name. Multiple refinements render as comma-separated adjectives, such as `injective, surjective function`.
+When a refined type is rendered, the adjective is placed before the base type's rendered name. A single refinement such as `\\(a)::type` renders as `<a> <type>`, while `\\(a, b, c)::type` renders as `(<a>, <b>, and <c>) <type>`.
+
+Refined **specification-infix** forms use the opposite order: the rendered base relation comes first, followed by the refinements in parentheses, so `X \\:(a, b, c)::relation:/ Y` renders as `<X relation Y> (<a>, <b>, and <c>)`. An explicit `written:` template overrides either default.
 
 `Refines:` may also contain `written:`, but it may not contain `called:`. The adjective supplies the prose name that would otherwise be carried by `called:`."
 Id: "de66f7d9-1f4a-416b-9308-e08651b503b5"

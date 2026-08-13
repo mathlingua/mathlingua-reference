@@ -1,12 +1,31 @@
-Title: "Variadic"
+Title: "Variadic Forms"
 Id: "0017c7f2-0505-4e23-8c7b-3909a59d36cd"
 
-Text: "Variadic forms are written with magnetic placeholders such as `x__`.
+Text: "A function form supports either exactly one magnetic placeholder, one or more
+ordinary placeholders, or one ranged variadic mapping parameter. Mixing magnetic
+and ordinary placeholders is not allowed.
 
 ```mlg-fragment
 f(x__)
-Defines: h(x__) := f(g(x__)) is \\function:on{A}:to{C}
+f(x_, y_, z_)
+f(x_[i_ := 1...n])
+f(x__[i_ := 1...n])
 ```
 
-A magnetic placeholder allows a function-like form to accept multiple supplied arguments while treating them as one tuple-like input. This is different from `f(x_, y_, z_)`, which accepts exactly three separate arguments."
+A magnetic placeholder `x__` lets a function-like form accept any number of
+supplied arguments while the checker treats them as one tuple-like input. This
+is different from `f(x_, y_, z_)`, which accepts exactly three separate
+arguments.
+
+A **ranged variadic mapping parameter** names the arity instead of hiding it:
+`x_` spreads the mapping inputs while `x__` records that they are treated as a
+tuple. It must be the mapping's only parameter, must bind both an index and a
+length name, and must start at 0 or 1.
+
+```mlg-fragment
+Defines: f(x_[i_ := 1...n])
+```
+
+This is separate from variadic **command** arguments, which occupy a whole
+`{...}` group in a command header — see Variadic Command Parameters."
 Id: "2b7430b9-2dba-4332-99d3-93c71aedf31c"

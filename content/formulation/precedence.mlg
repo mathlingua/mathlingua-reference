@@ -3,18 +3,28 @@ Id: "affb5e64-17a9-4b53-8119-1b6feae01023"
 
 Text: "Expression forms bind from loosest to tightest as follows:
 
-- mapping literals `|->` (right-associative, loosest)
-- specification and predicate forms: infix spec `\\:...:/`, `\"op\"`, `\"op\"?`,
-  `is`, `is?`, `is_not?`, `as`, `as!`, `member_of`, `satisfies`
-- infix command expressions `\\.cmd./`
-- equality and special operators `=`, `!=`, and other special operators
-- additive `+`, `-`
-- multiplicative `*`, `/`
-- power `^` (right-associative)
-- named operators `|op|`
-- prefix and postfix operators, then primaries (tightest)
+1. function literal `=>` (right-associative, loosest)
+2. specification and predicate forms: `is`, `is?`, `is_not?`, quoted `\"op\"`
+   specs and predicates, infix specs `\\:...:/` and `\\:...?:/`, `member_of`,
+   `satisfies`, and spec literals
+3. infix command expressions `\\.cmd./`
+4. equality `=` and `!=`, and special binary operators such as `<` and `>`
+5. additive `+`, `-`
+6. multiplicative `*`, `/`
+7. power `^`
+8. named operators `|op|`, including member paths `|M.*|` and the colon variants
+9. unary prefix (`+`, `-`, and prefix named operators `f|`)
+10. postfix named operators (`x |f`)
+11. atoms (tightest)
 
-So equality binds tighter than infix command expressions:
+Note that infix commands (level 3) bind **looser** than arithmetic, while named
+operators (level 8) bind **tighter**; they are not the same level.
+
+Associativity: `^` and `=>` associate to the right; `=`, the arithmetic levels,
+named operators, and infix commands all associate to the left, so `a |f| b |g| c`
+is a left-associated chain.
+
+Because equality binds tighter than infix command expressions:
 
 ```mlg-fragment
 x = a \\.or./ x = b

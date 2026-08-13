@@ -2,8 +2,10 @@ overview.mlg -> Overview
 label_headers.mlg -> Label Headers
 author_headers.mlg -> Author Headers
 resource_headers.mlg -> Resource Headers
+topic_headers.mlg -> Topic Headers
 command_headers.mlg -> Command Headers
 variadic_command_parameters.mlg -> Variadic Command Parameters
+mapping_parameter_headers.mlg -> Mapping Parameter Headers
 infix_spec_command_headers.mlg -> Infix Specification Command Headers
 infix_expression_command_headers.mlg -> Infix Expression Command Headers
 special_operator_headers.mlg -> Special Operator Headers
