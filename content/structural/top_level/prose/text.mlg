@@ -4,7 +4,7 @@ Id: "b16f4dc3-57ba-4126-8650-37beec87e507"
 Text: "`Text:` is a top-level prose block.
 
 ```mlg-fragment
-Text: \"This paragraph supports **Markdown** and $x \\in X$.
+Text: \"This paragraph supports **Markdown** and $x \in X$.
 
 It may span multiple source lines.\"
 Id: \"23e4567e-e89b-42d3-a456-426614174000\"

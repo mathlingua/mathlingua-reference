@@ -23,7 +23,7 @@ Enables:
   capability: x_ \"in\" X :-> x_ member_of Y
 ```
 
-A value introduced with a build such as `A := \\set@{x_ : x_ is \\real}` records
+A value introduced with a build such as `A := \set@{x_ : x_ is \real}` records
 the literal for `A`, so reducing `a \"in\" A` through that `from:` capability
 yields `a member_of A` and the literal's element facts become available.
 

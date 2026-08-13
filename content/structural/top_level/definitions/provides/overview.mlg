@@ -22,21 +22,21 @@ For type checking, ordinary capabilities from both sections are combined. The sp
 ```mlg-fragment
 Requires:
 . capability: x_ \"in\" X :-> x_ member_of X
-  written: \"x_? \\in X?\"
-. definition: \\natural.0 is \\natural
+  written: \"x_? \in X?\"
+. definition: \natural.0 is \natural
 
 Enables:
-. capability: x_ - y_ :=> x_ \\.set.minus./ y_
+. capability: x_ - y_ :=> x_ \.set.minus./ y_
 . from: Y ::= {y__ : ...}
   capability: x_ \"in\" X :-> x_ member_of Y
 . from: P ::= {(p_, q_) : ...}
   as: f(p_) := q_
 . relation:
-  to: r := \\as.rational{n} is \\rational
-  when: n is \\integer
-  means: n \\.embedded.to./ r
+  to: r := \as.rational{n} is \rational
+  when: n is \integer
+  means: n \.embedded.to./ r
   represents:
-  . \\\\coercion
+  . \\coercion
 ```
 
 A nested `Enables: relation:` group has the shape:
@@ -52,13 +52,13 @@ by?: <OpenText>+
 ```
 
 `from:` groups must contain exactly one of `capability:` or `as:`; a `from:`
-with `as:` may not carry `written:`. Each `represents:` entry is `\\\\coercion` or
-`\\\\encoding`. A relation that `represents: \\\\coercion` supports soft builds
-(`\\type@value`); one that `represents: \\\\encoding` additionally supports hard
-builds (`\\type@!value`). An unmarked `relation:` is still valid — it records the
+with `as:` may not carry `written:`. Each `represents:` entry is `\\coercion` or
+`\\encoding`. A relation that `represents: \\coercion` supports soft builds
+(`\type@value`); one that `represents: \\encoding` additionally supports hard
+builds (`\type@!value`). An unmarked `relation:` is still valid — it records the
 relationship for readers without affecting builds.
 
-A `Requires:` `definition:` item has the shape `\\command is <type-or-spec>`. It
+A `Requires:` `definition:` item has the shape `\command is <type-or-spec>`. It
 succeeds only when the referenced command is a top-level `Declares:` entry whose
 definition establishes the requested fact."
 Id: "db689e71-bbe1-43bf-bda4-6614f9cbe81f"

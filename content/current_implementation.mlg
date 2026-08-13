@@ -98,8 +98,8 @@ Text: "`called:` and `written:` have distinct meanings.
   space, then the written notation rendered muted. The name always comes first
   and the notation second, whichever order the two are listed in.
 - Listing order still decides which single form names the item *inline*, so
-  `called:` first makes `X is \\empty.set` read \"X is empty set\" while
-  `written:` first makes it read \"X is $\\emptyset$\".
+  `called:` first makes `X is \empty.set` read \"X is empty set\" while
+  `written:` first makes it read \"X is $\emptyset$\".
 - A `written:` nested inside a `called:` group documents that called form, so it
   pairs with it in the title just as a top-level `written:` would."
 Id: "049b5a49-f1c9-40d8-bb19-02c2b5ad816a"
@@ -125,8 +125,8 @@ Text: "A collection may contain at most one top-level `Writing:` item.
 
 ```text
 Writing:
-. \"alpha :~> \\alpha\"
-. \"beta :~> \\beta\"
+. \"alpha :~> \alpha\"
+. \"beta :~> \beta\"
 ```
 
 Rules:
@@ -141,7 +141,7 @@ Rules:
   statements, and specifications.
 - Names are split on underscores before applying aliases.
 - Numeric suffix rendering also honors writing aliases, so `alpha123` renders as
-  `\\alpha_{123}` when `alpha :~> \\alpha` is defined."
+  `\alpha_{123}` when `alpha :~> \alpha` is defined."
 Id: "7de0ced3-d722-4660-8eea-2690392cb112"
 
 SubsectionTitle: "Documented Descriptions"
@@ -162,8 +162,8 @@ Id: "37744803-7e1d-4507-ba78-8e6bd13ed419"
 Text: "Command references may end with a context suffix.
 
 ```text
-\\ordered.pair#using{A := X; B := Y}
-\\some.theorem#given{X := A; Y := B}
+\ordered.pair#using{A := X; B := Y}
+\some.theorem#given{X := A; Y := B}
 ```
 
 Rules:
@@ -261,13 +261,13 @@ Id: "4cc8daa6-8570-4ee6-b995-532c0a8ce88e"
 
 Text: "Builtin kinds render as plain text.
 
-- `\\\\statement` renders as `statement`.
-- `\\\\expression` renders as `expression`.
-- `\\\\specification` renders as `specification`.
-- `\\\\opaque` is satisfied by any value but does not establish any more specific
+- `\\statement` renders as `statement`.
+- `\\expression` renders as `expression`.
+- `\\specification` renders as `specification`.
+- `\\opaque` is satisfied by any value but does not establish any more specific
   type information.
-- `\\\\abstract` is the abstract target of a `:->` capability.
-- `\\\\type` holds for command references whose top-level entry is a `Defines:`
+- `\\abstract` is the abstract target of a `:->` capability.
+- `\\type` holds for command references whose top-level entry is a `Defines:`
   item.
 - The renderer no longer treats these as a newline plus italic text."
 Id: "ac8c3af4-54d4-4c0f-836e-c87caef3f9a1"
@@ -278,7 +278,7 @@ Id: "022d692f-3957-4e3b-bedd-a58a0115fd28"
 Text: "Refined command headers use the form:
 
 ```text
-[\\(adjective)::base.command:?tail{X}]
+[\(adjective)::base.command:?tail{X}]
 ```
 
 Rules:
@@ -288,11 +288,11 @@ Rules:
 - The `Refines:` section no longer repeats `is <base>`.
 - The base command after `::` comes from the header.
 - A refined expression may include multiple refinements, such as
-  `\\(injective, surjective)::function`.
+  `\(injective, surjective)::function`.
 - A refinement may extend other refinements with:
-  `extends: f is \\(injective, surjective)::[[f]]`.
+  `extends: f is \(injective, surjective)::[[f]]`.
 - `[[f]]` is valid only in a refined expression of the form
-  `\\(... )::[[f]]`.
+  `\(... )::[[f]]`.
 - `[[f]]` means \"the current type of `f`\", allowing the extension to apply to
   a more specific base type such as `bounded.function`."
 Id: "fdbf2219-49b5-4c38-8e20-0352a8d3af73"
@@ -316,9 +316,9 @@ Function targets:
   its output `y_`.
 - `declares:` on such a `Defines:` target states the input and output
   requirements; component and whole-function declarations are equivalent, so
-  `declares: f is (? is \\real) -> (? is \\real)` is the same as typing `x_` and
+  `declares: f is (? is \real) -> (? is \real)` is the same as typing `x_` and
   `y_` separately.
-- `Declares: h(x__) := f(g(x__)) is \\function:on{A}:to{C}` is accepted.
+- `Declares: h(x__) := f(g(x__)) is \function:on{A}:to{C}` is accepted.
 
 Collection targets:
 
@@ -329,13 +329,13 @@ Collection targets:
 - `member_of` is a keyword used by enabled membership capabilities.
 - `x member_of X` is valid only when `X` is a collection literal or has a
   collection literal attached by a build.
-- `A := \\set@{x_ : x_ is \\real}` builds a collection literal at the described
+- `A := \set@{x_ : x_ is \real}` builds a collection literal at the described
   type and records the literal for `A`.
-- `A := {x_ : x_ is \\real | x_ > 2} is \\set` binds the literal to `A` as a set.
-- If `A := \\set@{x_ : x_ is \\real}` and `x \"in\" A`, the checker can establish
-  `x is \\real` through a `from:` capability.
-- If `A is \\set` without a collection literal, membership establishes
-  `x is \\\\opaque`.
+- `A := {x_ : x_ is \real | x_ > 2} is \set` binds the literal to `A` as a set.
+- If `A := \set@{x_ : x_ is \real}` and `x \"in\" A`, the checker can establish
+  `x is \real` through a `from:` capability.
+- If `A is \set` without a collection literal, membership establishes
+  `x is \\opaque`.
 
 Literal arguments also satisfy a required nominal type structurally: a function
 literal by its input arity and input/output specs, a tuple literal by component
@@ -352,7 +352,7 @@ Text: "Set builder definitions allow general element forms before the colon.
   the binder position.
 - For example, `{(a_, b_) : a_ \"in\" A, b_ \"in\" B}` is accepted.
 - This applies in declarations and definitions such as:
-  `Defines: C := {(a_, b_) : ...} is \\set`."
+  `Defines: C := {(a_, b_) : ...} is \set`."
 Id: "ee6486f7-157f-4564-9caa-5dbf4897847e"
 
 SubsectionTitle: "Function Literals And Function Types"
@@ -362,21 +362,21 @@ Text: "A function literal is an anonymous function value written with `=>`, whil
 function *type* uses `->`. Keeping the two arrows distinct mirrors the `:=>` and
 `:->` operator forms.
 
-- `(x_ is \\real) => x_ + 1` binds the parameter through the parenthesized spec
+- `(x_ is \real) => x_ + 1` binds the parameter through the parenthesized spec
   so the body checks.
 - `(x_ \"in\" A) => x_ + a` is also valid; the parenthesized left side types the
   parameter.
 - A bare `x_ => ...` (no spec) is only valid where the parameter's type can be
   inferred from a declared function type, as in `f := x_ => x_ + 1 is
-  \\real.function`.
-- The command sugar `\\foo[x_ is \\real]{x_ + 1}` expands to
-  `\\foo{(x_ is \\real) => x_ + 1}`.
+  \real.function`.
+- The command sugar `\foo[x_ is \real]{x_ + 1}` expands to
+  `\foo{(x_ is \real) => x_ + 1}`.
 - `->` accepts one or more input specs and exactly one output spec, so unary,
   binary, and n-ary function types are written directly:
   `f is (_ \"in\" A, _ \"in\" B) -> (_ \"in\" C)`. The declared input arity is
   retained rather than curried into nested unary types.
 - Function-type spec parameters must be written `_`, or `?` in a structural
-  type literal such as `(? is \\natural) -> (? is \\real)`.
+  type literal such as `(? is \natural) -> (? is \real)`.
 - A mapping body is checked after resolving type-directed operators, so an
   overloaded expression such as `x + y` contributes the output type of the
   selected addition operator. When that operator is declared through a callable
@@ -387,15 +387,15 @@ Id: "c4744318-52a4-49d5-b41d-c0d9e08cf12d"
 SubsectionTitle: "Spec Literals And `satisfies`"
 Id: "6da24db4-1501-4c7f-bfc8-29ff63db6592"
 
-Text: "A spec literal is a reusable value of the builtin type `\\\\specification` with an
+Text: "A spec literal is a reusable value of the builtin type `\\specification` with an
 implicit `?` placeholder subject.
 
-- `? is \\real` and `? \"in\" \\reals` are spec literals. The `\"op\"` target may be a
-  name or a command such as `\\reals`.
+- `? is \real` and `? \"in\" \reals` are spec literals. The `\"op\"` target may be a
+  name or a command such as `\reals`.
 - The infix operator `satisfies` applies a spec to a subject: `x satisfies (? is
-  \\real)` substitutes `?` with `x`, yielding `x is \\real`.
+  \real)` substitutes `?` with `x`, yielding `x is \real`.
 - This enables general set builders, for example
-  `\\set:where{? is \\real}` whose membership reduces to `x is \\real`."
+  `\set:where{? is \real}` whose membership reduces to `x is \real`."
 Id: "b511e0f8-b2a0-4628-98ae-7b05fd04ae09"
 
 SubsectionTitle: "Inferred Parameters"
@@ -404,8 +404,8 @@ Id: "b0e40152-a152-45bd-8eaf-9160c8e767f7"
 Text: "In a declaring position a command argument may be written `X?` to declare `X`
 inline with the exact type that argument position requires.
 
-- `f is \\function:from{A?}:to{B?}` introduces `A` and `B` as `\\set` (from the
-  command's `when:`), so a separate `A, B is \\set` is unnecessary.
+- `f is \function:from{A?}:to{B?}` introduces `A` and `B` as `\set` (from the
+  command's `when:`), so a separate `A, B is \set` is unnecessary.
 - The first occurrence carries the `?`; later uses are the plain name.
 - Reusing `X?` when `X` is already in scope is an error.
 - The `?` is authoring-only and renders as `X`."
@@ -417,13 +417,13 @@ Id: "38817908-3c89-4477-85ca-39a49894ac0c"
 Text: "A bare specification introduces symbols, so it is accepted only in binding
 positions, not where a statement is expected.
 
-- A specification is `x is \\type`, an infix spec command `A \\:subset:/ B`, or a
+- A specification is `x is \type`, an infix spec command `A \:subset:/ B`, or a
   named spec `x \"op\" y`.
 - Specifications are allowed in binding positions: `exists:`, `given:`,
   `forAll:` arguments, and `where:` / `such_that:` / `when:`.
 - In statement positions — `if:`, `then:`, `iff:`, `that:`, `else:`, and inside
   `not:` / `allOf:` / `anyOf:` / `oneOf:` / `equivalently:` — use the predicate
-  forms instead: `is?`, `is_not?`, and the `?`-suffixed infix spec `A \\:subset?:/
+  forms instead: `is?`, `is_not?`, and the `?`-suffixed infix spec `A \:subset?:/
   B`.
 - A named spec statement such as `x \"in\" y` is a statement (not a symbol
   introducer) and is accepted in statement positions as written."
@@ -438,14 +438,14 @@ whole `{...}` group.
 - The forms are `x...`, `x...n`, and `x[i_ := 0...]` / `x[i_ := 1...]` /
   `x[i_ := 0...n]` / `x[i_ := 1...n]`. No other starting index is accepted.
 - Reusing a length name constrains groups to the same number of arguments, so
-  `[\\foo{x...n}:bar{y...n}]` requires equal lengths while
-  `[\\foo{x...n}:bar{y...m}]` leaves them independent.
+  `[\foo{x...n}:bar{y...n}]` requires equal lengths while
+  `[\foo{x...n}:bar{y...m}]` leaves them independent.
 - Slices `x...`, `x[0...n]`, `x[1...n]`, `x[0...i_...n]`, and `x[1...i_...n]`
   broadcast over `:=`, `=`, `!=`, `is`, `is?`, and quoted specification
   operators. Paired slices must spell exactly the same start, binder, and end.
 - In a clause list a broadcast produces one clause per element.
-- `\\\\map{...}:to{...}` zips aligned slices pointwise; `\\\\leftReduce{op}:on{...}`
-  and `\\\\rightReduce{op}:on{...}` reduce one slice and render with an ellipsis.
+- `\\map{...}:to{...}` zips aligned slices pointwise; `\\leftReduce{op}:on{...}`
+  and `\\rightReduce{op}:on{...}` reduce one slice and render with an ellipsis.
 - `x...` renders as `x_1, ..., x_.`, and `x[1...i_...n]` as
   `x_1, ..., x_i, ..., x_n`.
 
@@ -460,7 +460,7 @@ as `x[(i_, j_) := (1,1)...(m,n)]`.
 - Two-axis selections give each axis as an index, a range, or `...`, and
   broadcast under the same relations as 1D slices.
 - Written templates nest element notation inside row notation, so
-  `\\left[ x?{{...,...}\\\\} \\right]` renders the argument as a matrix. Symbolic
+  `\left[ x?{{...,...}\\} \right]` renders the argument as a matrix. Symbolic
   definition-card titles keep the same 2D row shape."
 Id: "e23ab977-d2f3-4201-91d5-1569ac13e3d1"
 
@@ -479,10 +479,10 @@ another curly group.
 - Selectors are supported only by ordinary headings, not by infix, infix-spec,
   or refined headings.
 - At a use site the mapping parameters are supplied by command mapping-literal
-  sugar such as `\\integral[x_, y_ is \\real]{x_^2 + y_^2}:d{x_}`, and every
+  sugar such as `\integral[x_, y_ is \real]{x_^2 + y_^2}:d{x_}`, and every
   selected value must be one of those bound parameters.
-- Such a heading gets a specialized signature (`\\integral{_(2)}:d{#1}`) in
-  addition to its general signature (`\\integral:d`). Specialized signatures must
+- Such a heading gets a specialized signature (`\integral{_(2)}:d{#1}`) in
+  addition to its general signature (`\integral:d`). Specialized signatures must
   be unique; several definitions may share a general signature.
 - Resolution prefers a fixed mapping arity over `_(*)`, then exact positions in
   written order over `#?`, and finally `#*`. Equally specific candidates are an
@@ -594,9 +594,9 @@ Rules:
   allowed but not required as a separate `when:` subject.
 - For a two-dimensional variadic parameter, `x is T` constrains the value as a
   whole while `x[..., ...] is T` is instantiated once per supplied cell.
-- `A, B is \\set` counts as both `A is \\set` and `B is \\set`.
-- `P, Q is \\\\statement` counts as both `P is \\\\statement` and
-  `Q is \\\\statement`.
+- `A, B is \set` counts as both `A is \set` and `B is \set`.
+- `P, Q is \\statement` counts as both `P is \\statement` and
+  `Q is \\statement`.
 - `when:` clauses only support:
   - `<subject> is <type>`
   - `<subject> \"op\" <target>`
@@ -617,7 +617,7 @@ Text: "The checker reports any ordinary symbol use that has not been introduced.
 - Declaration definitions make declaration-side symbols available to the right
   hand side, so `f(x_) := x_` is valid.
 - Declaration relations are checked too, so `Defines: f(x_) := x_ is
-  \\function:on{A}:to{B}` requires `B` to have been introduced.
+  \function:on{A}:to{B}` requires `B` to have been introduced.
 - Membership assumptions bind the member side, but the collection side must
   already be declared.
 - Explicit optional command tail arguments are checked for undeclared symbols
@@ -630,8 +630,8 @@ Id: "72810ff0-9484-4519-91af-aa0a99bd43c4"
 Text: "Existential clause groups support optional predicates. Bindings introduced by a
 quantifier or by `let:` are local to the clause group that introduces them.
 
-- `exists: x is \\real` is valid without a `suchThat:` section.
-- `existsUnique: x is \\real` is valid without a `suchThat:` section.
+- `exists: x is \real` is valid without a `suchThat:` section.
+- `existsUnique: x is \real` is valid without a `suchThat:` section.
 - If `suchThat:` is present, it must contain one or more clauses.
 - A present `suchThat:` section is checked the same way as before.
 - If `suchThat:` is omitted, the clause still introduces the existential
@@ -644,17 +644,17 @@ Id: "af07b009-13f2-41a8-a358-01ae6fa9c8e8"
 
 Text: "The checker uses simple type facts and extension facts.
 
-- `extends: X is \\set` lets an item described by the refined type be used where
+- `extends: X is \set` lets an item described by the refined type be used where
   a set is required.
-- `extends: G is \\set via X` records the extension through the given structural
+- `extends: G is \set via X` records the extension through the given structural
   component.
 - Facts introduced by `given:`, `when:`, `extends:`, `declares:`, and enabled
   membership capabilities are available while checking dependent statements.
-- The `via` form sets the types of the symbols it names, so `extends: M is \\set
-  via X` records `X is \\set` and a `via` tuple maps positionally onto the
+- The `via` form sets the types of the symbols it names, so `extends: M is \set
+  via X` records `X is \set` and a `via` tuple maps positionally onto the
   extended type's own components.
 - Refined command type expressions are reference-checked, but a fact such as
-  `f is \\(continuous)::function:on{A}:to{B}` does not currently become a usable
+  `f is \(continuous)::function:on{A}:to{B}` does not currently become a usable
   type fact for proving later requirements.
 - This is type establishment, not theorem proving."
 Id: "b785d9b8-e3b1-412c-a60a-c84f12bbf853"
@@ -664,12 +664,12 @@ Id: "2a45224c-2be3-47e3-8311-6b6d1aef88ac"
 
 Text: "The checker distinguishes values, definitions, and described types.
 
-- `X is \\foo` is used when `\\foo` is a `Defines:` entry.
-- `X := \\foo` is used when `\\foo` is a `Declares:` entry.
-- `X := \\set@{...}` is valid where a definition-style binding is expected, and
+- `X is \foo` is used when `\foo` is a `Defines:` entry.
+- `X := \foo` is used when `\foo` is a `Declares:` entry.
+- `X := \set@{...}` is valid where a definition-style binding is expected, and
   is the way a `Declares:` value states its type without `is`.
 - A `Declares:` entry may include an expression and result type, such as
-  `Declares: C := A is \\set`."
+  `Declares: C := A is \set`."
 Id: "2437c74f-d2f9-461c-8504-5e9db80bdccf"
 
 SectionTitle: "Operators, Symbols, And Disambiguation"
@@ -743,7 +743,7 @@ Text: "Plain operators such as `x - y` use scope and disambiguation.
   without a definition. If the common operand type enables `=` or `!=`, that
   capability is still used.
 - Fallback `=` and `!=` expressions are treated as statements, so they can be
-  passed to commands that require `\\\\statement`."
+  passed to commands that require `\\statement`."
 Id: "857a84d1-0c41-4ae1-957d-fe6347285328"
 
 SubsectionTitle: "`Requires:` And `Enables:`"
@@ -755,7 +755,7 @@ Text: "Types can now separate definitional requirements from additional capabili
   `Enables:`.
 - `Requires:` must appear before `Enables:` when both are present.
 - `Requires:` accepts `capability:` groups.
-- `Requires:` accepts `definition:` groups of the form `\\command is <spec>`.
+- `Requires:` accepts `definition:` groups of the form `\command is <spec>`.
 - Capabilities from `Requires:` and `Enables:` are unioned for type checking.
 - `Requires:` is intended for operations that are part of the definition of a
   construct.
@@ -784,13 +784,13 @@ Text: "Types can now separate definitional requirements from additional capabili
   optional `when:`, `means:`, `represents:`, and `by:` sections.
 - The `:= ...` construction in a `relation:` `to:` declaration is optional.
 - A `relation:`'s cast kind is set with `represents:`, whose value is
-  `\\\\coercion` or `\\\\encoding` (this replaced the older `as: \\\\view` /
-  `as: \\\\abstraction`).
-- `relation:` entries marked `represents: \\\\coercion` provide relationships
-  reachable with a soft build `\\type@value` (or `x is \\type`).
-- `relation:` entries marked `represents: \\\\encoding` provide an abstraction
-  boundary crossed only by a hard build `\\type@!value` (or `x is! \\type`).
-- The removed `value as \\type` / `value as! \\type` cast syntax was replaced by
+  `\\coercion` or `\\encoding` (this replaced the older `as: \\view` /
+  `as: \\abstraction`).
+- `relation:` entries marked `represents: \\coercion` provide relationships
+  reachable with a soft build `\type@value` (or `x is \type`).
+- `relation:` entries marked `represents: \\encoding` provide an abstraction
+  boundary crossed only by a hard build `\type@!value` (or `x is! \type`).
+- The removed `value as \type` / `value as! \type` cast syntax was replaced by
   these builds.
 - An unmarked `relation:` is still valid; it records the relationship for
   readers without affecting builds.
@@ -819,17 +819,17 @@ Rules for `:->`:
 
 Function and value capabilities:
 
-- A function capability such as `f(x_) :=> \\foo{X, x_}` is used as `X.f(a)`.
+- A function capability such as `f(x_) :=> \foo{X, x_}` is used as `X.f(a)`.
 - Arguments of such function capabilities do not receive an implicit type.
-- A bare capability such as `a :=> \\some.value{X}` is used as `X.a`.
+- A bare capability such as `a :=> \some.value{X}` is used as `X.a`.
 - A callable-owner capability may use the described subject as the function
   name, for example `R(a_, b_) :-> (a_, b_) \"in\" R`.
-- If `R is \\relation:from{A}:to{B}`, then `R(a, b)` resolves through that
+- If `R is \relation:from{A}:to{B}`, then `R(a, b)` resolves through that
   capability, reducing to the capability target with `R`, `a_`, and `b_`
   substituted.
 - A callable-owner capability's `written:` text is used by `mlg view` to render
-  matching calls, for example `written: \"a_? \\: R \\: b_?\"` renders `R(a, b)` as
-  `a \\: R \\: b`.
+  matching calls, for example `written: \"a_? \: R \: b_?\"` renders `R(a, b)` as
+  `a \: R \: b`.
 - All capabilities have access to the subject of the item being
   described.
 
@@ -838,16 +838,16 @@ Set expression literals now also accept the unconstrained ellipsis form, such as
 shape of an accepted cast source without adding element constraints."
 Id: "1fc4e3d3-6624-4d61-99f9-43ca75520433"
 
-SubsectionTitle: "Built-In `\\\\type`"
+SubsectionTitle: "Built-In `\\type`"
 Id: "9cab9fc7-6963-45e3-9792-9371a625d91d"
 
-Text: "The checker supports the built-in type predicate `\\\\type`.
+Text: "The checker supports the built-in type predicate `\\type`.
 
-- `\\foo is? \\\\type` succeeds when `\\foo` is a top-level `Defines:` entry.
-- `\\foo is? \\\\type` fails when `\\foo` is a `Declares:` entry.
-- `\\foo is_not? \\\\type` succeeds when `\\foo` is not a described type.
+- `\foo is? \\type` succeeds when `\foo` is a top-level `Defines:` entry.
+- `\foo is? \\type` fails when `\foo` is a `Declares:` entry.
+- `\foo is_not? \\type` succeeds when `\foo` is not a described type.
 - Ordinary built-in type facts share the same fact-checking path as
-  `\\\\statement`, `\\\\expression`, and `\\\\specification`."
+  `\\statement`, `\\expression`, and `\\specification`."
 Id: "711bef31-9baf-4274-9c30-c342f2b73326"
 
 SectionTitle: "Rendering And View"
@@ -875,12 +875,12 @@ Text: "Rendering behavior was tightened in several places.
 - If an axiom, theorem, or similar entry has no explicit name, its label is
   converted to a display name by replacing dots with spaces and capitalizing
   words.
-- For example, `\\axiom.of.unordered.pair` renders as
+- For example, `\axiom.of.unordered.pair` renders as
   `Axiom Of Unordered Pair`.
 - LaTeX package support includes the packages needed for common math such as
-  `\\emptyset`.
+  `\emptyset`.
 - There is no arbitrary fallback that special-cases commands such as
-  `\\empty.set`."
+  `\empty.set`."
 Id: "7205d75e-bc65-44a8-bc07-91fbd517f3b4"
 
 SubsectionTitle: "Card View"
@@ -976,7 +976,7 @@ Id: "e4052fa1-1a83-47be-b4c1-000ad6ee0a35"
 Text: "`mlg format` normalizes the source of the whole collection to the configured
 `margin` width without changing its meaning: it fixes the blank-line gap between
 top-level items to two lines and reflows quoted `\"...\"` text to the margin. A
-LaTeX blob (`$...$`, `$$...$$`, `\\(...\\)`, `\\[...\\]`) is kept atomic, and a text
+LaTeX blob (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`) is kept atomic, and a text
 value containing a multi-line or over-wide blob is left unchanged. Editing is
 line-based, so nothing but the reflowed text moves, and the result still passes
 `mlg check`."

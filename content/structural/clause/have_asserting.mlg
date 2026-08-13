@@ -15,13 +15,13 @@ by?: <Expression>+
 
 ```mlg-fragment
 have:
-. f is? \\(injective)::function
+. f is? \(injective)::function
 asserting:
-. f is? \\function
+. f is? \function
 because:
-. f is? \\function
+. f is? \function
 by:
-. \\injectivity.implies.function
+. \injectivity.implies.function
 ```
 
 `because:` and `by:` are justification the checker only reference-validates; it

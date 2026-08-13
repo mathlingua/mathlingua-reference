@@ -22,11 +22,11 @@ Id?: <OpenText>
 body of the statement.
 
 ```mlg-fragment
-[\\commutative{S}]
+[\commutative{S}]
 States:
-when: S is \\set
+when: S is \set
 that:
-. forAll: x, y is \\element.of{S}
+. forAll: x, y is \element.of{S}
   then:
   . x * y = y * x
 Documented:

@@ -5,7 +5,7 @@ Text: "Specification aliases use `:->`.
 
 ```mlg-fragment
 capability: x_ \"in\" X :-> x_ member_of X
-capability: x_ \"in\" X :-> \\\\abstract
+capability: x_ \"in\" X :-> \\abstract
 ```
 
 The left-hand side is a specification-like form. The right-hand side is the fact, builtin target, or specification established when the capability matches.

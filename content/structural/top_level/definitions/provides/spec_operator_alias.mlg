@@ -8,7 +8,7 @@ Requires:
 . capability: x_ \"in\" X :-> x_ member_of X
 
 Requires:
-. capability: x_ \"in\" X :-> \\\\abstract
+. capability: x_ \"in\" X :-> \\abstract
 ```
 
 The left side is a specification-like form. The right side is the specification or builtin target established when the capability matches."

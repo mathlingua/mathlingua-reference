@@ -13,10 +13,10 @@ The binder before `:` may be a name, tuple, function form, or introduction
 form:
 
 ```mlg-fragment
-{x_ : x_ is \\real}
-{x_ : x_ is \\real | x_ = y}
+{x_ : x_ is \real}
+{x_ : x_ is \real | x_ = y}
 {(p_, q_) : ...}
-{z_ ::= (a_, b_) : a_ \"in\" A; b_ \"in\" B | z_ := \\ordered.pair:of{a_}:and{b_}}
+{z_ ::= (a_, b_) : a_ \"in\" A; b_ \"in\" B | z_ := \ordered.pair:of{a_}:and{b_}}
 ```
 
 Any **expression** may also be the produced member to the left of the colon.
@@ -24,7 +24,7 @@ Placeholder names within that expression are local to the collection, while
 ordinary names continue to refer to the surrounding scope:
 
 ```mlg-fragment
-{\\equivalence.class:of{x_}:over{R} : x_ \"in\" X}
+{\equivalence.class:of{x_}:over{R} : x_ \"in\" X}
 ```
 
 Specifications before `|` may be separated by commas or semicolons.

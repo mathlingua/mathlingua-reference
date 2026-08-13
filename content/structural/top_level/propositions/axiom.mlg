@@ -4,7 +4,7 @@ Id: "1f2a0a6b-a9b9-4d81-b636-5e0c10d6fbdb"
 Text: "`Axiom:` is a theorem-like top-level item.
 
 ```mlg-fragment
-[\\command]?
+[\command]?
 Axiom:
 given?: <RefinedDeclarationStatement>+
 where?: <ClauseUnion>+
@@ -19,13 +19,13 @@ Metadata?: <MetadataItemUnion>+
 Id?: <OpenText>
 ```
 
-The optional heading is a `[\\command]` command header. The `Axiom:` section
+The optional heading is a `[\command]` command header. The `Axiom:` section
 takes **no** argument; the result's name goes in `Documented:` `called:`.
 
 ```mlg-fragment
-[\\empty.set.axiom]
+[\empty.set.axiom]
 Axiom:
-then: exists: X where: X is \\set
+then: exists: X where: X is \set
 Documented:
 . called: \"Axiom of the Empty Set\"
 Id: \"23e4567e-e89b-42d3-a456-426614174000\"

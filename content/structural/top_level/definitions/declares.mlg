@@ -23,8 +23,8 @@ value, a statement, or a specification rather than a new type. The `expresses:`
 section records the defining clause.
 
 ```mlg-fragment
-[\\foo{s}]
-Declares: x is \\bar{s}
+[\foo{s}]
+Declares: x is \bar{s}
 Documented:
 . called: \"foo\"
 Id: \"23e4567e-e89b-42d3-a456-426614174000\"
@@ -32,10 +32,10 @@ Id: \"23e4567e-e89b-42d3-a456-426614174000\"
 
 A `Declares:` target symbol must be assigned exactly once and **must state its
 type**, either with `... is <type>` or with a top-level build
-`\\<type>@<value>`:
+`\<type>@<value>`:
 
 ```mlg-fragment
-Declares: X := \\set@{x_ : x_ is \\real}
+Declares: X := \set@{x_ : x_ is \real}
 ```
 
 A bare `X := {...}` is rejected even when the type could be inferred.

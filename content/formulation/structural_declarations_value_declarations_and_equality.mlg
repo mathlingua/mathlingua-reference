@@ -11,11 +11,11 @@ Examples:
 
 ```mlg-fragment
 G ::= (X, *, e)
-S := \\set.theoretic.pair:of{A}:and{A}
+S := \set.theoretic.pair:of{A}:and{A}
 x = y
 ```
 
-Only `::=` introduces symbols; the right-hand side of `:=` must already be in scope. A `Declares:` target often combines a value definition with a type: `S := \\set.theoretic.pair:of{A}:and{A} is \\set`.
+Only `::=` introduces symbols; the right-hand side of `:=` must already be in scope. A `Declares:` target often combines a value definition with a type: `S := \set.theoretic.pair:of{A}:and{A} is \set`.
 
 A chained function declaration keeps the function form and names its output:
 
@@ -30,6 +30,6 @@ Combining `::=` with `:=` also creates a local syntactic substitution: if `A ::=
 A declaration may combine structural shape and value definition. In set expressions, `:=` value bindings belong in the predicate branch after `|`:
 
 ```mlg-fragment
-{z_ ::= (a_, b_) : a_ \"in\" A; b_ \"in\" B | z_ := \\ordered.pair:of{a_}:and{b_}}
+{z_ ::= (a_, b_) : a_ \"in\" A; b_ \"in\" B | z_ := \ordered.pair:of{a_}:and{b_}}
 ```"
 Id: "13138234-2a4e-4796-9f25-a8db2c6a38a2"

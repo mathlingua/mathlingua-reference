@@ -13,7 +13,7 @@ Text: "Top-level prose blocks render directly on the page, not inside cards.
 Title: \"A Page Title\"
 SectionTitle: \"A Section\"
 SubsectionTitle: \"A Subsection\"
-Text: \"Markdown prose with $x \\in X$ and display math.\"
+Text: \"Markdown prose with $x \in X$ and display math.\"
 ```
 
 `Text:` supports Markdown and LaTeX. Quoted text fields may span multiple source lines."
@@ -25,38 +25,38 @@ Id: "91d6d84b-e6af-46c4-bf1b-78862847d790"
 Text: "Commands start with one backslash. Builtin commands and builtin types start with two backslashes.
 
 ```text
-\\set
-\\function:on{A}:to{B}
-\\function:on{A}:?to{B}        -- optional tail part, declared in a header
-x \\.set.union./ y             -- infix command
-A \\:subset:/ B                -- infix specification command
-\\(injective)::function        -- refined command type
-\\set@{x_ : x_ is \\real}       -- soft build
-\\set@!m                       -- hard build
+\set
+\function:on{A}:to{B}
+\function:on{A}:?to{B}        -- optional tail part, declared in a header
+x \.set.union./ y             -- infix command
+A \:subset:/ B                -- infix specification command
+\(injective)::function        -- refined command type
+\set@{x_ : x_ is \real}       -- soft build
+\set@!m                       -- hard build
 ```
 
-The builtin types are `\\\\type`, `\\\\statement`, `\\\\expression`, `\\\\specification`, `\\\\opaque`, and `\\\\abstract`. `\\\\opaque` is satisfied by any declared value, but it does not establish any more specific type information.
+The builtin types are `\\type`, `\\statement`, `\\expression`, `\\specification`, `\\opaque`, and `\\abstract`. `\\opaque` is satisfied by any declared value, but it does not establish any more specific type information.
 
 Builtin clause commands are expression forms, with semicolon-separated arguments:
 
 ```text
-\\\\not{P}
-\\\\and{P; Q}
-\\\\or{P; Q}
-\\\\exists{x, y is \\real; n is \\natural}:suchThat{x * n > y}
-\\\\existsUnique{x is \\real}
-\\\\forAll{x is \\set}:then{x is? \\set}
-\\\\if{P}:then{Q}
-\\\\have{P}:iff{Q}
-\\\\given{x is \\set}:then{P}
-\\\\piecewise:if{x = 0}:then{y = 0}:else{y = 1}
+\\not{P}
+\\and{P; Q}
+\\or{P; Q}
+\\exists{x, y is \real; n is \natural}:suchThat{x * n > y}
+\\existsUnique{x is \real}
+\\forAll{x is \set}:then{x is? \set}
+\\if{P}:then{Q}
+\\have{P}:iff{Q}
+\\given{x is \set}:then{P}
+\\piecewise:if{x = 0}:then{y = 0}:else{y = 1}
 ```
 
 The variadic builtins map and reduce over slices:
 
 ```text
-\\\\map{x[1...i_...n]}:to{x[i_] + 1}
-\\\\leftReduce{`+`}:on{x[1...n]}
+\\map{x[1...i_...n]}:to{x[i_] + 1}
+\\leftReduce{`+`}:on{x[1...n]}
 ```"
 Id: "9d080835-77dd-4347-9bb0-23f3ae05266c"
 
@@ -77,33 +77,33 @@ x |f                 -- named postfix operator, same arity as f(x)
 (.x + y.)            -- source grouping that renders as x + y
 (x + y)[:sum:]       -- labeled expression
 
-(x_ is \\real) => x_ + 1      -- function literal (anonymous function value)
-(? is \\real) -> (? is \\real) -- function type
-? is \\real                   -- spec literal (a value of \\\\specification)
-x satisfies (? is \\real)     -- apply a spec: means x is \\real
-\\function:from{A?}:to{B?}    -- X? declares X inline with the required type
+(x_ is \real) => x_ + 1      -- function literal (anonymous function value)
+(? is \real) -> (? is \real) -- function type
+? is \real                   -- spec literal (a value of \\specification)
+x satisfies (? is \real)     -- apply a spec: means x is \real
+\function:from{A?}:to{B?}    -- X? declares X inline with the required type
 f[|value = x, ... = 0|]      -- named function call with a catch-all
 ```
 
 Any sequence of special-operator characters can be an operator, and an operator may carry trailing primes and a subscript, as in `*'`, `*_1`, and `*'_a`. Names may carry prime marks too (`X'`, `x'_a'`), and `` `*` `` is the operator `*` referred to by name. Equality and inequality, `=` and `!=`, are accepted for any types even when a type-specific capability is not defined.
 
-The command sugar `\\foo[x_ is \\real]{x_ + 1}` expands to `\\foo{(x_ is \\real) => x_ + 1}`, and `\\foo{x_ : ...}` expands to the single collection argument `\\foo{{x_ : ...}}`."
+The command sugar `\foo[x_ is \real]{x_ + 1}` expands to `\foo{(x_ is \real) => x_ + 1}`, and `\foo{x_ : ...}` expands to the single collection argument `\foo{{x_ : ...}}`."
 Id: "7b1d159f-93e3-4658-8ddd-8963da177135"
 
 SectionTitle: "Declarations And Statements"
 Id: "58e2e50d-b352-4f64-8704-645607155f4f"
 
 Text: "```text
-X is \\set
-X, Y is \\set
-X is! \\set                          -- hard view (coercion + encoding)
-G is \\set via X
+X is \set
+X, Y is \set
+X is! \set                          -- hard view (coercion + encoding)
+G is \set via X
 G ::= (X, *, e)                     -- destructuring; introduces X, *, e
 X ::= x(i_) ::= y_                  -- mapping alias with an output placeholder
-X := \\set@{x_ : x_ is \\real}
-f(x__) := x__ is \\function:on{A}:to{A}
-x is? \\set
-x is_not? \\set
+X := \set@{x_ : x_ is \real}
+f(x__) := x__ is \function:on{A}:to{A}
+x is? \set
+x is_not? \set
 ```
 
 `::=` introduces structural shape and its nested symbols; `:=` introduces a value definition and its right-hand side must already be in scope; `=` is mathematical equality."
@@ -113,11 +113,11 @@ SectionTitle: "Collection Expressions"
 Id: "4570669c-633d-45d1-8bc1-5ebe274916ce"
 
 Text: "```text
-{x_ : x_ is \\set}
-{x_ : x_ is \\set | x_ != \\empty.set}
+{x_ : x_ is \set}
+{x_ : x_ is \set | x_ != \empty.set}
 {(p_, q_) : ...}
-{\\equivalence.class:of{x_}:over{R} : x_ \"in\" X}
-{z_ ::= (a_, b_) : a_ \"in\" A; b_ \"in\" B | z_ := \\ordered.pair:of{a_}:and{b_}}
+{\equivalence.class:of{x_}:over{R} : x_ \"in\" X}
+{z_ ::= (a_, b_) : a_ \"in\" A; b_ \"in\" B | z_ := \ordered.pair:of{a_}:and{b_}}
 ```
 
 The `: ...` part contains specifications, separated by commas or semicolons. The optional `| ...` part contains a predicate expression or a value binding such as `z_ := ...`."
@@ -129,11 +129,11 @@ Id: "be3049e5-0942-4b6b-af8e-1b587c988ab6"
 Text: "Every top-level item must have an `Id:`. `mlg check` generates missing UUID v4 IDs before checking and reports duplicate IDs.
 
 ```text
-[\\set]
+[\set]
 Defines: X
 Requires:
-. capability: x_ \"in\" X :-> \\\\abstract
-  written: \"x_? \\in X?\"
+. capability: x_ \"in\" X :-> \\abstract
+  written: \"x_? \in X?\"
 Documented:
 . called: \"set\"
 Id: \"059126b9-dc83-41a2-aa1c-84f8e942f8d6\"
@@ -154,23 +154,23 @@ Text: "`Requires:` describes capabilities or definitions that are part of the co
 ```text
 Requires:
 . capability: x_ \"in\" X :-> x_ member_of X
-  written: \"x_? \\in X?\"
-. definition: \\natural.0 is \\natural
+  written: \"x_? \in X?\"
+. definition: \natural.0 is \natural
 
 Enables:
-. capability: x_ - y_ :=> x_ \\.set.minus./ y_
+. capability: x_ - y_ :=> x_ \.set.minus./ y_
 . from: Y ::= {y__ : ...}
   capability: x_ \"in\" X :-> x_ member_of Y
 . from: P ::= {(p_, q_) : ...}
   as: f(p_) := q_
 . relation:
-  to: r := \\rational@n is \\rational
-  when: n is \\integer
-  means: n \\.embedded.to./ r
-  represents: \\\\coercion
+  to: r := \rational@n is \rational
+  when: n is \integer
+  means: n \.embedded.to./ r
+  represents: \\coercion
 ```
 
-The checker unions capabilities from `Requires:` and `Enables:` when resolving notation. A `Requires:` `definition:` must name a `Declares:` entry. A nested `Enables: relation:` backs builds: `represents: \\\\coercion` allows a soft `\\type@value` build; `represents: \\\\encoding` additionally allows a hard `\\type@!value` build."
+The checker unions capabilities from `Requires:` and `Enables:` when resolving notation. A `Requires:` `definition:` must name a `Declares:` entry. A nested `Enables: relation:` backs builds: `represents: \\coercion` allows a soft `\type@value` build; `represents: \\encoding` additionally allows a hard `\type@!value` build."
 Id: "685a6713-cb6d-4c0a-887a-aa484a20223b"
 
 SectionTitle: "Clauses"
@@ -185,13 +185,13 @@ anyOf:
 . P
 . Q
 
-exists: x is \\real
+exists: x is \real
 
-existsUnique: x is \\real
+existsUnique: x is \real
 suchThat: x > 0
 
 forAll: x \"in\" X
-then: x is? \\set
+then: x is? \set
 
 let: n \"in\" X
 where: n != x
@@ -220,11 +220,11 @@ Text: "A collection may contain one top-level `Writing:` block, and every non-pr
 
 ```text
 Writing:
-. \"alpha :~> \\alpha\"
-. \"beta :~> \\beta\"
+. \"alpha :~> \alpha\"
+. \"beta :~> \beta\"
 ```
 
-Each alias is a **double-quoted** string; the left side must be a plain name and the body after `:~>` is raw LaTeX. The renderer applies writing aliases to names in expressions, statements, and specifications, including underscore parts and numeric suffixes: `alpha_1` renders as `\\alpha_1`, and `alpha123` renders as `\\alpha_{123}`."
+Each alias is a **double-quoted** string; the left side must be a plain name and the body after `:~>` is raw LaTeX. The renderer applies writing aliases to names in expressions, statements, and specifications, including underscore parts and numeric suffixes: `alpha_1` renders as `\alpha_1`, and `alpha123` renders as `\alpha_{123}`."
 Id: "29643f55-8a3c-4e5a-9e95-6ae64799787a"
 
 SectionTitle: "People And Resources"

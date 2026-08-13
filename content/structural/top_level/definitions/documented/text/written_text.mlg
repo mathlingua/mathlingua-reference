@@ -4,7 +4,7 @@ Id: "951df15c-427d-4272-a6d0-dc04f82c210e"
 Text: "`WrittenText` is a rendering template interpreted in math mode.
 
 ```mlg-fragment
-written: \"A? \\cap@[U]{_{U?}} B?\"
+written: \"A? \cap@[U]{_{U?}} B?\"
 ```
 
 Placeholder markers such as `?` are removed in rendered output after substitution. Conditional fragments use this form:

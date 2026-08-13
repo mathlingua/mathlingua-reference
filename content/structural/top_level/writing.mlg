@@ -7,8 +7,8 @@ Writing: \"<WritingAlias>\"+
 
 ```mlg-fragment
 Writing:
-. \"alpha :~> \\alpha\"
-. \"beta :~> \\beta\"
+. \"alpha :~> \alpha\"
+. \"beta :~> \beta\"
 Id: \"23e4567e-e89b-42d3-a456-426614174000\"
 ```
 
@@ -21,7 +21,7 @@ body could otherwise be misread as a formulation.
 The renderer uses these aliases when rendering names throughout expressions,
 statements, and specifications. Names are split on underscores before aliases
 are applied, and numeric suffix rendering honors them too, so `alpha_1` renders
-as `\\alpha_1` and `alpha123` renders as `\\alpha_{123}`."
+as `\alpha_1` and `alpha123` renders as `\alpha_{123}`."
 Id: "6d284986-b912-4519-b5d4-316e2783e35d"
 
 SectionTitle: "Per-Item `Writing:` Sections"
@@ -35,12 +35,12 @@ how the named identifiers render. It is layered on top of the collection-wide
 `Writing:` group.
 
 ```mlg-fragment
-[\\natural]
+[\natural]
 Defines: n
 Documented:
 . called: \"natural\"
 Writing:
-. \"pi :~> \\varpi\"
+. \"pi :~> \varpi\"
 Id: \"23e4567e-e89b-42d3-a456-426614174000\"
 ```
 

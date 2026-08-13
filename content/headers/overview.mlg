@@ -4,7 +4,7 @@ Id: "47336735-cb72-43c0-85a4-be6c2239485d"
 Text: "A structural group may have a bracketed heading.
 
 ```mlg-fragment
-[\\set]
+[\set]
 Defines: X
 
 [theorem.ordinal.trichotomy]
@@ -27,7 +27,7 @@ The group kind determines which heading parser is used:
 `Disambiguates:` takes an operator or function form as its heading, and
 `Relation:`, `Specify:`, and the prose and `Text…:` groups take no heading.
 
-Infix-specification headings (`\\:...:/`) are allowed only on `Defines:`, and
+Infix-specification headings (`\:...:/`) are allowed only on `Defines:`, and
 refined headings (`::`) only on `Refines:`.
 
 A heading is never what determines the structural group kind. The first section

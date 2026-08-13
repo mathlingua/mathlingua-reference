@@ -22,25 +22,25 @@ Id?: <OpenText>
 ```
 
 `Relation:` takes no bracket heading. `between:` and `and:` are required. Each
-subject is either an unquoted declaration such as `a is \\real` for a concept, or
-a quoted reference — a `\"#topic\"` or a `\"\\signature\"` (a `\\command` with its
-arguments removed, such as `\\function:on:to`) — so a `Relation:` may relate
+subject is either an unquoted declaration such as `a is \real` for a concept, or
+a quoted reference — a `\"#topic\"` or a `\"\signature\"` (a `\command` with its
+arguments removed, such as `\function:on:to`) — so a `Relation:` may relate
 concepts, topics, and definitions in any combination. `means:` is likewise
 either an unquoted clause or quoted prose.
 
 ```mlg-fragment
 Relation:
 between: \"#real.analysis\"
-and: \"\\sin\"
+and: \"\sin\"
 means: \"The sine function is studied within real analysis.\"
 ```
 
 ```mlg-fragment
 Relation:
 using:
-. n is \\integer
-between: a is \\real
-and: b is \\real
+. n is \integer
+between: a is \real
+and: b is \real
 when:
 . a = b
 means: a = b

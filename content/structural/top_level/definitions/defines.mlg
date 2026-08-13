@@ -23,14 +23,14 @@ Id?: <OpenText>
 `Defines:` introduces a command as a mathematical form or a typed,
 value-bearing declaration. Its target is tried first as a form/declaration and
 then as an ordinary declaration statement, so both `Defines: G ::= (X, *, e)`
-and `Defines: X := value is \\set` are accepted.
+and `Defines: X := value is \set` are accepted.
 
 ```mlg-fragment
-[\\group]
+[\group]
 Defines: G ::= (X, *, e)
-extends: G is \\set via X
+extends: G is \set via X
 declares:
-. * is \\function:on{X}:to{X}
+. * is \function:on{X}:to{X}
 . e \"in\" G
 Documented:
 . called: \"group\"
@@ -52,5 +52,5 @@ resolving notation. `Documented:` must include at least one of `called:` or
 missing.
 
 Only `Defines:` has a `declares:` section, and only `Defines:` may use an
-infix-specification heading such as `[A \\:subset:/ B]`."
+infix-specification heading such as `[A \:subset:/ B]`."
 Id: "b2614ebb-ec03-4101-b137-fed2ef759073"

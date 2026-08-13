@@ -20,7 +20,7 @@ Which one to use:
 
 - `Defines:` introduces a mathematical form or a typed, value-bearing
   declaration. It is the only kind with a `declares:` section and the only kind
-  that may use an infix-specification heading (`[A \\:subset:/ B]`).
+  that may use an infix-specification heading (`[A \:subset:/ B]`).
 - `Declares:` introduces a command by an `is` or specification statement. It has
   an `expresses:` section, and it is the kind a `Requires:` `definition:` item
   may refer to.

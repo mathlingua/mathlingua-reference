@@ -3,32 +3,32 @@ Id: "6797835a-79b0-45ab-8ac7-1db592e2b290"
 
 Text: "The checker tracks facts of two main kinds:
 
-- type facts, such as `G is \\set`
+- type facts, such as `G is \set`
 - specification facts, such as `x \"in\" G`
 
 Facts are introduced by command headers, `using:`, `when:`, theorem `given:`,
 local clause groups, `where:`, declarations, and assumptions created by clauses
 such as `exists:`, `forAll:`, and `let:`.
 
-`extends:` records implications between types or specifications. If `\\group`
-extends `\\set`, then a known fact `G is \\group` establishes `G is \\set`, and
+`extends:` records implications between types or specifications. If `\group`
+extends `\set`, then a known fact `G is \group` establishes `G is \set`, and
 the implication is followed recursively along subtype chains.
 
 Type assertions for no-argument `Defines:` commands are **nominal**: `G is
-\\group` records that fact without expanding `\\group`'s internal requirements at
+\group` records that fact without expanding `\group`'s internal requirements at
 the assertion site.
 
 Builtin types use two leading backslashes. There are six:
 
-- `\\\\type` — true for command references whose top-level entry is a `Defines:`
-  item, so `\\set is? \\\\type` succeeds while `\\sqrt is? \\\\type` fails when
-  `\\sqrt` is a `Declares:` item
-- `\\\\statement`, `\\\\expression`, `\\\\specification` — the types of statements,
+- `\\type` — true for command references whose top-level entry is a `Defines:`
+  item, so `\set is? \\type` succeeds while `\sqrt is? \\type` fails when
+  `\sqrt` is a `Declares:` item
+- `\\statement`, `\\expression`, `\\specification` — the types of statements,
   expressions, and specification literals
-- `\\\\opaque` — satisfied by any declared value, but contributing no concrete
-  type information: `A is \\\\opaque` does not imply `A is \\set` and does not
+- `\\opaque` — satisfied by any declared value, but contributing no concrete
+  type information: `A is \\opaque` does not imply `A is \set` and does not
   enable set capabilities
-- `\\\\abstract` — the abstract target of a `:->` capability
+- `\\abstract` — the abstract target of a `:->` capability
 
 Literal command arguments are compatible with a required nominal type when their
 declared structure matches. A function literal is compared by the number and

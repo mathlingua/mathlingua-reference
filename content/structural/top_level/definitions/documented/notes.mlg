@@ -10,7 +10,7 @@ notes: <OpenText>+
 
 ```mlg-fragment
 Documented:
-. notes: \"Turn this into a structured Theorem once \\group exists.\"
+. notes: \"Turn this into a structured Theorem once \group exists.\"
 ```
 
 It is most useful on the opaque `Text…:` placeholder groups, where it records

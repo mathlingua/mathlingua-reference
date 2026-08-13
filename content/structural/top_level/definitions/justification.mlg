@@ -23,10 +23,10 @@ entry's `asserting:` items, exactly as an inline `have:`/`asserting:` group
 would.
 
 ```mlg-fragment
-[\\(commutative)::group]
+[\(commutative)::group]
 Refines: G ::= (X, `*`, e)
 explicitly:
-extends: G is \\(commutative)::magma
+extends: G is \(commutative)::magma
 satisfies:
 . (.forAll: a, b \"in\" X
    then: a * b = b * a.)[:comm:]
@@ -38,11 +38,11 @@ Justification:
   . forAll: a, b \"in\" X
     then: a * b = b * a
   asserting:
-  . G is? \\(commutative)::magma
+  . G is? \(commutative)::magma
   because:
-  . G is? \\(commutative)::magma
+  . G is? \(commutative)::magma
   by:
-  . \\commutativity.of.magma
+  . \commutativity.of.magma
 ```
 
 Rules:

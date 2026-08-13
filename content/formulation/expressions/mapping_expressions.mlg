@@ -4,13 +4,13 @@ Id: "0c860eed-57d3-455d-a8d8-c4db67134a95"
 Text: "A function literal is an anonymous function value written with `=>`.
 
 ```mlg-fragment
-(x_ is \\real) => x_ + 1
+(x_ is \real) => x_ + 1
 (x_ \"in\" A) => x_ + a
 x_ => x_ + 1
 ```
 
 The left side binds a parameter and the right side is the body. The binder is
-either a parenthesized specification (`(x_ is \\real)`, `(x_ \"in\" A)`) or a bare
+either a parenthesized specification (`(x_ is \real)`, `(x_ \"in\" A)`) or a bare
 name whose specification is already known from an `is` fact. A bare binder with
 no inferable type is rejected.
 
@@ -22,19 +22,19 @@ mirroring the `:->` and `:=>` operator forms:
 
 ```mlg-fragment
 f is (_ \"in\" A) -> (_ \"in\" B)
-f is (? is \\natural, ? \"in\" \\reals) -> (? is \\real)
+f is (? is \natural, ? \"in\" \reals) -> (? is \real)
 ```
 
-Command-argument shorthand: `\\foo[lhs]{rhs}` desugars to `\\foo{(lhs) => rhs}`.
+Command-argument shorthand: `\foo[lhs]{rhs}` desugars to `\foo{(lhs) => rhs}`.
 
 ```mlg-fragment
-\\foo[x_ is \\real]{x_ + 1}
+\foo[x_ is \real]{x_ + 1}
 ```
 
 is exactly
 
 ```mlg-fragment
-\\foo{(x_ is \\real) => x_ + 1}
+\foo{(x_ is \real) => x_ + 1}
 ```
 
 The `[...]{...}` sugar applies only directly after a command chain. Elsewhere,

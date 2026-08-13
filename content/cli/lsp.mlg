@@ -9,7 +9,7 @@ The current server provides:
 
 - collection diagnostics when a document is opened or saved
 - context-aware completion for group heads, section items, and commands;
-  command completion is triggered by `\\\\` and uses snippets when supported
+  command completion is triggered by `\\` and uses snippets when supported
 - jump to definition for command uses
 - prepare-rename and workspace rename for top-level command signatures and all
   corresponding uses

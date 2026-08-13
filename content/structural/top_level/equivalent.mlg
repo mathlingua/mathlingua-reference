@@ -40,16 +40,16 @@ the class provides likewise resolves on a value typed as any member or the
 header.
 
 ```mlg-fragment
-[\\foo:of{a}:with{b}]
+[\foo:of{a}:with{b}]
 Equivalent:
 using:
-. n is \\integer
+. n is \integer
 when:
-. a is \\real
-. b is \\real
+. a is \real
+. b is \real
 to:
-. \\bar{a, b}
-. \\baz:with{b}:and{a}
+. \bar{a, b}
+. \baz:with{b}:and{a}
 References:
 . $book.foo
 Id: \"11111111-1111-4111-8111-111111111111\"
@@ -58,11 +58,11 @@ Id: \"11111111-1111-4111-8111-111111111111\"
 The optional prose on the `Equivalent:` section describes the class:
 
 ```mlg-fragment
-[\\eq{a, b}]
+[\eq{a, b}]
 Equivalent:
 . \"a and b are interchangeable\"
 to:
-. \\bar{a, b}
-. \\baz{a, b}
+. \bar{a, b}
+. \baz{a, b}
 ```"
 Id: "543b077a-ba1e-4629-b04e-ca495754a218"

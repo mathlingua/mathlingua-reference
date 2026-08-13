@@ -23,7 +23,7 @@ Specification operators express statement-like facts:
 
 ```mlg-fragment
 x \"in\" X
-A \\:subset:/ B
+A \:subset:/ B
 ```
 
 Operator resolution is type-aware. Directed forms such as `x :* y`, `x *: y`, and `x :*: y` tell the checker which operand type to use when resolving notation. Plain operator forms first look in local scope, then global definitions, then matching `Disambiguates:` entries."

@@ -22,8 +22,8 @@ parameter, and a `given:`/`using:` binding:
 
 ```mlg-fragment
 Defines: M ::= (X, *)
-[\\magma.element:of{M ::= (X, *)}]
-given: M ::= (X, *) is \\magma
+[\magma.element:of{M ::= (X, *)}]
+given: M ::= (X, *) is \magma
 ```
 
 The component types are inferred: from `extends:`/`via` and then `declares:` for

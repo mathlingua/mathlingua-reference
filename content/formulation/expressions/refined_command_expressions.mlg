@@ -4,9 +4,9 @@ Id: "2a23c65d-2f3b-49c7-a69a-f2a02a862da5"
 Text: "Refined command expressions attach adjective-like refinements to a base command type.
 
 ```mlg-fragment
-\\(injective)::function
-\\(injective, surjective)::function:on{A}:to{B}
-\\(bijective)::[[f]]
+\(injective)::function
+\(injective, surjective)::function:on{A}:to{B}
+\(bijective)::[[f]]
 ```
 
 `[[f]]` is only valid in refined command syntax and means \"the type of `f`\". It is used in refinement definitions whose extension should adapt to the subject's actual type.
@@ -14,7 +14,7 @@ Text: "Refined command expressions attach adjective-like refinements to a base c
 `Refines:` is the only top-level definition kind that may use a refined command header:
 
 ```mlg-fragment
-[\\(injective)::function:?on{A}:?to{B}]
+[\(injective)::function:?on{A}:?to{B}]
 Refines: f(x__)
 Documented:
 . adjective: \"injective\"

@@ -6,12 +6,12 @@ declares `X` inline, with the type that argument position requires; later uses o
 `X` are ordinary references.
 
 ```mlg-fragment
-f is \\function:from{A?}:to{B?}
+f is \function:from{A?}:to{B?}
 ```
 
 Here `A?` and `B?` declare `A` and `B` as the domain and codomain types demanded
-by `\\function`, without a separate `A, B is \\set` declaration.
+by `\function`, without a separate `A, B is \set` declaration.
 
 The `?` is authoring-only and does not render. Without the `?`, the same argument
-(`\\function:from{A}`) is an ordinary reference to an already-declared `A`."
+(`\function:from{A}`) is an ordinary reference to an already-declared `A`."
 Id: "57a18702-ac5a-4a9d-8543-5dac624f61ec"

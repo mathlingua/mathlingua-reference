@@ -4,16 +4,16 @@ Id: "6867c1e2-40e0-47dd-8532-5ff5dab99055"
 Text: "Proposition-like top-level items are `Axiom:`, `Theorem:`, and `Conjecture:`.
 All three share the same assertion shape.
 
-They may have an optional `[\\command]` heading, but the head section itself
+They may have an optional `[\command]` heading, but the head section itself
 takes no argument: a result's name lives in `Documented:` `called:` (as for
 definitions) and renders as the card's title. Their `then:` section is required.
 `given:` sections accept refined-capable declarations, so forms such as
-`f is \\(injective)::function` are valid where refined statements are allowed.
+`f is \(injective)::function` are valid where refined statements are allowed.
 
 ```mlg-fragment
 Axiom:
-given: A is \\set
-then: \\identity.function:on{A} is? \\function:on{A}:to{A}
+given: A is \set
+then: \identity.function:on{A} is? \function:on{A}:to{A}
 Documented:
 . called: \"Identity is a function\"
 Id: \"23e4567e-e89b-42d3-a456-426614174000\"

@@ -31,29 +31,29 @@ notation lookup, and resolution searches the selected type and its parent types
 through `extends:`.
 
 Build-backed `from:` capabilities apply only when the value was introduced with
-a compatible built literal, such as `A := \\set@{x_ : x_ is \\real}`."
+a compatible built literal, such as `A := \set@{x_ : x_ is \real}`."
 Id: "b4f93e01-3b86-4228-b3ed-512add4b38bf"
 
 SectionTitle: "Builds And Coercion"
 Id: "88aed822-a5b4-4f56-8966-ee206c1c5290"
 
-Text: "A build views a value at a stated type: `\\type@value` is a **soft** build and
-`\\type@!value` is a **hard** build. They replace the removed `value as \\type`
-and `value as! \\type` cast expressions.
+Text: "A build views a value at a stated type: `\type@value` is a **soft** build and
+`\type@!value` is a **hard** build. They replace the removed `value as \type`
+and `value as! \type` cast expressions.
 
 A soft build succeeds when the value already has that type, has a parent type
 that extends to it, or its type (or a parent) has an `Enables:` `relation:` to
-the target marked `represents: \\\\coercion`. A hard build performs the same checks
-and additionally allows relations marked `represents: \\\\encoding` — an
+the target marked `represents: \\coercion`. A hard build performs the same checks
+and additionally allows relations marked `represents: \\encoding` — an
 abstraction boundary that no automatic coercion or soft build crosses.
 
-The named counterparts are `x is \\type` (soft view) and `x is! \\type` (hard
+The named counterparts are `x is \type` (soft view) and `x is! \type` (hard
 view).
 
 Coercion relationships are applied when checking whether an already-resolved
 command's arguments satisfy its requirements — a command requiring
-`x is \\rational` may accept an integer argument when `\\integer` has a coercion
-relation to `\\rational`. They are **not** used for operator resolution: `+` on
+`x is \rational` may accept an integer argument when `\integer` has a coercion
+relation to `\rational`. They are **not** used for operator resolution: `+` on
 integers will not resolve to `+` on rationals merely because integers can be
 viewed as rationals."
 Id: "40a048de-3573-4d73-ad8c-ca8c1772687d"

@@ -5,9 +5,9 @@ Text: "Expression forms bind from loosest to tightest as follows:
 
 1. function literal `=>` (right-associative, loosest)
 2. specification and predicate forms: `is`, `is?`, `is_not?`, quoted `\"op\"`
-   specs and predicates, infix specs `\\:...:/` and `\\:...?:/`, `member_of`,
+   specs and predicates, infix specs `\:...:/` and `\:...?:/`, `member_of`,
    `satisfies`, and spec literals
-3. infix command expressions `\\.cmd./`
+3. infix command expressions `\.cmd./`
 4. equality `=` and `!=`, and special binary operators such as `<` and `>`
 5. additive `+`, `-`
 6. multiplicative `*`, `/`
@@ -27,13 +27,13 @@ is a left-associated chain.
 Because equality binds tighter than infix command expressions:
 
 ```mlg-fragment
-x = a \\.or./ x = b
+x = a \.or./ x = b
 ```
 
 is parsed like:
 
 ```mlg-fragment
-(x = a) \\.or./ (x = b)
+(x = a) \.or./ (x = b)
 ```
 
 Use dot-grouped source parentheses `(. ... .)` to make grouping explicit without

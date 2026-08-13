@@ -11,7 +11,7 @@ Text: "A labeled expression attaches a label to an expression.
 Only a grouped formulation may be labeled directly, and the wrapper may hold a declaration or specification as well as an expression:
 
 ```mlg-fragment
-(.x is \\real.)[:typed:]
+(.x is \real.)[:typed:]
 (.*' := `*`.)[:operation:]
 ```
 

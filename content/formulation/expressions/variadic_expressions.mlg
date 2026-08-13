@@ -38,20 +38,20 @@ x[..., c]
 
 At least one axis must be a range or `...`; `x[a, c]` is the ordinary single
 element. A 2D slice broadcasts under the same relations as a 1D slice, so
-`x[a...b, c...d] is \\real` applies to every selected `x[i,j]`. Paired 2D slices
+`x[a...b, c...d] is \real` applies to every selected `x[i,j]`. Paired 2D slices
 must use exactly the same two axis selections.
 
 Slices are accepted only by these broadcast operations and by the variadic
 builtins; a slice is rejected as an ordinary operand.
 
 ```mlg-fragment
-\\\\map{x[1...i_...n]}:to{x[i_] + 1}
-\\\\map{x[1...i_...n], y[1...i_...n]}:to{x[i_] + y[i_] + 1}
-\\\\leftReduce{`+`}:on{x[1...n]}
-\\\\rightReduce{`+`}:on{x[1...i_...n]}
+\\map{x[1...i_...n]}:to{x[i_] + 1}
+\\map{x[1...i_...n], y[1...i_...n]}:to{x[i_] + y[i_] + 1}
+\\leftReduce{`+`}:on{x[1...n]}
+\\rightReduce{`+`}:on{x[1...i_...n]}
 ```
 
-`\\\\map` maps aligned slices pointwise: all input slices must have exactly the
+`\\map` maps aligned slices pointwise: all input slices must have exactly the
 same range spelling, and multiple slices are zipped rather than combined as a
 Cartesian product. The result expression may use the bound index.
 

@@ -5,7 +5,7 @@ Text: "`Conjecture:` records a theorem-shaped statement that is **not** claimed 
 a proof.
 
 ```mlg-fragment
-[\\command]?
+[\command]?
 Conjecture:
 given?: <RefinedDeclarationStatement>+
 where?: <ClauseUnion>+
@@ -20,16 +20,16 @@ Metadata?: <MetadataItemUnion>+
 Id?: <OpenText>
 ```
 
-The optional heading is a `[\\command]` command header. The `Conjecture:`
+The optional heading is a `[\command]` command header. The `Conjecture:`
 section takes **no** argument; the result's name goes in `Documented:`
 `called:`.
 
 ```mlg-fragment
-[\\goldbach]
+[\goldbach]
 Conjecture:
-given: n is \\natural
+given: n is \natural
 where: n > 2
-then: n is? \\even
+then: n is? \even
 Documented:
 . called: \"Goldbach's Conjecture\"
 Id: \"23e4567e-e89b-42d3-a456-426614174000\"

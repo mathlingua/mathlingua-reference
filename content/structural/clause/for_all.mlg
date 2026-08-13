@@ -5,7 +5,7 @@ Text: "`forAll:` introduces universally quantified symbols, optional `where:` as
 
 ```mlg-fragment
 forAll: x \"in\" X
-then: x is? \\set
+then: x is? \set
 ```
 
 ```mlg-fragment
@@ -16,5 +16,5 @@ then: f(x1) != f(x2)
 
 Symbols introduced by `forAll:` are available in both `where:` and `then:`. `where:` is optional; `then:` is required.
 
-`forAll:` and `where:` are binding positions, so bare `is` specifications may introduce symbols there. `then:` is a statement position, so use the predicate forms (`is?`, `is_not?`, `\\:...?:/`) rather than a bare `is` or `\\:...:/` specification."
+`forAll:` and `where:` are binding positions, so bare `is` specifications may introduce symbols there. `then:` is a statement position, so use the predicate forms (`is?`, `is_not?`, `\:...?:/`) rather than a bare `is` or `\:...:/` specification."
 Id: "2ec94783-285a-4a6a-a1d2-b85cbd726427"

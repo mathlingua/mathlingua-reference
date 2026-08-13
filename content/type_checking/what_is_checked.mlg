@@ -26,7 +26,7 @@ top-level groups; heading, clause, formulation, and text-body shape), and the
 formulation expression layer (token errors and construct-specific errors such
 as `expected top-level ' is '`). `Refines:` documentation rejects `called:`,
 `Topic:` documentation accepts only `called:`, and `represents:` entries must be
-`\\\\coercion` or `\\\\encoding`.
+`\\coercion` or `\\encoding`.
 
 **Prose code fences.** A ```` ```mlg ```` block inside a `Text:` value or
 documentation is parsed as real source and reports a syntax error if it fails;
@@ -38,7 +38,7 @@ allowed. Command signatures must be unique across definition kinds — a
 mapping-parameter header uses its specialized signature for this check, so
 distinct specialized signatures may share one general signature. Each
 operator/function key may have at most one `Disambiguates:`. Spec-infix headings
-(`\\:...:/`) are allowed only on `Defines:`, refined headings (`::`) only on
+(`\:...:/`) are allowed only on `Defines:`, refined headings (`::`) only on
 `Refines:`.
 
 **Documentation.** `Defines`, `Declares`, and `States` must include a `called:`
@@ -59,7 +59,7 @@ symbol must be specified directly or through `extends:`/`declares:`. A `Refines`
 target symbol may also be inherited, so a symbol the refined base type already
 declares counts as specified. A `Declares` target symbol must be assigned
 exactly once and must state its type, either `... is <type>` or a top-level
-build `\\<type>@<value>` — a bare `X := {...}` is rejected. Destructured
+build `\<type>@<value>` — a bare `X := {...}` is rejected. Destructured
 components (`M ::= (X, *)`) are typed from `extends:`/`via`, `declares:`, the
 parameter's `when:` type, or the right-hand type of a `::=` binding, and need no
 separate `when:` entry.
@@ -70,7 +70,7 @@ and only with `<subject> is <type>` or `<subject> \"op\" <target>`.
 **Specifications vs. statements.** An `is` specification or infix specification
 introduces a symbol, so it is allowed only in binding positions (`exists:`,
 `given:`, `forAll:`, `let:`, `where:`, `when:`, `suchThat:`); in a statement
-position it must use the predicate form `is?` or `\\:...?:/`.
+position it must use the predicate form `is?` or `\:...?:/`.
 
 **Symbol scope.** Every referenced symbol must be introduced before use.
 `::=` introduces symbols (including destructured components); `:=` does not — its
@@ -86,10 +86,10 @@ to a member of the owner.
 are validated, including `from:` build-backed capabilities and `from: ... as:`
 bindings; a provided spec operator's target must be the described item; a
 `Requires:` `definition:` must reference a `Declares:` entry and establish its
-stated fact. Build expressions `\\<type>@<value>` (coercion) and
-`\\<type>@!<value>` (coercion + encoding) are checked, and `Enables:` `relation:`
-declarations select that behavior through `represents: \\\\coercion` or
-`represents: \\\\encoding`. Type predicates, function-type specifications, and the
+stated fact. Build expressions `\<type>@<value>` (coercion) and
+`\<type>@!<value>` (coercion + encoding) are checked, and `Enables:` `relation:`
+declarations select that behavior through `represents: \\coercion` or
+`represents: \\encoding`. Type predicates, function-type specifications, and the
 arguments of `is` type statements are also checked."
 Id: "0f8136db-1ce1-426d-b690-9ca405705e49"
 

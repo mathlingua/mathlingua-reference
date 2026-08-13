@@ -4,8 +4,8 @@ Id: "582cdb18-d663-450e-8070-86978aa879b6"
 Text: "Nested `given:` clauses introduce assumptions for a local `then:` block.
 
 ```mlg-fragment
-given: f is \\(injective)::function
-then: f is? \\function
+given: f is \(injective)::function
+then: f is? \function
 ```
 
 The `given:` section accepts refined-capable declaration statements. Optional `where:` clauses may add local assumptions before `then:` is checked."

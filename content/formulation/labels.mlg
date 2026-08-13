@@ -4,7 +4,7 @@ Id: "62a24a65-05c9-4e09-9722-1eb355fe2ce5"
 Text: "Labels identify items inside brackets or nested groups.
 
 ```mlg-fragment
-[\\theorem.ordinal.trichotomy]
+[\theorem.ordinal.trichotomy]
 Theorem:
 then: ...
 ```
@@ -15,7 +15,7 @@ Label headers differ from expression labels. Expression labels use the `[:label:
 
 ```mlg-fragment
 (x + y)[:sum:]
-(.x is \\real.)[:typed:]
+(.x is \real.)[:typed:]
 ```
 
 A `[:label:]` may sit on any nested formulation, and a top-level `Justification:` section discharges it: an entry whose `[label]` heading matches establishes the labeled formulation from its `asserting:` items. Unlike label headers, expression labels are lexer tokens and do not support stropped symbolic parts."

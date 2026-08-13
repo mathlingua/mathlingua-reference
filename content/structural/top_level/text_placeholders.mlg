@@ -17,9 +17,9 @@ Id: <OpenText>
 TextTheorem: \"For every group $G$, the identity element is **unique**.\"
 Documented:
 . called: \"Uniqueness of identity\"
-. written: \"\\text{Uniqueness of the identity}\"
+. written: \"\text{Uniqueness of the identity}\"
 . description: \"A placeholder for the uniqueness theorem.\"
-. notes: \"Turn this into a structured Theorem once \\group exists.\"
+. notes: \"Turn this into a structured Theorem once \group exists.\"
 References:
 . $book.algebra
 Id: \"23e4567e-e89b-42d3-a456-426614174000\"

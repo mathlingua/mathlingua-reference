@@ -6,9 +6,9 @@ parsed as formulation syntax; it is whatever trimmed, non-empty text follows the
 first top-level `:~>`.
 
 ```mlg-fragment
-alpha :~> \\alpha
-beta :~> \\beta
-f(x_) :~> f? \\left( x_? \\right)
+alpha :~> \alpha
+beta :~> \beta
+f(x_) :~> f? \left( x_? \right)
 ```
 
 In a `Writing:` section — the collection-wide block, or a per-item override —
@@ -17,8 +17,8 @@ be a plain `Name`:
 
 ```mlg-fragment
 Writing:
-. \"alpha :~> \\alpha\"
-. \"beta :~> \\beta\"
+. \"alpha :~> \alpha\"
+. \"beta :~> \beta\"
 ```
 
 The quotes are required precisely because the raw LaTeX body could otherwise be

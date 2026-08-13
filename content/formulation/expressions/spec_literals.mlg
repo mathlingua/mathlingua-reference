@@ -1,13 +1,13 @@
 Title: "Spec Literals And `satisfies`"
 Id: "27e83c61-83ff-4f00-8bc0-15775881b72d"
 
-Text: "A spec literal is a value of the builtin type `\\\\specification` with an implicit
+Text: "A spec literal is a value of the builtin type `\\specification` with an implicit
 `?` placeholder subject. It uses `?` where the subject would go.
 
 ```mlg-fragment
-? is \\real
+? is \real
 ? \"in\" R
-? \"in\" \\reals
+? \"in\" \reals
 ```
 
 The two forms are `? is <type>` and `? \"op\" <target>`, where the target may be a
@@ -18,9 +18,9 @@ specification is a concrete spec literal, substituting its `?` with the subject
 yields the condition:
 
 ```mlg-fragment
-x satisfies (? is \\real)
+x satisfies (? is \real)
 ```
 
-means `x is \\real`. The specification is usually written as a parenthesized spec
-literal, but any expression of type `\\\\specification` is accepted."
+means `x is \real`. The specification is usually written as a parenthesized spec
+literal, but any expression of type `\\specification` is accepted."
 Id: "a61f4faf-5784-4f99-9044-c43f46b750da"

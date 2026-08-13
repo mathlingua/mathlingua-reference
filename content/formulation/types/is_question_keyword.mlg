@@ -4,8 +4,8 @@ Id: "5d589fff-199f-4bba-bb82-675db4cc47e4"
 Text: "`is?` and `is_not?` are the predicate forms of `is`.
 
 ```mlg-fragment
-x is? \\set
-x is_not? \\empty.set
+x is? \set
+x is_not? \empty.set
 ```
 
 They ask whether the subject satisfies or does not satisfy the type expression,
@@ -16,5 +16,5 @@ Because a bare `is` introduces a symbol and is confined to binding positions, a
 type check written in a statement position (`then:`, `that:`, `if:`, `iff:`,
 `suchThat:`) must use `is?` or `is_not?`. The same distinction applies to spec
 operators: the binding form `x \"in\" X` and predicate form `x \"in\"? X`, and the
-infix spec forms `A \\:subset:/ B` and `A \\:subset?:/ B`."
+infix spec forms `A \:subset:/ B` and `A \:subset?:/ B`."
 Id: "ddc5d29d-f8ea-4053-8d1e-496afcb301a7"

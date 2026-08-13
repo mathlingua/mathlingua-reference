@@ -10,10 +10,10 @@ then: Q
 
 The group may have an optional label heading. Nested clauses use the same clause syntax recursively.
 
-Both `if:` and `then:` are statement positions: a bare `is` or `\\:...:/` specification is rejected. Use the predicate forms `is?` / `is_not?` and `\\:...?:/`.
+Both `if:` and `then:` are statement positions: a bare `is` or `\:...:/` specification is rejected. Use the predicate forms `is?` / `is_not?` and `\:...?:/`.
 
 ```mlg-fragment
-if: x is? \\set
-then: f(x) is? \\real
+if: x is? \set
+then: f(x) is? \real
 ```"
 Id: "f3e1b6b4-ed15-4f98-84fe-3ef5fb883fc8"

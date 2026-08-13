@@ -4,38 +4,38 @@ Id: "7ad33634-c9f0-482e-80da-39d9d7d70c23"
 Text: "Type statements use `is`.
 
 ```mlg-fragment
-X is \\set
-f is \\function:on{A}:to{B}
-A, B is \\set
+X is \set
+f is \function:on{A}:to{B}
+A, B is \set
 ```
 
 Predicate-like type checks use `is?` and `is_not?`.
 
 ```mlg-fragment
-x is? \\set
-x is_not? \\empty.set
+x is? \set
+x is_not? \empty.set
 ```
 
 Builtin types start with two backslashes:
 
-- `\\\\type` — the type of `Defines:` types
-- `\\\\statement`, `\\\\expression`, `\\\\specification` — the types of statements,
+- `\\type` — the type of `Defines:` types
+- `\\statement`, `\\expression`, `\\specification` — the types of statements,
   expressions, and specification literals
-- `\\\\opaque` — an unstructured value
-- `\\\\abstract` — the abstract `:->` capability target
+- `\\opaque` — an unstructured value
+- `\\abstract` — the abstract `:->` capability target
 
 The right-hand side of `is` may also be a **structural type literal** rather
 than a nominal command type. These use complete spec literals at every leaf:
 
 ```mlg-fragment
-(x, y) is (? is \\natural, ? \"in\" \\reals)
-{x : ...} is {? is \\natural : ...}
-f is (? is \\natural) -> (? \"in\" \\naturals)
-f is (? is \\natural, ? \"in\" \\reals) -> (? is \\real)
+(x, y) is (? is \natural, ? \"in\" \reals)
+{x : ...} is {? is \natural : ...}
+f is (? is \natural) -> (? \"in\" \naturals)
+f is (? is \natural, ? \"in\" \reals) -> (? is \real)
 ```
 
-A raw nominal tuple such as `(\\natural, \\real)` is not a type literal; write
-`(? is \\natural, ? is \\real)` instead. The `->` form takes one or more input
+A raw nominal tuple such as `(\natural, \real)` is not a type literal; write
+`(? is \natural, ? is \real)` instead. The `->` form takes one or more input
 spec literals and exactly one output spec literal, and the declared input arity
 is preserved rather than being curried into nested unary types."
 Id: "2f73683b-6420-4fe6-8196-3ce83be64464"

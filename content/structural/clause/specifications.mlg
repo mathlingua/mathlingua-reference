@@ -1,18 +1,18 @@
 Title: "Specifications"
 Id: "3ff553e8-63eb-48aa-a658-1081c4de9713"
 
-Text: "A specification states a fact using the `is` relation or an infix specification command (`\\:...:/`).
+Text: "A specification states a fact using the `is` relation or an infix specification command (`\:...:/`).
 
 ```mlg-fragment
-x is \\set
-A \\:subset:/ B
+x is \set
+A \:subset:/ B
 ```
 
-A specification introduces a symbol, so it is only allowed in binding positions (`exists:`, `existsUnique:`, `forAll:`, `given:` arguments, and `where:` / `suchThat:` / `when:`). In statement positions (`then:`, `if:`, `iff:`, `that:`, `else:`, and the boolean combinators) a bare `is` or `\\:...:/` specification is rejected — use the predicate forms `is?` / `is_not?` and the predicate infix form `\\:...?:/`:
+A specification introduces a symbol, so it is only allowed in binding positions (`exists:`, `existsUnique:`, `forAll:`, `given:` arguments, and `where:` / `suchThat:` / `when:`). In statement positions (`then:`, `if:`, `iff:`, `that:`, `else:`, and the boolean combinators) a bare `is` or `\:...:/` specification is rejected — use the predicate forms `is?` / `is_not?` and the predicate infix form `\:...?:/`:
 
 ```mlg-fragment
-x is? \\set
-A \\:subset?:/ B
+x is? \set
+A \:subset?:/ B
 ```
 
 A specification is valid only when the relevant operator is available from the target type's `Requires:` or `Enables:` capabilities, or from another checker rule that specifically allows it."

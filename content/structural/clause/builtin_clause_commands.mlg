@@ -7,37 +7,37 @@ and their arguments are separated by semicolons so an individual argument may
 contain commas.
 
 ```mlg-fragment
-\\\\not{P}
-\\\\and{P; Q}
-\\\\allOf{P; Q}
-\\\\or{P; Q}
-\\\\anyOf{P; Q}
-\\\\oneOf{P; Q}
-\\\\exists{x, y is \\real; n is \\natural}:suchThat{x * n > y}
-\\\\existsUnique{x is \\real}
-\\\\forAll{x is \\set}:where{x != y}:then{x is? \\set}
-\\\\if{P}:then{Q}
-\\\\have{P}:iff{Q}
-\\\\given{f is \\function}:where{P}:then{Q}
-\\\\piecewise:if{x = 0}:then{y = 0}:else{y = 1}
+\\not{P}
+\\and{P; Q}
+\\allOf{P; Q}
+\\or{P; Q}
+\\anyOf{P; Q}
+\\oneOf{P; Q}
+\\exists{x, y is \real; n is \natural}:suchThat{x * n > y}
+\\existsUnique{x is \real}
+\\forAll{x is \set}:where{x != y}:then{x is? \set}
+\\if{P}:then{Q}
+\\have{P}:iff{Q}
+\\given{f is \function}:where{P}:then{Q}
+\\piecewise:if{x = 0}:then{y = 0}:else{y = 1}
 ```
 
 They are checked with the same scoping rules as the corresponding groups: the
-head arguments of `\\\\exists`, `\\\\existsUnique`, `\\\\forAll`, and `\\\\given`
-introduce bindings in a child context, and `\\\\piecewise`'s `:else{...}` is
+head arguments of `\\exists`, `\\existsUnique`, `\\forAll`, and `\\given`
+introduce bindings in a child context, and `\\piecewise`'s `:else{...}` is
 checked in the outer context.
 
 The accepted tails are fixed per command:
 
-- `\\\\exists` and `\\\\existsUnique` take an optional `:suchThat{...}`
-- `\\\\forAll` (also spelled `\\\\forall`) and `\\\\given` take an optional
+- `\\exists` and `\\existsUnique` take an optional `:suchThat{...}`
+- `\\forAll` (also spelled `\\forall`) and `\\given` take an optional
   `:where{...}` and a required `:then{...}`
-- `\\\\if` takes `:then{...}`
-- `\\\\have` requires `:iff{...}`
-- `\\\\piecewise` takes `:if{...}`, a required `:then{...}`, and an optional
+- `\\if` takes `:then{...}`
+- `\\have` requires `:iff{...}`
+- `\\piecewise` takes `:if{...}`, a required `:then{...}`, and an optional
   `:else{...}`
-- `\\\\not`, `\\\\and`, `\\\\allOf`, `\\\\or`, `\\\\anyOf`, and `\\\\oneOf` take no tails,
-  and `\\\\not` expects exactly one clause
+- `\\not`, `\\and`, `\\allOf`, `\\or`, `\\anyOf`, and `\\oneOf` take no tails,
+  and `\\not` expects exactly one clause
 
 Wrong arity, a missing required tail, an unrecognized tail name, or an unknown
 builtin clause command is reported as an error."

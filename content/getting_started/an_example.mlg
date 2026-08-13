@@ -6,15 +6,15 @@ Text: "A small definition can combine prose, a command header, type requirements
 ```mlg-fragment
 Text: \"A subset is a set whose elements all belong to another set.\"
 
-[A \\:subset:/ B]
+[A \:subset:/ B]
 Defines: A
-when: B is \\set
-extends: A is \\set
+when: B is \set
+extends: A is \set
 satisfies:
 . forAll: X \"in\" A
   then: X \"in\"? B
 Documented:
-. written: \"A? \\subseteq B?\"
+. written: \"A? \subseteq B?\"
 . called: \"$A?$ is a subset of $B?$\"
 Id: \"4196f823-e51d-4568-89aa-83a2d4627bd9\"
 ```

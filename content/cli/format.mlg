@@ -15,7 +15,7 @@ Formatting is normalization, not a judgement call. It:
 - reflows inline `\"...\"` text values to the `margin` width from
   `mlg.json` (default `80`).
 
-LaTeX blobs (`$...$`, `$$...$$`, `\\(...\\)`, `\\[...\\]`) are treated as atomic and
+LaTeX blobs (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`) are treated as atomic and
 are never split; a text value whose author laid out multi-line or over-wide math
 by hand is left untouched. Paragraph breaks inside text are preserved.
 

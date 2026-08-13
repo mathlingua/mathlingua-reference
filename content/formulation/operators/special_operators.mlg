@@ -3,7 +3,7 @@ Id: "e383d897-c838-49e6-bda0-87a290967d8f"
 
 Text: "Special operators are not limited to single characters such as `+`, `-`, `*`, `/`, `=`, or `^`.
 
-Any sequence of the operator characters `-~!#%^&*\\+=|<>/` may be used as an operator. An operator run may also carry trailing prime marks and a `_`-prefixed subscript, so operators can be primed and indexed.
+Any sequence of the operator characters `-~!#%^&*\+=|<>/` may be used as an operator. An operator run may also carry trailing prime marks and a `_`-prefixed subscript, so operators can be primed and indexed.
 
 ```mlg-fragment
 *

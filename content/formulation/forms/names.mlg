@@ -23,7 +23,7 @@ alphanumeric, including on a subscript. Primes render as LaTeX primes: `X'`
 renders as $X'$ and `x'_a'` as $x'_{a'}$.
 
 Stropped symbolic names wrap an operator name in backticks. The inside text is
-non-empty and uses only the operator characters `-~!#%^&*\\+=|<>/`, optionally
+non-empty and uses only the operator characters `-~!#%^&*\+=|<>/`, optionally
 with trailing primes:
 
 ```text

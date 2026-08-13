@@ -13,18 +13,18 @@ the `writing:` value must be either that exact mapping form or the same form
 with each placeholder replaced by its ordinary name.
 
 ```mlg-fragment
-[\\real.sequence]
+[\real.sequence]
 Defines: X ::= x(i_)
 Documented:
 . writing: x(i)
   as: \"x?_{i?}\"
 . writing: x(i_)
-  as: \"\\left\\{x?\\right\\}_{i_?=1}^{\\infty}\"
+  as: \"\left\{x?\right\}_{i_?=1}^{\infty}\"
 ```
 
 The ordinary form (`x(i)`) renders invocations such as `x(j)`, substituting `x?`
 and `i?` with the invoked mapping and argument. The placeholder form (`x(i_)`)
-renders the mapping itself, as in `x(i_) is \\real.sequence`; its template may
+renders the mapping itself, as in `x(i_) is \real.sequence`; its template may
 use the placeholder key `i_?`. The `as:` value is raw LaTeX rendering text.
 
 When the target has a declaration alias, as in `X ::= x(i_)`, both `writing:`
