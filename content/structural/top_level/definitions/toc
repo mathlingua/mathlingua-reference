@@ -1,9 +1,11 @@
 overview.mlg -> Overview
-defines.mlg -> Defines
 declares.mlg -> Declares
+defines.mlg -> Defines
+realizes.mlg -> Realizes
 refines.mlg -> Refines
 states.mlg -> States
 disambiguates.mlg -> Disambiguates
+support_sections.mlg -> Support Sections
 provides -> Requires and Enables
 documented -> Documented
 justification.mlg -> Justification

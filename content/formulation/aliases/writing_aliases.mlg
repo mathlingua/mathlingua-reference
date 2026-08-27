@@ -25,5 +25,5 @@ The quotes are required precisely because the raw LaTeX body could otherwise be
 misread as a formulation.
 
 Writing aliases are distinct from the nested `Documented:` `writing:`/`as:`
-item, which renders a mapping introduced by `Defines:` rather than a name."
+item, which renders a mapping introduced by `Declares:` rather than a name."
 Id: "f719bf43-607d-4118-bf1a-b9396bb862c7"

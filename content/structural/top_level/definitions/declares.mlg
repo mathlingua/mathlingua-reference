@@ -1,12 +1,17 @@
 Title: "Declares"
 Id: "94516121-2dd0-4ec4-9a4e-b50a4ae45753"
 
-Text: "```mlg-fragment
+Text: "`Declares:` introduces a reusable type or interface: a shape and the facts
+that every instance carries. It does not supply a concrete value.
+
+```mlg-fragment
 [CommandHeader]
-Declares: <DeclarationStatement>
+Declares: <FormOrDeclaration>
 using?: <DeclarationStatement>+
 when?: <ClauseUnion>+
-expresses?: <ClauseUnion>
+extends?: <ExtendsItem>+
+specifies?: <IsOrViaItem>+
+satisfies?: <ClauseUnion>+
 Requires?: <RequiresItemUnion>+
 Enables?: <EnablesItemUnion>+
 Documented?: <DocumentedItemUnion>+
@@ -18,34 +23,34 @@ Metadata?: <MetadataItemUnion>+
 Id?: <OpenText>
 ```
 
-`Declares:` introduces a command by an `is` or specification statement — a
-value, a statement, or a specification rather than a new type. The `expresses:`
-section records the defining clause.
+The target may name the type it extends directly:
 
 ```mlg-fragment
-[\foo{s}]
-Declares: x is \bar{s}
+[\magma]
+Declares: M ::= (X, *) is \set via X
+specifies: * is \binary.operation:on{X}
 Documented:
-. called: \"foo\"
-Id: \"23e4567e-e89b-42d3-a456-426614174000\"
+. called: \"magma\"
 ```
 
-A `Declares:` target symbol must be assigned exactly once and **must state its
-type**, either with `... is <type>` or with a top-level build
-`\<type>@<value>`:
+The equivalent `extends:` section is useful when one target extends several
+types through different views. A group may use the relation on the `Declares:`
+target or `extends:`, but not both.
 
 ```mlg-fragment
-Declares: X := \set@{x_ : x_ is \real}
+[\foo]
+Declares: F ::= (X, *, +, 0, 1)
+extends:
+. F is \bar via (X, +, 0)
+. F is \baz via (X, *, 1)
 ```
 
-A bare `X := {...}` is rejected even when the type could be inferred.
+`specifies:` gives type, specification, or assignment-backed facts for the
+target's components. `satisfies:` gives proposition clauses that every instance
+must satisfy. Facts are processed in order. A `:=` assignment may bind a part
+to an already-known value and participates in later capability reduction.
 
-`using:` introduces auxiliary symbols. `when:` states requirements for
-command-header parameters. `Requires:` and `Enables:` describe capabilities the
-checker can use when resolving notation. `Documented:` must include at least one
-of `called:` or `written:`. `Id:` is required for every top-level item;
-`mlg check` adds it when missing.
-
-A `Requires:` `definition:` item refers to a `Declares:` entry, so a command
-whose definitional facts other items depend on is written with `Declares:`."
+The heading is required. Header parameters normally need facts in `when:`.
+`Documented:` must contain `called:` or `written:`. Only `Declares:` may use a
+spec-infix heading such as `[A \:subset:/ B]`."
 Id: "bf47cb67-b5e3-44de-add0-6b767a92aec8"

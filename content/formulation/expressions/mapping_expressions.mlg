@@ -22,7 +22,7 @@ mirroring the `:->` and `:=>` operator forms:
 
 ```mlg-fragment
 f is (_ \"in\" A) -> (_ \"in\" B)
-f is (? is \natural, ? \"in\" \reals) -> (? is \real)
+f is (_ is \natural, _ \"in\" \reals) -> (_ is \real)
 ```
 
 Command-argument shorthand: `\foo[lhs]{rhs}` desugars to `\foo{(lhs) => rhs}`.

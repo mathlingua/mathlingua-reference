@@ -5,7 +5,7 @@ Text: "The structural language is the line-oriented layer of MathLingua. It orga
 
 ```mlg-fragment
 [\set]
-Defines: X
+Declares: X
 Documented:
 . called: \"set\"
 Id: \"059126b9-dc83-41a2-aa1c-84f8e942f8d6\"

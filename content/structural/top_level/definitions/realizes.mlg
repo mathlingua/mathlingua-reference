@@ -1,0 +1,43 @@
+Title: "Realizes"
+Id: "812d2a6f-e574-4328-9454-637b8e39340c"
+
+Text: "`Realizes:` supplies a concrete implementation for every component left open
+by a `Defines:` item marked `abstractly:`.
+
+```mlg-fragment
+[CommandHeader]
+Realizes: <DeclarationStatement>
+using?: <DeclarationStatement>+
+when?: <ClauseUnion>+
+specifies?: <IsOrViaItem>+
+expresses?: <ClauseUnion>+
+Requires?: <RequiresItemUnion>+
+Enables?: <EnablesItemUnion>+
+Documented?: <DocumentedItemUnion>+
+Justification?: <HaveGroup>+
+Aliases?: <AliasItemUnion>+
+Writing?: \"<WritingAlias>\"+
+References?: <ResourceHeader>+
+Metadata?: <MetadataItemUnion>+
+Id?: <OpenText>
+```
+
+The target has the form `<subject> := <abstract command>`. The right side must
+resolve to an abstract `Defines:` item, not a `Declares:` type.
+
+```mlg-fragment
+[\von.neumann.naturals]
+Realizes: Nb := \naturals
+specifies:
+. N := \von.neumann.omega
+. 0 := \empty.set
+. succ(n_) := n_ \union \set@{n_}
+Documented:
+. called: \"von Neumann natural number system\"
+```
+
+Component types and capabilities are inherited from the abstract definition.
+The realization must supply every open component, may not invent a component,
+and may use `expresses:` for a callable body. Direct component access on a
+realization uses `..`, just as for an ordinary `Defines:` command."
+Id: "91d8f06f-3097-4268-8a53-d0d2027e942e"

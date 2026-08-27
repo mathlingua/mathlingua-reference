@@ -13,7 +13,10 @@ The current server provides:
 - jump to definition for command uses
 - prepare-rename and workspace rename for top-level command signatures and all
   corresponding uses
+- per-line hover output showing the resolved types of an expression and its
+  nested subexpressions
 
-Open document text is kept in memory for completion. Diagnostics are refreshed
-on open and save rather than after every edit."
+Open document text is kept in memory for completion. Diagnostics and type
+information are resolved on open and save rather than after every edit. A hover
+after unsaved edits labels its type information as stale until the next save."
 Id: "5f9ffb83-e448-41b4-9f71-c1836f279d05"

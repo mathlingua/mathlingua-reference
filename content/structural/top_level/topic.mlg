@@ -18,13 +18,13 @@ Id?: <OpenText>
 The `[#dotted.name]` heading is required. `within:` names a parent topic (making
 this a sub-topic) as a quoted `\"#...\"` reference. Each `Related:` entry has one or
 more `to:` references — quoted `\"#topic\"` or `\"\signature\"` strings — and a
-required `means:` description. A topic's `Documented:` accepts only `called:`,
+required `specifies:` description. A topic's `Documented:` accepts only `called:`,
 which overrides how the title renders.
 
 ```mlg-fragment
 Related?:
 . to: <OpenText>+
-  means: <OpenText>
+  specifies: <OpenText>
 ```
 
 ```mlg-fragment
@@ -34,9 +34,9 @@ within: \"#analysis\"
 Related:
 . to: \"#complex.analysis\"
   . \"\sin\"
-  means: \"Closely connected subjects.\"
+  specifies: \"Closely connected subjects.\"
 . to: \"\function:on:to\"
-  means: \"Functions studied here.\"
+  specifies: \"Functions studied here.\"
 Documented:
 . called: \"Real Analysis\"
 ```"

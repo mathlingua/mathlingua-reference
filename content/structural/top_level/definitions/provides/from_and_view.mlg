@@ -1,0 +1,33 @@
+Title: "From And View"
+Id: "bace1f6c-f404-452b-a10b-6fb7772a3607"
+
+Text: "`Enables:` supports build-backed `from:` items and type views in addition to
+ordinary capabilities.
+
+```mlg-fragment
+Enables:
+. from: Y ::= {y__ : ...}
+  capability: x_ \"in\" X :<->: x_ member_of Y
+. from: P ::= {(p_, q_) : ...}
+  as: f(p_) := q_
+. view:
+  as: S := X is \set
+  signifies: S \:represents:/ X
+```
+
+A `from:` item describes the structure of a value supplied by a build. It must
+contain exactly one of `capability:` or `as:`. A `from:` capability can reduce
+facts through the built literal; a `from:`/`as:` binding validates a view from
+the source structure to the described callable or value.
+
+`view:` is a zero-argument marker. Its required `as:` section has exactly the
+form `<symbol> := <expression> is <type>`. The introduced symbol, expression,
+and type are in scope for optional `signifies:`. A view lets the owning
+`Declares:`, `Defines:`, or `Realizes:` construct satisfy requirements and
+ordinary `\type@value` builds at the view's type. Views are not used to choose
+an overloaded operator or a `Disambiguates:` branch.
+
+The removed `Enables: relation:`/`represents:` syntax, `\\coercion`,
+`\\encoding`, hard builds (`@!`), and hard type introductions (`is!`) are not
+part of the current language."
+Id: "efc1a213-388c-4ea9-8b39-3103be5923b5"

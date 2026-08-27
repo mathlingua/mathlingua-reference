@@ -10,12 +10,12 @@ G is \set via X
 The left side is an `is` statement. The right side is a form or declaration —
 such as `X` or `(X, Y)` — describing how the subtype is viewed as the supertype.
 
-In a definition, `extends: G is \set via X` lets the checker use `G is \set`
-whenever it knows `G` has the described type. The implication is recursive, so
+In a `Declares:` item, `extends: G is \set via X` lets the checker use `G is
+\set` whenever it knows `G` has the declared type. The implication is recursive, so
 subtype chains are followed.
 
 The `via` form also **sets the types of the symbols it names**, so they need not
-be repeated in `declares:`:
+be repeated in `specifies:`:
 
 - `extends: M is \set via X` — a single `via` symbol becomes an instance of the
   extended type, recording `X is \set`.
@@ -23,7 +23,7 @@ be repeated in `declares:`:
   extended type's own components, so `X` and `*` inherit the types `\magma`
   gives its components (`X is \set`, `* is \binary.operation:on{S}`).
 
-Because `via` supplies those types, `declares:` only needs to type the
+Because `via` supplies those types, `specifies:` only needs to type the
 components `via` does not cover.
 
 An `extends:` section may also use a spec statement, such as

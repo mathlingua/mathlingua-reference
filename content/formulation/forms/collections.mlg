@@ -27,7 +27,7 @@ A value introduced with a build such as `A := \set@{x_ : x_ is \real}` records
 the literal for `A`, so reducing `a \"in\" A` through that `from:` capability
 yields `a member_of A` and the literal's element facts become available.
 
-An ordinary non-`from:` capability on an opaque target does **not** read a built
+An ordinary non-`from:` capability on an unstructured target does **not** read a built
 literal through `member_of`. Use a structural target such as
-`Defines: X ::= {x__ : ...}` or an explicit `from:` capability for that."
+`Declares: X ::= {x__ : ...}` or an explicit `from:` capability for that."
 Id: "8ff2b8cc-f13f-40b6-972c-eceb2dc8dc82"

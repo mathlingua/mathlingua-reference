@@ -16,5 +16,7 @@ f(x__)
 G ::= (X, *, e)
 ```
 
-A form can introduce symbols when it appears in a declaration position. For example, `G ::= (X, *, e)` introduces `G`, `X`, and `e` as symbols whose roles must be specified by the surrounding definition."
+A form can introduce symbols when it appears in a declaration position. For
+example, `G ::= (X, *, e)` introduces `G`, `X`, `*`, and `e` as symbols whose
+roles must be specified by the surrounding declaration."
 Id: "796fefea-e968-4ebc-8538-be43b9f88b2b"

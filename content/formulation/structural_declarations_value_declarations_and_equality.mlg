@@ -15,7 +15,11 @@ S := \set.theoretic.pair:of{A}:and{A}
 x = y
 ```
 
-Only `::=` introduces symbols; the right-hand side of `:=` must already be in scope. A `Declares:` target often combines a value definition with a type: `S := \set.theoretic.pair:of{A}:and{A} is \set`.
+In a binding position, the left target of `:=` introduces a defined symbol, but
+names used only on its right must already be in scope. `::=` additionally
+introduces names from the structural expansion. A `Defines:` target often
+combines a value definition with a type: `S :=
+\set.theoretic.pair:of{A}:and{A} is \set`.
 
 A chained function declaration keeps the function form and names its output:
 
@@ -26,6 +30,12 @@ X ::= x(i_) ::= y_
 This introduces the alias `X`, the mapping name `x`, the input `i_`, and the output `y_`; `X` and `x` denote the same mapping. When the subject is a function declaration such as `f(x_, y_)`, the `::=` expansion must be a single placeholder output such as `z_`.
 
 Combining `::=` with `:=` also creates a local syntactic substitution: if `A ::= B := B` is in scope, facts about `A` can satisfy requirements about `B` and vice versa, because the two keys normalize together.
+
+A scope may not introduce the same defined symbol twice. This includes repeated
+`:=` targets, header parameters, nested quantifier or `let:` binders, and
+`using:` declarations that shadow header or target symbols. Function-form
+placeholders are local to their forms and may repeat, but the callable name may
+not be rebound.
 
 A declaration may combine structural shape and value definition. In set expressions, `:=` value bindings belong in the predicate branch after `|`:
 

@@ -25,10 +25,12 @@ The clause groups are:
 - `if:` (with `then:`)
 - `have:` (with `iff:`)
 - `have:` (with `asserting:`, and optional `because:` / `by:`)
-- `piecewise:` (with `if:`, `then:`, and optional `else:`)
+- `piecewise:` (with `if:`, `then:`, zero or more `elseIf:`/`then:` pairs,
+  and optional `else:`)
 
-A `have:` group is dispatched by its **second** section label: `iff:` makes it
-the biconditional group, while `asserting:` makes it the assertion group.
+A `have:` group containing `iff:` is the biconditional form. Every other
+`have:` shape is the proof-style form, whose `asserting:`, `because:`, and `by:`
+sections are optional.
 
 Formulation clause entries are tried as declarations first and expressions
 second. This lets `x is \set` introduce a type fact in contexts where facts are
@@ -45,5 +47,8 @@ Each of these clauses also has a builtin command form usable inline in a
 statement position — see Builtin Clause Commands.
 
 Quantifier and `let:` declarations are local to the clause group that
-introduces them."
+introduces them. A nested binding may not shadow a defined symbol from an
+inherited scope. Clause bindings use the refined declaration parser, so refined
+types are accepted consistently in `given:`, quantifiers, `have:`, and other
+binding positions."
 Id: "fbc6bc5d-dab9-4c48-b83c-f2aff94640be"

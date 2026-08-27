@@ -23,7 +23,7 @@ tuple. It must be the mapping's only parameter, must bind both an index and a
 length name, and must start at 0 or 1.
 
 ```mlg-fragment
-Defines: f(x_[i_ := 1...n])
+Declares: f(x_[i_ := 1...n])
 ```
 
 This is separate from variadic **command** arguments, which occupy a whole

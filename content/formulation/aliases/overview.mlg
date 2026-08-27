@@ -6,8 +6,12 @@ Text: "Aliases introduce alternate notation or rendering behavior.
 MathLingua currently uses three alias operators:
 
 - `:=>` for expression aliases
-- `:->` for specification or capability aliases
+- `:->` for directed specification capabilities
+- `:<->:` for equivalent specification capabilities
 - `:~>` for writing aliases
 
-Aliases can appear in `Aliases:`, `Requires:`, `Enables:`, `Documented:`, and top-level `Writing:` contexts, depending on the group kind. The surrounding structural section determines the exact meaning."
+Aliases can appear in `Aliases:`, `Requires:`, `Enables:`, `Documented:`, and
+top-level `Writing:` contexts, depending on the group kind. The surrounding
+structural section determines the exact meaning. `:->` infers only left to
+right; `:<->:` also infers right to left when all conclusions are available."
 Id: "8432dc35-def6-4279-a451-121e04d98c50"

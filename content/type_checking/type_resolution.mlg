@@ -3,57 +3,48 @@ Id: "2b59cf98-6cf3-4b4b-835d-baabd8ee216b"
 
 Text: "A binary operator resolves in this order:
 
-1. **application desugar** — when the symbol names a bound value in scope,
-   `x * y` is `*(x, y)` and `x |op| y` is `op(x, y)`;
-2. a **colon-qualified capability** — `:op`, `op:`, or `:op:` picks the operand
-   type that owns the operator;
-3. a matching **`Disambiguates:`** entry;
-4. a **capability owned by the operands' common type**, where a value known only
-   through a spec (`y \"in\" M`) is first reduced to its `is` facts to make the
-   match.
+1. application of a bound symbol (`x * y` becomes `*(x, y)`);
+2. a colon-qualified capability owned by the selected operand type;
+3. a matching `Disambiguates:` branch;
+4. a capability owned by the operands' common type, after reducible spec facts
+   are converted to type facts.
 
-If none apply, the operator is reported unresolved. Prefix and postfix
-operators, and member access, follow the analogous capability and disambiguation
-paths.
-
-Directed operator forms select the type used for resolution:
-
-```text
-x :* y      -- use the type of x
-x *: y      -- use the type of y
-x :*: y     -- use the least common ancestor type
+```mlg-fragment
+x :* y
+x *: y
+x :*: y
 ```
 
-The same idea applies to named operators such as `x :|op| y`.
+These spellings select the left type, right type, or least common ancestor type.
+Named operators use the same colon variants. Prefix, postfix, and member forms
+follow analogous capability and disambiguation rules.
 
-Capabilities from `Requires:` and `Enables:` are considered together for
-notation lookup, and resolution searches the selected type and its parent types
-through `extends:`.
-
-Build-backed `from:` capabilities apply only when the value was introduced with
-a compatible built literal, such as `A := \set@{x_ : x_ is \real}`."
+Capabilities from `Requires:` and `Enables:` are considered together, and
+lookup follows `Declares:` extension chains. `from:` capabilities apply to a
+compatible built literal. Assignment-backed `specifies:` facts are normalized
+so capabilities stated in terms of a component can follow that component's
+assigned command value."
 Id: "b4f93e01-3b86-4228-b3ed-512add4b38bf"
 
-SectionTitle: "Builds And Coercion"
+SectionTitle: "Builds And Views"
 Id: "88aed822-a5b4-4f56-8966-ee206c1c5290"
 
-Text: "A build views a value at a stated type: `\type@value` is a **soft** build and
-`\type@!value` is a **hard** build. They replace the removed `value as \type`
-and `value as! \type` cast expressions.
+Text: "A build `\type@value` succeeds when the value already has the type, reaches it
+through extension, or has an applicable `Enables: view:`.
 
-A soft build succeeds when the value already has that type, has a parent type
-that extends to it, or its type (or a parent) has an `Enables:` `relation:` to
-the target marked `represents: \\coercion`. A hard build performs the same checks
-and additionally allows relations marked `represents: \\encoding` — an
-abstraction boundary that no automatic coercion or soft build crosses.
+```mlg-fragment
+Enables:
+. view:
+  as: r := \as.rational{n} is \rational
+  signifies: n \.embedded.to./ r
+```
 
-The named counterparts are `x is \type` (soft view) and `x is! \type` (hard
-view).
+The view symbol, its value, and its type are available to `signifies:`. If the
+view expression is a name or tuple of names, facts follow through those concrete
+components; otherwise only the advertised type is known. Views satisfy resolved
+command requirements and builds, but do not select overloaded operators or
+`Disambiguates:` branches.
 
-Coercion relationships are applied when checking whether an already-resolved
-command's arguments satisfy its requirements — a command requiring
-`x is \rational` may accept an integer argument when `\integer` has a coercion
-relation to `\rational`. They are **not** used for operator resolution: `+` on
-integers will not resolve to `+` on rationals merely because integers can be
-viewed as rationals."
+Hard builds (`@!`), hard declarations (`is!`), `\\coercion`, `\\encoding`, and
+the old `Enables: relation:` form are not supported."
 Id: "40a048de-3573-4d73-ad8c-ca8c1772687d"

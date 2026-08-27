@@ -1,34 +1,36 @@
-Title: "Operator Expressions"
+Title: "Operator And Member Expressions"
 Id: "74b37f13-dca9-4634-90dc-6df6e0b63240"
 
-Text: "```mlg-fragment
+Text: "MathLingua supports symbolic operators, named operators, infix commands,
+ordinary member access, and direct command components.
+
+```mlg-fragment
 x * y
 x :* y
 x *: y
 x :*: y
-```
-
-```mlg-fragment
 x |op| y
-x :|op| y
-x |op|: y
-x :|op|: y
+x |M.*| y
+x \.set.union./ y
+M.X
+M.`*`(x, y)
+\naturals..N
+\naturals..succ(n)
+\reals..`*`
 ```
 
-`x :* y` resolves `*` from the type of `x`. `x *: y` resolves from the type of `y`. `x :*: y` resolves from the least common ancestor type of both operands.
+`x :* y` resolves `*` from the type of `x`; `x *: y` resolves it from the type
+of `y`; `x :*: y` resolves from their least common ancestor type. Plain
+operators first use a bound local operator as an application, then eligible
+capabilities or `Disambiguates:` entries.
 
-Plain `x * y` resolves from local definitions first, then global definitions, then a matching `Disambiguates:` item.
+Named prefix, infix, and postfix operators behave like function calls. A named
+operator may be a dotted member path: `x |M.*| y` is `M.*(x, y)`.
 
-Named prefix and postfix operators behave like unary function calls:
-
-```mlg-fragment
-f| x      -- same arity as f(x)
-x |f      -- same arity as f(x)
-```
-
-Named infix operators behave like binary function calls:
-
-```mlg-fragment
-x |op| y  -- same arity as op(x, y)
-```"
+Use one dot for a component of a bound value. Use two dots in source for a
+direct component of a top-level `Defines:` or `Realizes:` command. Direct
+components are ordinary expressions and may also be specification subjects or
+targets, for example `n \"in\" \naturals..N`. The renderer shows a single dot
+after semantic resolution. Direct access is not available on a `Declares:`
+type."
 Id: "3b8fd8f3-9171-44e0-bff4-93872a5afb23"

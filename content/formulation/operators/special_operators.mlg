@@ -20,7 +20,9 @@ Any sequence of the operator characters `-~!#%^&*\+=|<>/` may be used as an oper
 
 A stropped symbolic name wraps an operator in backticks — `` `*` `` is the operator `*` referred to by name, and renders as `*` without the backticks.
 
-A capability may also declare a **bracketed placeholder operator** `x_ [*] y_`, where `[*]` names a symbol drawn from the definition's inputs or `Defines:` target rather than a fixed character.
+A capability may also declare a **bracketed placeholder operator** `x_ [*] y_`,
+where `[*]` names a symbol drawn from the definition's inputs or `Declares:`
+target rather than a fixed character.
 
 The directed forms `:*`, `*:`, and `:*:` apply to these operators as well."
 Id: "07de0340-f3e8-4391-aa1b-4ed46cc466c2"

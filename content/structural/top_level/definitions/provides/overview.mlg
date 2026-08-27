@@ -1,7 +1,9 @@
 Title: "Overview"
 Id: "5139f041-388c-4eb4-a037-61d42dac7716"
 
-Text: "`Requires:` and `Enables:` replace the older `Provides:` section. The nested operation item is `capability:`, not `symbol:`.
+Text: "`Requires:` records capabilities or top-level definitions a construct needs.
+`Enables:` records additional capabilities, build-backed forms, and type views
+that the construct supplies.
 
 ```mlg-fragment
 RequiresItemUnion ::=
@@ -12,53 +14,33 @@ EnablesItemUnion ::=
     | CapabilityGroup
     | FromCapabilityGroup
     | FromAsGroup
-    | EnablesRelationGroup
+    | ViewGroup
 ```
 
-`Requires:` describes capabilities and definitions that are part of a construct. `Enables:` describes additional notation, casts, and relationships made available by the construct.
-
-For type checking, ordinary capabilities from both sections are combined. The split is primarily communicative: authors can show what is definitional and what is merely enabled.
+Ordinary capabilities from both sections participate in semantic reduction.
+The split communicates whether the notation is a prerequisite or an additional
+facility.
 
 ```mlg-fragment
 Requires:
 . capability: x_ \"in\" X :-> x_ member_of X
-  written: \"x_? \in X?\"
 . definition: \natural.0 is \natural
 
 Enables:
 . capability: x_ - y_ :=> x_ \.set.minus./ y_
 . from: Y ::= {y__ : ...}
-  capability: x_ \"in\" X :-> x_ member_of Y
+  capability: x_ \"in\" X :<->: x_ member_of Y
 . from: P ::= {(p_, q_) : ...}
   as: f(p_) := q_
-. relation:
-  to: r := \as.rational{n} is \rational
-  when: n is \integer
-  means: n \.embedded.to./ r
-  represents:
-  . \\coercion
+. view:
+  as: S := X is \set
 ```
 
-A nested `Enables: relation:` group has the shape:
+An expression capability uses `:=>`. A specification capability uses `:->` for
+one-way inference or `:<->:` for equivalence; multiple conclusions are
+semicolon-separated. `\\abstract` is a valid abstract specification target.
 
-```mlg-fragment
-[LabelHeader]?
-relation: <OpenText>*
-to: <RelationshipDeclaration>
-when?: <RelationWhenItemUnion>+
-means?: <ClauseUnion>
-represents?: <RelationKind>+
-by?: <OpenText>+
-```
-
-`from:` groups must contain exactly one of `capability:` or `as:`; a `from:`
-with `as:` may not carry `written:`. Each `represents:` entry is `\\coercion` or
-`\\encoding`. A relation that `represents: \\coercion` supports soft builds
-(`\type@value`); one that `represents: \\encoding` additionally supports hard
-builds (`\type@!value`). An unmarked `relation:` is still valid — it records the
-relationship for readers without affecting builds.
-
-A `Requires:` `definition:` item has the shape `\command is <type-or-spec>`. It
-succeeds only when the referenced command is a top-level `Declares:` entry whose
-definition establishes the requested fact."
+A `Requires:` `definition:` item has the shape `\command is <type-or-spec>`.
+It succeeds only when the command is a top-level `Defines:` item whose output
+facts establish the requested relation."
 Id: "db689e71-bbe1-43bf-bda4-6614f9cbe81f"

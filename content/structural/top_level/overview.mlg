@@ -9,8 +9,9 @@ TopLevelItemUnion ::=
     | TextGroup
     | TopLevelWritingGroup
     | DisambiguatesGroup
-    | DefinesGroup
     | DeclaresGroup
+    | DefinesGroup
+    | RealizesGroup
     | RefinesGroup
     | StatesGroup
     | AxiomGroup
@@ -29,17 +30,21 @@ The group kind is determined by the first section label, never by the heading.
 Every top-level item additionally accepts a final optional `Id:` section holding
 a quoted UUID; `mlg check` adds a missing one, and duplicate ids are errors.
 
-Groups with command headings introduce command signatures: `Defines:`,
-`Declares:`, `Refines:`, `States:`, `Equivalent:`, and the theorem-like groups
+Groups with command headings introduce command signatures: `Declares:`,
+`Defines:`, `Realizes:`, `Refines:`, `States:`, `Equivalent:`, and the theorem-like groups
 that carry an optional heading. Duplicate signatures are rejected across all of
 these kinds.
 
-Every non-prose top-level item (`Defines:`, `Declares:`, `Refines:`, `States:`,
+Every non-prose top-level item (`Declares:`, `Defines:`, `Realizes:`, `Refines:`, `States:`,
 `Axiom:`, `Theorem:`, `Conjecture:`, `Relation:`, and `Disambiguates:`) may
 carry its own optional `Writing:` section immediately after `Aliases:`.
 
-`Describes:` was renamed to `Defines:`, and the older `Defines:` was renamed to
-`Declares:`. `Corollary:`, `Lemma:`, `Represents:`, and `Subsubsection:` are no
-longer part of the structural language; `Conjecture:` and the opaque `Text…:`
-placeholders were added."
+`Declares:` defines reusable types and interfaces. `Defines:` introduces typed
+values and operations, and may use `abstractly:` when a later `Realizes:` item
+will supply its open components. `Realizes:` provides a concrete implementation
+of one such abstract definition.
+
+`Corollary:`, `Lemma:`, `Represents:`, and `Subsubsection:` are not part of the
+structural language. `Conjecture:` and the opaque `Text…:` placeholders are
+available for unproved or intentionally unstructured content."
 Id: "0458cfe8-4b85-4c0f-8fbb-7d78e5cb80f5"

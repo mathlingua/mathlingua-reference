@@ -5,7 +5,7 @@ Text: "An infix specification command header uses the `\:...:/` form.
 
 ```mlg-fragment
 [A \:subset:/ B]
-Defines: A
+Declares: A
 when: B is \set
 extends: A is \set
 Documented:
@@ -16,8 +16,8 @@ Id: \"23e4567e-e89b-42d3-a456-426614174000\"
 The header uses a single backslash: `\:` opens the form and `:/` closes it. Both
 operands are required.
 
-These forms are special for `Defines:`, and only `Defines:` may use them. The
-left-hand side is the item being defined, so it does not require a `when:`
+These forms are special for `Declares:`, and only `Declares:` may use them. The
+left-hand side is the item being declared, so it does not require a `when:`
 entry for itself. Other header parameters still need `when:` specifications.
 
 At use sites the specification form `A \:subset:/ B` introduces symbols and is
@@ -39,7 +39,7 @@ Documented:
 ```
 
 An explicit refined spec-infix definition is not required when the refinement is
-inherited through the base operator's `extends:` type. If `\:subset:/` extends
+inherited through the base operator's declared `extends:` type. If `\:subset:/` extends
 its left operand to `\set` and `\(nonempty)::set` is defined, then
 `X' \:(nonempty)::subset:/ X` resolves implicitly, establishing both
 `X' \:subset:/ X` and `X' is \(nonempty)::set`."

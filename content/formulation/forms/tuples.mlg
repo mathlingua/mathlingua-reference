@@ -21,14 +21,14 @@ Destructuring is allowed in a `Defines:`/`Declares:` target, a command
 parameter, and a `given:`/`using:` binding:
 
 ```mlg-fragment
-Defines: M ::= (X, *)
+Declares: M ::= (X, *)
 [\magma.element:of{M ::= (X, *)}]
 given: M ::= (X, *) is \magma
 ```
 
-The component types are inferred: from `extends:`/`via` and then `declares:` for
-a `Defines:` target; from the parameter's `when:` type for a command parameter;
-and from the right-hand type for a `given:`/`Declares:` binding. Components typed
+The component types are inferred: from `extends:`/`via` and then `specifies:` for
+a `Declares:` target; from the parameter's `when:` type for a command parameter;
+and from the right-hand type for a `given:`/`Defines:` binding. Components typed
 this way need no separate `when:` entry, and member access reaches them (`M.X`,
 `M.*`)."
 Id: "6ff385e2-afe6-4d77-b0d3-2a8ba0eceea7"

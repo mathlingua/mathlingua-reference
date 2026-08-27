@@ -1,42 +1,38 @@
 Title: "Type System"
 Id: "6797835a-79b0-45ab-8ac7-1db592e2b290"
 
-Text: "The checker tracks facts of two main kinds:
+Text: "The checker tracks type facts such as `G is \set` and specification facts
+such as `x \"in\" G`. Facts come from headings, `using:`, `when:`, theorem
+`given:`, local clause bindings, `where:`, structural declarations, and assumed
+clauses.
 
-- type facts, such as `G is \set`
-- specification facts, such as `x \"in\" G`
+A `Declares:` item defines a reusable nominal type or interface. Its `extends:`
+rules are recursive: knowing `G is \group` may establish `G is \monoid` and
+then `G is \magma`. A `Defines:` item creates a typed value; `Realizes:` creates
+a concrete implementation of an abstract definition. Capabilities owned by a
+`Declares:` type apply to every instance, while capabilities owned by
+`Defines:` or `Realizes:` apply to that defined command value with its parameters
+substituted.
 
-Facts are introduced by command headers, `using:`, `when:`, theorem `given:`,
-local clause groups, `where:`, declarations, and assumptions created by clauses
-such as `exists:`, `forAll:`, and `let:`.
+Builtin types use two leading backslashes:
 
-`extends:` records implications between types or specifications. If `\group`
-extends `\set`, then a known fact `G is \group` establishes `G is \set`, and
-the implication is followed recursively along subtype chains.
+- `\\type` holds for command references whose top-level item is `Declares:`
+- `\\statement`, `\\expression`, and `\\specification` classify formulation
+  values
+- `\\anything` is satisfied by every declared value but adds no concrete type
+  fact
+- `\\abstract` is the abstract capability target
 
-Type assertions for no-argument `Defines:` commands are **nominal**: `G is
-\group` records that fact without expanding `\group`'s internal requirements at
-the assertion site.
+Literal command arguments may satisfy nominal requirements structurally:
+functions by input/output shape, tuples by positional component types, and
+collections by the declared element pattern and specs. Named values still need
+ordinary facts.
 
-Builtin types use two leading backslashes. There are six:
+Bindings are processed in order. `::=` introduces a structural subject and its
+expansion; a binding-position `:=` introduces its left target, while symbols
+used only on the right must already be known. A defined name may not be
+introduced twice or shadowed in the inherited scope.
 
-- `\\type` — true for command references whose top-level entry is a `Defines:`
-  item, so `\set is? \\type` succeeds while `\sqrt is? \\type` fails when
-  `\sqrt` is a `Declares:` item
-- `\\statement`, `\\expression`, `\\specification` — the types of statements,
-  expressions, and specification literals
-- `\\opaque` — satisfied by any declared value, but contributing no concrete
-  type information: `A is \\opaque` does not imply `A is \set` and does not
-  enable set capabilities
-- `\\abstract` — the abstract target of a `:->` capability
-
-Literal command arguments are compatible with a required nominal type when their
-declared structure matches. A function literal is compared by the number and
-types of its inputs and the type of its output; a tuple literal by component
-count and positional component types; a collection literal against the required
-type's described element pattern and element types. This structural check applies
-only to literals — named values continue to require ordinary type facts.
-
-Equality and inequality, `=` and `!=`, are always accepted for declared symbols,
-even when a type-specific equality capability has not been defined."
+Equality and inequality are accepted for declared symbols even without a
+type-specific equality capability."
 Id: "ef25a78c-c06d-43c1-8bec-b53f99f00e2f"

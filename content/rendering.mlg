@@ -23,7 +23,10 @@ Names ending in digits render with numeric subscripts: `x1` renders as `x_1`. Pr
 
 The top-level `Writing:` block can map names to LaTeX, and that mapping is applied throughout expressions, statements, and specifications. For example, `alpha123` renders as `\alpha_{123}` when `alpha :~> \alpha` is defined. Any non-prose top-level item may override that mapping for itself with its own `Writing:` section.
 
-Builtin types such as `\\statement`, `\\expression`, `\\specification`, and `\\opaque` render as plain text names."
+Builtin types such as `\\statement`, `\\expression`, `\\specification`, and
+`\\anything` render as plain text names. A template key may use either a source
+placeholder spelling or its normalized name: for heading parameter `n_`, both
+`n_?` and `n?` substitute the same value, without exposing the source suffix."
 Id: "7b7cfa09-526e-493d-acbe-356bad1f8a48"
 
 SectionTitle: "Placeholder Parentheses"
@@ -82,7 +85,7 @@ Text: "When a `Documented:` section supplies both a `called:` and a `written:` f
 
 ```mlg-fragment
 [\empty.set]
-Defines: X
+Declares: X
 Documented:
 . called: \"empty set\"
 . written: \"\emptyset\"
@@ -94,7 +97,10 @@ The title always shows the name first and the notation second, whichever order t
 
 A `written:` nested inside a `called:` group documents that called form, so it pairs with it in the title just as a top-level `written:` would.
 
-`Refines:` items are named by an `adjective:` rather than a `called:`, so their titles are unaffected. Theorem-like and axiom-like entries with no documentation fall back to their label, with dots converted to spaces and words capitalized.
+`Refines:` items are named by the first `adjective:` rather than a `called:`, so
+their titles are unaffected. Later adjective texts remain documented
+alternatives. Theorem-like and axiom-like entries with no documentation fall
+back to their label, with dots converted to spaces and words capitalized.
 
 `Documented:` `description:` renders as prose above the card, like a `Text:` block; the card's `Documented:` details show `description: <see above>`."
 Id: "4d7b0e91-8c25-4a63-9f14-5b2e7a3c86f0"

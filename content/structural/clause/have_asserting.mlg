@@ -1,14 +1,14 @@
 Title: "Have / Asserting"
 Id: "37d38575-04ff-4929-ab90-c20d2812aba2"
 
-Text: "A `have:` group whose second section is `asserting:` (rather than `iff:`) is an
-escape hatch: it asserts that the `have:` items hold **given** the `asserting:`
-items.
+Text: "A proof-style `have:` group asserts the `have:` items, optionally under an
+`asserting:` context. The `asserting:` section is optional; without it, the
+surrounding facts are used.
 
 ```mlg-fragment
 [LabelHeader]?
 have: <ClauseUnion>+
-asserting: <ClauseUnion>+
+asserting?: <ClauseUnion>+
 because?: <ClauseUnion>+
 by?: <Expression>+
 ```
@@ -30,7 +30,7 @@ never proves them.
 The group is accepted in three places:
 
 - as an ordinary clause, where its `[label]` heading is optional
-- as a `declares:` item, where the heading is likewise optional
+- as an ordinary checked clause nested under structural sections
 - as an item of a top-level `Justification:` section, where the `[label]`
   heading is **required** and pairs with a `[:label:]` on some formulation
   elsewhere in the same group

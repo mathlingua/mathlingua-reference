@@ -19,9 +19,12 @@ The view supports:
 - source flip controls on cards
 - clickable definitions that open in an etched definition area
 - previous/next page navigation using page names
-- theme selection from the toolbar menu
+- theme selection from the toolbar menu, including LCD and LCD Dark
+- a Types toggle that shows per-line inferred type annotations for expressions
 - background route warming and loading skeletons for faster navigation
 - MathLingua-rendered fenced blocks tagged `mlg` inside `Text:` Markdown
 
-`Requires:` is visible on cards. `Enables:`, `Documented:`, IDs, URLs, and similar details appear in the expandable details area."
+Both `mlg view` and exported sites receive the inferred span/type metadata used
+by the Types toggle. `Requires:` is visible on cards. `Enables:`, `Documented:`,
+IDs, URLs, and similar details appear in the expandable details area."
 Id: "e4693e0d-c4b8-414f-847d-119ce8a93307"

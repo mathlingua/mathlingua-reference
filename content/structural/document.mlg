@@ -1,7 +1,9 @@
 Title: "Document"
 Id: "824dbe21-bbe8-4641-b3d0-b7f225e88539"
 
-Text: "A `.mlg` document is a sequence of top-level groups. Blank lines separate groups. Lines whose trimmed text begins with `--` are comments.
+Text: "A `.mlg` document is a sequence of top-level groups. Blank lines separate
+groups. Lines whose trimmed text begins with `--` are comments. Inside a block,
+comments are skipped but a blank line ends the current block.
 
 The structural parser works in two layers:
 
@@ -9,6 +11,19 @@ The structural parser works in two layers:
 2. the structural parser dispatches each group by its first section label
 
 A heading-only group is not a valid structural group because the group kind comes from the first section label, not from the heading.
+
+Sections have `name:` or `name: inline argument` form. Additional arguments are
+indented beneath the section; a `. value` argument is treated two spaces deeper
+than its current line. Labels and section order are case-sensitive.
+
+Text arguments are double-quoted, may span source lines, and do not interpret
+escape sequences. Single-quoted formulations are unsupported. A multiline
+formulation begins only when the entire opening line is `(`, `[`, `{`, or `(.`
+and closes with the matching delimiter at the same indent.
+
+A non-text line whose first structural-looking colon follows a section-label
+prefix starts a nested group. Formulation operators such as `:=`, `:->`,
+`:=>`, and command tails such as `:to{B}` remain formulations.
 
 Top-level items must have an `Id:` section. `mlg check` adds missing IDs before checking."
 Id: "6dbf4bc9-68c6-4813-8b64-35a7aac11b86"

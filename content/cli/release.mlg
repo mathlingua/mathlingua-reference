@@ -24,5 +24,7 @@ It then hashes each top-level item, versions the items whose contents changed
 (and re-versions items that depend on them), appends entries to
 `metadata/collection.json` and `metadata/items/<id>.json`, and bumps the
 `version` field in `mlg.json`. It prints a grouped report of the new repository
-version, the HEAD commit, the summary, and which items were updated."
+version, the HEAD commit, the summary, and which items were updated. A successful
+non-dry-run release also cleans and regenerates the exported site so `docs/`
+matches the recorded release."
 Id: "b36f33c3-1602-49c2-a3dc-1532c0a8c2cc"

@@ -1,14 +1,19 @@
 Title: "Defines"
 Id: "13d7dffc-b893-4883-8713-94f043308359"
 
-Text: "```mlg-fragment
+Text: "`Defines:` introduces a concrete typed value or operation. Its target is a
+refined-capable declaration statement. A simple value must state its type with
+`is` or a top-level build; a destructured component may inherit the known type
+of the command value assigned to it.
+
+```mlg-fragment
 [CommandHeader]
-Defines: <DefinesTargetUnion>
+Defines: <DeclarationStatement>
+abstractly?:
 using?: <DeclarationStatement>+
 when?: <ClauseUnion>+
-extends?: <IsOrViaItemUnion>
-declares?: <IsOrViaItemUnion>+
-satisfies?: <ClauseUnion>+
+specifies?: <IsOrViaItem>+
+expresses?: <ClauseUnion>+
 Requires?: <RequiresItemUnion>+
 Enables?: <EnablesItemUnion>+
 Documented?: <DocumentedItemUnion>+
@@ -20,37 +25,45 @@ Metadata?: <MetadataItemUnion>+
 Id?: <OpenText>
 ```
 
-`Defines:` introduces a command as a mathematical form or a typed,
-value-bearing declaration. Its target is tried first as a form/declaration and
-then as an ordinary declaration statement, so both `Defines: G ::= (X, *, e)`
-and `Defines: X := value is \set` are accepted.
-
 ```mlg-fragment
-[\group]
-Defines: G ::= (X, *, e)
-extends: G is \set via X
-declares:
-. * is \function:on{X}:to{X}
-. e \"in\" G
+[\intersection:of{A}:and{B}]
+Defines: I is \set
+when: A, B is \set
+expresses: I := \set@{x_ : x_ \"in\" A | x_ \"in\" B}
 Documented:
-. called: \"group\"
-Id: \"23e4567e-e89b-42d3-a456-426614174000\"
+. called: \"intersection of $A?$ and $B?$\"
 ```
 
-Header parameters must be specified in `when:`. Symbols the target introduces
-must be typed directly, through `extends:`, or through `declares:`.
+A top-level build on the right of `:=` supplies the explicit type:
 
-`using:` introduces auxiliary symbols. `extends:` records the subtype or
-extension view (see Via Keyword). `declares:` types the parts of the described
-form, including the components of a destructuring target; those facts are
-assumed while checking the body and are carried by values of the type.
-`satisfies:` records the defining conditions.
+```mlg-fragment
+[\empty.set]
+Defines: E := \set@{x_ : ...}
+Documented:
+. called: \"empty set\"
+```
 
-`Requires:` and `Enables:` describe capabilities the checker can use when
-resolving notation. `Documented:` must include at least one of `called:` or
-`written:`. `Id:` is required for every top-level item; `mlg check` adds it when
-missing.
+For a destructured definition, every component needs exactly one concrete value,
+through `:=` in `specifies:` or indirectly through `expresses:` for a callable
+body. Assignment-backed `specifies:` facts are followed by type and capability
+inference.
 
-Only `Defines:` has a `declares:` section, and only `Defines:` may use an
-infix-specification heading such as `[A \:subset:/ B]`."
+The zero-argument `abstractly:` marker deliberately leaves typed components
+open for a later `Realizes:` item:
+
+```mlg-fragment
+[\naturals]
+Defines: Nb ::= (N, 0, succ(n_))
+abstractly:
+specifies:
+. N is \set
+. 0 \"in\" N
+. succ is \function:on{N}:to{N}
+Documented:
+. called: \"natural number system\"
+```
+
+Use `abstractly:` only when realizations are part of the design. A concrete
+definition may not leave a target component without a value. `Documented:` must
+contain `called:` or `written:`."
 Id: "b2614ebb-ec03-4101-b137-fed2ef759073"

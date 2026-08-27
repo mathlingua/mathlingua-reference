@@ -7,14 +7,14 @@ writing: <MappingWritingTarget>
 as: <WritingText>+
 ```
 
-A nested `writing:`/`as:` item controls how a mapping introduced by `Defines:`
-is rendered. It is valid **only** when the `Defines:` target is a mapping, and
+A nested `writing:`/`as:` item controls how a mapping introduced by `Declares:`
+is rendered. It is valid **only** when the `Declares:` target is a mapping, and
 the `writing:` value must be either that exact mapping form or the same form
 with each placeholder replaced by its ordinary name.
 
 ```mlg-fragment
 [\real.sequence]
-Defines: X ::= x(i_)
+Declares: X ::= x(i_)
 Documented:
 . writing: x(i)
   as: \"x?_{i?}\"

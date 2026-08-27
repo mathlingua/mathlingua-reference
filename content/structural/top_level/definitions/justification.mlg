@@ -53,7 +53,7 @@ Rules:
 - `because:` and `by:` are justification the checker only reference-validates;
   it never proves them
 
-The same `have:`/`asserting:` group is also a clause (see Have / Asserting) and
-a valid `declares:` item, where its label heading is optional. `Justification:`
+The same proof-style `have:` group is also an ordinary clause (see Have /
+Asserting), where its label heading is optional. `Justification:`
 replaces the older `Justified:` section and its `label:`/`by:` prose items."
 Id: "4b6528c8-b596-45ae-87b5-74ce3419a2f6"

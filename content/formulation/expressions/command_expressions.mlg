@@ -44,6 +44,8 @@ Command expressions may also carry context suffixes:
 
 `#using{...}` binds values for the referenced command's `using:` section.
 `#given{...}` binds values for a theorem-like item's `given:` section. Suffix
-arguments are semicolon-separated and appear after all ordinary command
-arguments."
+arguments are semicolon-separated and may be assignments, declaration
+statements, expressions, or raw context text as required by the referenced
+definition. At most one context suffix is allowed, and it appears after all
+ordinary command arguments. Context bindings do not escape the command use."
 Id: "20f8ae57-c7b6-4aa7-8013-7113ca1ac426"

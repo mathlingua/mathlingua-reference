@@ -1,240 +1,181 @@
 Title: "Cheatsheet"
 Id: "ac7712fc-0a1b-4e7a-8be7-66ed68156f54"
 
-Text: "This page summarizes the syntax implemented by the current Rust code. For the full rule list, see Current Implementation Notes."
+Text: "A compact map of the current language. Follow the chapter links for rules and
+edge cases."
 Id: "bb702f3d-ec0b-4fac-96a3-08620bf4b2ec"
 
-SectionTitle: "Page Content"
-Id: "9ee50d16-4081-4565-a589-e17d0883a854"
+SectionTitle: "Page And Structural Syntax"
+Id: "dc6e57e6-0d51-4886-80bc-d0d11873903d"
 
-Text: "Top-level prose blocks render directly on the page, not inside cards.
-
-```text
-Title: \"A Page Title\"
+Text: "```mlg-fragment
+Title: \"A Page\"
 SectionTitle: \"A Section\"
 SubsectionTitle: \"A Subsection\"
-Text: \"Markdown prose with $x \in X$ and display math.\"
-```
+Text: \"Markdown prose with $x \in X$.\"
 
-`Text:` supports Markdown and LaTeX. Quoted text fields may span multiple source lines."
-Id: "e04dde63-6571-46ad-a6a9-e59f61bec5bd"
-
-SectionTitle: "Commands And Builtins"
-Id: "91d6d84b-e6af-46c4-bf1b-78862847d790"
-
-Text: "Commands start with one backslash. Builtin commands and builtin types start with two backslashes.
-
-```text
-\set
-\function:on{A}:to{B}
-\function:on{A}:?to{B}        -- optional tail part, declared in a header
-x \.set.union./ y             -- infix command
-A \:subset:/ B                -- infix specification command
-\(injective)::function        -- refined command type
-\set@{x_ : x_ is \real}       -- soft build
-\set@!m                       -- hard build
-```
-
-The builtin types are `\\type`, `\\statement`, `\\expression`, `\\specification`, `\\opaque`, and `\\abstract`. `\\opaque` is satisfied by any declared value, but it does not establish any more specific type information.
-
-Builtin clause commands are expression forms, with semicolon-separated arguments:
-
-```text
-\\not{P}
-\\and{P; Q}
-\\or{P; Q}
-\\exists{x, y is \real; n is \natural}:suchThat{x * n > y}
-\\existsUnique{x is \real}
-\\forAll{x is \set}:then{x is? \set}
-\\if{P}:then{Q}
-\\have{P}:iff{Q}
-\\given{x is \set}:then{P}
-\\piecewise:if{x = 0}:then{y = 0}:else{y = 1}
-```
-
-The variadic builtins map and reduce over slices:
-
-```text
-\\map{x[1...i_...n]}:to{x[i_] + 1}
-\\leftReduce{`+`}:on{x[1...n]}
-```"
-Id: "9d080835-77dd-4347-9bb0-23f3ae05266c"
-
-SectionTitle: "Expressions"
-Id: "519c8cf9-e23b-462c-b070-7bd85dc09bbc"
-
-Text: "```text
-x * y                -- plain operator, resolved locally or globally
-x :* y               -- resolve operator from the left operand type
-x *: y               -- resolve operator from the right operand type
-x :*: y              -- resolve operator from the common ancestor type
-
-x |op| y             -- named infix operator, same as op(x, y)
-x |M.*| y            -- member path, same as M.*(x, y)
-f| x                 -- named prefix operator, same arity as f(x)
-x |f                 -- named postfix operator, same arity as f(x)
-
-(.x + y.)            -- source grouping that renders as x + y
-(x + y)[:sum:]       -- labeled expression
-
-(x_ is \real) => x_ + 1      -- function literal (anonymous function value)
-(? is \real) -> (? is \real) -- function type
-? is \real                   -- spec literal (a value of \\specification)
-x satisfies (? is \real)     -- apply a spec: means x is \real
-\function:from{A?}:to{B?}    -- X? declares X inline with the required type
-f[|value = x, ... = 0|]      -- named function call with a catch-all
-```
-
-Any sequence of special-operator characters can be an operator, and an operator may carry trailing primes and a subscript, as in `*'`, `*_1`, and `*'_a`. Names may carry prime marks too (`X'`, `x'_a'`), and `` `*` `` is the operator `*` referred to by name. Equality and inequality, `=` and `!=`, are accepted for any types even when a type-specific capability is not defined.
-
-The command sugar `\foo[x_ is \real]{x_ + 1}` expands to `\foo{(x_ is \real) => x_ + 1}`, and `\foo{x_ : ...}` expands to the single collection argument `\foo{{x_ : ...}}`."
-Id: "7b1d159f-93e3-4658-8ddd-8963da177135"
-
-SectionTitle: "Declarations And Statements"
-Id: "58e2e50d-b352-4f64-8704-645607155f4f"
-
-Text: "```text
-X is \set
-X, Y is \set
-X is! \set                          -- hard view (coercion + encoding)
-G is \set via X
-G ::= (X, *, e)                     -- destructuring; introduces X, *, e
-X ::= x(i_) ::= y_                  -- mapping alias with an output placeholder
-X := \set@{x_ : x_ is \real}
-f(x__) := x__ is \function:on{A}:to{A}
-x is? \set
-x is_not? \set
-```
-
-`::=` introduces structural shape and its nested symbols; `:=` introduces a value definition and its right-hand side must already be in scope; `=` is mathematical equality."
-Id: "0871023c-b4d5-42dd-b39d-576780a6d935"
-
-SectionTitle: "Collection Expressions"
-Id: "4570669c-633d-45d1-8bc1-5ebe274916ce"
-
-Text: "```text
-{x_ : x_ is \set}
-{x_ : x_ is \set | x_ != \empty.set}
-{(p_, q_) : ...}
-{\equivalence.class:of{x_}:over{R} : x_ \"in\" X}
-{z_ ::= (a_, b_) : a_ \"in\" A; b_ \"in\" B | z_ := \ordered.pair:of{a_}:and{b_}}
-```
-
-The `: ...` part contains specifications, separated by commas or semicolons. The optional `| ...` part contains a predicate expression or a value binding such as `z_ := ...`."
-Id: "cbca77f6-b13e-467a-8d43-139bb851ad54"
-
-SectionTitle: "Top-Level Items"
-Id: "be3049e5-0942-4b6b-af8e-1b587c988ab6"
-
-Text: "Every top-level item must have an `Id:`. `mlg check` generates missing UUID v4 IDs before checking and reports duplicate IDs.
-
-```text
-[\set]
-Defines: X
-Requires:
-. capability: x_ \"in\" X :-> \\abstract
-  written: \"x_? \in X?\"
+[\command:of{A}]
+Declares: X
+when: A is \set
 Documented:
-. called: \"set\"
-Id: \"059126b9-dc83-41a2-aa1c-84f8e942f8d6\"
+. called: \"example on $A?$\"
 ```
 
-`Defines:`, `Declares:`, and `States:` require at least one of `called:` or `written:` in `Documented:`. Missing `called:` or `written:` rendering is generated from the one that is present. `Refines:` requires `adjective:` and may have `written:`, but may not have `called:`.
+The first section label chooses the group kind. Section spelling, capitalization,
+and order are exact. Dot arguments are indented under their parent section.
+Every top-level item has an `Id:`; `mlg check` generates a missing UUID."
+Id: "1c53c2b2-bfaf-4864-90e6-6b212f54a8e1"
 
-The full set of top-level items is `Defines:`, `Declares:`, `Refines:`, `States:`, `Disambiguates:`, `Axiom:`, `Theorem:`, `Conjecture:`, `Relation:` (a bidirectional relationship between two concepts, topics, or definitions), `Equivalent:` (an equivalence class of interchangeable notations), `Topic:` (a documentation topic, `[#some.name]`), `Specify:`, `Person:`, `Resource:`, `Writing:`, the opaque placeholders `TextTheorem:`, `TextAxiom:`, `TextConjecture:`, and `TextDefinition:`, and the page-content items `Title:`, `SectionTitle:`, `SubsectionTitle:`, and `Text:`.
+SectionTitle: "Commands, Builtins, And Expressions"
+Id: "ab3d0515-66ee-458c-a33b-7fdffca760cc"
 
-The support sections of a definition-like item appear in this order: `Requires:`, `Enables:`, `Documented:`, `Justification:`, `Aliases:`, `Writing:`, `References:`, `Metadata:`, `Id:`."
-Id: "37001eb1-5f07-44ba-a2eb-7fd297edacea"
+Text: "```mlg-fragment
+\set
+\function:on{A}:to{B}(x)
+x \.set.union./ y
+A \:subset:/ B
+\(injective)::function:on{A}:to{B}
+\set@{x_ : x_ is \real}
+\naturals..succ(n)
+\construction{A}#using{B := C}
 
-SectionTitle: "Requires And Enables"
-Id: "9ba6a690-a9bd-4d6b-8bef-b8662a760142"
+x + y * z
+f(x, y)
+f[|x_ = 1, ... = 0|]
+(x, y)
+{x_ : x_ \"in\" A | x_ != 0}
+(x_ is \real) => x_ + 1
+(_ is \real) -> (_ is \real)
+x satisfies (_ is \real)
+```
 
-Text: "`Requires:` describes capabilities or definitions that are part of the construct. `Enables:` describes additional capabilities, build sources, and relations.
+Ordinary commands use one backslash. Builtin types and builtin commands use two.
+The builtin types are `\\type`, `\\statement`, `\\expression`,
+`\\specification`, `\\anything`, and `\\abstract`. Function values use `=>`;
+function types use `->`. Direct components of `Defines:`/`Realizes:` commands
+use `..` in source."
+Id: "038e0422-1849-4715-8276-b43fbf08253b"
 
-```text
+SectionTitle: "Declarations And Definitions"
+Id: "b04b5c8d-dcd0-44e7-a80c-7a493637a164"
+
+Text: "```mlg-fragment
+G ::= (X, *, e)        -- structural expansion
+x := value             -- value binding
+x = y                  -- mathematical equality
+x is \set              -- establishes a type fact
+x is? \set             -- predicate expression
+G is \magma via (X, *)
+```
+
+`Declares:` introduces types/interfaces; `Defines:` introduces typed values;
+`Realizes:` implements an abstract definition; `Refines:` introduces adjective
+properties; `States:` introduces reusable propositions. A binding-position `:=`
+introduces its left target, but right-side names must already be known. Defined
+symbols cannot be introduced twice or shadowed."
+Id: "c9cffbac-b39e-4fb6-98bc-4ec80f018015"
+
+SectionTitle: "Definition-Like Groups"
+Id: "e680919e-adb2-4f6a-94f6-c01da6c517e4"
+
+Text: "```mlg-fragment
+[\magma]
+Declares: M ::= (X, *) is \set via X
+specifies: * is \operation:on{X}
+Documented:
+. called: \"magma\"
+
+[\naturals]
+Defines: Nb ::= (N, 0, S(n_))
+abstractly:
+specifies:
+. N is \set
+. 0 \"in\" N
+. S is \function:on{N}:to{N}
+
+[\von.neumann.naturals]
+Realizes: Nb := \naturals
+specifies:
+. N := \omega
+. 0 := \empty.set
+. S(n_) := n_ \union \set@{n_}
+```
+
+Common trailing order is `Requires:`, `Enables:`, `Documented:`,
+`Justification:`, `Aliases:`, `Writing:`, `References:`, `Metadata:`, `Id:`.
+`Declares:`, `Defines:`, `Realizes:`, and `States:` need `called:` or `written:`;
+`Refines:` needs `adjective:`."
+Id: "a6a2d152-2c25-4987-bd6f-d8e0068ec372"
+
+SectionTitle: "Requires, Enables, And Aliases"
+Id: "71f96a21-c676-43ae-b7a9-538fc682ec55"
+
+Text: "```mlg-fragment
 Requires:
 . capability: x_ \"in\" X :-> x_ member_of X
-  written: \"x_? \in X?\"
-. definition: \natural.0 is \natural
+. definition: \zero is \natural
 
 Enables:
-. capability: x_ - y_ :=> x_ \.set.minus./ y_
+. capability: x_ \"in\" X :<->: x_ member_of X
 . from: Y ::= {y__ : ...}
   capability: x_ \"in\" X :-> x_ member_of Y
-. from: P ::= {(p_, q_) : ...}
-  as: f(p_) := q_
-. relation:
-  to: r := \rational@n is \rational
-  when: n is \integer
-  means: n \.embedded.to./ r
-  represents: \\coercion
+. view:
+  as: S := X is \set
+
+Aliases:
+. alias: f(x_) :=> x_ + x_
 ```
 
-The checker unions capabilities from `Requires:` and `Enables:` when resolving notation. A `Requires:` `definition:` must name a `Declares:` entry. A nested `Enables: relation:` backs builds: `represents: \\coercion` allows a soft `\type@value` build; `represents: \\encoding` additionally allows a hard `\type@!value` build."
-Id: "685a6713-cb6d-4c0a-887a-aa484a20223b"
+`:=>` is an expression alias, `:->` a one-way specification implication, and
+`:<->:` a specification equivalence. Views justify requirements and ordinary
+builds. The former hard-build and cast-relation syntax is removed."
+Id: "f738f3aa-9224-4d11-b1f3-a1eb2fb71706"
 
-SectionTitle: "Clauses"
-Id: "a777d902-4589-4031-b919-fe4964632e64"
+SectionTitle: "Clauses And Builtin Clauses"
+Id: "93fd5bdd-e376-467e-99fe-d087b887016c"
 
-Text: "```text
-allOf:
-. P
-. Q
-
-anyOf:
-. P
-. Q
-
-exists: x is \real
-
-existsUnique: x is \real
-suchThat: x > 0
-
+Text: "```mlg-fragment
 forAll: x \"in\" X
-then: x is? \set
+where: P(x)
+then: Q(x)
 
-let: n \"in\" X
-where: n != x
-then: n = n
+piecewise:
+if: x < 0
+then: y := -x
+elseIf: x = 0
+then: y := 0
+else: y := x
 
-if: P
-then: Q
-
-have:
-. P
+have: P
 iff: Q
 
-have:
-. P
-asserting:
-. Q
+have: P
+asserting: Q
+because: R
+
+\\forAll{x \"in\" X}:where{P(x)}:then{Q(x)}
+\\allOf{P; Q}
 ```
 
-`exists:` and `existsUnique:` do not require `suchThat:`. The old `iff: ... then: ...` group is not supported; use `have: ... iff: ...`. A `have:` group is dispatched by its second section label, so `asserting:` makes it the assertion group rather than the biconditional."
-Id: "d21dd513-1286-4a0a-878a-128234ac5cbe"
+Clause bindings are local and may use refined types. Builtin clause arguments
+are separated by semicolons. `allOf`, `anyOf`, `oneOf`, `not`, `exists`,
+`existsUnique`, `forAll`/`forall`, `if`, `have`, `given`, and `piecewise` have
+inline builtin forms."
+Id: "2e364327-ac83-4e9d-945d-784b1b928f0e"
 
-SectionTitle: "Writing"
-Id: "0f6dbb65-26a0-42e0-b3df-99da0f727069"
+SectionTitle: "Rendering"
+Id: "48e7a402-1ae7-4c57-be37-f8fcfd6d4ac7"
 
-Text: "A collection may contain one top-level `Writing:` block, and every non-prose top-level item may carry its own.
+Text: "```mlg-fragment
+Documented:
+. called: \"function from $A?$ to $B?$\"
+. written: \"A? \rightarrow B?\"
 
-```text
 Writing:
 . \"alpha :~> \alpha\"
-. \"beta :~> \beta\"
 ```
 
-Each alias is a **double-quoted** string; the left side must be a plain name and the body after `:~>` is raw LaTeX. The renderer applies writing aliases to names in expressions, statements, and specifications, including underscore parts and numeric suffixes: `alpha_1` renders as `\alpha_1`, and `alpha123` renders as `\alpha_{123}`."
-Id: "29643f55-8a3c-4e5a-9e95-6ae64799787a"
-
-SectionTitle: "People And Resources"
-Id: "7b2968f1-4319-4bde-9569-1f46caf6233a"
-
-Text: "```text
-[@ada.lovelace]
-Person: \"Ada Lovelace\"
-biography: \"Markdown biography text.\"
-```
-
-`biography:` is optional. Resource cards use their `title:` as the card title and hyperlink it when `url:` is present; the URL itself is shown in the hidden details accordion. A `References:` entry names a resource with `$book.chapter`, and a PDF reference may append `:page{n}`."
-Id: "41e2fbba-15f0-447a-bb4d-36b8a2a8467f"
+Template placeholders support `A?`, parenthesis modifiers `A+?`/`A-?`,
+conditional fragments such as `@[A]{...}`, and variadic join templates. For a
+source parameter `n_`, either `n_?` or normalized `n?` substitutes the value."
+Id: "d468fdf4-8a98-41a9-963f-b7eb2b19a53e"

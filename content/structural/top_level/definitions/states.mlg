@@ -3,7 +3,7 @@ Id: "ece66d82-2933-4bb7-aa7a-74379dbc2001"
 
 Text: "```mlg-fragment
 [CommandHeader]
-States: <OpenText>*
+States:
 using?: <DeclarationStatement>+
 when?: <ClauseUnion>+
 that: <ClauseUnion>+
@@ -34,7 +34,7 @@ Documented:
 Id: \"23e4567e-e89b-42d3-a456-426614174000\"
 ```
 
-The `States:` section itself is required but may contain zero text entries.
+The `States:` section is a required marker and accepts no argument.
 
 `using:` introduces auxiliary symbols. `when:` states requirements for
 command-header parameters. `Requires:` and `Enables:` describe capabilities that

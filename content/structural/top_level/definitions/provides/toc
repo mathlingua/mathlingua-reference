@@ -2,3 +2,4 @@ overview.mlg -> Overview
 symbol.mlg -> Capability
 expression_alias.mlg -> Expression Alias
 spec_operator_alias.mlg -> Spec Operator Alias
+from_and_view.mlg -> From and View

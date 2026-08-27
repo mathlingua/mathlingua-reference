@@ -8,7 +8,7 @@ implicitly?:
 explicitly?:
 using?: <DeclarationStatement>+
 when?: <ClauseUnion>+
-extends?: <RefinedDeclarationStatement>
+specifies?: <RefinedDeclarationStatement>
 satisfies?: <ClauseUnion>+
 Requires?: <RequiresItemUnion>+
 Enables?: <EnablesItemUnion>+
@@ -44,7 +44,12 @@ A target symbol the refined base type already declares counts as specified, so
 `\(associative)::binary.operation:on{X}` need not respecify the `*` that
 `\binary.operation:on{X}` already types.
 
-`extends:` may state that one refinement implies other refinements, including
+The target may repeat the base `Declares:` target in full or omit trailing
+detail it does not need. For a base `f(x__) ::= y_`, valid refinement targets
+include `f(x__) ::= y_`, `f(x__)`, and `f`. Every shape that is present must
+agree with the base.
+
+`specifies:` may state that one refinement implies other refinements, including
 dynamic target syntax such as `\(injective, surjective)::[[f]]`.
 
 `Documented:` for a `Refines:` item requires `adjective:` and may also include
@@ -65,20 +70,20 @@ state the intent, and the checker verifies the body matches the marker.
 [\(finite)::group]
 Refines: G(x__)
 implicitly:
-extends: G is \(finite)::magma
+specifies: G is \(finite)::magma
 Documented:
 . adjective: \"finite\"
 ```
 
 - `implicitly:` — the group merely restates the inherited definition. The body
-  must contain **nothing beyond** the inherited `extends:` clause (the
+  must contain **nothing beyond** the inherited `specifies:` clause (the
   scaffolding `using:`/`when:` sections are still allowed); adding
   `satisfies:`, `Requires:`, `Enables:`, or `Justification:` is an error.
-  The `extends:` clause must also literally name the parent type's refinement —
+  The `specifies:` clause must also literally name the parent type's refinement —
   the same adjective(s) applied to a supertype of the refined base type.
 - `explicitly:` — the group overrides the inherited definition with stronger
   meaning, so it must add **at least one** property beyond the inherited
-  `extends:` clause. A body that is only the inherited `extends:` is the trivial
+  `specifies:` clause. A body that is only the inherited `specifies:` is the trivial
   case and must be marked `implicitly:` instead.
 
 Both markers are only meaningful when the refined base type is itself a subtype

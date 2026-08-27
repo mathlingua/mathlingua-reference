@@ -1,7 +1,8 @@
 Title: "Spec Operator Alias"
 Id: "bac6c9f6-1470-405d-af15-4488b254febd"
 
-Text: "Specification aliases use `:->`.
+Text: "Specification capabilities use `:->` for one-way implication and `:<->:` for
+equivalence. Either spelling may have multiple semicolon-separated conclusions.
 
 ```mlg-fragment
 Requires:
@@ -9,7 +10,12 @@ Requires:
 
 Requires:
 . capability: x_ \"in\" X :-> \\abstract
+
+Enables:
+. capability: x_ \"in\" X :<->: x_ member_of X
 ```
 
-The left side is a specification-like form. The right side is the specification or builtin target established when the capability matches."
+The left side is a specification-like form. The right side is the specification
+or builtin target established when the capability matches. Reverse inference
+for `:<->:` is available only when every conclusion is established."
 Id: "2e4d2b38-dfa0-42a4-8a58-bfb3d8859df2"

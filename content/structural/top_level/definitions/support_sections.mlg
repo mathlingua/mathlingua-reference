@@ -1,0 +1,32 @@
+Title: "Support Sections"
+Id: "98195d80-2804-4383-a502-24eb4c4b1505"
+
+Text: "Definition-like groups use a fixed, case-sensitive section order. Not every
+group accepts every section; consult the parent page's schema.
+
+- `using:` introduces auxiliary local symbols. It must not redeclare a heading
+  parameter or target symbol.
+- `when:` states ordered requirements for heading parameters.
+- `extends:` belongs to `Declares:` and records one or more supertypes, with an
+  optional `via` structural view.
+- `specifies:` records component facts. In concrete `Defines:` and `Realizes:`,
+  `:=` supplies component values. In `Refines:`, it states the inherited or base
+  refinement fact.
+- `satisfies:` gives proposition clauses for `Declares:` and `Refines:`.
+- `expresses:` gives one or more value-body clauses for `Defines:` and
+  `Realizes:`, including callable and `piecewise:` bodies.
+- `Requires:` and `Enables:` record semantic prerequisites and capabilities.
+- `Documented:`, `Justification:`, `Aliases:`, local `Writing:`, `References:`,
+  and `Metadata:` provide rendering, support, citations, and metadata.
+
+Facts and bindings are processed in source order. Within one inherited semantic
+scope, a defined symbol may be introduced only once. A `using:` declaration,
+quantifier, `let:` binding, `:=` target, or `view: as:` symbol may not shadow an
+existing defined symbol. Function-form placeholders remain local to their forms,
+but the callable name itself may not be rebound.
+
+`specifies:` accepts top-level `:=` assignments. Names on the right must already
+be in scope, and the assignment is followed by type and capability inference.
+This is how a `Realizes:` item supplies components and how a `Declares:` fact
+can tie a local component to an already-known value."
+Id: "ea627543-3e83-409f-acc0-1065a00aa57c"
