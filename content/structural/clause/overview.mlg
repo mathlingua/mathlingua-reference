@@ -21,7 +21,6 @@ The clause groups are:
 - `existsUnique:` (with optional `suchThat:`)
 - `forAll:` (with optional `where:` and required `then:`)
 - `let:` (with optional `where:` and required `then:`)
-- `given:` (with optional `where:` and required `then:`)
 - `if:` (with `then:`)
 - `have:` (with `iff:`)
 - `have:` (with `asserting:`, and optional `because:` / `by:`)
@@ -38,7 +37,7 @@ assumed.
 
 Bare specifications (`is` and non-predicate infix spec operators `\:...:/`)
 introduce symbols, so they are only allowed in binding positions (`exists:`,
-`existsUnique:`, `forAll:`, `let:`, `given:` arguments, and
+`existsUnique:`, `forAll:`, `let:`, theorem-like `given:` sections, and
 `where:` / `suchThat:` / `when:`). In statement positions (`then:`, `if:`,
 `iff:`, `that:`, `else:`, and the boolean combinators) use the predicate forms
 `is?` / `is_not?` and `\:...?:/`. See Statements and Specifications.
@@ -49,6 +48,6 @@ statement position — see Builtin Clause Commands.
 Quantifier and `let:` declarations are local to the clause group that
 introduces them. A nested binding may not shadow a defined symbol from an
 inherited scope. Clause bindings use the refined declaration parser, so refined
-types are accepted consistently in `given:`, quantifiers, `have:`, and other
-binding positions."
+types are accepted consistently in theorem-like `given:` sections,
+quantifiers, `let:`, `have:`, and other binding positions."
 Id: "fbc6bc5d-dab9-4c48-b83c-f2aff94640be"

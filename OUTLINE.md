@@ -186,7 +186,6 @@ to write mathematical knowledge.*
     - **Text** — `Text:` prose block.
 - **Clause** — clauses used in `satisfies:`, `then:`, `that:`, `where:`,
   `suchThat:`.
-  - **Given** — nested `given:` assumptions for a local `then:` block.
   - **Let** — `let:` introduces local bindings for a `then:` block.
   - **Not** — `not:` negates one clause.
   - **All Of** — `allOf:` all sub-clauses required.

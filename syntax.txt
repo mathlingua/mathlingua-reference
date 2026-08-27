@@ -378,17 +378,17 @@ ClauseUnion ::=
     | ExistsGroup
     | ExistsUniqueGroup
     | ForAllGroup
+    | LetGroup
     | IfGroup
     | IffGroup
     | PiecewiseGroup
-    | GivenGroup
     | ExpressionBinding
     | IsOrSpec
     | Expression
 
 
 [LabelHeader]?
-given: <IsOrRefinedStatementSpec>
+let: <BindingOrSpecUnion>
 where?: <ClauseUnion>+
 then: <ClauseUnion>+
 

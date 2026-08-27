@@ -1,10 +1,10 @@
 Title: "Builtin Clause Commands"
 Id: "b15bc21c-fa69-436a-8c94-53f29b6cdd07"
 
-Text: "Most clause groups also have a builtin **command** form that can be used inline
-wherever a statement is expected. Builtin commands start with two backslashes,
-and their arguments are separated by semicolons so an individual argument may
-contain commas.
+Text: "The formulation language provides builtin **command** forms that can be used
+inline wherever a statement is expected. Builtin commands start with two
+backslashes, and their arguments are separated by semicolons so an individual
+argument may contain commas.
 
 ```mlg-fragment
 \\not{P}
@@ -22,7 +22,7 @@ contain commas.
 \\piecewise:if{x = 0}:then{y = 0}:else{y = 1}
 ```
 
-They are checked with the same scoping rules as the corresponding groups: the
+They use the same clause scoping rules: the
 head arguments of `\\exists`, `\\existsUnique`, `\\forAll`, and `\\given`
 introduce bindings in a child context, and `\\piecewise`'s `:else{...}` is
 checked in the outer context.
