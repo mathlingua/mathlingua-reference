@@ -1,0 +1,6 @@
+Text: "Definition-like groups declare interfaces, define or realize values,
+refine types, state reusable propositions, and configure their requirements,
+capabilities, aliases, documentation, and justifications. These pages spell out
+the distinct roles and exact ordered sections of `Declares:`, `Defines:`,
+`Realizes:`, `Refines:`, `States:`, and `Disambiguates:`."
+Id: "4bcdb923-37c3-434e-8891-cb3cc3dd45f3"

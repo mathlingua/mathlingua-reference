@@ -1,0 +1,6 @@
+Text: "Formulation is the mathematical language embedded in structural sections.
+This section covers lexical forms, declarations and type statements, operators,
+precedence, expressions, aliases, and labels. Different structural positions
+select different formulation parsers, so each page identifies where its syntax
+is valid rather than implying that every phrase is a general expression."
+Id: "d1992ffa-56e1-4962-9300-f8147a49e2f6"

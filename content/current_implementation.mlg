@@ -87,6 +87,11 @@ lists all direct `.mlg` files and subdirectories exactly once. `mlg check`
 normally inserts a fresh UUID into a top-level item missing `Id:` before semantic
 validation, so checking, viewing, and exporting may update source files.
 
+`using:` introduces definition-local symbols. A requirement mentioning an
+unbound `using:` symbol is not imposed at an ordinary call site; when the caller
+supplies that symbol with `#using{...}`, the corresponding instantiated
+requirement is checked.
+
 The checker validates syntax, signatures, scope, tracked facts, requirements,
 target completeness, capabilities, builds, views, and structural invariants. It
 does not prove mathematical truth. One-element tuples remain unsupported,
@@ -102,6 +107,8 @@ Text: "These spellings do not belong in current source:
 - `\\opaque` (use `\\anything`)
 - `? is T` spec literals (use `_ is T`)
 - `@!`, `is!`, `\\coercion`, and `\\encoding`
+- the builtin command `\\given` (use `\\let`; theorem-like `given:` sections
+  are unchanged)
 - nested `Enables: relation:`/`to:`/`represents:` groups (use `view:`/`as:`)
 - `Refines: extends:` (use `Refines: specifies:`)
 - top-level or relationship `means:` fields (use `specifies:`)

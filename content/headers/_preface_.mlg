@@ -1,0 +1,5 @@
+Text: "Headers are the bracketed identities attached to structural groups. They
+may name labels, people, resources, topics, commands, infix specifications, or
+operators. This section describes each header parser, parameter and variadic
+shapes, optional command tails, and mapping-parameter specialization."
+Id: "41f2a544-06f0-41fe-812c-a6e63c710549"

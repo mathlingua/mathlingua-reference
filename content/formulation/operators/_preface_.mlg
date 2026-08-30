@@ -1,0 +1,5 @@
+Text: "Mathlingua has specification operators for facts, symbolic special
+operators, and bar-delimited named operators. This section explains their
+spellings, colon-directed variants, precedence roles, declaration forms, and
+how definitions or capabilities give an operator semantic meaning."
+Id: "8c413008-1d25-4677-94e7-377458968671"

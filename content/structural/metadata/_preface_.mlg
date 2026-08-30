@@ -1,0 +1,5 @@
+Text: "Metadata documents the nested legacy `Metadata:` representation of IDs and
+versions and contrasts it with the direct top-level `Id:` identity section used
+by current items. These pages describe parsing and checking behavior without
+presenting legacy nesting as the preferred spelling."
+Id: "6faed1c8-6cb0-4166-835b-d9bb9bbe9aed"

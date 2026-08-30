@@ -1,0 +1,6 @@
+Text: "Structural syntax organizes line-oriented `.mlg` documents into ordered,
+indented groups and sections. The pages below cover document parsing, every
+top-level item, nested clause groups, numeric `Specify:` records, and legacy
+metadata shapes, including required headings, section order, multiplicity, and
+semantic purpose."
+Id: "5ee67a47-0631-470b-9b4e-26ea0f5139e1"

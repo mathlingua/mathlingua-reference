@@ -1,0 +1,36 @@
+Title: "Hidden and Advanced Commands"
+Id: "ccdec3fd-2e97-4ea0-b739-1f06956af40d"
+
+Text: "The executable contains four commands that are intentionally omitted from
+`mlg --help`. They support language development, issue reproduction, and one
+easter egg; they are not part of the ordinary collection workflow.
+
+```text
+mlg debug
+mlg extract ID
+mlg report ID [ID...]
+mlg whte_rbt.obj
+```
+
+`mlg debug` opens an interactive terminal UI for experimenting with formulation,
+structural, and command-header parsers. It changes modes with the tab controls,
+shows parser output or diagnostics for the entered text, and exits with its quit
+key or an interrupt.
+
+`mlg extract ID` loads and checks the current collection, locates the top-level
+item with that exact `Id:`, and prints pasteable Mathlingua containing that item
+and its transitive dependencies in dependency-first order. When the source
+collection has check errors, those diagnostics follow the extracted source on
+standard output so a single redirected result preserves the reproduction.
+
+`mlg report ID [ID...]` builds the same self-contained extraction for one or
+more items, places it in a Markdown issue template, and opens an editor. It
+requires an interactive terminal. After previewing the edited issue, it asks
+the user to report, edit again, or cancel; a blank response never submits. The
+report action uses the `gh` CLI when available and otherwise opens a prefilled
+GitHub issue form.
+
+`mlg whte_rbt.obj` is a non-collection easter egg. It prints an animated terminal
+sequence and then continues until interrupted; it performs no Mathlingua parsing
+or checking."
+Id: "f976d1ae-5a2c-471e-90cf-4be9d0940c0c"

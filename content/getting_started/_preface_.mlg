@@ -1,3 +1,6 @@
 
-Text: "This is the getting ready preface text."
+Text: "Getting Started explains what Mathlingua is for, how it differs from prose
+and proof assistants, how a small definition is assembled, and how `.mlg` files
+form a checked collection. Read this section before the syntax chapters if you
+are new to the language."
 Id: "ae563359-2d74-4f39-8c78-98a44563fb24"

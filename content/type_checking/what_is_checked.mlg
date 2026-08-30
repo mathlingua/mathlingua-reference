@@ -27,7 +27,9 @@ rejects `called:`.
 **References and signatures.** Every command use must resolve with the declared
 curly groups, tails, invocation groups, optional tails, variadic shape, and
 mapping-parameter specialization. Its `when:` and inline context requirements
-must be established at the use site.
+must be established at the use site. Requirements involving an unbound
+definition-local `using:` symbol are skipped; supplying that symbol with
+`#using{...}` makes those requirements applicable.
 
 **Scope.** Symbols are processed in source order. A right-hand expression,
 command argument, spec target, or conclusion may use only already-known names.

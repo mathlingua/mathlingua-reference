@@ -42,3 +42,8 @@ The accepted tails are fixed per command:
 Wrong arity, a missing required tail, an unrecognized tail name, or an unknown
 builtin clause command is reported as an error."
 Id: "5267f2aa-8e87-45be-8219-e72918abb9b6"
+
+Text: "`\\given` is not a builtin command. Use `\\let` for an inline local
+binding. This does not affect the `given:` section on `Axiom:`, `Theorem:`, and
+`Conjecture:` groups."
+Id: "6fcee148-8cda-442a-8b14-9f0b5f6a19d5"

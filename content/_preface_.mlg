@@ -1,3 +1,7 @@
 
-Text: "The definitive guide to the Mathlingua language."
+Text: "The Mathlingua Reference describes the language and `mlg` tool as they are
+implemented today. It covers collection structure, formulation and structural
+syntax, headings, semantic checking, rendering, and command-line workflows.
+Examples marked `mlg` are checked as source; examples marked `mlg-fragment` are
+illustrative fragments."
 Id: "03b6f062-1068-42c4-88ee-44ec845103f7"

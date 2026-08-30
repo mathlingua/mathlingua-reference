@@ -1,0 +1,5 @@
+Text: "Requires and Enables describe dependencies and capabilities attached to a
+definition. This section covers capability declarations, expression and
+specification aliases, definition requirements, and view conversions expressed
+with `from:` and `view:`/`as:` groups."
+Id: "a300a1a3-caa3-434d-9dfc-bdb39535134e"

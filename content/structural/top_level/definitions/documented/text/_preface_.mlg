@@ -1,0 +1,5 @@
+Text: "Documented text values are quoted at the structural layer but have
+different rendering roles. These pages distinguish open prose, math-mode
+written templates, prose-oriented called templates, and raw writing templates,
+including delimiter stripping and placeholder handling."
+Id: "c3559459-3821-4c95-9c65-90c5655f76f2"

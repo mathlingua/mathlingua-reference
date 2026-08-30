@@ -1,0 +1,5 @@
+Text: "Forms describe the shape of notation used to declare commands and bind
+symbols. The pages here cover names, operator forms, placeholders, tuples,
+collections, and variadic function shapes, including which names a form
+introduces and which combinations the checker rejects."
+Id: "636d260a-93ed-441c-a346-fa42cfdbbc1b"

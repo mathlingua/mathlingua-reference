@@ -1,0 +1,5 @@
+Text: "Aliases connect an alternate surface form to an expression, a rendering
+template, or a specification target. These pages distinguish `:=>`, `:~>`,
+`:->`, and `:<->:`, describe their accepted left and right sides, and explain
+where aliases are introduced structurally."
+Id: "b18e718c-9a4f-460c-ad30-45c693d6d792"
