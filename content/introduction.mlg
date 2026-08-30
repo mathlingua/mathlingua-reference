@@ -1,0 +1,17 @@
+Title: "Introduction"
+Id: "876a2473-4cc1-4281-a90c-268e0eda9952"
+
+Text: "Mathlingua is a source language and toolchain for writing mathematical
+knowledge in a structured form that remains readable to people. A document
+combines formulation syntax—the expressions, forms, statements, and command
+calls used for mathematics—with structural groups such as `Defines:`,
+`Theorem:`, and `Text:`. The `mlg` tool parses, checks, formats, renders, and
+exports collections of these documents.
+
+This reference describes implemented behavior, not a proposed language. Start
+with Getting Started for orientation. Use Formulation and Headers for notation,
+Structural for document shapes, Type Checking for semantic rules, Rendering for
+display behavior, and the mlg chapter for command-line operation. Current
+Implementation Notes summarizes recent boundaries and removed spellings; the
+Cheatsheet is a compact reminder after you know the concepts."
+Id: "64f2bb6d-d297-48ee-8b3f-e93329ef8976"

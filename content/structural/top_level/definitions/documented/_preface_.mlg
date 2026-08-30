@@ -1,0 +1,5 @@
+Text: "Documented items control human-facing names, notation, descriptions, and
+auxiliary notes for definition-like cards. This section describes every
+implemented documented field, its quoted-text wrapper, which fields are
+required for each group kind, and how rendering consumes them."
+Id: "788ba4af-bda3-4303-b0f4-abdef87419bc"

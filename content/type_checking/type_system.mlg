@@ -14,6 +14,11 @@ a concrete implementation of an abstract definition. Capabilities owned by a
 `Defines:` or `Realizes:` apply to that defined command value with its parameters
 substituted.
 
+`using:` symbols belong to the definition context. Requirements that mention an
+unbound `using:` symbol are omitted at an ordinary use site. If a use supplies
+that symbol through `#using{...}`, requirements involving it are instantiated
+and checked; requirements independent of `using:` remain ordinary obligations.
+
 Builtin types use two leading backslashes:
 
 - `\\type` holds for command references whose top-level item is `Declares:`
@@ -21,7 +26,13 @@ Builtin types use two leading backslashes:
   values
 - `\\anything` is satisfied by every declared value but adds no concrete type
   fact
-- `\\abstract` is the abstract capability target
+- `\\abstract` is the abstract capability target, not a type
+
+The builtin statement commands are `\\not`, `\\and`, `\\allOf`, `\\or`,
+`\\anyOf`, `\\oneOf`, `\\exists`, `\\existsUnique`, `\\forAll`/`\\forall`,
+`\\if`, `\\have`, `\\let`, and `\\piecewise`. Variadic expression builtins are
+`\\map`, `\\leftReduce`, and `\\rightReduce`. Other double-backslash names do
+not acquire builtin behavior merely because the grammar can parse them.
 
 Literal command arguments may satisfy nominal requirements structurally:
 functions by input/output shape, tuples by positional component types, and

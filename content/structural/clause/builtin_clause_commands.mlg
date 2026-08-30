@@ -18,19 +18,19 @@ argument may contain commas.
 \\forAll{x is \set}:where{x != y}:then{x is? \set}
 \\if{P}:then{Q}
 \\have{P}:iff{Q}
-\\given{f is \function}:where{P}:then{Q}
+\\let{f is \function}:where{P}:then{Q}
 \\piecewise:if{x = 0}:then{y = 0}:else{y = 1}
 ```
 
 They use the same clause scoping rules: the
-head arguments of `\\exists`, `\\existsUnique`, `\\forAll`, and `\\given`
+head arguments of `\\exists`, `\\existsUnique`, `\\forAll`, and `\\let`
 introduce bindings in a child context, and `\\piecewise`'s `:else{...}` is
 checked in the outer context.
 
 The accepted tails are fixed per command:
 
 - `\\exists` and `\\existsUnique` take an optional `:suchThat{...}`
-- `\\forAll` (also spelled `\\forall`) and `\\given` take an optional
+- `\\forAll` (also spelled `\\forall`) and `\\let` take an optional
   `:where{...}` and a required `:then{...}`
 - `\\if` takes `:then{...}`
 - `\\have` requires `:iff{...}`
@@ -42,3 +42,8 @@ The accepted tails are fixed per command:
 Wrong arity, a missing required tail, an unrecognized tail name, or an unknown
 builtin clause command is reported as an error."
 Id: "5267f2aa-8e87-45be-8219-e72918abb9b6"
+
+Text: "`\\given` is not a builtin command. Use `\\let` for an inline local
+binding. This does not affect the `given:` section on `Axiom:`, `Theorem:`, and
+`Conjecture:` groups."
+Id: "6fcee148-8cda-442a-8b14-9f0b5f6a19d5"

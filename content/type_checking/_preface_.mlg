@@ -1,0 +1,5 @@
+Text: "Type Checking explains the semantic pass after parsing: the facts and
+builtin categories it tracks, name and requirement resolution, capabilities,
+builds and views, target completeness, construct-specific validations, and the
+deliberate boundary between consistency checking and proving mathematics."
+Id: "d8a5474b-72f6-4466-9753-4b817c5bd697"

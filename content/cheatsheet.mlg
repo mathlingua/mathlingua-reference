@@ -159,7 +159,7 @@ because: R
 
 Clause bindings are local and may use refined types. Builtin clause arguments
 are separated by semicolons. `allOf`, `anyOf`, `oneOf`, `not`, `exists`,
-`existsUnique`, `forAll`/`forall`, `if`, `have`, `given`, and `piecewise` have
+`existsUnique`, `forAll`/`forall`, `if`, `have`, `let`, and `piecewise` have
 inline builtin forms."
 Id: "2e364327-ac83-4e9d-945d-784b1b928f0e"
 

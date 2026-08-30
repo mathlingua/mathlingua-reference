@@ -1,0 +1,5 @@
+Text: "The mlg section documents the collection command-line tool: installation,
+project creation, checking, formatting, exporting, cleaning, releases, editor
+integration, local viewing, and version reporting. Command pages state the
+accepted arguments and the filesystem effects that matter to authors."
+Id: "755d72c0-62fa-480a-ba2c-3c3ab78d12c2"

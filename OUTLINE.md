@@ -18,8 +18,8 @@ here before touching the real content.
 
 ## Introduction
 
-- Opening page of the reference. *(Currently an empty stub — needs front-matter:
-  what this book is, who it is for, how to read it.)*
+- Opening orientation: what Mathlingua and `mlg` are, what the reference covers,
+  and where readers should go for each kind of information.
 
 ## Getting Started
 
@@ -52,6 +52,8 @@ to write mathematical knowledge.*
 - **Clean** — `mlg clean` removes the generated `docs/`.
 - **Release** — `mlg release` records a version snapshot.
 - **Language Server** — `mlg lsp` runs the LSP server for editors.
+- **Hidden and Advanced Commands** — the parser debug UI, dependency extractor,
+  interactive issue reporter, and non-collection easter egg.
 - **View** — `mlg view` serves the interactive rendered view.
 - **Version** — `mlg version` prints the installed tool version.
 
@@ -98,8 +100,8 @@ to write mathematical knowledge.*
   - **Named Function Calls** — supplying a function's arguments by name.
   - **Inferred Parameters** — command arguments written `X?`.
   - **Membership Expressions** — `member_of` relating a subject to a collection.
-  - **Spec Literals** — values of `\specification` with an implicit `?` subject.
-  - **Builds** — `\type@value` / `\type@!value`, viewing a value at a type.
+  - **Spec Literals** — values of `\specification` with an anonymous `_` subject.
+  - **Builds** — `\type@value`, viewing a value at a type.
   - **Equality Expressions** — `=` and `!=`.
   - **Variadic Slices** — `x...` / `x[1...i_...n]` and their broadcasts, plus the
     `\\map` and reduce builtins.

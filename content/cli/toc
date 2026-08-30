@@ -8,5 +8,6 @@ export.mlg -> Export
 clean.mlg -> Clean
 release.mlg -> Release
 lsp.mlg -> Language Server
+advanced.mlg -> Hidden and Advanced Commands
 view.mlg -> View
 version.mlg -> Version

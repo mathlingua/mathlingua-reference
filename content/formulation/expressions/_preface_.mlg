@@ -1,0 +1,6 @@
+Text: "Expressions denote values, predicates, mappings, collections, calls, and
+operator applications. This section gives the implemented surface shapes and
+important validation rules for every expression family, including grouping,
+commands, builds, variadics, specifications, and labels. Consult Precedence in
+the parent section when several forms occur together."
+Id: "b665c25f-598f-409b-8507-0e7e27fc5f1c"

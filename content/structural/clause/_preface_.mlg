@@ -1,0 +1,6 @@
+Text: "Clauses are the statement-sized units used in conditions, assumptions,
+conclusions, specifications, and justifications. This section covers plain
+formulations and every nested clause group, including binding scope, branch
+assumptions, accepted section order, and corresponding double-backslash builtin
+commands."
+Id: "cb42ac1f-457e-4da6-86cd-dccb6db662e5"
