@@ -27,5 +27,7 @@ use the predicate forms `is?`, `is_not?`, and `\:...?:/`.
 
 Bindings introduced by `let:` are local to the clause group that introduces
 them. Use `let:` for local assumptions as well as local values; there is no
-nested `given:` clause group."
+nested `given:` clause group. The corresponding inline form is
+`\\let{bindings}:where{clauses}:then{clauses}`; `:where` is optional and
+`:then` is required. The former `\\given` inline name is unsupported."
 Id: "1b3520b6-ca0b-48a1-a21c-c147f6361512"

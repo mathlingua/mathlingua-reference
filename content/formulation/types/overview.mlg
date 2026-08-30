@@ -17,10 +17,11 @@ Builtin types start with two backslashes:
   formulation categories
 - `\\anything` — a universal unstructured value; it establishes no more
   specific type information
-- `\\abstract` — the abstract target of a `:->` or `:<->:` capability
 
-The former name `\\opaque` is rejected. The right side of `is` may also be a
-structural type literal, which uses a complete `_` spec literal at every leaf:
+`\\abstract` is not a type; it is the special abstract target of a `:->` or
+`:<->:` capability. The former type name `\\opaque` is unsupported. The right
+side of `is` may also be a structural type literal, which uses a complete `_`
+spec literal at every leaf:
 
 ```mlg-fragment
 (x, y) is (_ is \natural, _ \"in\" \reals)

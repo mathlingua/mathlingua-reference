@@ -21,7 +21,9 @@ Builtin types use two leading backslashes:
   values
 - `\\anything` is satisfied by every declared value but adds no concrete type
   fact
-- `\\abstract` is the abstract capability target
+
+`\\abstract` is not a type; it is the abstract specification-capability
+target.
 
 Literal command arguments may satisfy nominal requirements structurally:
 functions by input/output shape, tuples by positional component types, and

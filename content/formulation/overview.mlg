@@ -23,3 +23,26 @@ Important rules:
 - declaration statements use `::=`, `:=`, `is`, or a quoted spec operator
 - expressions and statements are checked later by the semantic checker"
 Id: "8209ecb3-b957-477f-9c09-ecf9be055488"
+
+SectionTitle: "Double-Backslash Builtins"
+Id: "ab2ac50e-0837-4cce-88df-f0b7c6f10c66"
+
+Text: "Double-backslash names are reserved for language-provided behavior. The
+complete supported inventory is case-sensitive:
+
+- builtin types: `\\type`, `\\statement`, `\\expression`,
+  `\\specification`, and `\\anything`
+- builtin statement commands: `\\not`, `\\and`, `\\allOf`, `\\or`,
+  `\\anyOf`, `\\oneOf`, `\\exists`, `\\existsUnique`, `\\forAll` (with
+  alias `\\forall`), `\\if`, `\\have`, `\\let`, and `\\piecewise`
+- variadic expression commands: `\\map`, `\\leftReduce`, and
+  `\\rightReduce`
+- builtin capability target: `\\abstract`
+
+`\\abstract` is a capability target, not a type. The grammar currently parses
+an arbitrary double-backslash chain in a builtin type or capability-target
+position, but syntax acceptance does not give an unknown name builtin
+semantics. Unknown builtin statement or variadic commands are errors. The
+removed names `\\given`, `\\opaque`, `\\coercion`, and `\\encoding` are
+unsupported."
+Id: "dd52237b-f248-4bbc-a0c3-4b8264acdae4"

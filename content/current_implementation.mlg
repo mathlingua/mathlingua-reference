@@ -29,7 +29,8 @@ Id: "c71c341b-eb8e-42b2-8385-3e42836061e6"
 SectionTitle: "Current Formulation Spellings"
 Id: "9daf84d0-fffb-45b3-916e-9c097a040118"
 
-Text: "- The universal unstructured type is `\\anything`; `\\opaque` is rejected.
+Text: "- The universal unstructured type is `\\anything`; `\\opaque` is
+  unsupported and no longer has those builtin semantics.
 - Specification literals use anonymous subject `_`, not `?`.
 - The only build spelling is `\type@value`. Hard builds `@!` and hard type
   introductions `is!` were removed.
@@ -40,7 +41,8 @@ Text: "- The universal unstructured type is `\\anything`; `\\opaque` is rejected
   `\naturals..succ(n)`. A bound value continues to use one dot.
 - A command may end in one `#using{...}` or `#given{...}` context suffix.
 - Builtin clause commands start with two backslashes and separate arguments
-  with semicolons."
+  with semicolons. The local-binding form is `\\let`; `\\given` is unsupported.
+  The theorem-like top-level `given:` section remains supported."
 Id: "1f1abc1d-6fde-4eeb-9eff-42032773a1b6"
 
 SectionTitle: "Bindings And Branches"

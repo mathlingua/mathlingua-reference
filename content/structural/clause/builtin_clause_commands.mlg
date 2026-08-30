@@ -18,19 +18,19 @@ argument may contain commas.
 \\forAll{x is \set}:where{x != y}:then{x is? \set}
 \\if{P}:then{Q}
 \\have{P}:iff{Q}
-\\given{f is \function}:where{P}:then{Q}
+\\let{f is \function}:where{P}:then{Q}
 \\piecewise:if{x = 0}:then{y = 0}:else{y = 1}
 ```
 
 They use the same clause scoping rules: the
-head arguments of `\\exists`, `\\existsUnique`, `\\forAll`, and `\\given`
+head arguments of `\\exists`, `\\existsUnique`, `\\forAll`, and `\\let`
 introduce bindings in a child context, and `\\piecewise`'s `:else{...}` is
 checked in the outer context.
 
 The accepted tails are fixed per command:
 
 - `\\exists` and `\\existsUnique` take an optional `:suchThat{...}`
-- `\\forAll` (also spelled `\\forall`) and `\\given` take an optional
+- `\\forAll` (also spelled `\\forall`) and `\\let` take an optional
   `:where{...}` and a required `:then{...}`
 - `\\if` takes `:then{...}`
 - `\\have` requires `:iff{...}`

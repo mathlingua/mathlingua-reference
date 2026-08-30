@@ -51,9 +51,12 @@ x satisfies (_ is \real)
 
 Ordinary commands use one backslash. Builtin types and builtin commands use two.
 The builtin types are `\\type`, `\\statement`, `\\expression`,
-`\\specification`, `\\anything`, and `\\abstract`. Function values use `=>`;
-function types use `->`. Direct components of `Defines:`/`Realizes:` commands
-use `..` in source."
+`\\specification`, and `\\anything`; `\\abstract` is instead a capability
+target. The builtin commands are `\\not`, `\\and`, `\\allOf`, `\\or`,
+`\\anyOf`, `\\oneOf`, `\\exists`, `\\existsUnique`, `\\forAll`/`\\forall`,
+`\\if`, `\\have`, `\\let`, `\\piecewise`, `\\map`, `\\leftReduce`, and
+`\\rightReduce`. Function values use `=>`; function types use `->`. Direct
+components of `Defines:`/`Realizes:` commands use `..` in source."
 Id: "038e0422-1849-4715-8276-b43fbf08253b"
 
 SectionTitle: "Declarations And Definitions"
@@ -159,7 +162,7 @@ because: R
 
 Clause bindings are local and may use refined types. Builtin clause arguments
 are separated by semicolons. `allOf`, `anyOf`, `oneOf`, `not`, `exists`,
-`existsUnique`, `forAll`/`forall`, `if`, `have`, `given`, and `piecewise` have
+`existsUnique`, `forAll`/`forall`, `if`, `have`, `let`, and `piecewise` have
 inline builtin forms."
 Id: "2e364327-ac83-4e9d-945d-784b1b928f0e"
 
