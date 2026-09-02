@@ -102,5 +102,9 @@ their titles are unaffected. Later adjective texts remain documented
 alternatives. Theorem-like and axiom-like entries with no documentation fall
 back to their label, with dots converted to spaces and words capitalized.
 
+A theorem's `Proof:` renders as prose after its theorem card, with a separate
+source toggle. An `Example:` renders its clause items as mathematics and its
+quoted items as interleaved Markdown prose, preserving source order.
+
 `Documented:` `description:` renders as prose above the card, like a `Text:` block; the card's `Documented:` details show `description: <see above>`."
 Id: "4d7b0e91-8c25-4a63-9f14-5b2e7a3c86f0"

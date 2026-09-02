@@ -44,6 +44,11 @@ A target symbol the refined base type already declares counts as specified, so
 `\(associative)::binary.operation:on{X}` need not respecify the `*` that
 `\binary.operation:on{X}` already types.
 
+A refinement may add one or more adjectives to an inherited component
+specification. Those adjectives compose with refinements already inherited by
+the component. The underlying base type must remain the same; a `specifies:`
+item that changes it is rejected rather than treated as an additive refinement.
+
 The target may repeat the base `Declares:` target in full or omit trailing
 detail it does not need. For a base `f(x__) ::= y_`, valid refinement targets
 include `f(x__) ::= y_`, `f(x__)`, and `f`. Every shape that is present must

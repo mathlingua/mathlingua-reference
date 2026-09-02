@@ -4,7 +4,7 @@ Id: "a69f825e-dc68-4372-a77f-df9f71d69254"
 Text: "`mlg check` checks the current collection.
 
 ```text
-mlg check [--json] [--diagnostic-schema] [PATH...]
+mlg check [--json | --diagnostic-schema] [--watch] [PATH...]
 ```
 
 With no paths, the whole collection is reported. File and directory paths act
@@ -12,6 +12,11 @@ as diagnostic filters: the implementation still parses and checks the complete
 collection so cross-file references remain available. `--json` writes a
 machine-readable diagnostic report, while `--diagnostic-schema` prints the JSON
 schema for that report.
+
+With `--watch`, the command performs an initial check and then rechecks whenever
+an `.mlg` file, a `toc`, or `mlg.json` changes. It stays alive after errors and
+prints a fresh diagnostic cycle for the latest source state. `--watch` conflicts
+with the two JSON output modes.
 
 Before checking, `mlg check` formats the whole collection (unless the config
 sets `\"formatOnCheck\": false`); it reports `Formatted N files` only when it

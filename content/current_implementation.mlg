@@ -19,6 +19,7 @@ Text: "The present roles are:
 - `Refines:` defines adjective properties and uses `specifies:` for its base or
   inherited refinement fact.
 - `States:` defines reusable propositions.
+- `Example:` records an ordered mixture of checked clauses and quoted prose.
 
 `Requires: definition:` refers to a top-level `Defines:` item. Spec-infix
 headings are allowed only on `Declares:`. `Declares:`, `Defines:`, `Realizes:`,
@@ -96,7 +97,9 @@ The checker validates syntax, signatures, scope, tracked facts, requirements,
 target completeness, capabilities, builds, views, and structural invariants. It
 does not prove mathematical truth. One-element tuples remain unsupported,
 refined command expressions are not general expressions, and subset syntax is
-intentionally narrow."
+intentionally narrow. Prose fences tagged `mlg` are checked as source in their
+containing scope; `mlg-fragment` fences are illustrative and skipped. `mlg check
+--watch` and `mlg view --watch` re-run when collection inputs change."
 Id: "27cc3feb-8cb4-46b6-907f-456c645dda68"
 
 SectionTitle: "Removed Or Renamed Syntax"

@@ -26,6 +26,10 @@ checking `then:` and `iff:`.
 If a theorem-like group has a command heading, that heading introduces a command
 signature and participates in duplicate-signature and reference checks.
 
+Only `Theorem:` accepts an optional `Proof:` section. The proof is Markdown
+prose placed after `Documented:`; `mlg` fences inside it are checked in the
+theorem's complete scope and the rendered proof appears after the theorem card.
+
 The checker validates syntax, references, declared symbols, and command
 requirements. It does not prove that the conclusion follows from the
 assumptions.

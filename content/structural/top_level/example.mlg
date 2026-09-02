@@ -1,0 +1,36 @@
+Title: "Example"
+Id: "bf36807b-f215-4d73-b75e-114ee734274e"
+
+Text: "`Example:` records a worked example without claiming a theorem. It may
+have an optional command heading and its body may freely interleave declarations,
+expressions, nested clause groups, and quoted Markdown prose.
+
+```mlg-fragment
+[\example.command]?
+Example: <ExampleItem>*
+Justification?: <HaveGroup>+
+Aliases?: <AliasItemUnion>+
+Writing?: \"<WritingAlias>\"+
+References?: <ResourceHeader>+
+Metadata?: <MetadataItemUnion>+
+Id?: <OpenText>
+```
+
+An example item is a declaration statement, an expression, a nested clause
+group, or quoted text. Items are checked in source order, so a declaration or
+assumption established by one item is available to the items that follow it.
+The `Example:` body is allowed to be empty.
+
+```mlg-fragment
+Example:
+. X is \set
+. \"Choose an element $x$ of $X$.\"
+. x is X
+. x = x
+Id: \"ecf0e128-503a-4287-aaeb-e81de640ce26\"
+```
+
+Quoted items render as prose between the rendered mathematical clauses.
+`Example:` supports `Justification:`, `Aliases:`, `Writing:`, `References:`, and
+`Metadata:`, but it does not have a `Documented:` section."
+Id: "7300e066-c54c-4812-98ef-06b06342182b"

@@ -11,6 +11,7 @@ where?: <ClauseUnion>+
 then: <ClauseUnion>+
 iff?: <ClauseUnion>+
 Documented?: <DocumentedItemUnion>+
+Proof?: <OpenText>
 Justification?: <HaveGroup>+
 Aliases?: <AliasItemUnion>+
 Writing?: \"<WritingAlias>\"+
@@ -36,5 +37,11 @@ statements.
 
 The checker validates syntax, references, symbols, and requirements. It does not
 prove that theorem-like conclusions follow mathematically from their
-assumptions."
+assumptions.
+
+`Proof:` is optional and appears after `Documented:` and before the remaining
+support sections. Its value is Markdown prose. Fenced `mlg` blocks in the proof
+are parsed and checked in the theorem's full scope, including aliases, writing
+overrides, and references declared later in the item. The viewer renders the
+proof after the theorem card and provides a source toggle for the proof alone."
 Id: "ea7f7f0e-efd3-48e0-ab89-df95dcd48b14"

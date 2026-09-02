@@ -42,8 +42,9 @@ Enables:
 The view symbol, its value, and its type are available to `signifies:`. If the
 view expression is a name or tuple of names, facts follow through those concrete
 components; otherwise only the advertised type is known. Views satisfy resolved
-command requirements and builds, but do not select overloaded operators or
-`Disambiguates:` branches.
+command requirements and builds. A view can also supply the operand type needed
+to resolve an infix specification operator. It does not select ordinary
+overloaded operators or `Disambiguates:` branches.
 
 Hard builds (`@!`), hard declarations (`is!`), `\\coercion`, `\\encoding`, and
 the old `Enables: relation:` form are not supported."

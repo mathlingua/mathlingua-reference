@@ -5,10 +5,15 @@ Text: "`mlg view` serves an interactive rendered view of the current collection.
 
 It listens on `0.0.0.0` so the viewer can be reached from another device on the
 network, while displaying a convenient `http://localhost:<port>/` URL. The
-default port is 3000 and `--port` selects another port. Node.js and npm are
-required; missing viewer dependencies are installed automatically.
+default port is 3000 and `--port` selects another port. The executable contains
+the viewer assets, so Node.js and npm are not required.
 
 Refreshing the browser reloads the latest source if the collection checks successfully. If the updated source has an error, the prior valid view remains in the browser and the server prints the errors to standard output so the source can be fixed.
+
+Pass `--watch` to monitor `.mlg` files, `toc` files, and `mlg.json`, rebuild the
+view automatically, and notify connected browsers to refresh. Watch mode stays
+alive through source errors and recovers as soon as the collection checks
+successfully again.
 
 The view supports:
 
@@ -22,7 +27,8 @@ The view supports:
 - theme selection from the toolbar menu, including LCD and LCD Dark
 - a Types toggle that shows per-line inferred type annotations for expressions
 - background route warming and loading skeletons for faster navigation
-- MathLingua-rendered fenced blocks tagged `mlg` inside `Text:` Markdown
+- checked, MathLingua-rendered fenced blocks tagged `mlg` inside prose, plus
+  unchecked syntax-highlighted `mlg-fragment` blocks
 
 Both `mlg view` and exported sites receive the inferred span/type metadata used
 by the Types toggle. `Requires:` is visible on cards. `Enables:`, `Documented:`,

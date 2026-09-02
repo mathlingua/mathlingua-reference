@@ -49,6 +49,10 @@ build; an assigned component can inherit the assigned command value's type.
 specification forms; conclusions use predicate forms such as `is?` and
 `\:...?:/`. Refined declaration statements are accepted in clause binding
 positions. A spec fact is valid only when the target type supplies the operator.
+Within one inherited scope, a subject may have only one direct specification:
+two base types, a base type plus its refinement, or a type plus an assignment are
+reported as duplicates. A refinement may add adjectives to an inherited
+component type, but it may not replace that component's underlying base type.
 
 **Capabilities, builds, and views.** `:=>`, directed `:->`, equivalent
 `:<->:`, `from:` items, `Requires: definition:`, and `Enables: view:` are

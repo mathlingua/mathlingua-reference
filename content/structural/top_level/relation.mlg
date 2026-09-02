@@ -1,9 +1,10 @@
 Title: "Relation"
 Id: "4ed9df33-7da1-4263-b1ef-d7a6ad578912"
 
-Text: "`Relation:` states a bidirectional relationship between the two subjects named
-in `between:` and `and:`. It is a heading-less, standalone descriptive item and
-does not register a build or view rule.
+Text: "`Relation:` states either an undirected relationship between the subjects
+named in `between:` and `and:`, or a directed relationship from `from:` to `to:`.
+It is a heading-less, standalone descriptive item and does not register a build
+or view rule.
 
 ```mlg-fragment
 Relation: <OpenText>*
@@ -21,7 +22,15 @@ Metadata?: <MetadataItemUnion>+
 Id?: <OpenText>
 ```
 
-`Relation:` takes no bracket heading. `between:` and `and:` are required. Each
+The directed form replaces the two endpoint sections with:
+
+```mlg-fragment
+from: <RelationSubject>
+to: <RelationSubject>
+```
+
+`Relation:` takes no bracket heading. Exactly one endpoint pair is required:
+`between:`/`and:` or `from:`/`to:`. Each
 subject is either an unquoted declaration such as `a is \real` for a concept, or
 a quoted reference — a `\"#topic\"` or a `\"\signature\"` (a `\command` with its
 arguments removed, such as `\function:on:to`) — so a `Relation:` may relate
@@ -46,6 +55,12 @@ when:
 specifies: a = b
 Documented:
 . description: \"a and b name the same value.\"
+```
+
+```mlg-fragment
+Relation: \"is a prerequisite for\"
+from: \"#elementary.algebra\"
+to: \"#abstract.algebra\"
 ```
 
 The item is checked like a theorem: declaration subjects and a statement

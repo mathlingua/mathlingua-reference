@@ -14,6 +14,10 @@ The commands are:
 - `mlg version` to print the installed version
 - `mlg view` to serve the rendered interactive viewer
 
+`mlg check --watch` and `mlg view --watch` monitor collection inputs and rerun
+when they change. Both modes stay alive through source errors so editing can
+continue without restarting the command.
+
 There are also hidden commands that do not appear in `--help`: `mlg debug`,
 `mlg extract`, `mlg lsp`, `mlg report`, and the easter-egg `mlg whte_rbt.obj`.
 

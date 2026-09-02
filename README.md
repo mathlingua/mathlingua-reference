@@ -16,10 +16,10 @@ with the `mlg` command from the sibling
 - `mlg.json` — collection configuration.
 - `docs/` — the exported static site (generated; git-ignored).
 
-Prose is Markdown with LaTeX. Mathlingua examples are written in
-` ```mlg-fragment ` fenced blocks: they are syntax-highlighted in the rendered
-view but are not type-checked, so they may freely reference commands that are
-not defined in the reference itself.
+Prose is Markdown with LaTeX. A fenced block tagged `mlg` is parsed, checked in
+the scope of its containing item, and rendered as Mathlingua. A block tagged
+`mlg-fragment` is syntax-highlighted but not checked, so it is appropriate for
+partial examples and may reference commands not defined in the reference.
 
 ## Building
 

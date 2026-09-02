@@ -2,8 +2,8 @@ Title: "`mlg export`"
 Id: "68be718f-7a60-47e3-9133-9986e7571dfa"
 
 Text: "`mlg export` checks and renders the current collection, then builds a static
-copy of the viewer into the collection's `docs/` directory. The command requires
-Node.js and npm because it runs the embedded Next.js build.
+copy of the viewer into the collection's `docs/` directory. Viewer assets are
+embedded in the executable, so exporting does not require Node.js or npm.
 
 ```text
 mlg export [--base-path PATH] [--cname DOMAIN] [--force]
@@ -24,6 +24,5 @@ mlg export [--base-path PATH] [--cname DOMAIN] [--force]
   static viewer.
 
 The command stops before building if the collection has no files to export, or
-if it cannot be checked or rendered. Missing viewer dependencies are installed
-automatically."
+if it cannot be checked or rendered."
 Id: "9430f1f9-fb39-4b52-8cf9-9bf027e8887c"
