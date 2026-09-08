@@ -4,7 +4,7 @@ Id: "affb5e64-17a9-4b53-8119-1b6feae01023"
 Text: "Expression forms bind from loosest to tightest as follows:
 
 1. function literal `=>` (right-associative, loosest)
-2. specification and predicate forms: `is`, `is?`, `is_not?`, quoted `\"op\"`
+2. specification and predicate forms: `is`, `is?`, quoted `\"op\"`
    specs and predicates, infix specs `\:...:/` and `\:...?:/`, `member_of`,
    `satisfies`, and spec literals
 3. infix command expressions `\.cmd./`

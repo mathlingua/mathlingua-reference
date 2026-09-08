@@ -16,8 +16,10 @@ Sections have `name:` or `name: inline argument` form. Additional arguments are
 indented beneath the section; a `. value` argument is treated two spaces deeper
 than its current line. Labels and section order are case-sensitive.
 
-Text arguments are double-quoted, may span source lines, and do not interpret
-escape sequences. Single-quoted formulations are unsupported. A multiline
+Text arguments use ordinary or triple double quotes and may span source lines.
+Ordinary quoted text decodes escaped double quotes only; other backslashes
+remain literal. Triple-quoted text is literal and accepts unescaped double
+quotes inside. Single-quoted formulations are unsupported. A multiline
 formulation begins only when the entire opening line is `(`, `[`, `{`, or `(.`
 and closes with the matching delimiter at the same indent.
 

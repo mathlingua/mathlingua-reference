@@ -19,6 +19,11 @@ The view supports:
 
 - a responsive outline that starts open on desktop and closed on narrow screens
 - `toc` ordering, renaming, and hidden entries
+- an outline header for the directory currently being browsed; Up and directory
+  arrows browse without opening a page or changing browser history
+- file, directory, and outline-header names that open their pages; page changes,
+  Previous/Next, and browser Back/Forward synchronize the outline directory
+- on narrow screens, browsing keeps the outline open and opening a page closes it
 - page-level `Title:`, `SectionTitle:`, `SubsectionTitle:`, and `Text:` blocks
 - rendered cards for top-level mathematical entries
 - source flip controls on cards

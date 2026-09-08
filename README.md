@@ -27,13 +27,18 @@ The `Makefile` drives everything through `mlg`. Point `MATHLINGUA_DIR` at your
 checkout of the tooling repo (default `../mathlingua`).
 
 ```bash
-make check   # syntax-check every page
+make check   # check syntax and semantics of every page
 make serve   # live viewer at http://localhost:3000
 make build   # export the static site into ./docs
 make clean   # remove ./docs
 ```
 
-> **Note:** `mlg.json` sets `formatOnCheck: false`. `mlg format` reflows the
-> text inside `Text:` blocks to the margin, which would collapse Markdown lists
-> and the code inside ` ```mlg-fragment ` blocks, so the reference is not
-> auto-formatted.
+`mlg.json` sets `formatOnCheck: false` to preserve the reference's manually
+arranged prose during checks. The current formatter preserves fenced code and
+Markdown list structure, and treats `{. ... .}` and `{{. ... .}}` math fragments
+as indivisible units. Run `mlg format` explicitly when reflowing prose is wanted.
+
+The current syntax references are the tooling repository's
+[structural syntax](https://github.com/mathlingua/mathlingua/blob/main/docs/structural_syntax.md)
+and [formulation syntax](https://github.com/mathlingua/mathlingua/blob/main/docs/formulation_syntax.md).
+`syntax.txt` is a historical design sketch, not the implemented grammar.

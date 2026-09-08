@@ -108,3 +108,27 @@ quoted items as interleaved Markdown prose, preserving source order.
 
 `Documented:` `description:` renders as prose above the card, like a `Text:` block; the card's `Documented:` details show `description: <see above>`."
 Id: "4d7b0e91-8c25-4a63-9f14-5b2e7a3c86f0"
+
+SectionTitle: "MathLingua In Prose"
+Id: "f4b94591-6749-4774-b61b-bd20cb8a2d3a"
+
+Text: "Inline MathLingua opens with &#123;. and closes with .&#125;; display
+MathLingua uses &#123;&#123;. and .&#125;&#125;. The enclosed formulation is
+parsed, checked in the containing item's scope, and rendered as mathematics.
+For example, let {. A is \\anything .}. Then {{. A = A .}}.
+
+A declaration using `is`, a quoted specification operator, or `:=` introduces
+names for later fragments in the same text value. A named scope opens with
+&lt;&lt;name&gt;&gt; and closes with &lt;&lt;/name&gt;&gt;. Markers must balance
+and nest properly, and their local bindings disappear on closing. The markers
+themselves do not render. Each text value has its own initial scope.
+
+Theorem proof prose inherits heading, `given:`, and `where:` symbols, but not
+bindings local to the conclusion. Invalid fragments and references to names
+outside their scope are reported by `mlg check`.
+
+Markdown backticks and code fences do not disable fragment or scope-marker
+scanning. Use HTML character references in ordinary prose when showing these
+delimiters literally. An `mlg-fragment` fence skips structural example checking,
+but embedded prose fragments still receive their own checks."
+Id: "93229297-84f8-4534-abc3-20be3394c44b"

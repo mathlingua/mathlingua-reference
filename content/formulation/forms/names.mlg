@@ -44,6 +44,6 @@ placeholder, not a normal name; `_x` and `'x` are not names at all.
 In rendering, names of the form letters followed by digits are shown with a
 numeric subscript, so `x1` renders like `x_1`.
 
-The exact spellings `is`, `is?`, `is_not?`, `via`, `member_of`, and `satisfies`
+The exact spellings `is`, `is?`, `via`, `member_of`, and `satisfies`
 are reserved by the lexer-driven formulation parser."
 Id: "b1c37930-d8e1-4a73-8c04-21114dc5f2f1"

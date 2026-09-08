@@ -23,7 +23,7 @@ universal quantification. `where:` is optional; `then:` is required.
 
 `let:` and `where:` are binding positions, so bare `is` and `\:...:/`
 specifications may introduce symbols there. `then:` is a statement position, so
-use the predicate forms `is?`, `is_not?`, and `\:...?:/`.
+use the predicate forms `is?`, and `\:...?:/`.
 
 Bindings introduced by `let:` are local to the clause group that introduces
 them. Use `let:` for local assumptions as well as local values; there is no

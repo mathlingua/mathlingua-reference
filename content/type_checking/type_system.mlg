@@ -8,7 +8,10 @@ clauses.
 
 A `Declares:` item defines a reusable nominal type or interface. Its `extends:`
 rules are recursive: knowing `G is \group` may establish `G is \monoid` and
-then `G is \magma`. A `Defines:` item creates a typed value; `Realizes:` creates
+then `G is \magma`. A refined type fact implies its underlying base type and,
+for a composite refinement, its individual refinements. Those facts and
+registered refinement extension rules can satisfy later requirements.
+A `Defines:` item creates a typed value; `Realizes:` creates
 a concrete implementation of an abstract definition. Capabilities owned by a
 `Declares:` type apply to every instance, while capabilities owned by
 `Defines:` or `Realizes:` apply to that defined command value with its parameters

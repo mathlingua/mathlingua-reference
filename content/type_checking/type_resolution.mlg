@@ -1,13 +1,19 @@
 Title: "Type Resolution"
 Id: "2b59cf98-6cf3-4b4b-835d-baabd8ee216b"
 
-Text: "A binary operator resolves in this order:
+Text: "The spelling of a binary operator selects its resolution path.
 
-1. application of a bound symbol (`x * y` becomes `*(x, y)`);
-2. a colon-qualified capability owned by the selected operand type;
-3. a matching `Disambiguates:` branch;
-4. a capability owned by the operands' common type, after reducible spec facts
-   are converted to type facts.
+For a plain symbolic operator such as `x * y`:
+
+1. A bound `*` is applied as `*(x, y)`.
+2. Otherwise, a `Disambiguates:` entry selects the first matching `when:`
+   branch in source order, or its `else:`. If the entry exists but no branch
+   matches and no fallback is present, resolution fails.
+3. Only when no `Disambiguates:` entry exists does the checker try a capability
+   whose owner type both operands satisfy. This path first materializes the
+   available specification and membership reductions as type facts.
+
+Colon-qualified operators go directly to capability lookup:
 
 ```mlg-fragment
 x :* y
@@ -15,15 +21,25 @@ x *: y
 x :*: y
 ```
 
-These spellings select the left type, right type, or least common ancestor type.
-Named operators use the same colon variants. Prefix, postfix, and member forms
-follow analogous capability and disambiguation rules.
+The first selects an owner type satisfied by `x`, the second by `y`, and the
+third by both operands. Extension chains can supply that owner type. The
+checker takes the first matching registered capability; it does not calculate
+or rank a least common ancestor. These paths do not fall back to
+`Disambiguates:` and do not first materialize specification or membership
+reductions. The chosen capability's target is then checked with the actual
+operands substituted, so its requirements still apply to both operands.
+
+Plain named operators are function-call sugar: `x |op| y` means `op(x, y)`.
+Colon-qualified named operators use the same ownership modes as symbolic ones.
+Plain `=` and `!=` try a common-owner capability and otherwise remain builtin
+statements even when the operand types have no equality capability.
 
 Capabilities from `Requires:` and `Enables:` are considered together, and
 lookup follows `Declares:` extension chains. `from:` capabilities apply to a
-compatible built literal. Assignment-backed `specifies:` facts are normalized
-so capabilities stated in terms of a component can follow that component's
-assigned command value."
+compatible built collection literal. Assignment-backed `specifies:` facts are
+normalized so capabilities stated in terms of a component can follow that
+component's assigned command value. Views do not select ordinary operator
+capabilities or disambiguation branches."
 Id: "b4f93e01-3b86-4228-b3ed-512add4b38bf"
 
 SectionTitle: "Builds And Views"

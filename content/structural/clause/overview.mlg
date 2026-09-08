@@ -40,7 +40,7 @@ introduce symbols, so they are only allowed in binding positions (`exists:`,
 `existsUnique:`, `forAll:`, `let:`, theorem-like `given:` sections, and
 `where:` / `suchThat:` / `when:`). In statement positions (`then:`, `if:`,
 `iff:`, `that:`, `else:`, and the boolean combinators) use the predicate forms
-`is?` / `is_not?` and `\:...?:/`. See Statements and Specifications.
+`is?` and `\:...?:/`. See Statements and Specifications.
 
 Each of these clauses also has a builtin command form usable inline in a
 statement position — see Builtin Clause Commands.

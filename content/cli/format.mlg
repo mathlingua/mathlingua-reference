@@ -15,9 +15,15 @@ Formatting is normalization, not a judgement call. It:
 - reflows inline `\"...\"` text values to the `margin` width from
   `mlg.json` (default `80`).
 
-LaTeX blobs (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`) are treated as atomic and
-are never split; a text value whose author laid out multi-line or over-wide math
-by hand is left untouched. Paragraph breaks inside text are preserved.
+LaTeX blobs (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`) and inline/display
+MathLingua fragments are indivisible: their contents are never split or modified.
+A text value containing multiline or over-wide math is left
+untouched. Paragraph breaks inside text are preserved.
+
+Fenced code blocks retain their internal spacing and line breaks, including
+`mlg-fragment` examples. Markdown list items retain their markers and nesting,
+with wrapped continuation lines indented under the item text. Prose around
+lists and code fences is still reflowed. Triple-quoted prose is supported too.
 
 It reports `Formatted N files`, or `Nothing to format` when everything was
 already canonical. If `mlg.json` still uses the old `print_margin` key, the

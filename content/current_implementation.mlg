@@ -107,6 +107,7 @@ Id: "f293823a-8ba8-405e-8920-c4781944e254"
 
 Text: "These spellings do not belong in current source:
 
+- `is_not?` (use `\\not{x is? \set}`)
 - `\\opaque` (use `\\anything`)
 - `? is T` spec literals (use `_ is T`)
 - `@!`, `is!`, `\\coercion`, and `\\encoding`

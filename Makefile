@@ -12,7 +12,7 @@ MLG ?= $(MATHLINGUA_DIR)/target/debug/mlg
 mlg:
 	cargo build --manifest-path $(MATHLINGUA_DIR)/Cargo.toml --bin mlg
 
-# Syntax-check every page (and format them, per mlg.json's formatOnCheck).
+# Check syntax and semantics of every page (formatting follows formatOnCheck).
 check: mlg
 	$(MLG) check
 

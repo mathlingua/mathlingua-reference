@@ -1,7 +1,9 @@
 Title: "Overview"
 Id: "6e650849-028f-48e7-a86e-df26782a62ed"
 
-Text: "Documented text wrappers all use quoted source text. The structural parser strips the outer quotes and does not interpret escape sequences.
+Text: "Documented text wrappers all use quoted source text. The structural parser removes the enclosing quotes. Ordinary quoted text
+decodes escaped double quotes while preserving other backslashes. Triple-quoted
+text preserves its contents literally and can contain unescaped double quotes.
 
 The main wrappers are:
 

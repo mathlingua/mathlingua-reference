@@ -75,7 +75,7 @@ to write mathematical knowledge.*
 - **Types** — `is` type statements.
   - **Is Keyword** — `is` records or requires a type fact.
   - **Variadic Is** — one `is` statement applied to several subjects.
-  - **Is Question Keyword** — the predicate forms `is?` / `is_not?`.
+  - **Is Question Keyword** — the predicate form `is?` and negation with `\\not`.
   - **Via Keyword** — `via` records the view used by an extension.
 - **Operators** — the three operator families.
   - **Spec Operators** — express facts such as membership.

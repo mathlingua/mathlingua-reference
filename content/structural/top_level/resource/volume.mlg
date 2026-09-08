@@ -8,5 +8,6 @@ Resource:
 . volume: \"12\"
 ```
 
-The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+The value is `OpenText`: it must be quoted in source, the enclosing quotes are stripped. Ordinary quoted text decodes escaped double
+quotes while preserving other backslashes; triple-quoted text is literal. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
 Id: "ad21db45-2f5f-4db9-b53a-8be30d88447c"

@@ -8,5 +8,6 @@ Resource:
 . institution: \"Example University\"
 ```
 
-The value is `OpenText`: it must be quoted in source, the outer quotes are stripped, and no escape processing is performed. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
+The value is `OpenText`: it must be quoted in source, the enclosing quotes are stripped. Ordinary quoted text decodes escaped double
+quotes while preserving other backslashes; triple-quoted text is literal. Resource cards in `mlg view` use `title:` as the visible title and make it a hyperlink when `url:` is present."
 Id: "d319b13d-1b1d-416b-8e7f-2a3ea1c427ef"

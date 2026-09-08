@@ -1,3 +1,14 @@
+HISTORICAL DESIGN SKETCH — NOT THE CURRENT LANGUAGE
+
+This file predates the current Rust implementation. It includes removed groups,
+operators, and builtins and must not be used as a syntax reference.
+For current rules, see content/ and the sibling tooling repository's:
+  ../mathlingua/docs/structural_syntax.md
+  ../mathlingua/docs/formulation_syntax.md
+  ../mathlingua/docs/language.md
+
+The original sketch is retained below for historical context only.
+================================================================
 
 x_ -> x_ + 1
 {x_ : x_ is \real}

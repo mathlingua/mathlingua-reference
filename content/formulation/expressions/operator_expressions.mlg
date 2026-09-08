@@ -20,9 +20,13 @@ M.`*`(x, y)
 ```
 
 `x :* y` resolves `*` from the type of `x`; `x *: y` resolves it from the type
-of `y`; `x :*: y` resolves from their least common ancestor type. Plain
-operators first use a bound local operator as an application, then eligible
-capabilities or `Disambiguates:` entries.
+of `y`; `x :*: y` requires both operands to satisfy a capability's owner type.
+Lookup selects the first matching capability, without ranking common ancestors.
+Colon-qualified spellings go directly to capability lookup. A plain symbolic
+operator first uses a bound operator as an application, then a `Disambiguates:`
+entry if one exists. Only when no such entry exists does it try a common-owner
+capability after reducing specification and membership facts. An existing
+`Disambiguates:` entry with no matching branch or `else:` is an error.
 
 Named prefix, infix, and postfix operators behave like function calls. A named
 operator may be a dotted member path: `x |M.*| y` is `M.*(x, y)`.

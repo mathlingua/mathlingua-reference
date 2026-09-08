@@ -7,7 +7,9 @@ Text: "`OpenText` is quoted prose text.
 Text: \"A paragraph of Markdown prose.\"
 ```
 
-The structural parser strips the outer quotes and does not interpret escape sequences.
+The structural parser removes the enclosing quotes. Ordinary quoted text
+decodes escaped double quotes while preserving other backslashes. Triple-quoted
+text preserves its contents literally and can contain unescaped double quotes.
 
 `OpenText` is used by prose blocks, theorem titles, biographies, resource fields, descriptions, and many metadata fields. In viewer prose contexts, Markdown and LaTeX are rendered.
 
