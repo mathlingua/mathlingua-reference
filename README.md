@@ -35,8 +35,8 @@ make clean   # remove ./docs
 
 `mlg.json` sets `formatOnCheck: false` to preserve the reference's manually
 arranged prose during checks. The current formatter preserves fenced code and
-Markdown list structure, and treats `{. ... .}` and `{{. ... .}}` math fragments
-as indivisible units. Run `mlg format` explicitly when reflowing prose is wanted.
+Markdown list structure, and treats `{. ... .}`, `{{. ... .}}`, and `{: ... :}`
+fragments as indivisible units. Run `mlg format` explicitly when reflowing prose is wanted.
 
 The current syntax references are the tooling repository's
 [structural syntax](https://github.com/mathlingua/mathlingua/blob/main/docs/structural_syntax.md)

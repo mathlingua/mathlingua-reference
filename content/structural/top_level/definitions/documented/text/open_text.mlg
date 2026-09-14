@@ -13,5 +13,5 @@ text preserves its contents literally and can contain unescaped double quotes.
 
 `OpenText` is used by prose blocks, theorem titles, biographies, resource fields, descriptions, and many metadata fields. In viewer prose contexts, Markdown and LaTeX are rendered.
 
-Because open text is prose, command-looking text inside it is not treated as a semantic command reference unless another feature explicitly parses it."
+Because open text is prose, command-looking text inside it is not treated as a semantic command reference unless another feature explicitly parses it. Open text may embed inline `&#123;. ... .&#125;` or display `&#123;&#123;. ... .&#125;&#125;` formulations, as well as `&#123;: ... :&#125;` theorem references."
 Id: "9d32e6e1-328b-48af-9abe-9bf27cdfa7bf"
