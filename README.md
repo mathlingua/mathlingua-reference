@@ -42,3 +42,4 @@ The current syntax references are the tooling repository's
 [structural syntax](https://github.com/mathlingua/mathlingua/blob/main/docs/structural_syntax.md)
 and [formulation syntax](https://github.com/mathlingua/mathlingua/blob/main/docs/formulation_syntax.md).
 `syntax.txt` is a historical design sketch, not the implemented grammar.
+
