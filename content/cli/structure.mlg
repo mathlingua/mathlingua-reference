@@ -1,0 +1,44 @@
+Title: "`mlg structure`"
+Id: "8540a911-39db-4876-b605-6453d10ab285"
+
+Text: "`mlg structure` inspects the collection layout, table of contents, and items hierarchy.
+
+```text
+mlg structure [--json]
+```
+
+In default human-readable mode, it prints the collection title, the discovered directory hierarchy (including whether each directory has a preface), each file's title and defined commands, and the individual items in each file with their UUIDs, kinds, headings, and definition keys.
+
+With `--json`, `mlg structure` emits a structured JSON object representing the entire collection hierarchy:
+
+```text
+{
+  \"title\": \"Collection Title\",
+  \"directories\": [
+    {
+      \"path\": \"content/path\",
+      \"title\": \"Section Title\",
+      \"hasPreface\": true
+    }
+  ],
+  \"files\": [
+    {
+      \"path\": \"content/path/file.mlg\",
+      \"title\": \"Page Title\",
+      \"definedCommands\": [\"\\command.name\"],
+      \"items\": [
+        {
+          \"id\": \"uuid-here\",
+          \"kind\": \"Theorem\",
+          \"heading\": \"\\theorem.name\",
+          \"definitionKeys\": [\"\\theorem.name\"],
+          \"commands\": []
+        }
+      ]
+    }
+  ]
+}
+```
+
+The command accepts the global event filters: `--event-audience` (or `--event-scope`), `--event-level`, and `--event-markers`."
+Id: "f6b3e812-2591-4cf1-884e-28ec3ca9942a"

@@ -1,0 +1,35 @@
+Title: "`mlg search`"
+Id: "3df793a1-1209-4821-b384-cb919241b890"
+
+Text: "`mlg search` searches items and definitions across the current collection.
+
+```text
+mlg search [--json] <QUERY>
+```
+
+The command scans all `.mlg` files in the collection for matches to the specified query string across item headings, titles, descriptions, and defined command signatures.
+
+In default human-readable mode, `mlg search` prints matching files, items, match reasons, and context snippets.
+
+With `--json`, it outputs a machine-readable JSON object with the following structure:
+
+```text
+{
+  \"query\": \"search query\",
+  \"totalMatches\": 1,
+  \"matches\": [
+    {
+      \"filePath\": \"content/path/to/file.mlg\",
+      \"id\": \"uuid-here\",
+      \"kind\": \"Defines\",
+      \"heading\": \"\\command.name\",
+      \"definitionKeys\": [\"\\command.name\"],
+      \"matchReasons\": [\"Matched command: \\command.name\"],
+      \"snippet\": \"Defines: ...\"
+    }
+  ]
+}
+```
+
+The command accepts the global event filters: `--event-audience` (or `--event-scope`), `--event-level`, and `--event-markers`."
+Id: "e72e1765-b1a9-4674-8b17-f58c4ca14668"

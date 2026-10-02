@@ -3,6 +3,8 @@ introduction.mlg -> Introduction
 installation.mlg -> Installation
 init.mlg -> Init
 check.mlg -> Check
+search.mlg -> Search
+structure.mlg -> Structure
 format.mlg -> Format
 export.mlg -> Export
 clean.mlg -> Clean

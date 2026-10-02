@@ -182,3 +182,26 @@ Template placeholders support `A?`, parenthesis modifiers `A+?`/`A-?`,
 conditional fragments such as `@[A]{...}`, and variadic join templates. For a
 source parameter `n_`, either `n_?` or normalized `n?` substitutes the value."
 Id: "d468fdf4-8a98-41a9-963f-b7eb2b19a53e"
+
+SectionTitle: "Labels, Justifications, And References"
+Id: "a352059a-35ca-4e71-80e1-365fb0c16632"
+
+Text: "```mlg-fragment
+[theorem.name]
+Theorem:
+given: x is \real
+then:
+. [step1]: x + 0 = x
+. (x = x)[:just1:](:ref1:)
+Justification:
+. [just1]
+  have: x = x
+  asserting: x = x
+  by: \reflexivity
+References:
+. [ref1]: $foundations.book:page{12}
+Proof: \"By &#39;&#39;Source&#39;&#39;(&#58;ref1&#58;), &#123;: \\reflexivity :&#125;, and [:step1:], the result holds.\"
+```
+
+Structural groups take `[label]` headings. Single-line formulations and text take `. [label]: ...`. Grouped formulations take `[:label:]` for justification (resolved by `Justification:`) and `(:label:)` for literature citations (resolved by `References:`). Both multi-labels (`[:l1, l2:]`, `(:r1, r2:)`) and combined labels are supported. Prose citations use &#39;&#39;quote&#39;&#39;(&#58;label&#58;) and theorem citations use &#123;: \\theorem :&#125;."
+Id: "ddb51b99-11de-4c04-8791-aeb0c73d6e39"

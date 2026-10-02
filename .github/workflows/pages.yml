@@ -1,0 +1,62 @@
+name: Build and deploy Mathlingua Reference
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Mathlingua Reference
+        uses: actions/checkout@v6
+        with:
+          path: mathlingua-reference
+          persist-credentials: false
+
+      # An external checkout without ref fetches its latest default branch.
+      - name: Check out latest Mathlingua source
+        uses: actions/checkout@v6
+        with:
+          repository: mathlingua/mathlingua
+          path: mathlingua
+          persist-credentials: false
+
+      - name: Install stable Rust
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+
+      - name: Build mlg and export docs
+        run: ./mathlingua-reference/build.sh
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: mathlingua-reference/docs
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Deploy site
+        id: deployment
+        uses: actions/deploy-pages@v4

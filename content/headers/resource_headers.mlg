@@ -11,14 +11,22 @@ Resource:
 ```
 
 A `References:` section names resources with these headers. Both the bare
-`$book.chapter` form and the quoted `\"$book.chapter\"` form are accepted.
-
-A PDF resource reference may append `:page{n}`:
+`$book.chapter` form and the quoted `\"$book.chapter\"` form are accepted. Entries may be tagged with a reference label using `. [label]: $book.chapter`:
 
 ```mlg-fragment
 References:
-. $zfc.foundations:page{42}
+. [foundations]: $zfc.foundations:page{42}
+. [analysis]: $rudin.principles
 ```
+
+Duplicate reference labels within the same `References:` section are rejected.
+
+Formulations and prose can cite declared reference labels:
+
+- In formulations, append `(:label:)` or `(:ref1, ref2:)` to a parenthesized expression or statement, optionally combined with justification labels: `(x = x)(:analysis:)` or `(x = x)[:1:](:analysis:)`.
+- In prose (`OpenText`), cite sources using &#39;&#39;quoted text&#39;&#39;(&#58;label&#58;) or &#39;&#39;quoted text&#39;&#39;(&#58;ref1, ref2&#58;).
+
+Every cited reference label must match a labeled entry in the enclosing item's `References:` section; citing an unknown label produces an error.
 
 The resource's `offset:` is the physical PDF page on which its logical page 1
 appears, so the linked physical page is `n + offset - 1` (`offset` defaults to
@@ -26,6 +34,7 @@ appears, so the linked physical page is `n + offset - 1` (`offset` defaults to
 
 The viewer displays a resolved reference as the resource's title followed by its
 author entries in parentheses, linking to the resource's `url:` when it has one.
+Citations in prose and formulations render as interactive hyperlinks to the referenced resource.
 `References:` is supporting content and is collapsed by default alongside
 `Documented:` and `Id:`."
 Id: "4a1ddf88-4cdb-4ef9-a0e8-c71830b26f68"

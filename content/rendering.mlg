@@ -122,6 +122,12 @@ referencing defined axioms, conjectures, and theorems by a bare command name.
 Axioms, conjectures, and theorems cannot be used in &#123;. ... .&#125; or
 &#123;&#123;. ... .&#125;&#125;.
 
+Prose citations use &#39;&#39;quoted text&#39;&#39;(:label:) (or &#39;&#39;quoted text&#39;&#39;(:l1, l2:))
+to cite resources declared in the containing item's `References:` section. The
+enclosed text renders in italics followed by bracketed references, hyperlinked
+to the resource URL when available (e.g. *text* [[1](url)]). Every cited label
+must match an entry in `References:`; unknown labels are rejected by `mlg check`.
+
 A declaration using `is`, a quoted specification operator, or `:=` introduces
 names for later fragments in the same text value. A named scope opens with
 &lt;&lt;name&gt;&gt; and closes with &lt;&lt;/name&gt;&gt;. Markers must balance

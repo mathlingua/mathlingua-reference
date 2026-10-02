@@ -11,6 +11,8 @@ The commands are:
 - `mlg format` to normalize `.mlg` source formatting
 - `mlg init` to create a starter collection
 - `mlg release` to record a version snapshot of the collection
+- `mlg search` to find items and definitions across the collection
+- `mlg structure` to inspect the collection layout, table of contents, and items
 - `mlg version` to print the installed version
 - `mlg view` to serve the rendered interactive viewer
 

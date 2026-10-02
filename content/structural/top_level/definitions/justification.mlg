@@ -17,10 +17,12 @@ by?: <Expression>+
 ```
 
 Any grouped expression, statement, or specification elsewhere in the same
-top-level group may carry a matching `[:label:]`, including inside a nested
-clause or expression. A labeled formulation is then established using that
-entry's `asserting:` items, exactly as an inline `have:`/`asserting:` group
-would.
+top-level group may carry a matching `[:label:]` (or multi-labels `[:l1, l2:]`),
+including inside a nested clause or expression. Single-line formulations may
+likewise carry a line-level `. [label]: ...` label. A labeled formulation is then
+established using that entry's `asserting:` items, exactly as an inline
+`have:`/`asserting:` group would. Note that bibliographic citations use `(:label:)`
+and are resolved against `References:`, not `Justification:`.
 
 ```mlg-fragment
 [\(commutative)::group]

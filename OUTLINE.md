@@ -47,6 +47,8 @@ to write mathematical knowledge.*
 - **Installation** — building or installing the `mlg` executable.
 - **Init** — `mlg init` scaffolds a starter collection.
 - **Check** — `mlg check` validates the current collection.
+- **Search** — `mlg search` finds items and definitions across the collection.
+- **Structure** — `mlg structure` inspects collection layout, TOC, and items.
 - **Format** — `mlg format` normalizes formatting of every `.mlg` file.
 - **Export** — `mlg export` builds the static viewer into `docs/`.
 - **Clean** — `mlg clean` removes the generated `docs/`.

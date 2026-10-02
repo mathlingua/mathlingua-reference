@@ -1,21 +1,39 @@
 Title: "Labeled Expressions"
 Id: "98edd056-5d9f-45f0-a8e8-16c63a2a7fcd"
 
-Text: "A labeled expression attaches a label to an expression.
+Text: "A labeled formulation attaches one or more labels to a grouped expression, statement, or specification.
 
 ```mlg-fragment
 (x + y)[:sum:]
 (.x + y.)[:normalized:]
+(x = x)(:ref_label:)
+(x = x)[:sum:](:ref_label:)
 ```
 
-Only a grouped formulation may be labeled directly, and the wrapper may hold a declaration or specification as well as an expression:
+Only a grouped formulation may carry trailing label tokens directly, and the wrapper may hold a declaration or specification as well as an expression:
 
 ```mlg-fragment
 (.x is \real.)[:typed:]
 (.*' := `*`.)[:operation:]
+(.x is \real.)[:typed:](:reference:)
 ```
 
-A label is discharged by a matching `[label]` entry in the enclosing item's `Justification:` section; an unmatched label is checked inline as usual.
+### Multi-Labels
 
-Labels use the `[:...:]` token form and are distinct from structural label headers such as `[theorem.name]`. As lexer tokens they do not support stropped symbolic parts."
+Formulations support multiple labels, either comma-separated within one bracket/parenthesis pair or chained in sequence:
+
+```mlg-fragment
+(x + y)[:step1, step2:]
+(x + y)[:step1:][:step2:]
+(x = x)[:just1, just2:](:ref1, ref2:)
+```
+
+### Justification vs. Reference Labels
+
+Mathlingua provides two distinct trailing label families:
+
+- **Justification Labels** (`[:...:]`): Discharged by a matching `[label]` entry in the enclosing item's `Justification:` section. A matched formulation is established via the justification entry's `asserting:` items; an unmatched label is checked inline as usual.
+- **Reference Citation Labels** (`(:...:)`): Cite an external resource declared with `. [label]: $resource` in the enclosing item's `References:` section. Every reference label cited by a formulation must match a declared label in `References:`; an unknown reference label produces a compile-time error.
+
+Single-line formulations may also receive a line-level label using `. [label]: ...` under section headings."
 Id: "efe841b5-44ed-45f8-8d20-1aacb7fc9bdb"
