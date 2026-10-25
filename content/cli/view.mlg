@@ -8,7 +8,7 @@ network, while displaying a convenient `http://localhost:<port>/` URL. The
 default port is 3000 and `--port` selects another port. The executable contains
 the viewer assets, so Node.js and npm are not required.
 
-Refreshing the browser reloads the latest source if the collection checks successfully. If the updated source has an error, the prior valid view remains in the browser and the server prints the errors to standard output so the source can be fixed.
+Refreshing the browser reloads the latest source if the collection checks successfully, and connected tabs also poll `/api/version` to reload automatically when the server rebuilds the collection view. If the updated source has an error, the prior valid view remains in the browser and the server prints the errors to standard output so the source can be fixed.
 
 Pass `--watch` to monitor `.mlg` files, `toc` files, and `mlg.json`, rebuild the
 view automatically, and notify connected browsers to refresh. Watch mode stays
@@ -29,13 +29,19 @@ The view supports:
 - source flip controls on cards
 - clickable definitions that open in an etched definition area
 - previous/next page navigation using page names
-- theme selection from the toolbar menu, including LCD and LCD Dark
-- a Types toggle that shows per-line inferred type annotations for expressions
+- a slide-down settings toolbar in the header with centered controls for:
+  - **Font** selection between `Default` and `Euler` typography mode (pairing
+    upright Euler Math formulas with CMU Concrete Roman body text and Palatino
+    chrome)
+  - **Expression types** toggle showing per-line inferred type annotations for
+    expressions across cards and argument lists
+  - **Theme** selection across Classic, Mono, Flat Gray, Sepia, Manuscript,
+    Field Guide, Retro, LCD, and Atomic, each in light and dark variants
 - background route warming and loading skeletons for faster navigation
 - checked, MathLingua-rendered fenced blocks tagged `mlg` inside prose, plus
   unchecked syntax-highlighted `mlg-fragment` blocks
 
 Both `mlg view` and exported sites receive the inferred span/type metadata used
-by the Types toggle. `Requires:` is visible on cards. `Enables:`, `Documented:`,
+by the Expression types toggle. `Requires:` is visible on cards. `Enables:`, `Documented:`,
 IDs, URLs, and similar details appear in the expandable details area."
 Id: "e4693e0d-c4b8-414f-847d-119ce8a93307"

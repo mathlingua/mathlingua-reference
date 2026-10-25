@@ -13,12 +13,16 @@ The current server provides:
 - jump to definition for command uses
 - prepare-rename and workspace rename for top-level command signatures and all
   corresponding uses
-- per-line hover output showing the resolved types of an expression and its
-  nested subexpressions
+- hover output that renders a live Markdown-and-LaTeX preview of the hovered
+  top-level entry directly from the in-memory document text as you edit,
+  followed by the resolved per-line types of the expression and its nested
+  subexpressions
 - a standard work-done progress indicator while type checking, when the editor
   advertises support for server-initiated progress
 
-Open document text is kept in memory for completion. Diagnostics and type
-information are resolved on open and save rather than after every edit. A hover
-after unsaved edits labels its type information as stale until the next save."
+Open document text is kept in memory for completion and live entry previews on
+hover. Diagnostics and type information are resolved on open and save rather
+than after every edit. A hover after unsaved edits still renders the updated
+entry preview live while labeling its type information as stale until the next
+save."
 Id: "5f9ffb83-e448-41b4-9f71-c1836f279d05"
