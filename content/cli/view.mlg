@@ -32,7 +32,8 @@ The view supports:
 - a slide-down settings toolbar in the header with centered controls for:
   - **Font** selection between `Default` and `Euler` typography mode (pairing
     upright Euler Math formulas with CMU Concrete Roman body text and Palatino
-    chrome)
+    chrome), plus `[ A− | A | A+ ]` controls to decrease, reset, and increase
+    the font size of the reader content and outline
   - **Expression types** toggle showing per-line inferred type annotations for
     expressions across cards and argument lists
   - **Theme** selection across Classic, Mono, Flat Gray, Sepia, Manuscript,
