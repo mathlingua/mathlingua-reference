@@ -106,9 +106,9 @@ SectionTitle: "Labels, Citations, And Search"
 Id: "76d88f70-d979-4ff8-8bb3-c909840b12fe"
 
 Text: "- Single-line formulations and text items accept line-level labels using `. [label]: ...`. Inline arguments cannot have labels.
-- Grouped formulations accept justification labels `[:label:]` and reference citation labels `(:label:)`. Multi-labels `[:l1, l2:]` and `(:r1, r2:)` are supported, as well as combined `[:just:](:ref:)`.
-- `References:` entries accept labels `. [label]: $resource`. Duplicate reference labels are rejected.
-- Prose sources use &#39;&#39;quoted text&#39;&#39;(&#58;label&#58;) and are checked against declared `References:` labels. Citing an unknown reference label produces an error.
+- Grouped formulations accept inline labels `[:label:]` (and multi-labels `[:l1, l2:]` or `[:l1:][:l2:]`). Quoted prose accepts &#39;&#39;quoted text&#39;&#39;[&#58;label&#58;].
+- `Justification:` entries use `. for: (:label:) / have: ...` to justify labeled formulations, and `References:` entries use `. $resource` (item-wide) or `. for: (:label:) / entry: $resource` (label-specific). Duplicate reference labels or unknown reference labels are rejected.
+- Standalone `(:label:)` references in prose refer to labels defined in the enclosing item.
 - Theorem references in prose use &#123;: \\theorem.name :&#125; exclusively for bare command names of theorems, axioms, and conjectures; theorem-like items cannot appear inside &#123;. ... .&#125; or &#123;&#123;. ... .&#125;&#125;.
 - The CLI provides `mlg search <query>` to search items and definitions across the collection, and `mlg structure` to inspect the layout, TOC, and item hierarchy."
 Id: "a8444460-a72b-48e9-82ee-44c6b250a550"

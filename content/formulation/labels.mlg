@@ -11,9 +11,9 @@ then: ...
 
 Label headers are parsed from dotted parts. Dots are commonly rendered as spaces in fallback display names, with words capitalized for theorem-like and axiom-like cards.
 
-Mathlingua distinguishes four kinds of labels:
+Mathlingua provides four ways to define a label on code or prose, and one unified syntax `(:label:)` to refer to a label:
 
-1. Structural Label Headers: Square-bracketed headings before a top-level group or clause (such as `[theorem.name]`, or `[step]` preceding an entry in `Justification:`).
+1. Structural Label Headers: Square-bracketed headings before a top-level group or nested clause group (such as `[theorem.name]` or `[step]`).
 
 2. Line-Level Labels: Attached to single-line formulations or text items using `. [label]: ...`:
 
@@ -25,23 +25,16 @@ then:
 
 Line labels must appear on their own indented line; inline arguments (such as `forAll: [l]: x > 0`) cannot have labels.
 
-3. Expression Justification Labels: Attached to grouped formulations using `[:label:]` or multi-labels `[:l1, l2:]`:
+3. Inline Formulation Labels: Attached to grouped formulations using `[:label:]` or multi-labels `[:l1, l2:]`:
 
 ```mlg-fragment
 (x + y)[:sum:]
 (.x is \real.)[:typed, positive:]
 ```
 
-A `[:label:]` is discharged by a matching `[label]` entry in the enclosing item's `Justification:` section.
+4. Labeled Prose Quotes: Attached to quoted prose in `OpenText` using `&#39;&#39;text&#39;&#39;[&#58;label&#58;]`.
 
-4. Reference Citation Labels: Attached to grouped formulations using `(:label:)` or in prose using `&#39;&#39;text&#39;&#39;(&#58;label&#58;)`:
+5. Label References (`(:label:)`): Used to refer to a defined label `label` in `Justification:` (`. for: (:label:) / have: ...`), `References:` (`. for: (:label:) / entry: $resource`), or prose (`(:label:)`).
 
-```mlg-fragment
-(x = x)(:ref_label:)
-(x = x)[:just_label:](:ref_label:)
-```
-
-Reference labels must match a labeled entry `. [label]: $resource` in the enclosing item's `References:` section.
-
-Unlike structural label headers, expression labels and reference labels are lexer tokens and do not support stropped symbolic parts."
+Unlike structural label headers, inline formulation labels `[:a.b:]` and label references `(:a.b:)` do not support stropped symbolic parts."
 Id: "d36979a8-c1ec-4f3b-8e8c-3dafd5ee366b"

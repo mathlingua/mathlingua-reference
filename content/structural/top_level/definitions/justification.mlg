@@ -2,27 +2,28 @@ Title: "Justification"
 Id: "38b2e0eb-017c-41eb-9c53-f74bb169fdcf"
 
 Text: "`Justification:` appears immediately after `Documented:` and holds one or more
-`have:`/`asserting:` groups, each with a **required** `[label]` heading.
+`for:`/`have:` groups, each with a **required** `for:` section referencing one or more labels.
 
 ```mlg-fragment
 Justification?: <HaveGroup>+
 ```
 
 ```mlg-fragment
-[LabelHeader]
+[LabelHeader]?
+for: <LabelReference>+
 have: <ClauseUnion>+
-asserting: <ClauseUnion>+
+asserting?: <ClauseUnion>+
 because?: <ClauseUnion>+
 by?: <Expression>+
 ```
 
-Any grouped expression, statement, or specification elsewhere in the same
-top-level group may carry a matching `[:label:]` (or multi-labels `[:l1, l2:]`),
-including inside a nested clause or expression. Single-line formulations may
-likewise carry a line-level `. [label]: ...` label. A labeled formulation is then
-established using that entry's `asserting:` items, exactly as an inline
-`have:`/`asserting:` group would. Note that bibliographic citations use `(:label:)`
-and are resolved against `References:`, not `Justification:`.
+Any group (`[label]`), single-line `. ` argument (`. [label]: ...`), or grouped
+expression, statement, or specification (`(...)[:label:]` or `(. ... .)[:label:]`)
+elsewhere in the same top-level group may define a label (including multi-labels
+`[:l1, l2:]`). A `Justification:` entry with `for: (:label:)` then establishes
+that labeled formulation using the entry's `asserting:` items, exactly as an
+inline `have:`/`asserting:` group would. Note that bibliographic citations in
+`References:` also refer to defined labels using `for: (:label:) / entry: $resource`.
 
 ```mlg-fragment
 [\(commutative)::group]
@@ -35,7 +36,7 @@ satisfies:
 Documented:
 . adjective: \"commutative\"
 Justification:
-. [comm]
+. for: (:comm:)
   have:
   . forAll: a, b \"in\" X
     then: a * b = b * a
@@ -50,12 +51,12 @@ Justification:
 Rules:
 
 - an entry's `have:` must restate the labeled formulation
-- every entry must be referenced by some labeled formulation
-- a label with no matching entry is checked inline as usual
+- every entry's `for:` labels must reference a label defined in the group
+- a label with no matching `Justification:` entry is checked inline as usual
 - `because:` and `by:` are justification the checker only reference-validates;
   it never proves them
 
 The same proof-style `have:` group is also an ordinary clause (see Have /
-Asserting), where its label heading is optional. `Justification:`
+Asserting), where `for:` is omitted and its label heading is optional. `Justification:`
 replaces the older `Justified:` section and its `label:`/`by:` prose items."
 Id: "4b6528c8-b596-45ae-87b5-74ce3419a2f6"

@@ -18,8 +18,7 @@ The group kind determines which heading parser is used:
   `States:`, and `Equivalent:`, and optional on `Axiom:`, `Theorem:`, and
   `Conjecture:`
 - **label** headings, optional on alias items, `Requires:`/`Enables:` items,
-  documented items, specify items, and clause groups — and required on the
-  `have:`/`asserting:` items of a `Justification:` section
+  documented items, specify items, and clause groups
 - **author** headings for `Person:`
 - **resource** headings for `Resource:`
 - **topic** headings for `Topic:`

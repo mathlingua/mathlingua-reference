@@ -31,9 +31,8 @@ The group is accepted in three places:
 
 - as an ordinary clause, where its `[label]` heading is optional
 - as an ordinary checked clause nested under structural sections
-- as an item of a top-level `Justification:` section, where the `[label]`
-  heading is **required** and pairs with a `[:label:]` on some formulation
-  elsewhere in the same group
+- as an item of a top-level `Justification:` section, where a leading `for: (:label:)`
+  section is **required** to specify the labeled formulation(s) it justifies
 
 Note the contrast with the biconditional group `have:`/`iff:`, which asserts
 that its two sides are equivalent. The second section label is what

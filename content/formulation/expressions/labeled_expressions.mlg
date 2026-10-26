@@ -6,8 +6,7 @@ Text: "A labeled formulation attaches one or more labels to a grouped expression
 ```mlg-fragment
 (x + y)[:sum:]
 (.x + y.)[:normalized:]
-(x = x)(:ref_label:)
-(x = x)[:sum:](:ref_label:)
+(x = x)[:ref_label:]
 ```
 
 Only a grouped formulation may carry trailing label tokens directly, and the wrapper may hold a declaration or specification as well as an expression:
@@ -15,25 +14,24 @@ Only a grouped formulation may carry trailing label tokens directly, and the wra
 ```mlg-fragment
 (.x is \real.)[:typed:]
 (.*' := `*`.)[:operation:]
-(.x is \real.)[:typed:](:reference:)
 ```
 
 ### Multi-Labels
 
-Formulations support multiple labels, either comma-separated within one bracket/parenthesis pair or chained in sequence:
+Formulations support multiple labels, either comma-separated within one bracket pair or chained in sequence:
 
 ```mlg-fragment
 (x + y)[:step1, step2:]
 (x + y)[:step1:][:step2:]
-(x = x)[:just1, just2:](:ref1, ref2:)
 ```
 
-### Justification vs. Reference Labels
+### Referencing Labels in `Justification:`, `References:`, and Prose
 
-Mathlingua provides two distinct trailing label families:
+A label `[:label:]` marks a piece of code so that other sections can refer to it using `(:label:)`:
 
-- **Justification Labels** (`[:...:]`): Discharged by a matching `[label]` entry in the enclosing item's `Justification:` section. A matched formulation is established via the justification entry's `asserting:` items; an unmatched label is checked inline as usual.
-- **Reference Citation Labels** (`(:...:)`): Cite an external resource declared with `. [label]: $resource` in the enclosing item's `References:` section. Every reference label cited by a formulation must match a declared label in `References:`; an unknown reference label produces a compile-time error.
+- **`Justification:`**: An entry `. for: (:label:) / have: ...` discharges the labeled formulation via the entry's `asserting:` items; an unmatched label is checked inline as usual.
+- **`References:`**: An entry `. for: (:label:) / entry: $resource` cites one or more bibliographic resources for the labeled formulation or labeled prose quote.
+- **Prose (`OpenText`)**: Standalone `(:label:)` in prose refers to a defined label in the enclosing item.
 
-Single-line formulations may also receive a line-level label using `. [label]: ...` under section headings."
+Single-line formulations may also receive a line-level label using `. [label]: ...` under section headings, and structural groups may carry a `[label]` heading."
 Id: "efe841b5-44ed-45f8-8d20-1aacb7fc9bdb"

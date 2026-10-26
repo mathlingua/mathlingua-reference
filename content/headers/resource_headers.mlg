@@ -10,23 +10,24 @@ Resource:
 . url: \"https://example.com\"
 ```
 
-A `References:` section names resources with these headers. Both the bare
-`$book.chapter` form and the quoted `\"$book.chapter\"` form are accepted. Entries may be tagged with a reference label using `. [label]: $book.chapter`:
+A `References:` section names resources with these headers. Both item-wide bare
+`$book.chapter` (or quoted `\"$book.chapter\"`) entries and label-specific
+`for:`/`entry:` groups are accepted:
 
 ```mlg-fragment
 References:
-. [foundations]: $zfc.foundations:page{42}
-. [analysis]: $rudin.principles
+. $zfc.overview
+. for: (:foundations:)
+  entry: $zfc.foundations:page{42}
+. for: (:analysis:)
+  entry: $rudin.principles
 ```
 
 Duplicate reference labels within the same `References:` section are rejected.
 
-Formulations and prose can cite declared reference labels:
+Labels can be defined on groups (`[label]`), lines (`. [label]: ...`), grouped formulations (`(x = x)[:analysis:]`), or quoted prose (&#39;&#39;quoted text&#39;&#39;[&#58;label&#58;]), and referenced in `References:` (`for: (:label:)`), `Justification:` (`for: (:label:)`), or prose (`(:label:)`).
 
-- In formulations, append `(:label:)` or `(:ref1, ref2:)` to a parenthesized expression or statement, optionally combined with justification labels: `(x = x)(:analysis:)` or `(x = x)[:1:](:analysis:)`.
-- In prose (`OpenText`), cite sources using &#39;&#39;quoted text&#39;&#39;(&#58;label&#58;) or &#39;&#39;quoted text&#39;&#39;(&#58;ref1, ref2&#58;).
-
-Every cited reference label must match a labeled entry in the enclosing item's `References:` section; citing an unknown label produces an error.
+Every label referenced by `for: (:label:)` in `References:` must match a label defined in the enclosing item; referencing an unknown label produces an error.
 
 The resource's `offset:` is the physical PDF page on which its logical page 1
 appears, so the linked physical page is `n + offset - 1` (`offset` defaults to

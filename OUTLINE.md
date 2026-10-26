@@ -149,8 +149,8 @@ to write mathematical knowledge.*
       - **Related** — `related:` related-item notes.
       - **Discoverer** — `discoverer:` discoverer information.
       - **Notes** — `notes:` prose reminders.
-    - **Justification** — `Justification:` `have:` / `asserting:` entries that
-      discharge `[:label:]` formulations (formerly `Justified:`).
+    - **Justification** — `Justification:` `for: (:label:)` / `have:` / `asserting:`
+      entries that discharge `[:label:]` formulations (formerly `Justified:`).
     - **Alias** — `Aliases:` with nested `alias:` groups.
   - **Propositions** — the proposition-like items `Axiom:`, `Theorem:`,
     `Conjecture:`.
