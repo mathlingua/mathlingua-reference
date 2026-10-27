@@ -2,7 +2,8 @@ Title: "Justification"
 Id: "38b2e0eb-017c-41eb-9c53-f74bb169fdcf"
 
 Text: "`Justification:` appears immediately after `Documented:` and holds one or more
-`for:`/`have:` groups, each with a **required** `for:` section referencing one or more labels.
+`for:`/`have:` or `[label]`-headed `have:` groups, each targeting a labeled formulation
+(either via a `for:` section referencing one or more labels or a `[label]` group heading).
 
 ```mlg-fragment
 Justification?: <HaveGroup>+
@@ -10,16 +11,16 @@ Justification?: <HaveGroup>+
 
 ```mlg-fragment
 [LabelHeader]?
-for: <LabelReference>+
+for?: <LabelReference>+
 have: <ClauseUnion>+
 asserting?: <ClauseUnion>+
-because?: <ClauseUnion>+
+rationale?: <RationaleItemUnion>+
 by?: <Expression>+
 ```
 
 Any group (`[label]`), single-line `. ` argument (`. [label]: ...`), or grouped
 expression, statement, or specification (`(...)[:label:]` or `(. ... .)[:label:]`)
-elsewhere in the same top-level group may define a label. A `Justification:` entry with `for: (:label:)` then establishes
+elsewhere in the same top-level group may define a label. A `Justification:` entry with `for: (:label:)` (or a `[label]` heading) then establishes
 that labeled formulation using the entry's `asserting:` items, exactly as an
 inline `have:`/`asserting:` group would. Note that bibliographic citations in
 `References:` also refer to defined labels using `for: (:label:) / entry: $resource`.
@@ -41,7 +42,7 @@ Justification:
     then: a * b = b * a
   asserting:
   . G is? \(commutative)::magma
-  because:
+  rationale:
   . G is? \(commutative)::magma
   by:
   . \commutativity.of.magma
@@ -50,9 +51,9 @@ Justification:
 Rules:
 
 - an entry's `have:` must restate the labeled formulation
-- every entry's `for:` labels must reference a label defined in the group
+- every entry's `for:` labels (or `[label]` heading) must reference a label defined in the group
 - a label with no matching `Justification:` entry is checked inline as usual
-- `because:` and `by:` are justification the checker only reference-validates;
+- `rationale:` (accepting text \"...\" or clauses) and `by:` are justification the checker only reference-validates;
   it never proves them
 
 The same proof-style `have:` group is also an ordinary clause (see Have /

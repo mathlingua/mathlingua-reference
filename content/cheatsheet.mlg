@@ -154,7 +154,7 @@ iff: Q
 
 have: P
 asserting: Q
-because: R
+rationale: R
 
 \\forAll{x \"in\" X}:where{P(x)}:then{Q(x)}
 \\allOf{P; Q}

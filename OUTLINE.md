@@ -201,7 +201,7 @@ to write mathematical knowledge.*
   - **For All** — `forAll:` universal quantification with `where:` / `then:`.
   - **If** — `if:` assumes a condition and checks `then:` in that context.
   - **Have / Iff** — the biconditional `have:` … `iff:`.
-  - **Have / Asserting** — `have:` … `asserting:` with optional `because:` /
+  - **Have / Asserting** — `have:` … `asserting:` with optional `rationale:` /
     `by:`.
   - **Piecewise** — `piecewise:` with `if:` / `then:` and optional `else:`.
   - **Builtin Clause Commands** — the inline `\\forAll{…}:then{…}` command forms.
