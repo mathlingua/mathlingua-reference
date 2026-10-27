@@ -9,8 +9,8 @@ surrounding facts are used.
 [LabelHeader]?
 have: <ClauseUnion>+
 asserting?: <ClauseUnion>+
-rationale?: <RationaleItemUnion>+
 by?: <Expression>+
+because?: <BecauseItemUnion>+
 ```
 
 ```mlg-fragment
@@ -18,13 +18,13 @@ have:
 . f is? \(injective)::function
 asserting:
 . f is? \function
-rationale:
-. f is? \function
 by:
 . \injectivity.implies.function
+because:
+. f is? \function
 ```
 
-`rationale:` (accepting text `"..."` or clauses) and `by:` are justification the checker only reference-validates; it
+`by:` and `because:` (accepting text `"..."` or clauses) are justification the checker only reference-validates; it
 never proves them.
 
 The group is accepted in three places:

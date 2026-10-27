@@ -23,12 +23,12 @@ The clause groups are:
 - `let:` (with optional `where:` and required `then:`)
 - `if:` (with `then:`)
 - `have:` (with `iff:`)
-- `have:` (with `asserting:`, and optional `rationale:` / `by:`)
+- `have:` (with `asserting:`, and optional `by:` / `because:`)
 - `piecewise:` (with `if:`, `then:`, zero or more `elseIf:`/`then:` pairs,
   and optional `else:`)
 
 A `have:` group containing `iff:` is the biconditional form. Every other
-`have:` shape is the proof-style form, whose `asserting:`, `rationale:`, and `by:`
+`have:` shape is the proof-style form, whose `asserting:`, `by:`, and `because:`
 sections are optional.
 
 Formulation clause entries are tried as declarations first and expressions

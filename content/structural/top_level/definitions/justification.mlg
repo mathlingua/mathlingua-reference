@@ -14,8 +14,8 @@ Justification?: <HaveGroup>+
 for?: <LabelReference>+
 have: <ClauseUnion>+
 asserting?: <ClauseUnion>+
-rationale?: <RationaleItemUnion>+
 by?: <Expression>+
+because?: <BecauseItemUnion>+
 ```
 
 Any group (`[label]`), single-line `. ` argument (`. [label]: ...`), or grouped
@@ -42,10 +42,10 @@ Justification:
     then: a * b = b * a
   asserting:
   . G is? \(commutative)::magma
-  rationale:
-  . G is? \(commutative)::magma
   by:
   . \commutativity.of.magma
+  because:
+  . G is? \(commutative)::magma
 ```
 
 Rules:
@@ -53,7 +53,7 @@ Rules:
 - an entry's `have:` must restate the labeled formulation
 - every entry's `for:` labels (or `[label]` heading) must reference a label defined in the group
 - a label with no matching `Justification:` entry is checked inline as usual
-- `rationale:` (accepting text \"...\" or clauses) and `by:` are justification the checker only reference-validates;
+- `by:` and `because:` (accepting text \"...\" or clauses) are justification the checker only reference-validates;
   it never proves them
 
 The same proof-style `have:` group is also an ordinary clause (see Have /
