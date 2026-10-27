@@ -19,8 +19,7 @@ by?: <Expression>+
 
 Any group (`[label]`), single-line `. ` argument (`. [label]: ...`), or grouped
 expression, statement, or specification (`(...)[:label:]` or `(. ... .)[:label:]`)
-elsewhere in the same top-level group may define a label (including multi-labels
-`[:l1, l2:]`). A `Justification:` entry with `for: (:label:)` then establishes
+elsewhere in the same top-level group may define a label. A `Justification:` entry with `for: (:label:)` then establishes
 that labeled formulation using the entry's `asserting:` items, exactly as an
 inline `have:`/`asserting:` group would. Note that bibliographic citations in
 `References:` also refer to defined labels using `for: (:label:) / entry: $resource`.

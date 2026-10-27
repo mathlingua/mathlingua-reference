@@ -106,7 +106,7 @@ SectionTitle: "Labels, Citations, And Search"
 Id: "76d88f70-d979-4ff8-8bb3-c909840b12fe"
 
 Text: "- Single-line formulations and text items accept line-level labels using `. [label]: ...`. Inline arguments cannot have labels.
-- Grouped formulations accept inline labels `[:label:]` (and multi-labels `[:l1, l2:]` or `[:l1:][:l2:]`). Quoted prose accepts &#39;&#39;quoted text&#39;&#39;[&#58;label&#58;].
+- Grouped formulations accept a single inline label `[:label:]`. Code cannot have more than one label, so chained and multi-labels are not permitted. Quoted prose accepts &#39;&#39;quoted text&#39;&#39;[&#58;label&#58;].
 - `Justification:` entries use `. for: (:label:) / have: ...` to justify labeled formulations, and `References:` entries use `. $resource` (item-wide) or `. for: (:label:) / entry: $resource` (label-specific). Duplicate reference labels or unknown reference labels are rejected.
 - Standalone `(:label:)` references in prose refer to labels defined in the enclosing item.
 - Theorem references in prose use &#123;: \\theorem.name :&#125; exclusively for bare command names of theorems, axioms, and conjectures; theorem-like items cannot appear inside &#123;. ... .&#125; or &#123;&#123;. ... .&#125;&#125;.

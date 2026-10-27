@@ -1,7 +1,7 @@
 Title: "Labeled Expressions"
 Id: "98edd056-5d9f-45f0-a8e8-16c63a2a7fcd"
 
-Text: "A labeled formulation attaches one or more labels to a grouped expression, statement, or specification.
+Text: "A labeled formulation attaches a label to a grouped expression, statement, or specification.
 
 ```mlg-fragment
 (x + y)[:sum:]
@@ -16,13 +16,12 @@ Only a grouped formulation may carry trailing label tokens directly, and the wra
 (.*' := `*`.)[:operation:]
 ```
 
-### Multi-Labels
+### Single Label per Section of Code
 
-Formulations support multiple labels, either comma-separated within one bracket pair or chained in sequence:
+A section of code can have at most one label. Chained labels (`[:a:][:b:]`) and comma-separated multi-labels (`[:a, b:]`) are not permitted:
 
 ```mlg-fragment
-(x + y)[:step1, step2:]
-(x + y)[:step1:][:step2:]
+(x + y)[:step1:]
 ```
 
 ### Referencing Labels in `Justification:`, `References:`, and Prose

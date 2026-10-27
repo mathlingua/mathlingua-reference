@@ -204,5 +204,5 @@ References:
 Proof: \"By &#39;&#39;Source&#39;&#39;[&#58;ref1&#58;], &#123;: \\reflexivity :&#125;, and (&#58;step1&#58;), the result holds.\"
 ```
 
-Structural groups take `[label]` headings. Single-line formulations and text take `. [label]: ...`. Grouped formulations take `[:label:]` (or `[:l1, l2:]`) and quoted prose takes &#39;&#39;quote&#39;&#39;[&#58;label&#58;]. Label references use `(:label:)` (or `(:l1, l2:)`) in `Justification: . for:`, `References: . for: / entry:`, and prose. Theorem citations in prose use &#123;: \\theorem :&#125;."
+Structural groups take `[label]` headings. Single-line formulations and text take `. [label]: ...`. Grouped formulations take `[:label:]` and quoted prose takes &#39;&#39;quote&#39;&#39;[&#58;label&#58;]. Label references use `(:label:)` (or `(:l1, l2:)`) in `Justification: . for:`, `References: . for: / entry:`, and prose. Theorem citations in prose use &#123;: \\theorem :&#125;."
 Id: "ddb51b99-11de-4c04-8791-aeb0c73d6e39"
