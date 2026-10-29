@@ -22,7 +22,7 @@ Metadata?: <MetadataItemUnion>+
 Id?: <OpenText>
 ```
 
-The directed form replaces the two endpoint sections with:
+In the directed form, the two endpoint sections are:
 
 ```mlg-fragment
 from: <RelationSubject>

@@ -12,6 +12,6 @@ This reference describes implemented behavior, not a proposed language. Start
 with Getting Started for orientation. Use Formulation and Headers for notation,
 Structural for document shapes, Type Checking for semantic rules, Rendering for
 display behavior, and the mlg chapter for command-line operation. Current
-Implementation Notes summarizes recent boundaries and removed spellings; the
+Implementation Notes summarizes implementation boundaries; the
 Cheatsheet is a compact reminder after you know the concepts."
 Id: "64f2bb6d-d297-48ee-8b3f-e93329ef8976"

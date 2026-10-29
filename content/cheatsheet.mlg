@@ -131,7 +131,7 @@ Aliases:
 
 `:=>` is an expression alias, `:->` a one-way specification implication, and
 `:<->:` a specification equivalence. Views justify requirements and ordinary
-builds. The former hard-build and cast-relation syntax is removed."
+builds."
 Id: "f738f3aa-9224-4d11-b1f3-a1eb2fb71706"
 
 SectionTitle: "Clauses And Builtin Clauses"

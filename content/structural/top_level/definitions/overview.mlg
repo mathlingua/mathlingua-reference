@@ -38,6 +38,6 @@ while `Enables:` is used for additional capabilities, build-backed forms, and
 views. For type checking, ordinary capabilities of both are combined. A
 `Requires:` `definition:` item refers to a top-level `Defines:` item.
 
-`Justification:` replaces the older `Justified:` section, and every non-prose
-top-level item may carry its own `Writing:` section after `Aliases:`."
+Every non-prose top-level item may carry a `Justification:` section, and its
+own `Writing:` section after `Aliases:`."
 Id: "1764c7bb-3657-4005-9490-4847e48be174"

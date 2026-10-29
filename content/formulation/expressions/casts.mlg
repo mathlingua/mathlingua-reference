@@ -22,8 +22,5 @@ Enables:
 
 A top-level build on the right of a `Defines:` assignment supplies its required
 explicit type: `Defines: X := \set@{...}` is the typed alternative to an `is`
-declaration plus separate body.
-
-The former hard build `@!`, hard type introduction `is!`, and
-`Enables: relation:`/`represents:` coercion syntax have been removed."
+declaration plus separate body."
 Id: "b76683ca-a9fb-48e3-9e79-5156e30e0a96"

@@ -1,9 +1,9 @@
 Title: "Current Implementation Notes"
 Id: "d29002a5-f9a7-4223-8033-32a2a718ce45"
 
-Text: "This page records the most important current implementation boundaries and
-migration facts. The focused Formulation, Structural, Headers, Type Checking,
-Rendering, and CLI chapters contain the normative detail."
+Text: "This page records the most important current implementation boundaries.
+The focused Formulation, Structural, Headers, Type Checking, Rendering, and CLI
+chapters contain the normative detail."
 Id: "ce52d87b-92fd-4974-856d-57ff257440bd"
 
 SectionTitle: "Current Definition Model"
@@ -30,20 +30,18 @@ Id: "c71c341b-eb8e-42b2-8385-3e42836061e6"
 SectionTitle: "Current Formulation Spellings"
 Id: "9daf84d0-fffb-45b3-916e-9c097a040118"
 
-Text: "- The universal unstructured type is `\\anything`; `\\opaque` is
-  unsupported and no longer has those builtin semantics.
-- Specification literals use anonymous subject `_`, not `?`.
-- The only build spelling is `\type@value`. Hard builds `@!` and hard type
-  introductions `is!` were removed.
-- `Enables: view:` replaces the old nested cast-relation syntax. Its required
-  `as:` is `<symbol> := <expression> is <type>`.
+Text: "- The universal unstructured type is `\\anything`.
+- Specification literals use anonymous subject `_`.
+- The build spelling is `\type@value`.
+- `Enables: view:` defines views between types. Its required `as:` is
+  `<symbol> := <expression> is <type>`.
 - Specification capabilities use directed `:->` or equivalent `:<->:` arrows.
 - Concrete direct components use `..` in source, such as `\naturals..N` and
   `\naturals..succ(n)`. A bound value continues to use one dot.
 - A command may end in one `#using{...}` or `#given{...}` context suffix.
 - Builtin clause commands start with two backslashes and separate arguments
-  with semicolons. The local-binding form is `\\let`; `\\given` is unsupported.
-  The theorem-like top-level `given:` section remains supported."
+  with semicolons. The local-binding form is `\\let`. The theorem-like top-level
+  `given:` section remains supported."
 Id: "1f1abc1d-6fde-4eeb-9eff-42032773a1b6"
 
 SectionTitle: "Bindings And Branches"
@@ -95,7 +93,7 @@ requirement is checked.
 
 The checker validates syntax, signatures, scope, tracked facts, requirements,
 target completeness, capabilities, builds, views, and structural invariants. It
-does not prove mathematical truth. One-element tuples remain unsupported,
+does not prove mathematical truth. One-element tuples are not supported,
 refined command expressions are not general expressions, and subset syntax is
 intentionally narrow. Prose fences tagged `mlg` are checked as source in their
 containing scope; `mlg-fragment` fences are illustrative and skipped. `mlg check
@@ -112,22 +110,3 @@ Text: "- Single-line formulations and text items accept line-level labels using 
 - Theorem references in prose use &#123;: \\theorem.name :&#125; exclusively for bare command names of theorems, axioms, and conjectures; theorem-like items cannot appear inside &#123;. ... .&#125; or &#123;&#123;. ... .&#125;&#125;.
 - The CLI provides `mlg search <query>` to search items and definitions across the collection, and `mlg structure` to inspect the layout, TOC, and item hierarchy."
 Id: "a8444460-a72b-48e9-82ee-44c6b250a550"
-
-SectionTitle: "Removed Or Renamed Syntax"
-Id: "f293823a-8ba8-405e-8920-c4781944e254"
-
-Text: "These spellings do not belong in current source:
-
-- `is_not?` (use `\\not{x is? \set}`)
-- `\\opaque` (use `\\anything`)
-- `? is T` spec literals (use `_ is T`)
-- `@!`, `is!`, `\\coercion`, and `\\encoding`
-- the builtin command `\\given` (use `\\let`; theorem-like `given:` sections
-  are unchanged)
-- nested `Enables: relation:`/`to:`/`represents:` groups (use `view:`/`as:`)
-- `Refines: extends:` (use `Refines: specifies:`)
-- top-level or relationship `means:` fields (use `specifies:`)
-- the pre-swap roles of `Defines:` and `Declares:`
-- `Section:`, `Subsection:`, and `Subsubsection:` (use `SectionTitle:` and
-  `SubsectionTitle:`)."
-Id: "ab6191ea-a95e-46a1-96b6-ac7597f25483"

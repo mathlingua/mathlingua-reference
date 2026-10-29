@@ -26,9 +26,7 @@ with wrapped continuation lines indented under the item text. Prose around
 lists and code fences is still reflowed. Triple-quoted prose is supported too.
 
 It reports `Formatted N files`, or `Nothing to format` when everything was
-already canonical. If `mlg.json` still uses the old `print_margin` key, the
-command aborts rather than reformatting to the default width, since that would
-rewrap exactly the files whose author had chosen a narrower margin.
+already canonical.
 
 `mlg check` runs this same formatting first unless the config sets
 `\"formatOnCheck\": false`."

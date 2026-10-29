@@ -25,9 +25,5 @@ form `<symbol> := <expression> is <type>`. The introduced symbol, expression,
 and type are in scope for optional `signifies:`. A view lets the owning
 `Declares:`, `Defines:`, or `Realizes:` construct satisfy requirements and
 ordinary `\type@value` builds at the view's type. Views are not used to choose
-an overloaded operator or a `Disambiguates:` branch.
-
-The removed `Enables: relation:`/`represents:` syntax, `\\coercion`,
-`\\encoding`, hard builds (`@!`), and hard type introductions (`is!`) are not
-part of the current language."
+an overloaded operator or a `Disambiguates:` branch."
 Id: "efc1a213-388c-4ea9-8b39-3103be5923b5"

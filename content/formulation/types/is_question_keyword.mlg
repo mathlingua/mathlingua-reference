@@ -11,7 +11,7 @@ x is? \set
 These expressions state a type predicate or its negation without introducing a
 symbol. The checker validates the subject, the referenced type, and the
 requirements of the predicate; it does not prove the mathematical truth of a
-negated statement. The former `is_not?` spelling is not accepted by the parser.
+negated statement.
 
 A type predicate in a statement position (`then:`, `that:`, `if:`, `iff:`)
 uses `is?`. Binding positions such as `given:` and `suchThat:` may use bare

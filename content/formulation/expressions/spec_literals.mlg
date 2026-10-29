@@ -10,9 +10,8 @@ _ \"in\" R
 _ \"in\" \reals
 ```
 
-The old `? is Type` and `? \"op\" Target` spellings are rejected. The anonymous
-placeholder is always `_`; other uses of `?`, including inferred command
-arguments and predicate operators, are unchanged.
+The anonymous placeholder is always `_`; other uses of `?`, including
+inferred command arguments and predicate operators, are permitted.
 
 The infix `satisfies` operator applies a specification to a subject:
 

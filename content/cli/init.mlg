@@ -38,9 +38,7 @@ missing. `mlg init` writes them in this order:
 - `version` — the collection's version (a string; default `\"0\"`). `mlg release`
   bumps this.
 - `margin` — the target line width, a positive integer, used by
-  `mlg format`. Default `80`. This field was formerly named
-  `print_margin`; a config still using that name is reported as an error asking
-  you to rename it.
+  `mlg format`. Default `80`.
 - `formatOnCheck` — whether `mlg check` formats the collection
   before checking it (a boolean; default `true`).
 - `outputDir` — where `mlg export` writes the static site (a non-empty relative

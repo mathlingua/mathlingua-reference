@@ -18,10 +18,9 @@ than its current line. Labels and section order are case-sensitive.
 
 Text arguments use ordinary or triple double quotes and may span source lines.
 Ordinary quoted text decodes escaped double quotes only; other backslashes
-remain literal. Triple-quoted text is literal and accepts unescaped double
-quotes inside. Single-quoted formulations are unsupported. A multiline
-formulation begins only when the entire opening line is `(`, `[`, `{`, or `(.`
-and closes with the matching delimiter at the same indent.
+remain literal. Triple-quoted text is literal and accepts unescaped double quotes inside. A
+multiline formulation begins only when the entire opening line is `(`, `[`,
+`{`, or `(.` and closes with the matching delimiter at the same indent.
 
 A non-text line whose first structural-looking colon follows a section-label
 prefix starts a nested group. Formulation operators such as `:=`, `:->`,

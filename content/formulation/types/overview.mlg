@@ -19,9 +19,8 @@ Builtin types start with two backslashes:
   specific type information
 
 `\\abstract` is not a type; it is the special abstract target of a `:->` or
-`:<->:` capability. The former type name `\\opaque` is unsupported. The right
-side of `is` may also be a structural type literal, which uses a complete `_`
-spec literal at every leaf:
+`:<->:` capability. The right side of `is` may also be a structural type
+literal, which uses a complete `_` spec literal at every leaf:
 
 ```mlg-fragment
 (x, y) is (_ is \natural, _ \"in\" \reals)

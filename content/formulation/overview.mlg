@@ -42,7 +42,5 @@ complete supported inventory is case-sensitive:
 `\\abstract` is a capability target, not a type. The grammar currently parses
 an arbitrary double-backslash chain in a builtin type or capability-target
 position, but syntax acceptance does not give an unknown name builtin
-semantics. Unknown builtin statement or variadic commands are errors. The
-removed names `\\given`, `\\opaque`, `\\coercion`, and `\\encoding` are
-unsupported."
+semantics. Unknown builtin statement or variadic commands are errors."
 Id: "dd52237b-f248-4bbc-a0c3-4b8264acdae4"

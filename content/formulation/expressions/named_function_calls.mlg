@@ -9,7 +9,7 @@ f[|value = x, index = n|]
 ```
 
 Each entry has a left-hand side, then `:=` or `=`, then the argument expression.
-Both spellings are accepted; `=` is the current form and `:=` the legacy one.
+Both `=` and `:=` are accepted.
 
 The left-hand side is a name, an inferred parameter name, a subset call, a
 ranged mapping selector, or the catch-all `...`:

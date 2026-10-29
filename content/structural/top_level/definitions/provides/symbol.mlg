@@ -7,7 +7,7 @@ capability: <AliasKindUnion>
 written?: <WrittenText>+
 ```
 
-A `capability:` declares notation made available by a type or construct. It replaces the older nested `symbol:` spelling.
+A `capability:` declares notation made available by a type or construct.
 
 ```mlg-fragment
 Requires:
