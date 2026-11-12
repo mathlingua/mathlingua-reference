@@ -101,7 +101,7 @@ to write mathematical knowledge.*
     command type.
   - **Named Function Calls** — supplying a function's arguments by name.
   - **Inferred Parameters** — command arguments written `X?`.
-  - **Membership Expressions** — `member_of` relating a subject to a collection.
+  - **Membership Expressions** — `memberOf` relating a subject to a collection.
   - **Spec Literals** — values of `\specification` with an anonymous `_` subject.
   - **Builds** — `\type@value`, viewing a value at a type.
   - **Equality Expressions** — `=` and `!=`.

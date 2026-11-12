@@ -11,7 +11,7 @@ A `capability:` declares notation made available by a type or construct.
 
 ```mlg-fragment
 Requires:
-. capability: x_ \"in\" X :-> x_ member_of X
+. capability: x_ \"in\" X :-> x_ memberOf X
   written: \"x_? \in X?\"
 
 Enables:

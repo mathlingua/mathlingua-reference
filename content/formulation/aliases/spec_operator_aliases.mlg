@@ -5,9 +5,9 @@ Text: "Specification capabilities use `:->` for implication and `:<->:` for
 equivalence.
 
 ```mlg-fragment
-capability: x_ \"in\" X :-> x_ member_of X
+capability: x_ \"in\" X :-> x_ memberOf X
 capability: x_ \"in\" X :-> \\abstract
-capability: x_ \"in\" X :<->: x_ member_of X
+capability: x_ \"in\" X :<->: x_ memberOf X
 ```
 
 The left-hand side is a specification-like form. The right-hand side is the

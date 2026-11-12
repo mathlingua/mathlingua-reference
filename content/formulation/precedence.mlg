@@ -5,7 +5,7 @@ Text: "Expression forms bind from loosest to tightest as follows:
 
 1. function literal `=>` (right-associative, loosest)
 2. specification and predicate forms: `is`, `is?`, quoted `\"op\"`
-   specs and predicates, infix specs `\:...:/` and `\:...?:/`, `member_of`,
+   specs and predicates, infix specs `\:...:/` and `\:...?:/`, `memberOf`,
    `satisfies`, and spec literals
 3. infix command expressions `\.cmd./`
 4. equality `=` and `!=`, and special binary operators such as `<` and `>`

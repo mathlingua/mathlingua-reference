@@ -13,21 +13,21 @@ X ::= {x__ : ...}
 structure. `x__` means the collection can accept any number of values treated as
 a tuple-like input.
 
-Collection forms matter for `member_of` reduction. A type can describe a
+Collection forms matter for `memberOf` reduction. A type can describe a
 collection target directly, or an `Enables:` `from:` capability can expose a
 built literal:
 
 ```mlg-fragment
 Enables:
 . from: Y ::= {y__ : ...}
-  capability: x_ \"in\" X :-> x_ member_of Y
+  capability: x_ \"in\" X :-> x_ memberOf Y
 ```
 
 A value introduced with a build such as `A := \set@{x_ : x_ is \real}` records
 the literal for `A`, so reducing `a \"in\" A` through that `from:` capability
-yields `a member_of A` and the literal's element facts become available.
+yields `a memberOf A` and the literal's element facts become available.
 
 An ordinary non-`from:` capability on an unstructured target does **not** read a built
-literal through `member_of`. Use a structural target such as
+literal through `memberOf`. Use a structural target such as
 `Declares: X ::= {x__ : ...}` or an explicit `from:` capability for that."
 Id: "8ff2b8cc-f13f-40b6-972c-eceb2dc8dc82"

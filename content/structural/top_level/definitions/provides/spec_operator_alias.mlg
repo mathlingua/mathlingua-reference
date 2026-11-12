@@ -6,13 +6,13 @@ equivalence. Either spelling may have multiple semicolon-separated conclusions.
 
 ```mlg-fragment
 Requires:
-. capability: x_ \"in\" X :-> x_ member_of X
+. capability: x_ \"in\" X :-> x_ memberOf X
 
 Requires:
 . capability: x_ \"in\" X :-> \\abstract
 
 Enables:
-. capability: x_ \"in\" X :<->: x_ member_of X
+. capability: x_ \"in\" X :<->: x_ memberOf X
 ```
 
 The left side is a specification-like form. The right side is the specification

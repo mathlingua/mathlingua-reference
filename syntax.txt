@@ -25,7 +25,7 @@ X is? \foo
 X is_not? \foo
 X "in"? \foo
 
-X member_of \foo
+X memberOf \foo
 
 \\type
 \\statement

@@ -12,7 +12,7 @@ A quoted operator in a declaration or clause is parsed as a specification statem
 
 ```mlg-fragment
 Requires:
-. capability: x_ \"in\" X :-> x_ member_of X
+. capability: x_ \"in\" X :-> x_ memberOf X
 ```
 
 A spec fact is valid only when the target type enables or requires the corresponding operator, except for builtin fallback behavior such as equality.
