@@ -53,7 +53,7 @@ Ordinary commands use one backslash. Builtin types and builtin commands use two.
 The builtin types are `\\type`, `\\statement`, `\\expression`,
 `\\specification`, and `\\anything`; `\\abstract` is instead a capability
 target. The builtin commands are `\\not`, `\\and`, `\\allOf`, `\\or`,
-`\\anyOf`, `\\oneOf`, `\\exists`, `\\existsUnique`, `\\forAll`/`\\forall`,
+`\\anyOf`, `\\oneOf`, `\\exists`, `\\existsUnique`, `\\forAll`,
 `\\if`, `\\have`, `\\let`, `\\piecewise`, `\\map`, `\\leftReduce`, and
 `\\rightReduce`. Function values use `=>`; function types use `->`. Direct
 components of `Defines:`/`Realizes:` commands use `..` in source."
@@ -163,7 +163,7 @@ because: S
 
 Clause bindings are local and may use refined types. Builtin clause arguments
 are separated by semicolons. `allOf`, `anyOf`, `oneOf`, `not`, `exists`,
-`existsUnique`, `forAll`/`forall`, `if`, `have`, `let`, and `piecewise` have
+`existsUnique`, `forAll`, `if`, `have`, `let`, and `piecewise` have
 inline builtin forms."
 Id: "2e364327-ac83-4e9d-945d-784b1b928f0e"
 

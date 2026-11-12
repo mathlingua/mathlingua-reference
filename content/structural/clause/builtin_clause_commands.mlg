@@ -30,7 +30,7 @@ checked in the outer context.
 The accepted tails are fixed per command:
 
 - `\\exists` and `\\existsUnique` take an optional `:suchThat{...}`
-- `\\forAll` (also spelled `\\forall`) and `\\let` take an optional
+- `\\forAll` and `\\let` take an optional
   `:where{...}` and a required `:then{...}`
 - `\\if` takes `:then{...}`
 - `\\have` requires `:iff{...}`

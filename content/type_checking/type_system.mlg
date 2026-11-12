@@ -32,7 +32,7 @@ Builtin types use two leading backslashes:
 - `\\abstract` is the abstract capability target, not a type
 
 The builtin statement commands are `\\not`, `\\and`, `\\allOf`, `\\or`,
-`\\anyOf`, `\\oneOf`, `\\exists`, `\\existsUnique`, `\\forAll`/`\\forall`,
+`\\anyOf`, `\\oneOf`, `\\exists`, `\\existsUnique`, `\\forAll`,
 `\\if`, `\\have`, `\\let`, and `\\piecewise`. Variadic expression builtins are
 `\\map`, `\\leftReduce`, and `\\rightReduce`. Other double-backslash names do
 not acquire builtin behavior merely because the grammar can parse them.

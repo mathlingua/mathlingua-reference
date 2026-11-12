@@ -33,8 +33,8 @@ complete supported inventory is case-sensitive:
 - builtin types: `\\type`, `\\statement`, `\\expression`,
   `\\specification`, and `\\anything`
 - builtin statement commands: `\\not`, `\\and`, `\\allOf`, `\\or`,
-  `\\anyOf`, `\\oneOf`, `\\exists`, `\\existsUnique`, `\\forAll` (with
-  alias `\\forall`), `\\if`, `\\have`, `\\let`, and `\\piecewise`
+  `\\anyOf`, `\\oneOf`, `\\exists`, `\\existsUnique`, `\\forAll`,
+  `\\if`, `\\have`, `\\let`, and `\\piecewise`
 - variadic expression commands: `\\map`, `\\leftReduce`, and
   `\\rightReduce`
 - builtin capability target: `\\abstract`
