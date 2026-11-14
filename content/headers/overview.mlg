@@ -24,7 +24,7 @@ The group kind determines which heading parser is used:
 - **topic** headings for `Topic:`
 
 `Disambiguates:` takes an operator or function form as its heading, and
-`Relation:`, `Specify:`, and the prose and `Text…:` groups take no heading.
+`Relation:`, `Specify:`, and the prose groups take no heading.
 
 Infix-specification headings (`\:...:/`) are allowed only on `Declares:`, and
 refined headings (`::`) only on `Refines:`.

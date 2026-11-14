@@ -19,9 +19,7 @@ these in context, deriving one from the other when only one is present.
 
 `Declares:`, `Defines:`, `Realizes:`, and `States:` entries must include at least one of
 `called:` or `written:`. `Refines:` entries must include `adjective:` (and may
-add `written:`) but not `called:`. `Topic:` entries accept only `called:`, and
-the opaque `Text…:` placeholders accept only `called:`, `written:`,
-`description:`, and `notes:`.
+add `written:`) but not `called:`. `Topic:` entries accept only `called:`.
 
 `description:` prose is rendered above the card in `mlg view`; the card details
 show it as `<see above>`."

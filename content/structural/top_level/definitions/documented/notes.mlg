@@ -13,7 +13,5 @@ Documented:
 . notes: \"Turn this into a structured Theorem once \group exists.\"
 ```
 
-It is most useful on the opaque `Text…:` placeholder groups, where it records
-how to fill in the structured form later. The content is prose metadata and is
-never checked as a command reference."
+The content is prose metadata and is never checked as a command reference."
 Id: "7f61f788-f813-42db-8084-da8850be9725"

@@ -23,7 +23,6 @@ TopLevelItemUnion ::=
     | RelationGroup
     | EquivalentGroup
     | TopicGroup
-    | TextItemGroup
 ```
 
 The group kind is determined by the first section label, never by the heading.
@@ -45,6 +44,5 @@ will supply its open components. `Realizes:` provides a concrete implementation
 of one such abstract definition.
 
 `Corollary:`, `Lemma:`, `Represents:`, and `Subsubsection:` are not part of the
-structural language. `Conjecture:` and the opaque `Text…:` placeholders are
-available for unproved or intentionally unstructured content."
+structural language. `Conjecture:` is available for unproved statements."
 Id: "0458cfe8-4b85-4c0f-8fbb-7d78e5cb80f5"

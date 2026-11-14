@@ -165,8 +165,6 @@ to write mathematical knowledge.*
   - **Person** — `Person:` an author / person record.
   - **Writing** — `Writing:` collection-wide rendering aliases, plus the
     per-item `Writing:` override.
-  - **Text Placeholders** — the opaque `TextTheorem:` / `TextAxiom:` /
-    `TextConjecture:` / `TextDefinition:` prose stand-ins.
   - **Resource** — `Resource:` a bibliographic reference.
     - **Title** — `title:` display title.
     - **Author** — `author:` one or more authors.
