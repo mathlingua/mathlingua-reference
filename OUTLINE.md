@@ -103,7 +103,7 @@ to write mathematical knowledge.*
   - **Inferred Parameters** — command arguments written `X?`.
   - **Membership Expressions** — `memberOf` relating a subject to a collection.
   - **Spec Literals** — values of `\specification` with an anonymous `_` subject.
-  - **Builds** — `\type@value`, viewing a value at a type.
+  - **Coercions** — `\type@value`, viewing a value at a type.
   - **Equality Expressions** — `=` and `!=`.
   - **Variadic Slices** — `x...` / `x[1...i_...n]` and their broadcasts, plus the
     `\\map` and reduce builtins.
@@ -244,8 +244,8 @@ to write mathematical knowledge.*
 
 - **Type System** — the kinds of facts the checker tracks and the six builtin
   types.
-- **Type Resolution** — how operators resolve, and how builds and coercion
-  relations are used.
+- **Type Resolution** — how operators resolve, and how coercions and views
+  are used.
 - **What is Checked** — the consistency the checker enforces.
 - **What is Not Checked** — the limits: it does not prove theorems or verify that
   axioms/definitions are mathematically true.

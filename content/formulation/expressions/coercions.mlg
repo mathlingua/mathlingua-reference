@@ -1,14 +1,14 @@
-Title: "Builds"
+Title: "Coercions"
 Id: "b8cfcb46-7573-4508-9e30-92f8a7c60664"
 
-Text: "A build views an expression at a stated type with `\type@value`.
+Text: "A coercion views an expression at a stated type with `\type@value`.
 
 ```mlg-fragment
 \set@{x_ : x_ is \real}
 \rational@k
 ```
 
-A build succeeds when the value already has the target type, reaches it through
+A coercion succeeds when the value already has the target type, reaches it through
 a `Declares:` extension, or has an applicable `Enables: view:`. It is checked;
 `@` is not a way to force an unrelated value into a type.
 
@@ -20,7 +20,7 @@ Enables:
   as: r := \as.rational{n} is \rational
 ```
 
-A top-level build on the right of a `Defines:` assignment supplies its required
+A top-level coercion on the right of a `Defines:` assignment supplies its required
 explicit type: `Defines: X := \set@{...}` is the typed alternative to an `is`
 declaration plus separate body."
 Id: "b76683ca-a9fb-48e3-9e79-5156e30e0a96"

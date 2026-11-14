@@ -32,7 +32,7 @@ Definitions using `:=` belong in the predicate branch after `|`, not in the
 specification list before it.
 
 The bare ellipsis form `{x_ : ...}` places no constraint on the elements. It is
-useful in a `from:` declaration that describes the shape of an accepted build
+useful in a `from:` declaration that describes the shape of an accepted coercion
 source without adding element constraints.
 
 A collection literal also satisfies a command's nominal type requirement

@@ -2,7 +2,7 @@ Title: "Overview"
 Id: "5139f041-388c-4eb4-a037-61d42dac7716"
 
 Text: "`Requires:` records capabilities or top-level definitions a construct needs.
-`Enables:` records additional capabilities, build-backed forms, and type views
+`Enables:` records additional capabilities, coercion-backed forms, and type views
 that the construct supplies.
 
 ```mlg-fragment

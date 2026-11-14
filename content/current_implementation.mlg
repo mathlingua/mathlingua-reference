@@ -32,7 +32,7 @@ Id: "9daf84d0-fffb-45b3-916e-9c097a040118"
 
 Text: "- The universal unstructured type is `\\anything`.
 - Specification literals use anonymous subject `_`.
-- The build spelling is `\type@value`.
+- The coercion spelling is `\type@value`.
 - `Enables: view:` defines views between types. Its required `as:` is
   `<symbol> := <expression> is <type>`.
 - Specification capabilities use directed `:->` or equivalent `:<->:` arrows.
@@ -92,7 +92,7 @@ supplies that symbol with `#using{...}`, the corresponding instantiated
 requirement is checked.
 
 The checker validates syntax, signatures, scope, tracked facts, requirements,
-target completeness, capabilities, builds, views, and structural invariants. It
+target completeness, capabilities, coercions, views, and structural invariants. It
 does not prove mathematical truth. One-element tuples are not supported,
 refined command expressions are not general expressions, and subset syntax is
 intentionally narrow. Prose fences tagged `mlg` are checked as source in their

@@ -34,7 +34,7 @@ Which one to use:
 its `Documented:` rejects `called:`.
 
 `Requires:` is used for definitional capabilities or required definitions,
-while `Enables:` is used for additional capabilities, build-backed forms, and
+while `Enables:` is used for additional capabilities, coercion-backed forms, and
 views. For type checking, ordinary capabilities of both are combined. A
 `Requires:` `definition:` item refers to a top-level `Defines:` item.
 

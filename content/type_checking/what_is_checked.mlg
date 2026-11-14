@@ -41,7 +41,7 @@ placeholders are local; callable names are not.
 its relation/`via`, `extends:`, or `specifies:`. A concrete `Defines:` target
 must have a known type and exactly one value for every component, through `:=`
 or `expresses:`. A simple target states its type through `is` or a top-level
-build; an assigned component can inherit the assigned command value's type.
+coercion; an assigned component can inherit the assigned command value's type.
 `abstractly:` permits open typed components, and each
 `Realizes:` item must fill all of them without adding new ones.
 
@@ -54,9 +54,9 @@ two base types, a base type plus its refinement, or a type plus an assignment ar
 reported as duplicates. A refinement may add adjectives to an inherited
 component type, but it may not replace that component's underlying base type.
 
-**Capabilities, builds, and views.** `:=>`, directed `:->`, equivalent
+**Capabilities, coercions, and views.** `:=>`, directed `:->`, equivalent
 `:<->:`, `from:` items, `Requires: definition:`, and `Enables: view:` are
-validated. A build must be justified by a fact, extension, or view. Direct
+validated. A coercion must be justified by a fact, extension, or view. Direct
 components using `..` must belong to a `Defines:` or `Realizes:` command.
 
 **Other shapes.** Function and structural type literals, inferred arguments,

@@ -42,10 +42,10 @@ component's assigned command value. Views do not select ordinary operator
 capabilities or disambiguation branches."
 Id: "b4f93e01-3b86-4228-b3ed-512add4b38bf"
 
-SectionTitle: "Builds And Views"
+SectionTitle: "Coercions And Views"
 Id: "88aed822-a5b4-4f56-8966-ee206c1c5290"
 
-Text: "A build `\type@value` succeeds when the value already has the type, reaches it
+Text: "A coercion `\type@value` succeeds when the value already has the type, reaches it
 through extension, or has an applicable `Enables: view:`.
 
 ```mlg-fragment
@@ -58,7 +58,7 @@ Enables:
 The view symbol, its value, and its type are available to `signifies:`. If the
 view expression is a name or tuple of names, facts follow through those concrete
 components; otherwise only the advertised type is known. Views satisfy resolved
-command requirements and builds. A view can also supply the operand type needed
+command requirements and coercions. A view can also supply the operand type needed
 to resolve an infix specification operator. It does not select ordinary
 overloaded operators or `Disambiguates:` branches."
 Id: "40a048de-3573-4d73-ad8c-ca8c1772687d"

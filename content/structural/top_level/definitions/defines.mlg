@@ -3,7 +3,7 @@ Id: "13d7dffc-b893-4883-8713-94f043308359"
 
 Text: "`Defines:` introduces a concrete typed value or operation. Its target is a
 refined-capable declaration statement. A simple value must state its type with
-`is` or a top-level build; a destructured component may inherit the known type
+`is` or a top-level coercion; a destructured component may inherit the known type
 of the command value assigned to it.
 
 ```mlg-fragment
@@ -34,7 +34,7 @@ Documented:
 . called: \"intersection of $A?$ and $B?$\"
 ```
 
-A top-level build on the right of `:=` supplies the explicit type:
+A top-level coercion on the right of `:=` supplies the explicit type:
 
 ```mlg-fragment
 [\empty.set]

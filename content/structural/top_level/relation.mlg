@@ -3,7 +3,7 @@ Id: "4ed9df33-7da1-4263-b1ef-d7a6ad578912"
 
 Text: "`Relation:` states either an undirected relationship between the subjects
 named in `between:` and `and:`, or a directed relationship from `from:` to `to:`.
-It is a heading-less, standalone descriptive item and does not register a build
+It is a heading-less, standalone descriptive item and does not register a coercion
 or view rule.
 
 ```mlg-fragment
