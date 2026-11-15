@@ -212,8 +212,7 @@ to write mathematical knowledge.*
   - **Positive Decimal** — `positive:` + `decimal:` → positive decimal.
   - **Negative Decimal** — `negative:` + `decimal:` → negative decimal.
   - **Zero** — `zero:` → the zero classification.
-- **Metadata** — the legacy `Metadata:` section and its nested items.
-  - **Id** — nested `id:` vs. the current top-level `Id:` identity section.
+- **Metadata** — the `Metadata:` section and its nested items.
   - **Version** — nested `version:` version text.
 
 ## Headers

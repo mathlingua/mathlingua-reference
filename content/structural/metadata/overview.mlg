@@ -5,9 +5,8 @@ Text: "Structural groups may contain a `Metadata:` section with nested metadata 
 
 ```mlg-fragment
 Metadata:
-. id: \"stable-id\"
 . version: \"1\"
 ```
 
-Direct top-level `Id:` sections are also supported. `mlg check` generates missing direct `Id:` sections for top-level items and reports duplicates."
+The only supported way to specify an ID is via the top-level `Id:` section in top-level items. `mlg check` generates missing direct `Id:` sections for top-level items and reports duplicates."
 Id: "11dc8592-ade6-45fc-ad2e-8bf84c7bd49a"

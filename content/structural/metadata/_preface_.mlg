@@ -1,4 +1,4 @@
-Text: "Metadata documents the nested `Metadata:` representation of IDs and
+Text: "Metadata documents the nested `Metadata:` representation of
 versions alongside direct top-level `Id:` identity sections. These pages
 describe parsing and checking behavior for metadata sections."
 Id: "6faed1c8-6cb0-4166-835b-d9bb9bbe9aed"

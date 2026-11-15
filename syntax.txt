@@ -495,11 +495,7 @@ is: <OpenText>*
 
 
 MetadataItemUnion ::=
-    | IdGroup
     | VersionGroup
-
-
-id: <OpenText>
 
 
 version: <OpenText>
